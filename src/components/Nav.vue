@@ -4,16 +4,16 @@
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
             <div class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
-                :class="isSticky ? ['text-lg', 'lg:text-lg'] : ['text-2xl', 'lg:text-4xl']">
+                :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
                 <a href="/" class="animate subtle-slide-in font-black">hi, i’m Emm.</a>
             </div>
             <nav ref="nav" class="flex space-x-8 text-sm font-heading font-semibold"
                 :class="isSticky ? [''] : ['opacity-0']">
-                <a href="#about" class="hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#about')">
+                <a href="#about" class="hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#about')">
                     <span class="nav-item absolute">about</span>
                     <span class="opacity-0">about</span>
                 </a>
-                <a href="#work" class="hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#work')">
+                <a href="#work" class="hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#work')">
                     <span class="nav-item absolute">
                         work
                     </span>
@@ -21,7 +21,7 @@
                         work
                     </span>
                 </a>
-                <a href="#sayHello" class="hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#sayHello')">
+                <a href="#sayHello" class="hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#sayHello')">
                     <span class="nav-item absolute">
                         say hello
                     </span>

@@ -1,12 +1,12 @@
 <template>
-    <section ref="sliderSection" class="pt-20 pb-8" id="work">
-        <div class="relative group min-h-[900px] md:h-[1100px] overflow-clip">
+    <section ref="sliderSection" class="pt-20" id="work">
+        <div class="relative group h-[1100px] md:h-[950px] xl:h-[1100px] overflow-clip pb-8">
             <h2
                 class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl">
                 Featured Work</h2>
             <Splide ref="splide" :options="splideOptions" class="overflow-visible peer">
-                <SplideSlide v-for="(slide, index) in slides" :key="index" class="transition-all duration-500 group inverted:text-primary"
-                    :class="slide.textColor">
+                <SplideSlide v-for="(slide, index) in slides" :key="index"
+                    class="transition-all duration-500 group inverted:text-primary" :class="slide.textColor">
                     <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
                         <div class="flex flex-col md:flex-row justify-center items-center gap-8">
                             <img :src="slide.image"
@@ -18,7 +18,7 @@
                                     playsinline muted="" loop></video>
                             </div>
                         </div>
-                        <div class="h-0 opacity-0 flex flex-col justify-end p-6 group-[.is-active]:opacity-100 group-[.is-active]:h-full transition-all duriation-700 w-[85%]"
+                        <div class="h-0 opacity-0 flex flex-col justify-end py-6 md:p-6 group-[.is-active]:opacity-100 group-[.is-active]:h-full transition-all duriation-700 w-[85%]"
                             @mouseover="isHovered = true" @mouseleave="isHovered = false">
                             <h3 :class="slide.textColor" class="text-2xl font-bold mb-2 subtle-slide-in">{{ slide.title }}
                             </h3>
@@ -27,11 +27,11 @@
                                     <p :class="slide.textColor" class="text-base subtle-slide-in" v-html="slide.text"
                                         style="--theme-main-animation-delay:0.2s"></p>
 
-                                    <div class="specialties-animate mt-4" v-if="slide.specialties">
+                                    <div class="specialties-animate mt-4 lg:w-90 xl:w-100" v-if="slide.specialties">
                                         <h4 class="mb-2 mt-8">Specialties</h4>
-                                        <ul class="flex flex-col gap-2 items-start">
+                                        <ul class="flex gap-2 items-start flex-wrap">
                                             <li v-for="(specialty, index) in slide.specialties" :key="index"
-                                                class="subtle-slide-in bg-current px-2 py-1 rounded-xl text-xs inline"
+                                                class="subtle-slide-in bg-current px-2 py-1 text-nowrap rounded-xl text-xs inline"
                                                 :style="'--theme-main-animation-delay:0.' + (index + 5) + 's'">
                                                 <span class="text-primary inverted:text-background">{{ specialty }}</span>
                                             </li>
@@ -41,9 +41,9 @@
 
 
 
-                                <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col">
+                                <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col mt-6 md:mt-0">
                                     <div v-for="(button, btnIndex) in slide.buttons" :key="btnIndex"
-                                        class="flex items-center h-14">
+                                        class="flex items-center h-14 order-2 md:order-1">
                                         <a v-if="button.github" :class="slide.textColor"
                                             class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer hover:bg-current hover:rotate-270 transition group/git rounded-full subtle-slide-in mr-4"
                                             style="--theme-main-animation-delay:0.6s" target="_blank" :href="slide.github">
@@ -97,7 +97,7 @@
                                             </span>
                                         </a>
                                     </div>
-                                    <div class="max-w-75 pl-2 mt-6 subtle-slide-in hidden md:block"
+                                    <div class="max-w-75 pl-2 my-6 md:mb-0 subtle-slide-in order-1 md:order-2"
                                         style="--theme-main-animation-delay:0.8s" v-if="slide.tech">
                                         <h4 class="mb-1">Tech Stack</h4>
                                         <ul class="flex list-disc gap-2 items-start flex-wrap ml-3">
@@ -114,24 +114,40 @@
                 </SplideSlide>
             </Splide>
 
-            <button @click="goNext"
-                class="mt-8 block absolute top-[80vh] right-0 mx-auto text-white px-6 text-4xl py-2 rounded-full transition duriation-900"
-                :class="isHovered ? 'opacity-30' : ''">
-                <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" width="200" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 6L15 12L9 18" class="stroke-current 
-                    group-has-[.is-active.text-toxic-mint]:stroke-toxic-mint
-                    group-has-[.is-active.text-hot-coral]:stroke-hot-coral
-                    group-has-[.is-active.text-lime-glow]:stroke-lime-glow
-                    group-has-[.is-active.text-sunburn-orange]:stroke-sunburn-orange" stroke-linecap="round"
-                        stroke-linejoin="round" />
+            <button ref="sliderArrow" @click="goNext"
+                class="mt-8 block -right-2 md:-right-8 lg:right-15 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80"
+                :class="[isHovered ? 'md:opacity-80' : '', sliderArrowSticky ? 'fixed bottom-20 md:bottom-0 lg:bottom-10' : 'absolute top-[60vh] md:top-[85vh]']" @mouseenter="onArrowHoverIn"
+@mouseleave="onArrowHoverOut">
+                <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" class="w-24 md:w-50" :class="activeTextColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 6L15 12L9 18" class="stroke-current"
+                        stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
+                <svg
+  class="absolute inset-0 w-full h-fullabsolute rounded-[9rem] w-full h-full pointer-events-none opacity-0 group-hover/slider:opacity-100 animate-spin-slow z-0"  :class="activeTextColor"
+  viewBox="0 0 100 100"
+>
+  <circle
+    cx="50"
+    cy="50"
+    r="45"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="6"
+    :stroke-dasharray="strokeLength"
+    :stroke-dashoffset="progressOffset"
+    class="transition-all duration-100 ease-linear"
+    ref="progressCircle"
+  />
+</svg>
             </button>
         </div>
     </section>
+    <div class="hidden stroke-sunburn-orange stroke-"></div>
 </template>
   
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -147,8 +163,48 @@ const labelRefs = ref([]);
 const iconRefs = ref([])
 const hoverTimelines = []
 const blobRefs = ref([])
+const sliderArrow = ref([])
+const sliderArrowSticky = ref([false])
 const isHovered = ref([false])
 const blobInnerRefs = ref([]);
+const activeSlideIndex = ref(0)
+const progressOffset = ref(283); // full circumference of r=45 circle
+const strokeLength = 2 * Math.PI * 45;
+const progressCircle = ref(null);
+let hoverTimer = null;
+
+const onArrowHoverIn = () => {
+  gsap.to(progressOffset, {
+    value: 0,
+    duration: 1.5,
+    ease: 'none',
+    onUpdate: () => {
+      progressCircle.value.style.strokeDashoffset = progressOffset.value;
+    },
+    onComplete: () => {
+      goNext();
+    },
+  });
+};
+
+const onArrowHoverOut = () => {
+  gsap.killTweensOf(progressOffset);
+  gsap.to(progressOffset, {
+    value: strokeLength,
+    duration: 0.3,
+    ease: 'power2.out',
+    onUpdate: () => {
+      progressCircle.value.style.strokeDashoffset = progressOffset.value;
+    },
+  });
+};
+const activeStrokeColor = computed(() =>
+  slides[activeSlideIndex.value]?.textColor.replace('text-', '#') || '#00ffd5'
+);
+
+const activeTextColor = computed(() => {
+  return slides[activeSlideIndex.value]?.textColor || 'text-primary';
+});
 const hoverIn = (slideIndex, btnIndex) => {
     const label = labelRefs.value[slideIndex][btnIndex];
     const blob = blobRefs.value[slideIndex][btnIndex];
@@ -297,14 +353,14 @@ const slides = [
 const splideOptions = {
     type: 'loop',
     focus: 'center',
-    autoplay: true,
+    //autoplay: true,
     pagination: false,
     pauseOnHover: true,
     arrows: false,
     padding: '15%',
     breakpoints: {
-        640: {
-            padding: '6%',
+        940: {
+            padding: { left: '0', right: '2rem' },
         },
     }
 };
@@ -315,26 +371,25 @@ const goNext = () => {
     }
 };
 const handleSlideActive = (index) => {
-    console.log(index)
-    const currentSlide = document.querySelectorAll('.splide__slide')[index];
+  activeSlideIndex.value = index;
 
-    const video = currentSlide.querySelector('video');
+  const currentSlide = document.querySelectorAll('.splide__slide')[index];
+  const video = currentSlide.querySelector('video');
 
-    video.muted = true;
-    video.currentTime = 0;
-    video.play();
-    // Ensure the video element is ready before observing.
-    if (video.readyState >= 1) {
-        video.play();
-    } else {
-        video.addEventListener('loadedmetadata', () => {
-            video.play();
-        });
-    }
-}
+  video.muted = true;
+  video.currentTime = 0;
+
+  if (video.readyState >= 1) {
+    // video.play()
+  } else {
+    video.addEventListener('loadedmetadata', () => {
+      // video.play()
+    });
+  }
+};
 
 onMounted(() => {
-
+    sliderArrowSticky.value = false;
     const waitForSplide = () => {
         const instance = splide.value?.splide;
         if (!instance) {
@@ -369,29 +424,54 @@ onMounted(() => {
         handleSlideActive(splide.value.index);
     };
 
+    const sliderSectionEl = sliderSection.value;
     waitForSplide();
     ScrollTrigger.create({
-        trigger: sliderSection.value,
+        trigger: sliderSectionEl,
         start: 'top 20%',
         end: 'bottom bottom',
         onEnter: () => {
             document.body.classList.add('dark')
+
+            sliderArrowSticky.value = true
             //splide.value?.mount();
             //splide.value?.on('move', (newIndex) => {
             // active.value = newIndex;
             //});
         },
+        onLeave: () => {
+            sliderArrowSticky.value = false
+        },
         onLeaveBack: () => {
+
+            //sliderArrowSticky.value = false
             //document.body.classList.remove('dark')
         },
         onEnterBack: () => {
             //document.body.classList.remove('dark')
         },
     });
+
 });
 </script>
   
 <style scoped>
-/* Optional: add shadow or transition smoothing if needed */
+@keyframes spin-slow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 4s linear infinite;
+}
+
+.gradient-border {
+    border-image: conic-gradient(from 0deg, #00ffd5, #ff00c3, #00ffd5) 1;
+}
 </style>
   

@@ -2,8 +2,8 @@
     <section ref="section" class="pt-16" id="about">
         <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto">
             <div class="min-h-screen">
-                <div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-6 top-[10%]">
-                    <h2 class="italic subtitle mb-4 text-2xl placeholder-line hidden md:block" data-splitting="words">So
+                <div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-6 top-[15%] md:top-[10%]">
+                    <h2 class="italic subtitle mb-4 text-2xl placeholder-line" data-splitting="words">So
                         here's the thing:
                     </h2>
                     <ul class="list-disc mb-12 pl-6 hidden md:block">

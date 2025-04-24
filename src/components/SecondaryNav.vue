@@ -1,5 +1,5 @@
 <template>
-    <div class="secondary-nav group/secondaryNav max-w-1440 mx-auto px-8 md:px-12 flex justify-end items-start relative gap-6">
+    <div class="secondary-nav group/secondaryNav max-w-1440 mx-auto px-8 md:px-12 flex justify-end items-start relative gap-10 md:gap-6">
         <label class="inline-flex items-start cursor-pointer">
             <span class="me-3 text-xl font-medium text-gray-800 animate subtle-slide-in" style="--theme-main-animation-delay:0.1s">
                 {{ isDark ? '🌙' : '🌞' }}
