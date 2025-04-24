@@ -3,7 +3,7 @@
         class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto min-h-[90vh] py-24 hero-container flex flex-col justify-center">
         <div class="hero-wrapper animate relative w-full">
             <div ref="grid" class="headline-wrapper decor-grid">
-                <h1 class="headline font-heading font-black text-6xl leading-snug mt-6 uppercase placeholder-line"
+                <h1 class="headline font-heading font-black text-6xl leading-none xl:pt-8 **:align-sub mt-6 uppercase placeholder-line"
                     data-splitting="words">
                     Building digital bridges
                     between ideas & impact
@@ -12,7 +12,8 @@
                 <!-- your 7 svgs -->
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346874/mixer_ha98hb.svg"
-                        class="decor jello-horizontal" alt="Illustration of a mixer" />
+                        class="decor jello-horizontal" alt="Illustration of a mixer"
+                        :style="animDelay" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-4_hnflq8.svg"
@@ -32,7 +33,8 @@
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg"
-                        class="decor rotate-ccw90-forever" style="--theme-main-animation-delay:0.63s" alt="Illustration of a flower" />
+                        class="decor rotate-ccw90-forever" :style="animDelay"
+                        alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg"
@@ -50,8 +52,8 @@
 </template>
   
 <script setup>
-import { ref, onMounted } from 'vue'
-    import placeholderJS from './../utils/placeholder.js'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import placeholderJS from './../utils/placeholder.js'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -60,11 +62,18 @@ gsap.registerPlugin(ScrollTrigger)
 const grid = ref(null)
 const container = ref(null)
 const trigger = ref(null)
+const delay = ref('0.5s')
+
+const animDelay = computed(() => ({
+  '--theme-main-animation-delay': delay.value
+}))
+
+let interval
 onMounted(() => {
     const triggerEl = trigger.value
     const gridEl = grid.value
     const headline = gridEl.querySelector('h1.headline')
-    const anim = new placeholderJS((headline),{manual:true})
+    const anim = new placeholderJS((headline), { manual: true })
     anim.play();
     headline.style.order = -1
 
@@ -73,7 +82,9 @@ onMounted(() => {
     let currentOrders = icons.map((_, i) => i)
 
     gsap.set(icons, { scale: 1, transformOrigin: '50% 50%' })
-
+    interval = setInterval(() => {
+    delay.value = (Math.random() * 1.5).toFixed(2) + 's'
+  }, 1000)
     function shuffleIcons() {
         const swapCount = Math.floor(gsap.utils.random(2, 6))
         if (slotCount < swapCount) return
@@ -131,14 +142,17 @@ onMounted(() => {
         onLeave: () => {
             iconFadeTL.play()
             anim.getTimeline().progress(1).reverse();
-          //  document.body.classList.remove('dark')
+            //  document.body.classList.remove('dark')
         },
-       // onLeaveBack: () => document.body.classList.remove('dark'),
+        // onLeaveBack: () => document.body.classList.remove('dark'),
         onEnterBack: () => {
             anim.play();
             document.body.classList.remove('dark')
             iconFadeTL.reverse()
         }
+    })
+    onUnmounted(() => {
+        clearInterval(interval)
     })
 })
 </script>

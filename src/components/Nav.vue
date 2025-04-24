@@ -7,11 +7,11 @@
                 :class="isSticky ? ['text-lg', 'lg:text-lg'] : ['text-2xl', 'lg:text-4xl']"><a href="/" class="animate  subtle-slide-in font-black">hi, i’m Emm.</a></div>
             <nav ref="nav" class="flex space-x-8 text-sm font-heading font-semibold"
                 :class="isSticky ? [''] : ['opacity-0']">
-                <a href="#about" class="hover:text-accent transition relative overflow-clip">
+                <a href="#about" class="hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#about')">
                     <span class="nav-item absolute">about</span>
                     <span class="opacity-0">about</span>
                 </a>
-                <a href="#work" class="hover:text-accent transition relative overflow-clip">
+                <a href="#work" class="hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#work')">
                     <span class="nav-item absolute">
                         work
                     </span>
@@ -19,7 +19,7 @@
                         work
                     </span>
                 </a>
-                <a href="#contact" class="hover:text-accent transition relative overflow-clip">
+                <a href="#sayHello" class="hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#sayHello')">
                     <span class="nav-item absolute">
                         say hello
                     </span>
@@ -38,9 +38,41 @@ import gsap from 'gsap';
 import cashRegister from './../utils/cashRegister.js'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+const trigger = ref(null);
 gsap.registerPlugin(ScrollTrigger);
 const navContainer = ref(null);
 const isSticky = ref(false);
+
+const smoothScrollTo = (selector) => {
+    const target = document.querySelector(selector);
+    if (target) {
+      smoothScroll(target)
+    }
+};
+
+const smoothScroll = (target, buffer = 100, duration = 500) => {
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - buffer;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easeInOutCubic = progress < 0.5 
+            ? 4 * progress ** 3 
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        window.scrollTo(0, startPosition + distance * easeInOutCubic);
+        
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    requestAnimationFrame(animation);
+}
 
 const nav = ref(null)
 onMounted(() => {

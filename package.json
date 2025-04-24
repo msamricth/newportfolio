@@ -13,6 +13,7 @@
     "@splidejs/vue-splide": "^0.6.12",
     "@tailwindcss/vite": "^4.1.4",
     "gsap": "^3.12.7",
+    "hls": "^0.0.1",
     "splitting": "^1.1.0",
     "tailwindcss": "^4.1.4",
     "vue": "^3.5.13"

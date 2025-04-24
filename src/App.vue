@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection.vue';
 import About from './components/about.vue'
 import LogoGarden from './components/LogoGarden.vue'
 import FeaturedWork from './components/FeaturedWork.vue'
+import Contact from './components/Contact.vue';
 
 './components/About.vue';
 </script>
@@ -15,6 +16,7 @@ import FeaturedWork from './components/FeaturedWork.vue'
     <About />
   <LogoGarden />
   <FeaturedWork />
+  <Contact />
   </div>
 </template>
 <style>
