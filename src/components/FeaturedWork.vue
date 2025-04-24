@@ -97,7 +97,7 @@
                                             </span>
                                         </a>
                                     </div>
-                                    <div class="max-w-75 pl-2 mt-6 subtle-slide-in"
+                                    <div class="max-w-75 pl-2 mt-6 subtle-slide-in hidden md:block"
                                         style="--theme-main-animation-delay:0.8s" v-if="slide.tech">
                                         <h4 class="mb-1">Tech Stack</h4>
                                         <ul class="flex list-disc gap-2 items-start flex-wrap ml-3">
