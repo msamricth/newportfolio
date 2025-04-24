@@ -24,7 +24,7 @@
                         </label>
                         <input type="text" placeholder="Name" id="name" name="name" v-model="formDataValues.name"
                             :class="{ 'border-b border-yellow': nameError }"
-                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent">
+                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-primary dark:text-accent inverted:text-electric-purple">
                     </div>
 
                     <div class="w-1/2">
@@ -33,13 +33,13 @@
                         </label>
                         <input type="email" id="email" placeholder="Email" name="email" v-model="formDataValues.email"
                             required :class="{ 'border-b border-yellow': emailError }"
-                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green">
+                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-primary dark:text-accent inverted:text-electric-purple">
                     </div>
 
                 </div>
 
                 <textarea
-                    class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6"
+                    class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6 text-primary dark:text-accent inverted:text-electric-purple"
                     :class="{ 'border-b border-yellow': messageError }" id="message" name="message"
                     placeholder="Your message" required v-model="formDataValues.message"></textarea>
 
