@@ -1,6 +1,6 @@
 <template>
     <section ref="container"
-        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto min-h-[90vh] py-24 hero-container flex flex-col justify-center">
+        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto min-h-[85vh] py-24 hero-container flex flex-col justify-center">
         <div class="hero-wrapper animate relative w-full">
             <div ref="grid" class="headline-wrapper decor-grid">
                 <h1 class="headline font-heading font-black text-6xl leading-none xl:pt-8 **:align-sub mt-6 uppercase placeholder-line"

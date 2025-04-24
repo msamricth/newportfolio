@@ -75,9 +75,11 @@ onMounted(() => {
 
     const artisanElHeadlineAnim = new PlaceholderJS(artisanElHeadline, { manual: true });
 
+    artisanElHeadlineAnim.getTimeline().progress(1).reverse();
     ScrollTrigger.create({
         trigger: artisanEl,
-        start: 'top 75%',
+        start: 'top 65%',
+        markers:true,
         onEnter: () => {
             isArtisan.value = true;
             artisanElHeadlineAnim.play();
