@@ -79,7 +79,6 @@ onMounted(() => {
     ScrollTrigger.create({
         trigger: artisanEl,
         start: 'top 65%',
-        markers:true,
         onEnter: () => {
             isArtisan.value = true;
             artisanElHeadlineAnim.play();
