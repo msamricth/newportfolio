@@ -1,7 +1,7 @@
 <script setup>
-import Nav from './components/nav.vue';
+import Nav from './components/Nav.vue';
 import HeroSection from './components/HeroSection.vue';
-import About from './components/about.vue'
+import About from './components/About.vue'
 import LogoGarden from './components/LogoGarden.vue'
 import FeaturedWork from './components/FeaturedWork.vue'
 import Contact from './components/Contact.vue';
