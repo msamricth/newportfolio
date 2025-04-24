@@ -1,8 +1,8 @@
 <template>
     <section ref="section" class="pt-16" id="about">
         <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto">
-            <div class="min-h-[80vh]">
-                <div class="introduction-wrapper sticky md:max-w-2/3 md:mt-4 top-[10%]">
+            <div class="min-h-screen">
+                <div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-6 top-[10%]">
                     <h2 class="italic subtitle mb-4 text-2xl placeholder-line hidden md:block" data-splitting="words">So
                         here's the thing:
                     </h2>
@@ -38,14 +38,14 @@
             </div>
             <div class="md:min-h-[60vh]" ref="artisan">
                 <div class="code-artisan lg:my-34 my-18  md:w-3/4 mx-auto relative md:sticky top-[20%]">
-                    <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background transition duriation-900 mb-4 delay-700"
+                    <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border  transition duriation-900 mb-4 delay-700"
                         :class="isArtisan ? ['animate'] : ['opacity-0']"></div>
                     <h3 class="font-heading font-semibold text-2xl md:text-3xl leading-snug placeholder-line" data-splitting="words">
                         Code artisan forging WordPress & Vue.js experiences by day,
                         crafting dirt jumps & trails for bikes by night—
                         UX zeal meets mud‑and‑grit creativity.
                     </h3>
-                    <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background transition duriation-900 mt-4 delay-700"
+                    <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition duriation-900 mt-4 delay-700"
                         :class="isArtisan ? ['animate'] : ['opacity-0']"></div>
                 </div>
             </div>

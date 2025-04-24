@@ -1,8 +1,8 @@
 <template>
     <section aria-labelledby="formHeader" id="sayHello" tabindex="0"
-        class="form-wrapper relative w-full mx-auto mb-2 text-accent items-center relative">
+        class="form-wrapper relative w-full mx-auto mb-2  text-primary dark:text-accent inverted:text-electric-purple items-center relative mt-12 md:mt-56 min-h-screen">
         <div
-            class="h-full flex items-center justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative  xl:pb-24 xl:pb-16">
+            class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16">
             <h3 class="text-4xl font-black transition text-center mb-6 lg:mb-12 form-header uppercase placeholder-line"
                 data-splitting="words" id="formHeader" ref="formHeader" :class="submitted ? 'blur-sm' : ''">Lets get in
                 touch!</h3>
@@ -12,34 +12,34 @@
                 <p class="text-white">ss
                 </p>
             </div>
-            <form ref="formRef" @submit.prevent="submitForm" class="transition w-full px-2 block flex flex-col gap-16"
+            <form ref="formRef" @submit.prevent="submitForm" class="transition w-full px-2 block flex flex-col gap-6"
                 novalidate :class="submitted ? 'blur-md opacity-25' : ''">
-                <div>
-                    <div v-if="error" class="text-yellow text-sm mb-2">
-                        {{ error }}
-                    </div>
-                    <label class="sr-only focus:not-sr-only" tabindex="0" for="name">
-                        Name
-                    </label>
-                    <div class="relative">
+                <div v-if="error" class="text-yellow text-sm mb-2">
+                    {{ error }}
+                </div>
+                <div class="flex flex-wrap w-full">
+                    <div class="relative w-1/2 pr-4">
+                        <label class="sr-only focus:not-sr-only" tabindex="0" for="name">
+                            Name
+                        </label>
                         <input type="text" placeholder="Name" id="name" name="name" v-model="formDataValues.name"
                             :class="{ 'border-b border-yellow': nameError }"
-                            class="w-full placeholder:text-accent/60 focus:placeholder:text-accent text-accent outline-0 h-12 pb-2 p bg-transparent border-accent border-b py-[10px] pr-3 text-white outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent">
+                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent">
                     </div>
-                </div>
 
-                <!-- Email Field -->
-                <div>
-                    <label for="email" class="sr-only focus:not-sr-only" tabindex="0">
-                        Email
-                    </label>
-                    <input type="email" id="email" placeholder="Email" name="email" v-model="formDataValues.email" required
-                        :class="{ 'border-b border-yellow': emailError }"
-                        class="w-full placeholder:text-accent/60 focus:placeholder:text-accent text-accent outline-0 h-12 pb-2 p bg-transparent border-accent border-b py-[10px] pr-3 text-white outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green">
+                    <div class="w-1/2">
+                        <label for="email" class="sr-only focus:not-sr-only" tabindex="0">
+                            Email
+                        </label>
+                        <input type="email" id="email" placeholder="Email" name="email" v-model="formDataValues.email"
+                            required :class="{ 'border-b border-yellow': emailError }"
+                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green">
+                    </div>
+
                 </div>
 
                 <textarea
-                    class="placeholder:text-accent/60 focus:placeholder:text-accent text-accent outline-0 h-12 pb-2 p bg-transparent border-accent border-b"
+                    class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6"
                     :class="{ 'border-b border-yellow': messageError }" id="message" name="message"
                     placeholder="Your message" required v-model="formDataValues.message"></textarea>
 
@@ -55,7 +55,7 @@
 
 
                     <button type="submit"
-                        class="relative submit flex items-center transition overflow-hidden w-60 mx-auto text-center group/cta"
+                        class="relative submit flex items-center transition overflow-hidden w-60 ml-auto text-center group/cta"
                         ref="formButton" @mouseenter="formHoverIn" @mouseleave="formHoverOut">
                         <span
                             class="inline-block font-semibold px-4 py-2 border-current border-2 rounded-full transition-all relative z-10 bg-inherit w-full whitespace-nowrap"
@@ -129,7 +129,7 @@ function expandTextAreaPattern() {
 
     function calcHeight(value) {
         var numberOfLineBreaks = (value.match(/\n/g) || []).length;
-        var heightVar = 41.6;
+        var heightVar = 80.6;
         var newHeight = heightVar + numberOfLineBreaks * heightVar + 12 + 2;
         return newHeight;
     }
@@ -150,12 +150,14 @@ onMounted(() => {
         scrollTrigger: {
             trigger: ".form-wrapper",
             start: "top 80%",
-            end: "bottom 5%",
-            toggleActions: "play reverse play reverse"
+            end: "bottom bottom",
+            toggleActions: "play none play reverse",
         }
     });
     tl.call(() => {
-        document.body.classList.add('dark')
+        if (tl.reversed()) {} else {
+            document.body.classList.add('dark')
+        }
     })
     tl.call(() => {
         if (tl.reversed()) {

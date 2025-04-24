@@ -5,7 +5,7 @@
                 class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl">
                 Featured Work</h2>
             <Splide ref="splide" :options="splideOptions" class="overflow-visible peer">
-                <SplideSlide v-for="(slide, index) in slides" :key="index" class="transition-all duration-500 group"
+                <SplideSlide v-for="(slide, index) in slides" :key="index" class="transition-all duration-500 group inverted:text-primary"
                     :class="slide.textColor">
                     <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
                         <div class="flex flex-col md:flex-row justify-center items-center gap-8">
@@ -33,7 +33,7 @@
                                             <li v-for="(specialty, index) in slide.specialties" :key="index"
                                                 class="subtle-slide-in bg-current px-2 py-1 rounded-xl text-xs inline"
                                                 :style="'--theme-main-animation-delay:0.' + (index + 5) + 's'">
-                                                <span class="text-primary">{{ specialty }}</span>
+                                                <span class="text-primary inverted:text-background">{{ specialty }}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -373,6 +373,7 @@ onMounted(() => {
     ScrollTrigger.create({
         trigger: sliderSection.value,
         start: 'top 20%',
+        end: 'bottom bottom',
         onEnter: () => {
             document.body.classList.add('dark')
             //splide.value?.mount();
@@ -381,10 +382,10 @@ onMounted(() => {
             //});
         },
         onLeaveBack: () => {
-            document.body.classList.remove('dark')
+            //document.body.classList.remove('dark')
         },
         onEnterBack: () => {
-            document.body.classList.remove('dark')
+            //document.body.classList.remove('dark')
         },
     });
 });

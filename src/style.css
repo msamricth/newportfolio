@@ -2,6 +2,7 @@
 @import './css/animations.css';
 @import './css/animations.css';
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant inverted (&:where(.inverted, .inverted *));
 
 @theme {
   --color-primary: #07000D;

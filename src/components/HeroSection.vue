@@ -2,6 +2,9 @@
     <section ref="container"
         class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto min-h-[85vh] py-24 hero-container flex flex-col justify-center">
         <div class="hero-wrapper animate relative w-full">
+            <div class="utilties absolute right-0 -top-10">
+                <SecondaryNav />
+            </div>
             <div ref="grid" class="headline-wrapper decor-grid">
                 <h1 class="headline font-heading font-black text-6xl leading-none xl:pt-8 **:align-sub mt-6 uppercase placeholder-line"
                     data-splitting="words">
@@ -54,6 +57,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import placeholderJS from './../utils/placeholder.js'
+import SecondaryNav from './SecondaryNav.vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -134,6 +138,7 @@ onMounted(() => {
     });
 
 
+    iconFadeTL.progress(1).reverse();
     ScrollTrigger.create({
         trigger: triggerEl,
         start: 'top 20%',
