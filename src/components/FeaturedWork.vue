@@ -7,7 +7,7 @@
                 Featured Work</h2>
             <Splide ref="splide" :options="splideOptions" class="overflow-visible peer">
                 <SplideSlide v-for="(slide, index) in slides" :key="index"
-                    class="transition-all duration-500 group inverted:text-primary" :class="slide.textColor">
+                    class="transition-all duration-500 group" :class="slide.textColor">
                     <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
                         <div class="flex flex-col md:flex-row justify-center items-center gap-8">
                             <img :src="slide.image"
@@ -32,7 +32,7 @@
                                             <li v-for="(specialty, index) in slide.specialties" :key="index"
                                                 class="subtle-slide-in bg-current px-2 py-1 text-nowrap rounded-xl text-xs inline"
                                                 :style="'--theme-main-animation-delay:0.' + (index + 5) + 's'">
-                                                <span class="text-primary inverted:text-background">{{ specialty }}</span>
+                                                <span class="text-primary">{{ specialty }}</span>
                                             </li>
                                         </ul>
                                     </div>
