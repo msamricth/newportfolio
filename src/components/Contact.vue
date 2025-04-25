@@ -14,7 +14,7 @@
             </div>
             <form ref="formRef" @submit.prevent="submitForm" class="transition w-full px-2 block flex flex-col gap-6"
                 novalidate :class="submitted ? 'blur-md opacity-25' : ''">
-                <div v-if="error" class="text-yellow text-sm mb-2">
+                <div v-if="error" class="text-electric-purple text-sm mb-2">
                     {{ error }}
                 </div>
                 <div class="flex flex-wrap w-full">
