@@ -7,13 +7,13 @@
                 :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
                 <a href="/" class="animate subtle-slide-in font-black">hi, i’m Emm.</a>
             </div>
-            <nav ref="nav" class="flex space-x-8 text-sm font-heading font-semibold"
+            <nav ref="nav" class="flex space-x-8 text-sm font-heading font-semibold group/nav"
                 :class="isSticky ? [''] : ['opacity-0']">
-                <a href="#about" class="hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#about')">
+                <a href="#about" class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#about')">
                     <span class="nav-item absolute">about</span>
                     <span class="opacity-0">about</span>
                 </a>
-                <a href="#work" class="hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#work')">
+                <a href="#work" class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#work')">
                     <span class="nav-item absolute">
                         work
                     </span>
@@ -21,7 +21,7 @@
                         work
                     </span>
                 </a>
-                <a href="#sayHello" class="hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#sayHello')">
+                <a href="#sayHello" class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 hover:text-electric-purple dark:hover:text-accent transition relative overflow-clip" @click.prevent="smoothScrollTo('#sayHello')">
                     <span class="nav-item absolute">
                         say hello
                     </span>

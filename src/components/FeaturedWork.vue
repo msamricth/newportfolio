@@ -2,7 +2,8 @@
     <section ref="sliderSection" class="pt-20" id="work">
         <div class="relative group h-[1100px] md:h-[950px] xl:h-[1100px] overflow-clip pb-8">
             <h2
-                class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl">
+                class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl placeholder-line"
+                    data-splitting="words">
                 Featured Work</h2>
             <Splide ref="splide" :options="splideOptions" class="overflow-visible peer">
                 <SplideSlide v-for="(slide, index) in slides" :key="index"
@@ -139,6 +140,9 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@splidejs/vue-splide/css';
 
+import placeholderJS from './../utils/placeholder.js'
+
+   
 gsap.registerPlugin(ScrollTrigger);
 
 const active = ref(0);
@@ -159,6 +163,7 @@ const strokeLength = 2 * Math.PI * 45;
 const progressCircle = ref(null);
 let hoverTimer = null;
 
+const shuffledWork = ref([])
 const onArrowHoverIn = () => {
     // Prevent stacking if already running
     gsap.killTweensOf(progressOffset);
@@ -445,6 +450,11 @@ const handleSlideActive = (index) => {
 };
 
 onMounted(() => {
+
+    const sliderSectionEl = sliderSection.value;
+    const headline = sliderSectionEl.querySelector('h2');
+    new placeholderJS((headline))
+shuffledWork.value = [...slides].sort(() => Math.random() - 0.5)
     sliderArrowSticky.value = false;
     const waitForSplide = () => {
         const instance = splide.value?.splide;
@@ -480,7 +490,6 @@ onMounted(() => {
         handleSlideActive(splide.value.index);
     };
 
-    const sliderSectionEl = sliderSection.value;
     waitForSplide();
     ScrollTrigger.create({
         trigger: sliderSectionEl,
