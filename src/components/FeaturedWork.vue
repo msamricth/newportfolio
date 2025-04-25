@@ -13,9 +13,7 @@
                                 class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all duriation-900" />
                             <div
                                 class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block">
-                                <video class="aspect-mobile"
-                                    data-src="https://res.cloudinary.com/dp1qyhhlo/video/upload/v1745434380/supply_tysvko.m3u8"
-                                    playsinline muted="" loop></video>
+                                <video class="aspect-mobile" :data-src="slide.video" playsinline muted="" loop></video>
                             </div>
                         </div>
                         <div class="h-0 opacity-0 flex flex-col justify-end py-6 md:p-6 group-[.is-active]:opacity-100 group-[.is-active]:h-full transition-all duriation-700 w-[85%]"
@@ -114,32 +112,20 @@
                 </SplideSlide>
             </Splide>
 
-            <button ref="sliderArrow" @click="goNext"
+            <button ref="sliderArrow"
                 class="mt-8 block -right-2 md:-right-8 lg:right-15 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80"
-                :class="[isHovered ? 'md:opacity-80' : '', sliderArrowSticky ? 'fixed bottom-20 md:bottom-0 lg:bottom-10' : 'absolute top-[60vh] md:top-[85vh]']" @mouseenter="onArrowHoverIn"
-@mouseleave="onArrowHoverOut">
+                :class="[isHovered ? 'md:opacity-80' : '', sliderArrowSticky ? 'fixed bottom-20 md:bottom-0 lg:bottom-10' : 'absolute top-[60vh] md:top-[85vh]']"
+                @click="onArrowClick" @mouseenter="onArrowHoverIn" @mouseleave="onArrowHoverOut">
                 <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" class="w-24 md:w-50" :class="activeTextColor"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 6L15 12L9 18" class="stroke-current"
-                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9 6L15 12L9 18" class="stroke-current" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <svg
-  class="absolute inset-0 w-full h-fullabsolute rounded-[9rem] w-full h-full pointer-events-none opacity-0 group-hover/slider:opacity-100 animate-spin-slow z-0"  :class="activeTextColor"
-  viewBox="0 0 100 100"
->
-  <circle
-    cx="50"
-    cy="50"
-    r="45"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="6"
-    :stroke-dasharray="strokeLength"
-    :stroke-dashoffset="progressOffset"
-    class="transition-all duration-100 ease-linear"
-    ref="progressCircle"
-  />
-</svg>
+                <svg class="absolute inset-0 w-full h-fullabsolute rounded-[9rem] w-full h-full pointer-events-none opacity-0 group-hover/slider:opacity-100 animate-spin-slow z-0"
+                    :class="activeTextColor" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"
+                        :stroke-dasharray="strokeLength" :stroke-dashoffset="progressOffset"
+                        class="transition-all duration-100 ease-linear" ref="progressCircle" />
+                </svg>
             </button>
         </div>
     </section>
@@ -174,6 +160,9 @@ const progressCircle = ref(null);
 let hoverTimer = null;
 
 const onArrowHoverIn = () => {
+  // Prevent stacking if already running
+  gsap.killTweensOf(progressOffset);
+
   gsap.to(progressOffset, {
     value: 0,
     duration: 1.5,
@@ -182,13 +171,14 @@ const onArrowHoverIn = () => {
       progressCircle.value.style.strokeDashoffset = progressOffset.value;
     },
     onComplete: () => {
-      goNext();
+      triggerSlideAdvance();
     },
   });
 };
 
 const onArrowHoverOut = () => {
   gsap.killTweensOf(progressOffset);
+
   gsap.to(progressOffset, {
     value: strokeLength,
     duration: 0.3,
@@ -198,12 +188,19 @@ const onArrowHoverOut = () => {
     },
   });
 };
+
+const onArrowClick = () => {
+  gsap.killTweensOf(progressOffset);
+  progressOffset.value = strokeLength;
+  progressCircle.value.style.strokeDashoffset = strokeLength;
+  goNext();
+};
 const activeStrokeColor = computed(() =>
-  slides[activeSlideIndex.value]?.textColor.replace('text-', '#') || '#00ffd5'
+    slides[activeSlideIndex.value]?.textColor.replace('text-', '#') || '#00ffd5'
 );
 
 const activeTextColor = computed(() => {
-  return slides[activeSlideIndex.value]?.textColor || 'text-primary';
+    return slides[activeSlideIndex.value]?.textColor || 'text-primary';
 });
 const hoverIn = (slideIndex, btnIndex) => {
     const label = labelRefs.value[slideIndex][btnIndex];
@@ -263,7 +260,7 @@ const hoverOut = (slideIndex, btnIndex) => {
 };
 const slides = [
     {
-        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745385371/workwithsupply_mj0pag.png',
+        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745385371/workwithsupply_mj0pag.png',
         title: 'workwithsupply.com',
         text: 'Full website build for digital marketing agency <i><strong>Supply</strong></i>.',
         specialties: [
@@ -282,15 +279,16 @@ const slides = [
             },
         ],
 
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/v1745546389/supply_tysvko.m3u8',
         textColor: 'text-toxic-mint',
     },
     {
-        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745385370/Product-Finder_ofzt6p.png',
+        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745385370/Product-Finder_ofzt6p.png',
         title: "dat.com & DAT's Product Finder",
         text: "This project was a overhaul of DAT's website, which is built on wordpress; with elementor page builder. The theme is a child theme of hello elementor and features several heavy customized components built to work in elementor and utilizes ACF.",
         buttonText: 'See Details',
         textColor: 'text-lime-glow',
-
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745546408/DAT_1_nu49mn.m3u8',
         specialties: [
             'Custom Gutenberg Blocks', 'Custom Theme Functions', 'Plugin and Theme Development', 'Components built using ACF fields', 'Elementor Components + Extensions',
         ],
@@ -309,12 +307,14 @@ const slides = [
                 url: 'https://www.dat.com/products'
             },
         ],
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745547305/DAT_1_vi5ruo.m3u8',
     },
     {
-        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745385369/DM-Presents_iauzjs.png',
+        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745385369/DM-Presents_iauzjs.png',
         title: 'Dr Martens: DM Presents, Store Locator, & specialty pages',
         text: "Built several speciality pages, a platform for Dr Marten's live event series that integrates with EventBrite, and a interactive store locator that works with Dr Marten's existing Sharepoint/Hybris system",
 
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745546437/DM_nn6od6.m3u8',
         specialties: [
             'Delivering exceptional digital products with tight constraints', 'Video and Image optimizations', 'API Integrations',
         ],
@@ -342,11 +342,69 @@ const slides = [
         textColor: 'text-hot-coral'
     },
     {
-        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745385369/DM-Presents_iauzjs.png',
-        title: 'Third Slide',
+        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/4_qsn9jm.jpg',
+        title: 'jetfuelstudios.com',
         text: 'More info on the third slide.',
         buttonText: 'Explore',
-        textColor: 'text-sunburn-orange'
+        textColor: 'text-sunburn-orange',
+        specialties: [
+            'Delivering exceptional digital products with tight constraints', 'Video and Image optimizations', 'API Integrations',
+        ],
+        tech: [
+            'WordPress',
+            'Sage', 'Bedrock', 'BuddJS', 'Larvel', 'Composer', 'ACF', 'Trellis', 'Tailwind'
+
+        ],
+        buttons: [
+            {
+                text: 'Jetfuel website',
+                url: 'https://jetfuelstudio.com/',
+            },
+        ],
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745547316/Jetfuel_1_batw8j.m3u8',
+    },
+    {
+        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/3_mwhi9l.jpg',
+        title: 'Green Leadership Trust - Website, Branding & Media',
+        text: 'More info on the third slide.',
+        textColor: 'text-electric-purple',
+        specialties: [
+            'Delivering exceptional digital products with tight constraints', 'Video and Image optimizations', 'API Integrations',
+        ],
+        tech: [
+            'WordPress',
+            'Sage', 'Bedrock', 'BuddJS', 'Larvel', 'Composer', 'ACF', 'Trellis', 'Tailwind'
+
+        ],
+        buttons: [
+            {
+                text: 'GLT Website',
+                url: 'https://greenleadershiptrust.org/',
+                github: 'https://github.com/msamricth/greenleadershiptrust'
+            },
+        ],
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745547316/glt_1_rbnutw.m3u8',
+    },
+    {
+        image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/5_vf2btn.jpg',
+        title: 'Gators Dockside SweepStakes Landing Page',
+        text: 'More info on the third slide.',
+        textColor: 'text-lime-glow',
+        specialties: [
+            'Delivering exceptional digital products with tight constraints', 'Video and Image optimizations', 'API Integrations',
+        ],
+        tech: [
+            'WordPress',
+            'Sage', 'Bedrock', 'BuddJS', 'Larvel', 'Composer', 'ACF', 'Trellis', 'Tailwind'
+
+        ],
+        buttons: [
+            {
+                text: 'Landing Page',
+                url: 'http://gatorsdocksidesweeps.com/',
+            },
+        ],
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745547316/Gators_1_ixzh4b.m3u8',
     },
 ];
 
@@ -371,21 +429,21 @@ const goNext = () => {
     }
 };
 const handleSlideActive = (index) => {
-  activeSlideIndex.value = index;
+    activeSlideIndex.value = index;
 
-  const currentSlide = document.querySelectorAll('.splide__slide')[index];
-  const video = currentSlide.querySelector('video');
+    const currentSlide = document.querySelectorAll('.splide__slide')[index];
+    const video = currentSlide.querySelector('video');
 
-  video.muted = true;
-  video.currentTime = 0;
+    video.muted = true;
+    video.currentTime = 0;
 
-  if (video.readyState >= 1) {
-    // video.play()
-  } else {
-    video.addEventListener('loadedmetadata', () => {
-      // video.play()
-    });
-  }
+    if (video.readyState >= 1) {
+        // video.play()
+    } else {
+        video.addEventListener('loadedmetadata', () => {
+            // video.play()
+        });
+    }
 };
 
 onMounted(() => {
