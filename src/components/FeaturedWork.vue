@@ -171,7 +171,7 @@ const onArrowHoverIn = () => {
       progressCircle.value.style.strokeDashoffset = progressOffset.value;
     },
     onComplete: () => {
-      triggerSlideAdvance();
+        onArrowClick();
     },
   });
 };
