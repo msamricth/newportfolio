@@ -47,6 +47,9 @@
 
   /* Base Typography */
   body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
     @apply font-main text-base leading-[1.8] bg-[var(--color-background)] text-[var(--color-primary)];
   }
 
