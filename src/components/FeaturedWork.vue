@@ -12,7 +12,7 @@
                             <img :src="slide.image"
                                 class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all duriation-900" />
                             <div
-                                class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block">
+                                class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block overflow-clip">
                                 <video class="aspect-mobile" :data-src="slide.video" playsinline muted="" loop></video>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
             </Splide>
 
             <button ref="sliderArrow"
-                class="mt-8 block -right-2 md:-right-8 lg:right-15 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80"
+                class="mt-8 block -right-2 md:-right-8 lg:right-15 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:bg-primary/20 inverted:bg-background/0"
                 :class="[isHovered ? 'md:opacity-80' : '', sliderArrowSticky ? 'fixed bottom-20 md:bottom-0 lg:bottom-10' : 'absolute top-[60vh] md:top-[85vh]']"
                 @click="onArrowClick" @mouseenter="onArrowHoverIn" @mouseleave="onArrowHoverOut">
                 <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" class="w-24 md:w-50" :class="activeTextColor"
@@ -160,40 +160,40 @@ const progressCircle = ref(null);
 let hoverTimer = null;
 
 const onArrowHoverIn = () => {
-  // Prevent stacking if already running
-  gsap.killTweensOf(progressOffset);
+    // Prevent stacking if already running
+    gsap.killTweensOf(progressOffset);
 
-  gsap.to(progressOffset, {
-    value: 0,
-    duration: 1.5,
-    ease: 'none',
-    onUpdate: () => {
-      progressCircle.value.style.strokeDashoffset = progressOffset.value;
-    },
-    onComplete: () => {
-        onArrowClick();
-    },
-  });
+    gsap.to(progressOffset, {
+        value: 0,
+        duration: 1.5,
+        ease: 'none',
+        onUpdate: () => {
+            progressCircle.value.style.strokeDashoffset = progressOffset.value;
+        },
+        onComplete: () => {
+            onArrowClick();
+        },
+    });
 };
 
 const onArrowHoverOut = () => {
-  gsap.killTweensOf(progressOffset);
+    gsap.killTweensOf(progressOffset);
 
-  gsap.to(progressOffset, {
-    value: strokeLength,
-    duration: 0.3,
-    ease: 'power2.out',
-    onUpdate: () => {
-      progressCircle.value.style.strokeDashoffset = progressOffset.value;
-    },
-  });
+    gsap.to(progressOffset, {
+        value: strokeLength,
+        duration: 0.3,
+        ease: 'power2.out',
+        onUpdate: () => {
+            progressCircle.value.style.strokeDashoffset = progressOffset.value;
+        },
+    });
 };
 
 const onArrowClick = () => {
-  gsap.killTweensOf(progressOffset);
-  progressOffset.value = strokeLength;
-  progressCircle.value.style.strokeDashoffset = strokeLength;
-  goNext();
+    gsap.killTweensOf(progressOffset);
+    progressOffset.value = strokeLength;
+    progressCircle.value.style.strokeDashoffset = strokeLength;
+    goNext();
 };
 const activeStrokeColor = computed(() =>
     slides[activeSlideIndex.value]?.textColor.replace('text-', '#') || '#00ffd5'
@@ -286,7 +286,6 @@ const slides = [
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745385370/Product-Finder_ofzt6p.png',
         title: "dat.com & DAT's Product Finder",
         text: "This project was a overhaul of DAT's website, which is built on wordpress; with elementor page builder. The theme is a child theme of hello elementor and features several heavy customized components built to work in elementor and utilizes ACF.",
-        buttonText: 'See Details',
         textColor: 'text-lime-glow',
         video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745546408/DAT_1_nu49mn.m3u8',
         specialties: [
@@ -344,11 +343,11 @@ const slides = [
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/4_qsn9jm.jpg',
         title: 'jetfuelstudios.com',
-        text: 'More info on the third slide.',
+        text: 'Developed website for Jetfuel Studios.',
         buttonText: 'Explore',
         textColor: 'text-sunburn-orange',
         specialties: [
-            'Delivering exceptional digital products with tight constraints', 'Video and Image optimizations', 'API Integrations',
+            'Custom Theme and Plugin Development', 'GSAP Animations', 'Video and Image optimizations',
         ],
         tech: [
             'WordPress',
@@ -366,14 +365,14 @@ const slides = [
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/3_mwhi9l.jpg',
         title: 'Green Leadership Trust - Website, Branding & Media',
-        text: 'More info on the third slide.',
+        text: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis",
         textColor: 'text-electric-purple',
         specialties: [
-            'Delivering exceptional digital products with tight constraints', 'Video and Image optimizations', 'API Integrations',
+            'Print and Digital Media', 'Video and Image optimizations', 'API Integrations', 'Custom Theme and Plugin Development', 'CRM & Communications Strategy'
         ],
         tech: [
             'WordPress',
-            'Sage', 'Bedrock', 'BuddJS', 'Larvel', 'Composer', 'ACF', 'Trellis', 'Tailwind'
+            'ACF', 'Webpack', 'Airtable', 'Cloudinary', 'React', 'Bootstrap',
 
         ],
         buttons: [
@@ -388,14 +387,13 @@ const slides = [
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/5_vf2btn.jpg',
         title: 'Gators Dockside SweepStakes Landing Page',
-        text: 'More info on the third slide.',
+        text: 'Build a series of Landing pages for Gators Dockside and Piesanos Stone Fire Pizza',
         textColor: 'text-lime-glow',
         specialties: [
-            'Delivering exceptional digital products with tight constraints', 'Video and Image optimizations', 'API Integrations',
+            'Vue landing page', 'ADA & WCAG Web Accessibility', 'GSAP Animations', "SVG Customization"
         ],
         tech: [
-            'WordPress',
-            'Sage', 'Bedrock', 'BuddJS', 'Larvel', 'Composer', 'ACF', 'Trellis', 'Tailwind'
+            'Vite', 'Vue', 'Pinia', 'GSAP', 'Netlify', 'Tailwind'
 
         ],
         buttons: [
