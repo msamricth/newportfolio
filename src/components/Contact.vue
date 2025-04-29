@@ -1,5 +1,5 @@
 <template>
-    <section aria-labelledby="formHeader" id="sayHello" tabindex="0"
+    <section ref="container" aria-labelledby="formHeader" id="sayHello" tabindex="0"
         class="form-wrapper relative w-full mx-auto mb-2  text-primary dark:text-accent inverted:text-electric-purple items-center relative mt-12 md:mt-28 min-h-screen">
         <div
             class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16">
@@ -85,7 +85,10 @@ import { ref, reactive, computed, onMounted } from "vue";
 import { gsap } from "gsap";
 import PlaceholderJS from './../utils/placeholder.js';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMainStore } from '../stores/main.js'
+const store = useMainStore()
 const formButton = ref(null)
+const container = ref(null)
 const formLabel = ref(null)
 const formBlob = ref(null)
 const formBlobInner = ref(null)
@@ -145,6 +148,17 @@ function expandTextAreaPattern() {
 onMounted(() => {
     const formHeaderEle = formHeader.value;
     const headlineAnim = new PlaceholderJS(formHeaderEle, { manual: true });
+    ScrollTrigger.create({
+        trigger: formHeaderEle,
+        start: 'top top',
+        end: 'bottom 70%',
+        onEnter: () => {
+            store.setsliderTimeline('after') 
+        },
+        onEnterBack: () => {
+            store.setsliderTimeline('after') 
+        },
+    });
     expandTextAreaPattern();
     const tl = gsap.timeline({
         scrollTrigger: {

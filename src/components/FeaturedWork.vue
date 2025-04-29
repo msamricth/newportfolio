@@ -1,121 +1,123 @@
 <template>
     <section ref="sliderSection" class="pt-20" id="work">
         <div class="relative group h-[1100px] md:h-[950px] xl:h-[1100px] overflow-clip pb-8">
-            <h2
-                class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl placeholder-line"
-                    data-splitting="words">
+            <h2 class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl placeholder-line"
+                data-splitting="words">
                 Featured Work</h2>
-            <Splide ref="splide" :options="splideOptions" class="overflow-visible peer">
-                <SplideSlide v-for="(slide, index) in slides" :key="index"
-                    class="transition-all duration-500 group" :class="slide.textColor">
-                    <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
-                        <div class="flex flex-col md:flex-row justify-center items-start gap-8">
-                            <img :src="slide.image"
-                                class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all duriation-900" />
-                            <div
-                                class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block overflow-clip">
-                                <video class="aspect-mobile" :data-src="slide.video" playsinline muted="" loop></video>
-                            </div>
-                        </div>
-                        <div class="h-0 opacity-0 flex flex-col justify-end py-6 md:p-6 group-[.is-active]:opacity-100 group-[.is-active]:h-full transition-all duriation-700 w-[85%]"
-                            @mouseover="isHovered = true" @mouseleave="isHovered = false">
-                            <h3 :class="slide.textColor" class="text-2xl font-bold mb-2 subtle-slide-in">{{ slide.title }}
-                            </h3>
-                            <div class="flex flex-col md:flex-row md:items-stretch justify-between mb-4">
-                                <div class="flex flex-col justify-between pr-8 lg:pr-18">
-                                    <p :class="slide.textColor" class="text-base subtle-slide-in" v-html="slide.text"
-                                        style="--theme-main-animation-delay:0.2s"></p>
-
-                                    <div class="specialties-animate mt-4 lg:w-90 xl:w-100" v-if="slide.specialties">
-                                        <h4 class="mb-2 mt-8">Specialties</h4>
-                                        <ul class="flex gap-2 items-start flex-wrap">
-                                            <li v-for="(specialty, index) in slide.specialties" :key="index"
-                                                class="subtle-slide-in bg-current px-2 py-1 text-nowrap rounded-xl text-xs inline"
-                                                :style="'--theme-main-animation-delay:0.' + (index + 5) + 's'">
-                                                <span class="text-primary">{{ specialty }}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
+            <div class="splideSlider relative">
+                <Splide ref="splide" :options="splideOptions" class="overflow-visible peer">
+                    <SplideSlide v-for="(slide, index) in slides" :key="index" class="transition-all duration-500 group"
+                        :class="slide.textColor">
+                        <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
+                            <div class="flex flex-col md:flex-row justify-center items-start gap-8">
+                                <img :src="slide.image"
+                                    class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all duriation-900" />
+                                <div
+                                    class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block overflow-clip">
+                                    <video class="aspect-mobile" :data-src="slide.video" playsinline muted="" loop></video>
                                 </div>
+                            </div>
+                            <div class="h-0 opacity-0 flex flex-col justify-end py-6 md:p-6 group-[.is-active]:opacity-100 group-[.is-active]:h-full transition-all duriation-700 w-[85%]"
+                                @mouseover="isHovered = true" @mouseleave="isHovered = false">
+                                <h3 :class="slide.textColor" class="text-2xl font-bold mb-2 subtle-slide-in">{{ slide.title
+                                }}
+                                </h3>
+                                <div class="flex flex-col md:flex-row md:items-stretch justify-between mb-4">
+                                    <div class="flex flex-col justify-between pr-8 lg:pr-18">
+                                        <p :class="slide.textColor" class="text-base subtle-slide-in" v-html="slide.text"
+                                            style="--theme-main-animation-delay:0.2s"></p>
+
+                                        <div class="specialties-animate mt-4 lg:w-90 xl:w-100" v-if="slide.specialties">
+                                            <h4 class="mb-2 mt-8">Specialties</h4>
+                                            <ul class="flex gap-2 items-start flex-wrap">
+                                                <li v-for="(specialty, index) in slide.specialties" :key="index"
+                                                    class="subtle-slide-in bg-current px-2 py-1 text-nowrap rounded-xl text-xs inline"
+                                                    :style="'--theme-main-animation-delay:0.' + (index + 5) + 's'">
+                                                    <span class="text-primary">{{ specialty }}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
 
 
 
-                                <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col mt-6 md:mt-0">
-                                    <div v-for="(button, btnIndex) in slide.buttons" :key="btnIndex"
-                                        class="flex items-center h-14 order-2 md:order-1">
-                                        <a v-if="button.github" :class="slide.textColor"
-                                            class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer hover:bg-current hover:rotate-270 transition group/git rounded-full subtle-slide-in mr-4"
-                                            style="--theme-main-animation-delay:0.6s" target="_blank" :href="slide.github">
-                                            <svg class="dark:group-hover/git:text-primary group-hover/git:rotate-90 transition"
-                                                enable-background="new 0 0 32 32" height="44px" id="Layer_1" version="1.0"
-                                                viewBox="0 0 32 32" width="44px" xml:space="preserve"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <path clip-rule="evenodd"
-                                                    d="M16.003,0C7.17,0,0.008,7.162,0.008,15.997  c0,7.067,4.582,13.063,10.94,15.179c0.8,0.146,1.052-0.328,1.052-0.752c0-0.38,0.008-1.442,0-2.777  c-4.449,0.967-5.371-2.107-5.371-2.107c-0.727-1.848-1.775-2.34-1.775-2.34c-1.452-0.992,0.109-0.973,0.109-0.973  c1.605,0.113,2.451,1.649,2.451,1.649c1.427,2.443,3.743,1.737,4.654,1.329c0.146-1.034,0.56-1.739,1.017-2.139  c-3.552-0.404-7.286-1.776-7.286-7.906c0-1.747,0.623-3.174,1.646-4.292C7.28,10.464,6.73,8.837,7.602,6.634  c0,0,1.343-0.43,4.398,1.641c1.276-0.355,2.645-0.532,4.005-0.538c1.359,0.006,2.727,0.183,4.005,0.538  c3.055-2.07,4.396-1.641,4.396-1.641c0.872,2.203,0.323,3.83,0.159,4.234c1.023,1.118,1.644,2.545,1.644,4.292  c0,6.146-3.74,7.498-7.304,7.893C19.479,23.548,20,24.508,20,26c0,2,0,3.902,0,4.428c0,0.428,0.258,0.901,1.07,0.746  C27.422,29.055,32,23.062,32,15.997C32,7.162,24.838,0,16.003,0z"
-                                                    class="group-hover/git:stroke-current transition fill-current"
-                                                    fill-rule="evenodd" />
-                                                <g />
-                                                <g />
-                                                <g />
-                                                <g />
-                                                <g />
-                                                <g />
-                                            </svg>
-                                        </a>
-                                        <a target="_blank" :href="button.url"
-                                            class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer relative flex flex-wrap items-center transition group/cta overflow-hidden w-60 text-center subtle-slide-in"
-                                            style="--theme-main-animation-delay:0.7s" :ref="el => {
-                                                if (!buttonRefs[index]) buttonRefs[index] = [];
-                                                buttonRefs[index][btnIndex] = el;
-                                            }" @mouseenter="hoverIn(index, btnIndex)"
-                                            @mouseleave="hoverOut(index, btnIndex)">
-                                            <span
-                                                class="inline-block font-semibold px-4 py-2 border-current border-2 rounded-full transition-all relative z-10 bg-inherit w-full text-nowrap"
-                                                :ref="el => {
-                                                    if (!labelRefs[index]) labelRefs[index] = [];
-                                                    labelRefs[index][btnIndex] = el;
-                                                }">
-                                                {{ button.text }}
-                                            </span>
-                                            <span
-                                                class="absolute right-0 top-0 w-0 h-full opacity-0 transition-all z-0 origin-left block overflow-clip"
-                                                :ref="el => {
-                                                    if (!blobRefs[index]) blobRefs[index] = [];
-                                                    blobRefs[index][btnIndex] = el;
-                                                }">
-                                                <span :ref="el => {
-                                                    if (!blobInnerRefs[index]) blobInnerRefs[index] = [];
-                                                    blobInnerRefs[index][btnIndex] = el;
-                                                }"
-                                                    class="flex items-center justify-center rounded-r-full bg-current h-full transition-all z-0 origin-left block w-10">
-                                                    <svg class="arrow w-24 h-24 fill-current" viewBox="0 0 24 24">
-                                                        <path d="M8 5l8 7-8 7z" />
-                                                    </svg>
+                                    <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col mt-6 md:mt-0">
+                                        <div v-for="(button, btnIndex) in slide.buttons" :key="btnIndex"
+                                            class="flex items-center h-14 order-2 md:order-1">
+                                            <a v-if="button.github" :class="slide.textColor"
+                                                class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer hover:bg-current hover:rotate-270 transition group/git rounded-full subtle-slide-in mr-4"
+                                                style="--theme-main-animation-delay:0.6s" target="_blank"
+                                                :href="slide.github">
+                                                <svg class="dark:group-hover/git:text-primary group-hover/git:rotate-90 transition"
+                                                    enable-background="new 0 0 32 32" height="44px" id="Layer_1"
+                                                    version="1.0" viewBox="0 0 32 32" width="44px" xml:space="preserve"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <path clip-rule="evenodd"
+                                                        d="M16.003,0C7.17,0,0.008,7.162,0.008,15.997  c0,7.067,4.582,13.063,10.94,15.179c0.8,0.146,1.052-0.328,1.052-0.752c0-0.38,0.008-1.442,0-2.777  c-4.449,0.967-5.371-2.107-5.371-2.107c-0.727-1.848-1.775-2.34-1.775-2.34c-1.452-0.992,0.109-0.973,0.109-0.973  c1.605,0.113,2.451,1.649,2.451,1.649c1.427,2.443,3.743,1.737,4.654,1.329c0.146-1.034,0.56-1.739,1.017-2.139  c-3.552-0.404-7.286-1.776-7.286-7.906c0-1.747,0.623-3.174,1.646-4.292C7.28,10.464,6.73,8.837,7.602,6.634  c0,0,1.343-0.43,4.398,1.641c1.276-0.355,2.645-0.532,4.005-0.538c1.359,0.006,2.727,0.183,4.005,0.538  c3.055-2.07,4.396-1.641,4.396-1.641c0.872,2.203,0.323,3.83,0.159,4.234c1.023,1.118,1.644,2.545,1.644,4.292  c0,6.146-3.74,7.498-7.304,7.893C19.479,23.548,20,24.508,20,26c0,2,0,3.902,0,4.428c0,0.428,0.258,0.901,1.07,0.746  C27.422,29.055,32,23.062,32,15.997C32,7.162,24.838,0,16.003,0z"
+                                                        class="group-hover/git:stroke-current transition fill-current"
+                                                        fill-rule="evenodd" />
+                                                    <g />
+                                                    <g />
+                                                    <g />
+                                                    <g />
+                                                    <g />
+                                                    <g />
+                                                </svg>
+                                            </a>
+                                            <a target="_blank" :href="button.url"
+                                                class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer relative flex flex-wrap items-center transition group/cta overflow-hidden w-60 text-center subtle-slide-in"
+                                                style="--theme-main-animation-delay:0.7s" :ref="el => {
+                                                    if (!buttonRefs[index]) buttonRefs[index] = [];
+                                                    buttonRefs[index][btnIndex] = el;
+                                                }" @mouseenter="hoverIn(index, btnIndex)"
+                                                @mouseleave="hoverOut(index, btnIndex)">
+                                                <span
+                                                    class="inline-block font-semibold px-4 py-2 border-current border-2 rounded-full transition-all relative z-10 bg-inherit w-full text-nowrap"
+                                                    :ref="el => {
+                                                        if (!labelRefs[index]) labelRefs[index] = [];
+                                                        labelRefs[index][btnIndex] = el;
+                                                    }">
+                                                    {{ button.text }}
                                                 </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="max-w-75 pl-2 my-6 md:mb-0 subtle-slide-in order-1 md:order-2"
-                                        style="--theme-main-animation-delay:0.8s" v-if="slide.tech">
-                                        <h4 class="mb-1">Tech Stack</h4>
-                                        <ul class="flex list-disc gap-2 items-start flex-wrap ml-3">
-                                            <li v-for="(techStack, index) in slide.tech" :key="index"
-                                                class="text-sm ps-0 pl-0 pr-3">
-                                                <span class="-ml-1">{{ techStack }}</span>
-                                            </li>
-                                        </ul>
+                                                <span
+                                                    class="absolute right-0 top-0 w-0 h-full opacity-0 transition-all z-0 origin-left block overflow-clip"
+                                                    :ref="el => {
+                                                        if (!blobRefs[index]) blobRefs[index] = [];
+                                                        blobRefs[index][btnIndex] = el;
+                                                    }">
+                                                    <span :ref="el => {
+                                                        if (!blobInnerRefs[index]) blobInnerRefs[index] = [];
+                                                        blobInnerRefs[index][btnIndex] = el;
+                                                    }"
+                                                        class="flex items-center justify-center rounded-r-full bg-current h-full transition-all z-0 origin-left block w-10">
+                                                        <svg class="arrow w-24 h-24 fill-current" viewBox="0 0 24 24">
+                                                            <path d="M8 5l8 7-8 7z" />
+                                                        </svg>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="max-w-75 pl-2 my-6 md:mb-0 subtle-slide-in order-1 md:order-2"
+                                            style="--theme-main-animation-delay:0.8s" v-if="slide.tech">
+                                            <h4 class="mb-1">Tech Stack</h4>
+                                            <ul class="flex list-disc gap-2 items-start flex-wrap ml-3">
+                                                <li v-for="(techStack, index) in slide.tech" :key="index"
+                                                    class="text-sm ps-0 pl-0 pr-3">
+                                                    <span class="-ml-1">{{ techStack }}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </SplideSlide>
-            </Splide>
-
+                    </SplideSlide>
+                </Splide>
+            </div>
             <button ref="sliderArrow"
-                class="mt-8 block -right-2 md:-right-8 lg:right-15 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:bg-primary/20 inverted:bg-background/0"
-                :class="[isHovered ? 'md:opacity-80' : '', sliderArrowSticky ? 'fixed bottom-20 md:bottom-0 lg:bottom-10' : 'absolute top-[60vh] md:top-[85vh]']"
+                class="mt-8 block -right-2 md:-right-8 lg:right-15 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:hover:bg-primary/20 inverted:bg-background/0"
+                :class="[isHovered ? 'md:opacity-80 bg-primary/20' : '', store.sliderArrowSticky ? 'fixed bottom-20 md:bottom-0 lg:bottom-10' : store.arrowPos ? 'absolute top-[25%]' : 'absolute bottom-20 md:bottom-0 lg:bottom-10']"
                 @click="onArrowClick" @mouseenter="onArrowHoverIn" @mouseleave="onArrowHoverOut">
                 <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" class="w-24 md:w-50" :class="activeTextColor"
                     xmlns="http://www.w3.org/2000/svg">
@@ -139,10 +141,11 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@splidejs/vue-splide/css';
-
+import { useMainStore } from '../stores/main.js'
+const store = useMainStore()
 import placeholderJS from './../utils/placeholder.js'
 
-   
+
 gsap.registerPlugin(ScrollTrigger);
 
 const active = ref(0);
@@ -154,7 +157,6 @@ const iconRefs = ref([])
 const hoverTimelines = []
 const blobRefs = ref([])
 const sliderArrow = ref([])
-const sliderArrowSticky = ref([false])
 const isHovered = ref([false])
 const blobInnerRefs = ref([]);
 const activeSlideIndex = ref(0)
@@ -429,6 +431,7 @@ const splideOptions = {
 const goNext = () => {
     if (splide.value) {
         splide.value.go('>');
+        //setInterval(store.setsliderTimeline('after'), 1500);
     }
 };
 const handleSlideActive = (index) => {
@@ -454,8 +457,9 @@ onMounted(() => {
     const sliderSectionEl = sliderSection.value;
     const headline = sliderSectionEl.querySelector('h2');
     new placeholderJS((headline))
-shuffledWork.value = [...slides].sort(() => Math.random() - 0.5)
-    sliderArrowSticky.value = false;
+    shuffledWork.value = [...slides].sort(() => Math.random() - 0.5)
+
+    store.setSliderArrowSticky(false);
     const waitForSplide = () => {
         const instance = splide.value?.splide;
         if (!instance) {
@@ -483,7 +487,6 @@ shuffledWork.value = [...slides].sort(() => Math.random() - 0.5)
         });
 
         instance.on('moved', (destIndex) => {
-
             handleSlideActive(destIndex);
             //slideAnims()
         });
@@ -497,22 +500,33 @@ shuffledWork.value = [...slides].sort(() => Math.random() - 0.5)
         end: 'bottom bottom',
         onEnter: () => {
             document.body.classList.add('dark')
-
-            sliderArrowSticky.value = true
+        }
+    });
+    ScrollTrigger.create({
+        trigger: '.splideSlider',
+        start: 'top 50%',
+        end: 'bottom bottom',
+        onEnter: () => {
+            store.setSliderArrowSticky(true)
             //splide.value?.mount();
             //splide.value?.on('move', (newIndex) => {
             // active.value = newIndex;
             //});
         },
         onLeave: () => {
-            sliderArrowSticky.value = false
+
+            store.setSliderArrowSticky(false)
+            store.setsliderTimeline('after')
         },
         onLeaveBack: () => {
-
+            store.setSliderArrowSticky(false)
+            store.setsliderTimeline('before')
             //sliderArrowSticky.value = false
             //document.body.classList.remove('dark')
         },
         onEnterBack: () => {
+            store.setSliderArrowSticky(true)
+            store.setsliderTimeline('before')
             //document.body.classList.remove('dark')
         },
     });

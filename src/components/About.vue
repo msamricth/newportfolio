@@ -58,6 +58,8 @@ import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from './../utils/placeholder.js';
+import { useMainStore } from '../stores/main.js'
+const store = useMainStore()
 gsap.registerPlugin(ScrollTrigger);
 const isArtisan = ref(false);
 const isBQ = ref(false);
@@ -82,6 +84,12 @@ onMounted(() => {
         onEnter: () => {
             isArtisan.value = true;
             artisanElHeadlineAnim.play();
+            store.setSliderArrowSticky(false)
+           store.setsliderTimeline('before') 
+        },
+        onEnterBack: () => {
+           store.setSliderArrowSticky(false)
+           store.setsliderTimeline('before') 
         },
         onLeaveBack: () => {
             isArtisan.value = false;

@@ -9,7 +9,8 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ref, onMounted, nextTick } from 'vue'
-
+import { useMainStore } from '../stores/main.js'
+const store = useMainStore()
 gsap.registerPlugin(ScrollTrigger)
 
 const logos = [
@@ -52,6 +53,15 @@ onMounted(async () => {
       },
     }
   )
+  ScrollTrigger.create({
+        trigger: '.logo-garden',
+        start: 'bottom 20%',
+        end: 'bottom bottom',
+        onEnter: () => {
+        //    store.setSliderArrowSticky(false)
+            store.setsliderTimeline('before') 
+        },
+    });
 })
 
 </script>

@@ -114,6 +114,10 @@ onMounted(() => {
             isSticky.value = false
             tl.reverse()
         },
+        onEnterBack: () => {
+            isSticky.value = false
+            tl.reverse()
+        },
     })
 })
 </script>
