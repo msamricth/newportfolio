@@ -32,7 +32,7 @@
 
     </div>
     <div ref="modalWindow" v-if="modalStore.modalItem"
-        class="absolute lg:inset-0 z-50 flex items-center justify-center lg:px-6 bg-black/50 backdrop-blur top-0 lg:min-h-[125vh]"
+        class="absolute lg:inset-0 z-50 flex items-center justify-center lg:px-6 bg-black/50 backdrop-blur top-0 lg:min-h-[125vh] w-full overflow-clip"
         @click.self="closeModal">
         <div
             class="modal-copy bg-primary text-black py-24 p-12 lg:rounded-xl max-w-2xl lg:max-w-5xl w-full relative md:mt-0 lg:mt-5 lg:mb-20 is-active is-visible">
