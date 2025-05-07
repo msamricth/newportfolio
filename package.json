@@ -17,7 +17,8 @@
     "pinia": "^3.0.2",
     "splitting": "^1.1.0",
     "tailwindcss": "^4.1.4",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.2",

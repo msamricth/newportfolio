@@ -1,6 +1,6 @@
 <template>
     <section ref="container" aria-labelledby="formHeader" id="sayHello" tabindex="0"
-        class="form-wrapper relative w-full mx-auto mb-2  text-primary dark:text-accent inverted:text-electric-purple items-center relative mt-12 md:mt-28 min-h-screen">
+        class="form-wrapper relative w-full mx-auto mb-2  text-primary dark:text-accent inverted:text-electric-purple items-center relative mt-25 md:mt-28 min-h-screen">
         <div
             class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16">
             <h3 class="text-4xl font-black transition text-center mb-6 lg:mb-12 form-header uppercase placeholder-line"

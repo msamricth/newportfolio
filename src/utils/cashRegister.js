@@ -6,6 +6,7 @@ export default class CashRegister {
       this.ele = ele;
       this.letters = "TALARICO";
       this.interval = null;
+      this.isRunning = false;
       this.initRegister();
     }
   
@@ -13,28 +14,32 @@ export default class CashRegister {
       if (!this.ele.hasAttribute('data-value')) {
         this.ele.setAttribute('data-value', this.ele.innerText);
       }
-      this.checkOut(this.ele);
     }
   
     checkOut(ele) {
+      if (this.isRunning) return;
+  
       const value = ele.dataset.value || '';
       const [firstWord, ...restWords] = value.split(' ');
       const restOfText = restWords.join(' ');
       const chars = firstWord.split('');
-      const intervalDuration = 80; // adjust this to slow down or speed up animation
+      const intervalDuration = 80;
       let iteration = 0;
   
+      this.isRunning = true;
       clearInterval(this.interval);
+  
       this.interval = setInterval(() => {
         ele.innerText = chars
           .map((char, idx) => (idx < iteration ? char : this.letters[Math.floor(Math.random() * this.letters.length)]))
           .join('') + (restOfText ? ' ' + restOfText : '');
   
-        iteration += 0.25; // adjust lower for slower reveal
+        iteration += 0.25;
   
         if (iteration > chars.length) {
           clearInterval(this.interval);
-          ele.innerText = value; // restore original text precisely
+          ele.innerText = value;
+          this.isRunning = false;
         }
       }, intervalDuration);
     }

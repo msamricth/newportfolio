@@ -1,0 +1,268 @@
+<template>
+    <header ref="navContainer" class="py-4 mx-auto absolute z-20 w-full"
+        :class="{ 'fixed top-0 left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700': isSticky }">
+        <div
+            class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
+            <div ref="navBrand" class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
+                :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
+                <RouterLink aria-label="Return Home" to="/" class="text-nowrap animate subtle-slide-in font-black block "
+                    @mouseenter="onBrandHoverIn">
+                    hi, i’m Emm.</RouterLink>
+            </div>
+            <nav ref="nav"
+                class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
+                :class="isSticky ? [''] : ['opacity-0']">
+                <RouterLink
+                    class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                    to="/about">
+                    <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
+                </RouterLink>
+                <RouterLink
+                    class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                    to="/work">
+                    <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
+                </RouterLink>
+                <a href="#sayHello"
+                    class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
+                    @click.prevent="smoothScrollTo('#sayHello')">
+                    <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+</template>
+  
+<script setup>
+import { ref, onMounted } from 'vue';
+import gsap from 'gsap';
+import { RouterLink } from 'vue-router'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Splitting from 'splitting';
+
+const navBrand = ref(null);
+gsap.registerPlugin(ScrollTrigger);
+const navContainer = ref(null);
+const isSticky = ref(false);
+const nav = ref(null)
+
+const onBrandHoverIn = (event) => {
+    if(!isSticky.value) return;
+    const targetEl = event.target;
+    const chars = targetEl.querySelectorAll('.char'); // Correct class from Splitting
+
+    if (!chars.length) return;
+
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+        chars,
+        {
+            x: () => gsap.utils.random(-50, 50),
+            y: () => gsap.utils.random(-40, 0),
+            autoAlpha: 0,
+        },
+        {
+            x: 0,
+            y: 0,
+            autoAlpha: 1,
+            ease: 'power3.out',
+            duration: 0.5,
+            stagger: {
+                amount: 0.3,
+                from: 'random',
+            },
+        }
+    );
+
+    return tl;
+};
+const onNavHoverIn = (event) => {
+    const targetEl = event.target;
+    const chars = targetEl.querySelectorAll('.char'); // Correct class from Splitting
+
+    if (!chars.length) return;
+
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+        chars,
+        {
+            x: () => gsap.utils.random(-50, 50),
+            y: () => gsap.utils.random(-40, 0),
+            className: 'char text-current'
+        },
+        {
+            x: 0,
+            y: 0,
+            className: 'char text-electric-purple dark:text-accent',
+            ease: 'power3.out',
+            duration: 0.5,
+            stagger: {
+                amount: 0.3,
+                from: 'random',
+            },
+        }
+    );
+    tl.fromTo(
+        chars,
+        {
+            x: () => gsap.utils.random(-50, 50),
+            y: () => gsap.utils.random(-40, 0),
+            className: 'char text-electric-purple dark:text-accent'
+        },
+        {
+            x: 0,
+            y: 0,
+            className: 'char text-current',
+            ease: 'power3.out',
+            duration: 0.5,
+            stagger: {
+                amount: 0.3,
+                from: 'random',
+            },
+        }, .4
+    );
+    return tl;
+};
+const smoothScrollTo = (selector) => {
+    const target = document.querySelector(selector);
+    if (target) {
+        smoothScroll(target)
+    }
+};
+
+const smoothScroll = (target, buffer = 100, duration = 500) => {
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - buffer;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easeInOutCubic = progress < 0.5
+            ? 4 * progress ** 3
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        window.scrollTo(0, startPosition + distance * easeInOutCubic);
+
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    requestAnimationFrame(animation);
+}
+const effectTimeline = (targetEl, interval = 0) => {
+    const tl = gsap.timeline({ paused: true })
+    const split = Splitting({ target: targetEl, by: 'chars' })[0];
+    const chars = split?.chars || [];
+
+    if (chars.length === 0) return;
+
+    tl.fromTo(
+        chars,
+        {
+            x: () => gsap.utils.random(-50, 50),
+            y: () => gsap.utils.random(-40, 0),
+            autoAlpha: 0,
+        },
+        {
+            x: 0,
+            y: 0,
+            autoAlpha: 1,
+            ease: 'power3.out',
+            duration: 0.5,
+            stagger: {
+                amount: 0.2,
+                from: 'random',
+            },
+        },
+        interval
+    );
+    return tl;
+}
+onMounted(() => {
+    const navEl = nav.value
+    const navBrandEl = navBrand.value
+    const navItems = navEl.querySelectorAll('.nav-item')
+    effectTimeline(navBrandEl, 0.45).play().timeScale(1)
+    const mm = gsap.matchMedia(),
+        breakPoint = 620;
+    isSticky.value = false;
+    const tl = gsap.timeline({ paused: true })
+    mm.add(
+        {
+            isDesktop: `(min-width: ${breakPoint}px)`,
+            isMobile: `(max-width: ${breakPoint - 1}px)`,
+            reduceMotion: "(prefers-reduced-motion: reduce)",
+        },
+        (context) => {
+            let int = 0.2;
+            const { isDesktop, isMobile, reduceMotion } = context.conditions;
+            tl.fromTo(navEl, {
+                alpha: 0,
+            }, {
+                alpha: 1,
+            }, 0);
+
+            navItems.forEach((navItem, i) => {
+                tl.fromTo(
+                    navItem,
+                    {
+                        autoAlpha: 0,
+                    },
+                    {
+                        autoAlpha: 1,
+                        ease: 'cubic-bezier(.215, .61, .355, 1.000)',
+                        duration: 0.15,
+                        onStart: () => {
+                            if (tl.reversed()) {
+                                effectTimeline(navItem, 0).reverse().timeScale(3)
+                            } else {
+                                effectTimeline(navItem, (i * 0.2) + (int + 0.2)).play().timeScale(1)
+                            }
+                        }
+                    },
+                    (i * 0.1) + (int + 0.1)
+                );
+            });
+            ScrollTrigger.create({
+                trigger: navEl,
+                start: 'top 5%',
+                onEnter: () => {
+                    isSticky.value = true;
+                    tl.timeScale(1).play();
+                },
+                onLeaveBack: () => {
+                    isSticky.value = false;
+                    tl.timeScale(3).reverse();
+                },
+                onEnterBack: () => {
+                    isSticky.value = false;
+                    tl.timeScale(3).reverse();
+                    document.body.classList.remove('dark')
+                },
+            });
+
+
+        }
+    );
+        if (window.scrollY > 1700) {
+                isSticky.value = true;
+                tl.progress(1).timeScale(1).play(0);
+            }
+})
+</script>
+  
+<style scoped>
+.nav {
+    --theme-main-animation-delay: 0;
+}
+
+.fixed {
+    position: fixed;
+}
+</style>
+  

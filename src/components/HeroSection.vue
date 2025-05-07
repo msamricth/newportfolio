@@ -57,7 +57,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import placeholderJS from './../utils/placeholder.js'
-import SecondaryNav from './SecondaryNav.vue';
+import SecondaryNav from './navigation/SecondaryNav.vue';
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 

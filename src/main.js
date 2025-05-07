@@ -5,14 +5,15 @@ import Splitting from 'splitting';
 import './style.css'
 import App from './App.vue'
 
+import router from './utils/router.js'
 
 import { createPinia } from 'pinia';
 
 const app = createApp(App);
 const pinia = createPinia();
 app.use(pinia);
-
-createApp(App).mount('#app')
+app.use(router)
+app.mount('#app')
 
 gsap.registerPlugin(ScrollTrigger);
 class PlaceholderAnimator {
