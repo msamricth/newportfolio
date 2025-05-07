@@ -32,10 +32,10 @@
 
     </div>
     <div ref="modalWindow" v-if="modalStore.modalItem"
-        class="absolute z-50 flex items-center justify-center lg:px-6 bg-black/50 backdrop-blur top-0  lg:h-[105vh]"
+        class="absolute lg:inset-0 z-50 flex items-center justify-center lg:px-6 bg-black/50 backdrop-blur top-0 lg:min-h-[125vh]"
         @click.self="closeModal">
         <div
-            class="modal-copy bg-primary text-black py-16 px-6 lg:p-12 lg:rounded-xl max-w-2xl lg:max-w-5xl w-full relative  md:mt-0 lg:mt-5 lg:mb-20 is-active is-visible">
+            class="modal-copy bg-primary text-black py-24 p-12 lg:rounded-xl max-w-2xl lg:max-w-5xl w-full relative md:mt-0 lg:mt-5 lg:mb-20 is-active is-visible">
             <button class="absolute top-1 right-3 text-3xl cursor-pointer transition duration-700 hover:text-background"
                 @click="closeModal" :class="modalStore.modalItem.textColor">&times;</button>
             <div class="relative rounded-xl flex flex-col justify-center items-center"
