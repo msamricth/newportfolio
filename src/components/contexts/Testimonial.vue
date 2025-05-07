@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-primary dark:bg-background p-6 md:rounded-[2rem] shadow-md mx-auto transition-all duration-700 max-w-dvw md:max-w-[58vw] sticky top-20 lg:top-0"
+    class="bg-primary dark:bg-background p-6 md:rounded-[2rem] mx-auto transition-all duration-700 max-w-dvw md:max-w-[58vw] sticky top-20 lg:top-0"
     :class="width" ref="testimonial">
     <div class="flex items-center gap-4 mb-4">
       <div>
