@@ -1,9 +1,11 @@
 <template>
+    <div ref="sentinal"></div>
     <header ref="navContainer" class="py-4 mx-auto absolute z-20 w-full"
         :class="{ 'fixed top-0 left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700': isSticky }">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
-            <div ref="navBrand" class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
+            <div ref="navBrand"
+                class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
                 :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
                 <RouterLink aria-label="Return Home" to="/" class="text-nowrap animate subtle-slide-in font-black block "
                     @mouseenter="onBrandHoverIn">
@@ -33,7 +35,7 @@
 </template>
   
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue';
 import gsap from 'gsap';
 import { RouterLink } from 'vue-router'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -44,9 +46,23 @@ gsap.registerPlugin(ScrollTrigger);
 const navContainer = ref(null);
 const isSticky = ref(false);
 const nav = ref(null)
+const sentinal = ref(null)
 
+const isDesktop = ref(window.innerWidth >= 620)
+const stickyObserver = ref(null)
+const tl = gsap.timeline({ paused: true })
+function handleResize() {
+    isDesktop.value = window.innerWidth >= 620
+    console.log('isDesktop.value: ' + isDesktop.value)
+    console.log('window.innerWidth: ' + window.innerWidth)
+    if (isSticky.value) {
+        tl.restart();
+    } else {
+        tl.timeScale(3).reverse()
+    }
+}
 const onBrandHoverIn = (event) => {
-    if(!isSticky.value) return;
+    if (!isSticky.value) return;
     const targetEl = event.target;
     const chars = targetEl.querySelectorAll('.char'); // Correct class from Splitting
 
@@ -183,77 +199,80 @@ const effectTimeline = (targetEl, interval = 0) => {
     );
     return tl;
 }
-onMounted(() => {
-    const navEl = nav.value
-    const navBrandEl = navBrand.value
-    const navItems = navEl.querySelectorAll('.nav-item')
-    effectTimeline(navBrandEl, 0.45).play().timeScale(1)
-    const mm = gsap.matchMedia(),
-        breakPoint = 620;
-    isSticky.value = false;
-    const tl = gsap.timeline({ paused: true })
-    mm.add(
-        {
-            isDesktop: `(min-width: ${breakPoint}px)`,
-            isMobile: `(max-width: ${breakPoint - 1}px)`,
-            reduceMotion: "(prefers-reduced-motion: reduce)",
-        },
-        (context) => {
-            let int = 0.2;
-            const { isDesktop, isMobile, reduceMotion } = context.conditions;
-            tl.fromTo(navEl, {
-                alpha: 0,
-            }, {
-                alpha: 1,
-            }, 0);
 
-            navItems.forEach((navItem, i) => {
-                tl.fromTo(
-                    navItem,
-                    {
-                        autoAlpha: 0,
-                    },
-                    {
-                        autoAlpha: 1,
-                        ease: 'cubic-bezier(.215, .61, .355, 1.000)',
-                        duration: 0.15,
-                        onStart: () => {
-                            if (tl.reversed()) {
-                                effectTimeline(navItem, 0).reverse().timeScale(3)
-                            } else {
-                                effectTimeline(navItem, (i * 0.2) + (int + 0.2)).play().timeScale(1)
-                            }
-                        }
-                    },
-                    (i * 0.1) + (int + 0.1)
-                );
-            });
-            ScrollTrigger.create({
-                trigger: navEl,
-                start: 'top 5%',
-                onEnter: () => {
-                    isSticky.value = true;
-                    tl.timeScale(1).play();
-                },
-                onLeaveBack: () => {
-                    isSticky.value = false;
-                    tl.timeScale(3).reverse();
-                },
-                onEnterBack: () => {
-                    isSticky.value = false;
-                    tl.timeScale(3).reverse();
-                    document.body.classList.remove('dark')
-                },
-            });
+function updateStickyTimeline() {
+    tl.clear();
+    const intCom = computed(() => isDesktop.value ? 0.2 : 0)
 
+    if (!nav.value) return
+    const int = intCom.value
 
-        }
-    );
-        if (window.scrollY > 1700) {
-                isSticky.value = true;
-                tl.progress(1).timeScale(1).play(0);
+    tl.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0)
+
+    const navItems = nav.value.querySelectorAll('.nav-item')
+    navItems.forEach((item, i) => {
+        tl.fromTo(item, { autoAlpha: 0 }, {
+            autoAlpha: 1,
+            duration: 0.15,
+            ease: 'cubic-bezier(.215, .61, .355, 1.000)',
+            onStart: () => {
+                const itemTL = effectTimeline(item, (i * 0.2) + (int + 0.2))
+                itemTL?.play()
             }
+        }, (i * 0.1) + (int + 0.1))
+    })
+}
+
+function setupStickyObserver() {
+    if (!sentinal.value) return
+    if (stickyObserver.value) stickyObserver.value.disconnect()
+
+    let lastStickyState = null
+    let ticking = false
+
+    stickyObserver.value = new IntersectionObserver(([entry]) => {
+        if (ticking) return
+        ticking = true
+
+        requestAnimationFrame(() => {
+            const shouldBeSticky = !entry.isIntersecting && window.scrollY > 300 && sentinal.value.getBoundingClientRect().top < 0
+
+            if (shouldBeSticky !== lastStickyState) {
+                lastStickyState = shouldBeSticky
+                isSticky.value = shouldBeSticky
+            }
+
+            ticking = false
+        })
+    }, {
+        threshold: 0,
+        rootMargin: '0px 0px 0px 0px'
+    })
+
+    stickyObserver.value.observe(sentinal.value)
+}
+onMounted(() => {
+    updateStickyTimeline()
+    setupStickyObserver()
+    window.addEventListener('resize', handleResize)
 })
+
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+    ScrollTrigger.getAll().forEach(t => t.kill())
+    stickyObserver.value?.disconnect()
+    isSticky.value = false
+})
+
+watch([isSticky, isDesktop], () => {
+    updateStickyTimeline()
+    if (isSticky.value) {
+        tl.timeScale(1).restart()
+    } else {
+        tl.timeScale(3).reverse()
+    }
+})
+
 </script>
   
 <style scoped>

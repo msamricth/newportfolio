@@ -1,6 +1,6 @@
 <template>
     <section ref="sliderSection" class="pt-20" id="work">
-        <div class="relative group h-[70vh] md:h-[670px] lg:h-dvh overflow-y-visible overflow-x-clip pb-8">
+        <div class="relative group h-[70vh] min-h-[750px] md:h-[670px] lg:h-dvh overflow-y-visible overflow-x-clip pb-8">
             <h2 class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl placeholder-line"
                 data-splitting="words">
                 Featured Work</h2>
