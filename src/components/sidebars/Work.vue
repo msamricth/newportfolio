@@ -47,9 +47,9 @@
 <script setup>
 import gsap from 'gsap';
 import { onMounted, ref, nextTick } from 'vue';
-import { useWorkStore } from '../stores/work.js';
-import placeholderJS from './../utils/placeholder.js'
-const tagsVisible = ref(false);
+import { useWorkStore } from '../../stores/work.js';
+import placeholderJS from './../../utils/placeholder.js'
+const tagsVisible = ref(null)
 const headline = ref(null)
 const store = useWorkStore();
 function shuffleArray(array) {

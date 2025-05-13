@@ -45,7 +45,7 @@ const menuBTNActive = ref(false)
 
 const smoothScroll = (target, buffer = 100, duration = 500) => {
     menuAnim()
-    const targetPosition = 300 - buffer;
+    const targetPosition = 400 - buffer;
     const startPosition = window.scrollY;
     const distance = targetPosition - startPosition;
     let startTime = null;

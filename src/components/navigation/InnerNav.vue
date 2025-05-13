@@ -3,19 +3,18 @@
         ref="utilityBar">
         <InnerSecondaryNav />
     </div>
-    <header ref="navContainer" class="py-4 mx-auto absolute z-20 w-full"
-        :class="{ 'fixed top-0 left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700': isSticky }">
+    <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
+    :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
             <div ref="navBrand"
                 class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700 relative max-sm:z-10"
                 :class="isSticky ? 'opacity-75 hover:opacity-100' : 'opacity-0'">
-                <RouterLink aria-label="Return Home" to="/"
+                <RouterLink aria-label="Return Home" :to="brandURL"
                     class="animate subtle-slide-in font-black pb-10 md:pb-0 max-sm:z-0 text-nowrap"
-                    @mouseenter="onBrandHoverIn">
-                    hi, i’m Emm.</RouterLink>
+                    @mouseenter="onBrandHoverIn">{{brandLabel}}</RouterLink>
             </div>
-            <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass text-nowrap top-0 text-3xl md:text-5xl"
+            <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
                 data-splitting="words" ref="heading">
                 <span class="transition-all duration-700 placeholder-line" data-splitting="words">{{ title }}</span>
             </h1>
@@ -112,11 +111,35 @@ function onNavHoverIn(event) {
     }, 0.4)
 }
 
-function smoothScrollTo(selector) {
-    const el = document.querySelector(selector)
-    if (!el) return
-    const target = el.getBoundingClientRect().top + window.scrollY - 100
-    gsap.to(window, { scrollTo: target, duration: 0.5, ease: 'power2.inOut' })
+const smoothScrollTo = (selector) => {
+    const target = document.querySelector(selector);
+    if (target) {
+        smoothScroll(target)
+    }
+};
+
+const smoothScroll = (target, buffer = 100, duration = 500) => {
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - buffer;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easeInOutCubic = progress < 0.5
+            ? 4 * progress ** 3
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        window.scrollTo(0, startPosition + distance * easeInOutCubic);
+
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+
+    requestAnimationFrame(animation);
 }
 
 function effectTimeline(el, interval = 0) {
@@ -140,6 +163,7 @@ function effectTimeline(el, interval = 0) {
 
 function updateStickyTimeline() {
     tl.clear();
+
     const scaleAmtCom = computed(() => isDesktop.value ? 0.2 : 0.4)
     const yCom = computed(() => isDesktop.value ? -28 : 0)
     const xCom = computed(() => isDesktop.value ? 130 : 0)
@@ -154,7 +178,8 @@ function updateStickyTimeline() {
     tl.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0)
     tl.fromTo(heading.value, { scale: 1, y: 0 }, { scale: scaleAmt, y, duration: 0.1 }, int)
     if (isDesktop.value) {
-        tl.fromTo(heading.value, { x: 0 }, { x, duration: 0.3 }, int)
+        const xAmt = navBrand.value.getBoundingClientRect().width + 12;
+        tl.fromTo(heading.value, { x: 0 }, { x: xAmt, duration: 0.3 }, int)
     }
 
     tl.fromTo(navBrand.value, { alpha: 0, y: 0 }, {
@@ -229,13 +254,18 @@ watch([isSticky, isDesktop], () => {
 })
 
 const props = defineProps({
-    title: { type: String, default: () => 'Something' }
+    title: { type: String, default: () => 'Something' },
+    brandLabel: { type: String, default: () => "hi, i'm Emm." },
+    brandURL: { type: String, default: () => '/' },
 })
 </script>
 
 <style scoped>
 .nav {
     --theme-main-animation-delay: 0;
+}
+header.fixed {
+    top: env(safe-area-inset-top, 0px);
 }
 </style>
   

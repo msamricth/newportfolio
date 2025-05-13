@@ -2,7 +2,7 @@
     <div
         class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative">
 
-        <InnerNav title="About" />
+        <InnerNav title="About" brandLabel="hi, i'm emm." brandURL="/" />
         <div class="flex flex-col gap-6 max-w-full mt-6 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
             <About />
         </div>

@@ -58,7 +58,7 @@ export default class PlaceholderJS {
         if (!manual) {
             config.onUpdate = self => {
                 if (!scrub) {
-                    this.timeline.timeScale(self.direction === -1 ? 2.5 : speed);
+                    this.timeline.timeScale(self.direction === -1 ? 8.5 : speed);
                 }
             };
         }

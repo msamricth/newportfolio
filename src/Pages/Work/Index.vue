@@ -2,10 +2,10 @@
     <div class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-clip"
         ref="workPage">
 
-        <InnerNav title="Featured Work" />
+        <InnerNav title="Featured Work" brandLabel="hi, i'm emm." brandURL="/" />
         <div
             class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
-            <WorkSidebar />
+            <Work />
             <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid">
                 <div v-if="!store.gridResults" class="text-3xl italic transition-all duration-700 work-grid--no-results">
                     No matching items found.
@@ -148,15 +148,16 @@
   
 <script setup>
 import { ref, computed, onMounted, watch, nextTick } from 'vue';
-import InnerNav from '../components/navigation/InnerNav.vue';
-import Contact from '../components/Contact.vue';
-import Footer from '../components/Footer.vue';
-import WorkSidebar from '../components/WorkSidebar.vue';
-import { useWorkStore } from '../stores/work.js';
-import { useModalStore } from '../stores/modal.js';
-import videoHandler from '../utils/videoHandler.js';
+import InnerNav from '../../components/navigation/InnerNav.vue';
+import Contact from '../../components/Contact.vue';
+import Footer from '../../components/Footer.vue';
+import Work from '../../components/sidebars/Work.vue';
+
+import { useWorkStore } from '../../stores/work.js';
+import { useModalStore } from '../../stores/modal.js';
+import videoHandler from '../../utils/videoHandler.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import PlaceholderJS from '../utils/placeholder.js'
+import PlaceholderJS from '../../utils/placeholder.js'
 
 const store = useWorkStore();
 
