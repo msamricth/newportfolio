@@ -24,7 +24,7 @@
                             bender, I
                             specialize in crafting digital systems that are fast, accessible, and built to last.</p>
                     </div>
-                    <Buttons href="/about"
+                    <MainButton href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"
                         label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" />
                 </div>
@@ -52,7 +52,7 @@ import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from './../../utils/placeholder.js';
-import Buttons from './../Buttons.vue'
+import MainButton from './../Buttons/MainButton.vue'
 import { useMainStore } from '../../stores/main.js'
 import router from '../../routes/router';
 const store = useMainStore()

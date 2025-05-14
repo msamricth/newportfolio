@@ -41,17 +41,17 @@
         <div class="swing-in-left-fwd-slow h-[2px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition my-3 lg:my-5 w-full opacity-0"
             style="--theme-main-animation-delay:2s" :class="tagsVisible ? 'animate ' : 'opacity-0'" v-show="tagsVisible">
         </div>
-        <button v-for="tag in techStack" :key="tag.tech"
-            :class="[tag.textColor, store.activeFilters.includes(tag.tech) ? 'opacity-100 active wobble-ver-right' : 'opacity-70']"
+        <button
+            :class="store.activeFilters.includes('case-study') ? 'opacity-100 active wobble-ver-right' : 'opacity-70'"
             class="text-electric-purple dark:text-accent peer tag-button relative overflow-hidden rounded-[6rem] px-4 py-1 text-xs transition-all duration-700 bg-primary dark:bg-deep-purple inverted:bg-deep-purple border-transparent dark:border-current inverted:border-current border hover:scale-[1.08] hover:opacity-90 group cursor-pointer"
-            @click="store.toggleFilter(tag.tech)">
+            @click="store.toggleFilter('case-study')">
             <span
                 class="absolute left-0 top-0 h-full w-0 bg-current opacity-20 transition-[width] duration-700 ease-linear group-hover:w-full"
-                :class="store.activeFilters.includes(tag.tech) ? 'w-full opacity-10' : ''"></span>
+                :class="store.activeFilters.includes('case-study') ? 'w-full opacity-10' : ''"></span>
             <span class="relative z-10 block transition-all duration-700"
-                :class="[store.activeFilters.includes(tag.tech) ? '-translate-x-2' : '']">{{ tag.tech }}</span>
+                :class="[store.activeFilters.includes('case-study') ? '-translate-x-2' : '']">Case Studies</span>
             <svg class="feather feather-x absolute right-1.5 top-1.5 transition-all duration-700"
-                :class="[store.activeFilters.includes(tag.tech) ? 'opacity-100' : 'opacity-0']" fill="none" height="10"
+                :class="[store.activeFilters.includes('case-study') ? 'opacity-100' : 'opacity-0']" fill="none" height="10"
                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                 width="10" xmlns="http://www.w3.org/2000/svg">
                 <line x1="18" x2="6" y1="6" y2="18" />

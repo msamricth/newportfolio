@@ -28,7 +28,7 @@
                     {{ tag }}
                 </li>
             </ul>
-            <Buttons href="https://greenleadershiptrust.org/" label="greenleadershiptrust.com" :onClick="() => ctaClick('https://greenleadershiptrust.org/')" class="max-md:text-md min-w-[270px] md:min-w-[306px] text-electric-purple dark:text-accent mt-24 btn"/>
+            <MainButton href="https://greenleadershiptrust.org/" label="greenleadershiptrust.com" :onClick="() => ctaClick('https://greenleadershiptrust.org/')" class="max-md:text-md min-w-[270px] md:min-w-[306px] text-electric-purple dark:text-accent mt-24 btn"/>
         </div>
     </div>
 </template>
@@ -38,7 +38,7 @@ import { ref, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PlaceholderJS from '../../utils/placeholder.js'
-import Buttons from '../Buttons.vue'
+import MainButton from '../Buttons/MainButton.vue'
 const sectionRef = ref(null)
 const contentBox = ref(null)
 const imageContainer = ref(null)

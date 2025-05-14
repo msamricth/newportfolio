@@ -5,9 +5,9 @@
         <div class="swing-in-left-fwd-slow h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition mb-12 lg:mb-24 xl:mb-32 w-full lg:max-w-[842px] xl:max-w-[1260px] mx-auto lg:px-44"
             :class="sectionVis ? 'animate ' : 'opacity-0'" style="--theme-main-animation-delay:0s">
         </div>
-        <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/w_300,e_pixelate,f_auto/v1746750909/Title_2_jwbc2m.png"
+        <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/w_100,e_pixelate,f_auto,e_grayscale/v1746750909/Title_2_jwbc2m.png"
             data-src="https://res.cloudinary.com/dp1qyhhlo/image/upload/w_auto,f_auto/v1746750909/Title_2_jwbc2m.png"
-            alt="A screenshot of the Green leadership Trust Website" class="w-full mx-auto" />
+            alt="A screenshot of the Green leadership Trust Website" class="w-full mx-auto transition-all duration-700" :class="imgLoaded ? 'opacity-100' : 'opacity-20'" />
     </div>
 </template>
 <script setup>
@@ -19,6 +19,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const section = ref(null)
 const sectionVis = ref(false)
+const imgLoaded = ref(false)
 
 onMounted(() => {
     const sectionEl = section.value
@@ -48,6 +49,7 @@ onMounted(() => {
             if (img && img.dataset.src) {
                 img.src = img.dataset.src
                 img.removeAttribute('data-src')
+                imgLoaded.value = true;
             }
         },
         onEnterBack: () => {

@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col mt-6 md:mt-0">
 
-                                        <Buttons :href="slide.slug" :label="slide.projectTitle"
+                                        <MainButton :href="slide.slug" :label="slide.projectTitle"
                                             :onClick="() => openWork(slide.slug)" :delay="'0.7s'" />
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@ import { useMainStore } from '../../stores/main.js'
 import { useModalStore } from '../../stores/modal.js'
 import placeholderJS from '../../utils/placeholder.js'
 import { work as slides } from '../../data/work.js';
-import Buttons from './../Buttons.vue';
+import MainButton from '../Buttons/MainButton.vue'
 import videoHandler from '../../utils/videoHandler.js';
 gsap.registerPlugin(ScrollTrigger);
 const store = useMainStore()
