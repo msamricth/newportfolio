@@ -296,7 +296,6 @@ function animateSquares() {
                         trigger: square,
                         start: 'top 60%',
                         end: 'bottom 40%',
-                        markers: true,
                         toggleActions: 'play reverse play reverse',
                         once: false,
                     },
