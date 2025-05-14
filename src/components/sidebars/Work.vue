@@ -4,7 +4,7 @@
             <h4 class="font-bold placeholder-line" data-splitting="words" ref="headline">Tech Stack</h4>
 
             <button v-if="store.isFiltered"
-                class="text-primary dark:text-accent inverted:text-accent inverted:dark:text-border tag-button relative overflow-hidden rounded-[6rem] transition-all duration-700 border-transparent dark:border-current border hover:text-accent dark:hover:text-electric-purple inverted:hover:text-electric-purple inverted:dark:hover:text-accent hover:scale-[1.15] hover:opacity-80 group cursor-pointer subtle-slide-in"
+                class="text-primary dark:text-accent inverted:text-accent inverted:dark:text-border tag-button relative overflow-hidden rounded-[6rem] transition-all duration-700 border-transparent dark:border-current border hover:text-accent dark:hover:text-electric-purple inverted:hover:text-electric-purple inverted:dark:hover:text-accent hover:scale-[1.15] hover:opacity-80 group cursor-pointer subtle-slide-in w-8 flex justify-center items-center"
                 @click="store.resetFilter" :class="store.isFiltered ? 'animate  opacity-60' : ''"
                 style="--theme-main-animation-delay:0s">
                 <svg class="feather feather-xtransition-all duration-700 opacity-60" fill="none" height="20"
