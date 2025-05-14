@@ -26,7 +26,7 @@
 
     <a href="https://www.linkedin.com/in/emmtalarico/details/recommendations/?detailScreenTabIndex=0" target="_blank"
       rel="noopener noreferrer"
-      class="animated-link group transition duration-700 overflow-hidden inline-block text-accent hover:scale-[1.08] text-sm"
+      class="animated-link group transition duration-700 overflow-hidden inline-block dark:text-primary text-background hover:scale-[1.08] text-sm dark:group-hover:text-electric-purple group-hover:text-accent"
       ref="linkEl" @mouseenter="onHoverIn" @mouseleave="onHoverOut">
       View on LinkedIn →
     </a>
@@ -148,7 +148,7 @@ const onHoverIn = () => {
     {
       x: 0,
       y: 0,
-      className: 'char text-electric-purple dark:text-accent',
+      className: 'char dark:group-hover:text-electric-purple group-hover:text-accent',
       ease: 'power3.out',
       duration: 0.5,
       stagger: { amount: 0.3, from: 'random' },
@@ -163,7 +163,7 @@ const onHoverOut = () => {
     {
       x: () => gsap.utils.random(-50, 50),
       y: () => gsap.utils.random(-40, 0),
-      className: 'char text-electric-purple dark:text-accent',
+      className: 'char dark:group-hover:text-electric-purple group-hover:text-accent',
     },
     {
       x: 0,

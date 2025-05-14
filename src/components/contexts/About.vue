@@ -156,6 +156,7 @@ onMounted(() => {
     end: 'bottom 90%',
     onEnter: () => document.body.classList.add('dark'),
     onEnterBack: () => document.body.classList.add('dark'),
+    onLeaveBack: () => document.body.classList.remove('dark'),
   });
 });
 

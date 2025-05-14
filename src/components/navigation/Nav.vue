@@ -7,9 +7,9 @@
             <div ref="navBrand"
                 class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
                 :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
-                <RouterLink aria-label="Return Home" to="/" class="text-nowrap animate subtle-slide-in font-black block "
+                <a aria-label="Return Home" href="/" class="text-nowrap animate subtle-slide-in font-black block "
                     @mouseenter="onBrandHoverIn">
-                    hi, i’m Emm.</RouterLink>
+                    hi, i’m Emm.</a>
             </div>
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "

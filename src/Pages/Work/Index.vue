@@ -268,7 +268,7 @@ function animateSquares() {
                     scale: 0.95,
                 },
                 {
-                    autoAlpha: 1,
+                    autoAlpha: 0.5,
                     y: 0,
                     scale: 1,
                     duration: 0.6,
@@ -278,6 +278,26 @@ function animateSquares() {
                         trigger: square,
                         start: 'top 90%',
                         toggleActions: 'play none none reverse',
+                        once: false,
+                    },
+                }
+            );
+            gsap.fromTo(
+                square,
+                {
+                    autoAlpha: 0.5,
+                },
+                {
+                    autoAlpha: 1,
+                    duration: 0.6,
+                    ease: 'power3.out',
+                    delay: i * 0.1,
+                    scrollTrigger: {
+                        trigger: square,
+                        start: 'top 60%',
+                        end: 'bottom 40%',
+                        markers: true,
+                        toggleActions: 'play reverse play reverse',
                         once: false,
                     },
                 }

@@ -1,5 +1,5 @@
 <template>
-    <a class="animate group-hover/secondaryNav:opacity-40 text-current/80 group-hover/secondaryNav:hover:opacity-100 cursor-pointer transition-all group icon-btn rounded-full subtle-slide-in h-8 w-8 hover:scale-[1.25] duration-700"
+    <a class="animate group-hover/secondaryNav:opacity-40 text-primary/80 inverted:text-background/80 group-hover/secondaryNav:hover:opacity-100 cursor-pointer group icon-btn rounded-full subtle-slide-in h-8 w-8 hover:scale-[1.25] transition-all duration-700"
         aria-label="Emm's Github account" style="--theme-main-animation-delay:0.5s" target="_blank"
         href="https://github.com/msamricth">
 
@@ -15,7 +15,7 @@
                 stroke-linejoin="round" />
         </svg>
         <svg stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"
-            class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-900">
+            class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-700">
             <path
                 d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -28,7 +28,7 @@
 
     </a>
 
-    <a class="animate group-hover/secondaryNav:opacity-40 text-current/80 hover:opacity-100 cursor-pointer transition group/linkedin subtle-slide-in icon-btn relative h-8 w-8 rounded-[6rem] hover:bg-deep-purple overflow-clip duration-900 hover:scale-[1.25]"
+    <a class="animate group-hover/secondaryNav:opacity-40 text-primary/80 inverted:text-background/80  hover:opacity-100 cursor-pointer transition group/linkedin subtle-slide-in icon-btn relative h-8 w-8 rounded-[6rem] hover:bg-deep-purple overflow-clip duration-700 hover:scale-[1.25]"
         aria-label="Emm's Linkedin account" style="--theme-main-animation-delay:0.6s" target="_blank"
         href="https://www.linkedin.com/in/emmtalarico/">
 
@@ -47,7 +47,7 @@
      a10.4564,10.4564 0 1,1 20.9128,0" stroke="currentColor" fill="none" />
         </svg>
 
-        <svg class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-900"
+        <svg class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-700"
             stroke-width="1.5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M15.2792 8.73516C16.3984 8.73516 17.4717 9.17973 18.263 9.97108C19.0544 10.7624 19.4989 11.8357 19.4989 12.9549V17.8778H16.6858V12.9549C16.6858 12.5818 16.5376 12.224 16.2738 11.9603C16.0101 11.6965 15.6523 11.5483 15.2792 11.5483C14.9062 11.5483 14.5484 11.6965 14.2847 11.9603C14.0209 12.224 13.8727 12.5818 13.8727 12.9549V17.8778H11.0595V12.9549C11.0595 11.8357 11.5041 10.7624 12.2955 9.97108C13.0868 9.17973 14.1601 8.73516 15.2792 8.73516Z"
@@ -78,7 +78,7 @@ const mobileAnims = () => {
             const length = path.getTotalLength();
             path.style.strokeDasharray = length;
             path.style.strokeDashoffset = length;
-            path.style.transition = 'stroke-dashoffset 0.6s ease-out';
+            path.style.transition = 'stroke-dashoffset 1s ease-out';
         });
 
         btn.addEventListener('click', (e) => {
@@ -103,6 +103,28 @@ onMounted(() => {
 })
 </script>
 <style scoped>
+.icon-wipe-overlay path {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.icon-btn:hover .icon-wipe-overlay path {
+    stroke-dashoffset: 0;
+}
+
+
+
+
+.stroke-animate {
+    stroke-dasharray: 700;
+    stroke-dashoffset: 700;
+}
+
+.group:hover .stroke-animate {
+    stroke-dashoffset: 0;
+}
+
 .icon-wipe-overlay path {
     stroke-dasharray: 600;
     stroke-dashoffset: 600;

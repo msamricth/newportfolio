@@ -1,6 +1,6 @@
 <template>
     <section ref="sliderSection" class="pt-20" id="work">
-        <div class="relative group h-[70vh] min-h-[750px] md:h-[670px] lg:h-dvh overflow-y-visible overflow-x-clip pb-8">
+        <div class="relative group h-[70vh] min-h-[550px] md:h-[570px] lg:h-[700px] xl:h-[900px] overflow-y-visible overflow-x-clip pb-8">
             <h2 class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl placeholder-line"
                 data-splitting="words">
                 Featured Work</h2>
@@ -41,7 +41,7 @@
                 </Splide>
             </div>
             <button ref="sliderArrow"
-                class="mt-8 block -right-2 md:-right-8 lg:right-65 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:hover:bg-primary/20 inverted:bg-background/0 absolute bottom-90 md:bottom-0 lg:bottom-60"
+                class="mt-8 block -right-2 md:-right-8 lg:right-65 xl:right-95 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:hover:bg-primary/20 inverted:bg-background/0 absolute bottom-90 md:bottom-0 xl:bottom-25"
                 :class="[isHovered ? 'md:opacity-80' : '']" @click="onArrowClick" @mouseenter="onArrowHoverIn"
                 @mouseleave="onArrowHoverOut">
                 <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" class="w-24 md:w-50" :class="activeTextColor"
@@ -62,7 +62,7 @@
   
 <script setup>
 import { ref, onMounted, computed, nextTick } from 'vue';
-import router from '../../utils/router.js'
+import router from '../../routes/router.js'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

@@ -28,7 +28,7 @@
                     {{ tag }}
                 </li>
             </ul>
-            <Buttons href="https://greenleadershiptrust.org/" label="greenleadershiptrust.com" :onClick="() => ctaClick('https://greenleadershiptrust.org/')" class="max-md:text-md min-w-[270px] md:min-w-[320px] text-electric-purple dark:text-accent mt-24 btn"/>
+            <Buttons href="https://greenleadershiptrust.org/" label="greenleadershiptrust.com" :onClick="() => ctaClick('https://greenleadershiptrust.org/')" class="max-md:text-md min-w-[270px] md:min-w-[306px] text-electric-purple dark:text-accent mt-24 btn"/>
         </div>
     </div>
 </template>

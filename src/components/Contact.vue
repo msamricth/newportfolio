@@ -3,7 +3,7 @@
         class="form-wrapper relative w-full mx-auto mb-2  text-primary dark:text-accent inverted:text-electric-purple items-center relative mt-25 md:mt-28 min-h-screen">
         <div
             class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16">
-            <h3 class="text-4xl font-black transition text-center mb-6 lg:mb-12 form-header uppercase placeholder-line"
+            <h3 class="text-4xl font-black transition-all text-center mb-6 lg:mb-12 form-header uppercase placeholder-line"
                 data-splitting="words" id="formHeader" ref="formHeader" :class="submitted ? 'blur-sm' : ''">Lets get in
                 touch!</h3>
 
@@ -12,7 +12,7 @@
                 <p class="text-white">ss
                 </p>
             </div>
-            <form ref="formRef" @submit.prevent="submitForm" class="transition w-full px-2 block flex flex-col gap-6"
+            <form ref="formRef" @submit.prevent="submitForm" class="transition-all w-full px-2 block flex flex-col gap-6 text-primary dark:text-accent inverted:text-electric-purple"
                 novalidate :class="submitted ? 'blur-md opacity-25' : ''">
                 <div v-if="error" class="text-electric-purple text-sm mb-2">
                     {{ error }}
@@ -24,7 +24,7 @@
                         </label>
                         <input type="text" placeholder="Name" id="name" name="name" v-model="formDataValues.name"
                             :class="{ 'border-b border-yellow': nameError }"
-                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-primary dark:text-accent inverted:text-electric-purple">
+                            class="w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-primary dark:text-accent inverted:text-electric-purple placeholder:text-primary/60 focus:placeholder:text-primary dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
                     </div>
 
                     <div class="w-1/2">
@@ -33,7 +33,7 @@
                         </label>
                         <input type="email" id="email" placeholder="Email" name="email" v-model="formDataValues.email"
                             required :class="{ 'border-b border-yellow': emailError }"
-                            class="w-full placeholder:text-current/60 focus:placeholder:text-current outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-primary dark:text-accent inverted:text-electric-purple">
+                            class="w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-primary dark:text-accent inverted:text-electric-purple placeholder:text-primary/60 focus:placeholder:text-primary dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
                     </div>
 
                 </div>
@@ -55,18 +55,18 @@
 
 
                     <button type="submit"
-                        class="relative submit flex items-center transition overflow-hidden w-60 ml-auto text-center group/cta"
+                        class="relative submit flex items-center transition-all overflow-hidden w-60 ml-auto text-center group/cta"
                         ref="formButton" @mouseenter="formHoverIn" @mouseleave="formHoverOut">
                         <span
-                            class="inline-block font-semibold px-4 py-2 border-current border-2 rounded-full transition-all relative z-10 bg-inherit w-full whitespace-nowrap"
+                            class="inline-block font-semibold px-4 py-2 border-current border-2 rounded-full transition-all-all relative z-10 bg-inherit w-full whitespace-nowrap"
                             ref="formLabel">
                             Submit
                         </span>
                         <span
-                            class="absolute right-0 top-0 w-0 h-full opacity-0 transition-all z-0 origin-left block overflow-clip"
+                            class="absolute right-0 top-0 w-0 h-full opacity-0 transition-all-all z-0 origin-left block overflow-clip"
                             ref="formBlob">
                             <span ref="formBlobInner"
-                                class="flex items-center justify-center rounded-r-full bg-current h-full transition-all z-0 origin-left block w-10">
+                                class="flex items-center justify-center rounded-r-full bg-current h-full transition-all-all z-0 origin-left block w-10">
                                 <svg class="arrow w-24 h-24 fill-current" viewBox="0 0 24 24">
                                     <path d="M8 5l8 7-8 7z" />
                                 </svg>

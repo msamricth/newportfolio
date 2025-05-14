@@ -1,6 +1,6 @@
 <template>
   <a target="_blank" :href="href" @click.prevent="handleClick"
-    class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer relative flex flex-wrap items-center transition group/cta overflow-hidden w-65 text-center subtle-slide-in"
+    class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer relative flex flex-wrap items-center transition group/cta overflow-clip w-65 text-center subtle-slide-in rounded-full"
     :style="{ '--theme-main-animation-delay': delay }" ref="buttonEl" @mouseenter="handleHoverIn"
     @mouseleave="handleHoverOut">
     <span
@@ -8,10 +8,10 @@
       ref="labelEl">
       {{ label }}
     </span>
-    <span class="absolute right-0 top-0 w-0 h-full opacity-0 transition-all z-0 origin-left block overflow-clip"
+    <span class="absolute right-0 w-10 top-0 h-full opacity-0 transition-all z-0 origin-right block"
       ref="blobEl">
       <span
-        class="flex items-center justify-center rounded-r-full bg-current h-full transition-all z-0 origin-left block w-10"
+        class="flex items-center justify-center rounded-r-full bg-current h-full transition-all z-0 origin-right block w-10"
         ref="blobInnerEl">
         <svg class="arrow w-24 h-24 fill-current transition-all" viewBox="0 0 24 24">
           <path d="M8 5l8 7-8 7z" />
@@ -49,22 +49,30 @@ const handleClick = () => {
   }, 300)
 }
 
+
+
+
+
 const handleHoverIn = () => {
   if (!tl) {
     tl = gsap.timeline({ paused: true })
-    tl.set(blobEl.value, { opacity: 0, width: 0 })
-    tl.set(blobInnerEl.value, { x: '-2.5rem' })
+    tl.set(blobEl.value, { opacity: 0})
+    tl.set(blobInnerEl.value, { x: '2.5rem' })
+
     tl.to(blobEl.value, { opacity: 1, duration: 0.2 }, 0)
     tl.to(labelEl.value, { paddingRight: '2rem', duration: 0.2 }, 0)
-    tl.to(blobInnerEl.value, { x: 0, duration: 0.2, ease: 'power2.out' }, 0.1)
-    tl.to(blobEl.value, { width: '2.5rem', duration: 0.2, ease: 'power2.out' }, 0.1)
+    tl.fromTo(blobInnerEl.value, { x: '2.5rem' }, { x: 0, duration: 0.2, ease: 'power2.out' }, 0.1)
+
+
+  // tl.fromTo(blobEl.value, { width: 0 }, { width: '2.5rem', duration: 0.2, ease: 'power2.out' }, 0.1)
+
     tl.to(labelEl.value, {
       borderTopRightRadius: '0.5rem',
       borderBottomRightRadius: '0.5rem',
-      width: '80%',
+      width: 'calc(100% - 54px)',
       duration: 0.2,
       ease: 'power2.out',
-    }, 0.25)
+    }, 0.1)
     tl.to(blobInnerEl.value, {
       backgroundColor: 'transparent',
       duration: 0.2,

@@ -5,7 +5,7 @@ import Splitting from 'splitting';
 import './style.css'
 import App from './App.vue'
 
-import router from './utils/router.js'
+import router from './routes/router.js'
 
 import { createPinia } from 'pinia';
 

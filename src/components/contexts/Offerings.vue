@@ -1,7 +1,7 @@
 <template>
-    <section id="offerings" ref="section" class="py-25 bg-primary/5 dark:bg-background/5 transition duration-700">
+    <section id="offerings" ref="section" class="py-25  bg-primary/5 dark:bg-background/5 transition duration-700">
         <div class="max-w-[1440px] mx-auto px-8 lg:px-12">
-            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-12 placeholder-line" data-splitting="words" ref="heading">I want to help</h2>
+            <h2 class="text-3xl md:text-4xl font-heading font-bold mb-12 placeholder-line text-center md:text-left" data-splitting="words" ref="heading">I want to help</h2>
             <div class="flex gap-10 flex-col">
 
                 <div v-for="(item, index) in offerings" ref="offeringRefs" :key="index" class="offering-card">
@@ -55,7 +55,25 @@ const offeringRefs = ref([])
 onMounted(() => {
     const offeringsEl = section.value;
     const headingEl = heading.value;
-    new PlaceholderJS(headingEl, { scrub: true, speed: 2 });
+    const headingAnim = new PlaceholderJS(headingEl, { manual: true, speed: 2 });
+        ScrollTrigger.create({
+            trigger: offeringsEl,
+            start: 'top 85%',
+            end: 'bottom 44%',
+            onEnter: () => {
+                headingAnim.play()
+            },
+            onEnterBack: () => {
+                //headingAnim.play()
+            },
+            onLeaveBack: () => {
+                headingAnim.getTimeline()?.progress(1).reverse()
+
+            },
+            onLeave: () => {
+               // headingAnim.getTimeline()?.progress(1).reverse()
+            },
+        });
     offeringRefs.value.forEach((card, index) => {
 
         const { textColor } = offerings[index];

@@ -10,7 +10,7 @@ import Footer from '../components/Footer.vue';
 </script>
 
 <template>
-  <div class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700">
+  <div class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative">
     <HeroSection />
     <Nav />
     <About />

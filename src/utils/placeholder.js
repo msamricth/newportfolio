@@ -8,14 +8,14 @@ export default class PlaceholderJS {
     constructor(el, {
         start = 'top 90%',
         end = 'top top',
-        stagger = 0.05,
+        stagger = 0.015,
         fadeDur = 0.3,
-        textDur = 0.4,
+        textDur = 0.2,
         placeholderClass = 'placeholder',
         manual = false,
         scrub = false,
         markers = false,
-        triggerTarget = 'self', // 'self' (default) or 'parent'
+        triggerTarget = 'self', 
         speed = 1
     } = {}) {
         this.el = el;

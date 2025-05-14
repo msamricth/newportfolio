@@ -54,7 +54,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from './../../utils/placeholder.js';
 import Buttons from './../Buttons.vue'
 import { useMainStore } from '../../stores/main.js'
-import router from '../../utils/router';
+import router from '../../routes/router';
 const store = useMainStore()
 gsap.registerPlugin(ScrollTrigger);
 const isArtisan = ref(false);
