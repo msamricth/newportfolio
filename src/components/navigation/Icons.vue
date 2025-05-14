@@ -1,5 +1,5 @@
 <template>
-    <a class="animate group-hover/secondaryNav:opacity-40 text-primary/80 inverted:text-background/80 group-hover/secondaryNav:hover:opacity-100 cursor-pointer group icon-btn rounded-full subtle-slide-in h-8 w-8 hover:scale-[1.25] transition-all duration-700"
+    <a class="animate group-hover/secondaryNav:opacity-40 text-primary/80 inverted:text-background/80 dark:text-background/80 group-hover/secondaryNav:hover:opacity-100 cursor-pointer group icon-btn rounded-full subtle-slide-in h-8 w-8 hover:scale-[1.25] transition-all duration-700"
         aria-label="Emm's Github account" style="--theme-main-animation-delay:0.5s" target="_blank"
         href="https://github.com/msamricth">
 
@@ -28,7 +28,7 @@
 
     </a>
 
-    <a class="animate group-hover/secondaryNav:opacity-40 text-primary/80 inverted:text-background/80  hover:opacity-100 cursor-pointer transition group/linkedin subtle-slide-in icon-btn relative h-8 w-8 rounded-[6rem] hover:bg-deep-purple overflow-clip duration-700 hover:scale-[1.25]"
+    <a class="animate group-hover/secondaryNav:opacity-40 text-primary/80 inverted:text-background/80  dark:text-background/80 hover:opacity-100 cursor-pointer transition group/linkedin subtle-slide-in icon-btn relative h-8 w-8 rounded-[6rem] hover:bg-deep-purple overflow-clip duration-700 hover:scale-[1.25]"
         aria-label="Emm's Linkedin account" style="--theme-main-animation-delay:0.6s" target="_blank"
         href="https://www.linkedin.com/in/emmtalarico/">
 
