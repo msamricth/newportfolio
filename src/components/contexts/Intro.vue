@@ -52,7 +52,7 @@ import { ref, onMounted } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from './../../utils/placeholder.js';
-import MainButton from './../Buttons/MainButton.vue'
+import MainButton from './../buttons/MainButton.vue'
 import { useMainStore } from '../../stores/main.js'
 import router from '../../routes/router';
 const store = useMainStore()
