@@ -71,7 +71,7 @@ import { useMainStore } from '../../stores/main.js'
 import { useModalStore } from '../../stores/modal.js'
 import placeholderJS from '../../utils/placeholder.js'
 import { work as slides } from '../../data/work.js';
-import MainButton from '../Buttons/MainButton.vue'
+import MainButton from '../buttons/MainButton.vue'
 import videoHandler from '../../utils/videoHandler.js';
 gsap.registerPlugin(ScrollTrigger);
 const store = useMainStore()
