@@ -21,7 +21,7 @@ export const work = [
             },
         ],
 
-        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/v1745546389/supply_tysvko.m3u8',
+        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745546389/supply_tysvko.m3u8',
         textColor: 'text-toxic-mint',
     },
     {
@@ -120,6 +120,7 @@ export const work = [
         specialties: [
             'Print and Digital Media', 'Video and Image optimizations', 'API Integrations', 'Custom Theme and Plugin Development', 'CRM & Communications Strategy'
         ],
+        caseStudy: true,
         tech: [
             'WordPress',
             'ACF', 'Webpack', 'Airtable', 'Cloudinary', 'React', 'Bootstrap', 'GSAP'

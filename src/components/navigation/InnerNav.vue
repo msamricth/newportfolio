@@ -16,7 +16,7 @@
             </div>
             <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
                 data-splitting="words" ref="heading">
-                <span class="transition-all duration-700 placeholder-line" data-splitting="words">{{ title }}</span>
+                <span class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background" data-splitting="words">{{ title }}</span>
             </h1>
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
