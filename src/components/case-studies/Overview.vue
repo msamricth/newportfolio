@@ -1,7 +1,7 @@
 <template>
     <div ref="overview"
         class="overview flex-wrap max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 xl:px-26 mx-auto intro flex md:flex-row relative md:pb-16 justify-center">
-        <h4 class="text-2xl font-black w-full placeholder-line" data-splitting="words">Overview</h4>
+        <h4 class="text-2xl font-black w-full placeholder-line w-full flex justify-between" data-splitting="words">Overview</h4>
         <div class="flex flex-col md:w-1/3 lg:w-1/4 py-6 side" ref="sidebar">
             <div class="swing-in-left-fwd-slow h-[2px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition mb-3 lg:mb-5 w-full opacity-0"
                 :class="sideBarVisible ? 'animate ' : 'opacity-0'"

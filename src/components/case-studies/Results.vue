@@ -38,7 +38,7 @@ import { ref, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PlaceholderJS from '../../utils/placeholder.js'
-import MainButton from '../Buttons/MainButton.vue'
+import MainButton from '../buttons/MainButton.vue'
 const sectionRef = ref(null)
 const contentBox = ref(null)
 const imageContainer = ref(null)
