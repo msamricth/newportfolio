@@ -15,37 +15,37 @@
                 <!-- your 7 svgs -->
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346874/mixer_ha98hb.svg"
-                        class="decor jello-horizontal" alt="Illustration of a mixer"
+                        class="decor jello-horizontal h-auto" width="180" height="180" alt="Illustration of a mixer"
                         :style="animDelay" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-4_hnflq8.svg"
-                        class="decor heartbeat" alt="Illustration of a flower" />
+                        class="decor heartbeat h-auto" width="180" height="180" alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/headphones_asqozg.svg"
-                        class="decor shake-top" alt="Illustration of headphones" />
+                        class="decor shake-top h-auto" width="180" height="180" alt="Illustration of headphones" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/flower-5_xaniod.svg"
-                        class="decor rotate-ccw90-forever" alt="Illustration of a flower" />
+                        class="decor rotate-ccw90-forever h-auto" width="180" height="180" alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390483/bmx_hzx4dd.svg"
-                        class="decor rotate-forever" alt="Illustration of a bmx bike" />
+                        class="decor rotate-forever  h-auto" width="180" height="180" alt="Illustration of a bmx bike" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg"
-                        class="decor rotate-ccw90-forever" :style="animDelay"
+                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg" width="180" height="180"
+                        class="decor rotate-ccw90-forever h-auto" :style="animDelay"
                         alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg"
-                        class="decor jello-horizontal" alt="Illustration of a heart" />
+                        class="decor jello-horizontal h-auto" width="180" height="180" alt="Illustration of a heart" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390928/code_tigrlv.svg"
-                        class="decor vibrate" alt="Illustration of code syntex" />
+                        class="decor vibrate h-auto" width="180" height="180" alt="Illustration of code syntex" />
                 </div>
             </div>
 

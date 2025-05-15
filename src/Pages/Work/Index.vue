@@ -17,8 +17,9 @@
                         <img :src="item.image"
                             class=" w-full h-auto group-hover:-translate-x-[34%] transition-all duration-700 relative z-10" />
                         <div class="z-0 w-[35%] transition-all duriation-900 absolute right-0 top-0">
-                            <video class="aspect-mobile" :data-src="item.video" muted playsinline loop background
-                                allow="picture-in-picture"></video>
+                            <video class="aspect-mobile" :data-src="item.video.replace('q_auto', 'q_auto,w_360')" muted
+                                playsinline loop background allow="picture-in-picture"
+                                :poster="(item.video.replace('.m3u8', '.webp')).replace('q_auto', 'q_auto,so_0.2')"></video>
                         </div>
                     </div>
 

@@ -10,11 +10,11 @@
                         :class="slide.textColor">
                         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
                             <div class="flex flex-col md:flex-row justify-center items-start gap-8">
-                                <img :src="slide.image"
+                                <img :src="slide.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_960')"
                                     class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all cursor-pointer duriation-900" @click.prevent="openWork(slide.slug)" />
                                 <div
                                     class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block overflow-clip">
-                                    <video class="aspect-mobile" :data-src="slide.video" playsinline muted="" loop :poster="slide.video.replace('m3u8', 'png')"></video>
+                                    <video class="aspect-mobile" :data-src="slide.video.replace('q_auto', 'q_auto,w_360')" playsinline muted="" loop   :poster="(slide.video.replace('.m3u8', '.webp')).replace('q_auto', 'q_auto,so_0.2')"></video>
                                 </div>
                             </div>
                             <div class="h-0 opacity-0 flex flex-col justify-end items-start py-6 md:p-6 group-[.is-active]:opacity-100 group-[.is-active]:h-full transition-all duriation-700 w-[85%] lg:w-[65%] lg:mr-26"
