@@ -7,12 +7,13 @@
             class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
             <Work />
             <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid">
-                <div v-if="!store.gridResults" class="text-3xl italic transition-all duration-700 work-grid--no-results">
+                <div v-if="!store.gridResults"
+                    class="text-3xl italic transition-all duration-700 work-grid--no-results">
                     No matching items found.
                 </div>
                 <div v-for="(item, index) in store.filteredWork" :key="index"
-                    class="work-grid--item cursor-pointer group w-full relative md:w-[48%] lg:w-full xl:w-[48%]" :class="item.textColor"
-                    @click="openModal(item)" @mouseenter="startHover($event)" @mouseout="endHover($event)">
+                    class="work-grid--item cursor-pointer group w-full relative md:w-[48%] lg:w-full xl:w-[48%]"
+                    :class="item.textColor" @click="openModal(item)" @mouseenter="startHover($event)">
                     <div class="media relative rounded-xl mb-2 overflow-clip flex">
                         <img :src="item.image"
                             class=" w-full h-auto group-hover:-translate-x-[34%] transition-all duration-700 relative z-10" />
@@ -23,7 +24,9 @@
                         </div>
                     </div>
 
-                    <h3 class="font-semibold text-lg text-primary dark:text-background inverted:text-background transition duration-700 group-hover:text-current mb-4 w-5/6">{{ item.title }}</h3>
+                    <h3
+                        class="font-semibold text-lg text-primary dark:text-background inverted:text-background transition duration-700 group-hover:text-current mb-4 w-5/6">
+                        {{ item.title }}</h3>
                 </div>
             </div>
         </div>
@@ -60,7 +63,8 @@
                             <p :class="modalStore.modalItem.textColor" class="text-base placeholder-line"
                                 data-splitting="words" v-html="modalStore.modalItem.text"></p>
 
-                            <div class="specialties-animate mt-4 lg:w-90 xl:w-100" v-if="modalStore.modalItem.specialties">
+                            <div class="specialties-animate mt-4 lg:w-90 xl:w-100"
+                                v-if="modalStore.modalItem.specialties">
                                 <h4 class="mb-2 mt-8">Specialties</h4>
                                 <ul class="flex gap-2 items-start flex-wrap">
                                     <li v-for="(specialty, index) in modalStore.modalItem.specialties" :key="index"
@@ -146,7 +150,7 @@
         </div>
     </div>
 </template>
-  
+
 <script setup>
 import { ref, computed, onMounted, watch, nextTick } from 'vue';
 import InnerNav from '../../components/navigation/InnerNav.vue';
@@ -154,6 +158,7 @@ import Contact from '../../components/Contact.vue';
 import Footer from '../../components/Footer.vue';
 import Work from '../../components/sidebars/Work.vue';
 
+import router from '../../routes/router';
 import { useWorkStore } from '../../stores/work.js';
 import { useModalStore } from '../../stores/modal.js';
 import videoHandler from '../../utils/videoHandler.js';
@@ -234,6 +239,7 @@ const hoverIn = (slideIndex, btnIndex) => {
 const hoverOut = (slideIndex, btnIndex) => {
     hoverTimelines[slideIndex]?.[btnIndex]?.reverse();
 };
+
 function startHover(event) {
     const gridItemEl = event.currentTarget;
     const video = gridItemEl.querySelector('video');
@@ -314,6 +320,12 @@ function closeModal() {
     }, 0.2);
 }
 function openModal(item) {
+
+    if (item.caseStudy) {
+        const slug = '/work/' + item.slug
+        router.push(slug)
+        return;
+    }
     modalStore.modalItem = item;
     const workPageEL = workPage.value;
     window.scrollTo(0, 0);
@@ -367,32 +379,45 @@ function openModal(item) {
 
 onMounted(() => {
     animateSquares();
-    watch(store.filteredWork, (newVal) => {
-        animateSquares()
-    })
-    nextTick(() => {
-    const slug = modalStore.pendingModalSlug;
-    if (slug) {
-      const item = store.filteredWork.find(w => w.slug === slug);
-      if (item) {
-        openModal(item);
-        modalStore.pendingModalSlug = null;
-      } else {
-        console.warn('Item not found immediately, waiting on filteredWork...');
-      }
-    }
+    watch(() => store.filteredWork, async () => {
+        await nextTick();
 
-    watch(() => store.filteredWork.length, () => {
-      const slug = modalStore.pendingModalSlug;
-      if (!slug) return;
-      const item = store.filteredWork.find(w => w.slug === slug);
-      if (item) {
-        window.scrollTo(0, 300);
-        openModal(item);
-        modalStore.pendingModalSlug = null;
-      }
+        const items = document.querySelectorAll('.work-grid--item');
+
+        items.forEach(item => {
+            const video = item.querySelector('video');
+            if (video && !video.dataset.loaded) {
+                const player = new videoHandler(video);
+                player.pause();
+            }
+        });
+
+        animateSquares();
+    }, { immediate: true });
+    nextTick(() => {
+        const slug = modalStore.pendingModalSlug;
+        if (slug) {
+            const item = store.filteredWork.find(w => w.slug === slug);
+            if (item) {
+                openModal(item);
+                modalStore.pendingModalSlug = null;
+            } else {
+                console.warn('Item not found immediately, waiting on filteredWork...');
+            }
+        }
+
+        watch(() => store.filteredWork.length, () => {
+            const slug = modalStore.pendingModalSlug;
+            if (!slug) return;
+            const item = store.filteredWork.find(w => w.slug === slug);
+            if (item) {
+                window.scrollTo(0, 300);
+                openModal(item);
+                modalStore.pendingModalSlug = null;
+            }
+        });
+
     });
-  });
     const workGridEl = workGrid.value;
     ScrollTrigger.create({
         trigger: workGridEl,
@@ -412,6 +437,5 @@ onMounted(() => {
 
 })
 </script>
-  
+
 <style scoped></style>
-  

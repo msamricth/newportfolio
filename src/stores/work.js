@@ -32,9 +32,13 @@ export const useWorkStore = defineStore('work', () => {
       return work.value;
     }
     const results = work.value.filter(item => {
-      const allTags = [...(item.caseStudy || []), ...(item.tech || [])];
+      const allTags = [
+        ...(item.caseStudy ? ['case-study'] : []),
+        ...(item.tech || [])
+      ];
       return activeFilters.value.every(tag => allTags.includes(tag));
     });
+
     gridResults.value = results.length > 0;
     isFiltered.value = true;
     return results;
