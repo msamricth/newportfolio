@@ -1,10 +1,10 @@
 <template>
   <div class="logo-garden max-w-full px-0 mx-auto mb-6 md:mb-32">
     <div class="flex **:max-w-1/2 xl:**:max-w-1/4 opacity-80 flex-wrap justify-center items-center">
-      <img class="dark:invert inverted:invert transition-all mb-8 delay-700 w-70 md:w-100 md:delay-0"
+      <img class="dark:invert inverted:invert transition-all mb-8 delay-700 w-70 md:w-100 md:delay-0 h-auto"
         v-for="(logo, i) in shuffledLogos" :key="i"
         :src="logo.src.replace('q_auto,f_auto', 'w_100,e_pixelate,f_auto,e_grayscale')" :data-src="logo.src"
-        :alt="logo.alt" />
+        :alt="logo.alt" width="400" height="133" />
     </div>
   </div>
 </template>
