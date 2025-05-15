@@ -28,15 +28,17 @@
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/flower-5_xaniod.svg"
-                        class="decor rotate-ccw90-forever h-auto" width="180" height="180" alt="Illustration of a flower" />
+                        class="decor rotate-ccw90-forever h-auto" width="180" height="180"
+                        alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
                     <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390483/bmx_hzx4dd.svg"
-                        class="decor rotate-forever  h-auto" width="180" height="180" alt="Illustration of a bmx bike" />
+                        class="decor rotate-forever  h-auto" width="180" height="180"
+                        alt="Illustration of a bmx bike" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg" width="180" height="180"
-                        class="decor rotate-ccw90-forever h-auto" :style="animDelay"
+                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg"
+                        width="180" height="180" class="decor rotate-ccw90-forever h-auto" :style="animDelay"
                         alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
@@ -53,11 +55,12 @@
         </div>
     </section>
 </template>
-  
+
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import placeholderJS from './../utils/placeholder.js'
 import SecondaryNav from './navigation/SecondaryNav.vue';
+import { shuffleIcons } from '../utils/shuffler.js';
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -69,7 +72,7 @@ const trigger = ref(null)
 const delay = ref('0.5s')
 
 const animDelay = computed(() => ({
-  '--theme-main-animation-delay': delay.value
+    '--theme-main-animation-delay': delay.value
 }))
 
 let interval
@@ -82,48 +85,15 @@ onMounted(() => {
     headline.style.order = -1
 
     const icons = Array.from(gridEl.querySelectorAll('.decor-wrap'))
-    const slotCount = icons.length
-    let currentOrders = icons.map((_, i) => i)
 
     gsap.set(icons, { scale: 1, transformOrigin: '50% 50%' })
     interval = setInterval(() => {
-    delay.value = (Math.random() * 1.5).toFixed(2) + 's'
-  }, 1000)
-    function shuffleIcons() {
-        const swapCount = Math.floor(gsap.utils.random(2, 6))
-        if (slotCount < swapCount) return
+        delay.value = (Math.random() * 1.5).toFixed(2) + 's'
+    }, 1000)
 
-        const indices = gsap.utils.shuffle([...Array(slotCount).keys()]).slice(0, swapCount)
-        const iconsToAnimate = indices.map(i => icons[i]).filter(Boolean)
-        if (iconsToAnimate.length !== swapCount) return
 
-        const ordersToSwap = indices.map(i => currentOrders[i])
-        const newOrders = gsap.utils.shuffle(ordersToSwap.slice())
-
-        const tl = gsap.timeline()
-        tl.to(iconsToAnimate, {
-            scale: 0,
-            duration: 0.3,
-            stagger: 0.05,
-            ease: 'power1.in'
-        })
-            .add(() => {
-                indices.forEach((iconIndex, j) => {
-                    const order = newOrders[j]
-                    icons[iconIndex].style.order = order
-                    currentOrders[iconIndex] = order
-                })
-            })
-            .to(iconsToAnimate, {
-                scale: 1,
-                duration: 0.3,
-                stagger: 0.05,
-                ease: 'back.out(1.7)'
-            })
-    }
-
-    shuffleIcons()
-    setInterval(shuffleIcons, 5000)
+    shuffleIcons(icons)
+    setInterval(()=>{shuffleIcons(icons)}, 2000)
 
     const iconFadeTL = gsap.timeline({ paused: true })
     iconFadeTL.fromTo(icons, {

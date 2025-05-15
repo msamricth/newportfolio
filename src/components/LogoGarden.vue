@@ -1,45 +1,54 @@
 <template>
-        <div class="logo-garden max-w-full px-0 mx-auto mb-6 md:mb-32">
-            <div class="flex **:max-w-1/2 xl:**:max-w-1/4 opacity-80 flex-wrap justify-center items-center">
-                <img class="dark:invert inverted:invert transition-all mb-8 delay-700 md:delay-0" v-for="(logo, i) in shuffledLogos" :key="i" :src="logo.src" :alt="logo.alt" />
-            </div>
-        </div>
+  <div class="logo-garden max-w-full px-0 mx-auto mb-6 md:mb-32">
+    <div class="flex **:max-w-1/2 xl:**:max-w-1/4 opacity-80 flex-wrap justify-center items-center">
+      <img class="dark:invert inverted:invert transition-all mb-8 delay-700 w-70 md:w-100 md:delay-0"
+        v-for="(logo, i) in shuffledLogos" :key="i"
+        :src="logo.src.replace('q_auto,f_auto', 'w_100,e_pixelate,f_auto,e_grayscale')" :data-src="logo.src"
+        :alt="logo.alt" />
+    </div>
+  </div>
 </template>
 <script setup>
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ref, onMounted, nextTick } from 'vue'
 import { useMainStore } from '../stores/main.js'
-const store = useMainStore()
+import { logos } from '../data/logos.js'
 gsap.registerPlugin(ScrollTrigger)
 
-const logos = [
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto/v1745381975/supply_1_pua38q.svg', alt: 'supply logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/response_gfiqhv.svg', alt: 'response logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/gators_tpplzp.svg', alt: 'gators logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/united_malt_mbqdet.svg', alt: 'united_malt logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/ebad_gtytsv.svg', alt: 'ebad logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/jetfuel-studios_aj1pzy.svg', alt: 'jetfuel logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/hkholdings_lomarb.svg', alt: 'Horizon Kinetics logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/drmartens_drifpo.webp', alt: 'Dr Martens logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745380127/DAT_zjylr9.svg', alt: 'DAT logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/autodesk_lzqzr0.svg', alt: 'Autodesk logo' },
-    { src: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745381975/consensusmining_wctjst.svg', alt: 'consensusmining logo' },
-];
 
 const shuffledLogos = ref([])
 
 onMounted(async () => {
   shuffledLogos.value = [...logos].sort(() => Math.random() - 0.5)
-
-  // Wait for DOM to update
   await nextTick()
 
   const logoEls = document.querySelectorAll('.logo-garden img')
+  logoEls.forEach((logo) => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (logo && logo.dataset.src) {
+          logo.src = logo.dataset.src
+          logo.removeAttribute('data-src')
+        }
+        observer.disconnect()
+      }
+    }, { rootMargin: '200px' })
+
+    observer.observe(logo)
+  })
 
   gsap.fromTo(
     logoEls,
-    { autoAlpha: 0, y: 40 },
+    {
+      autoAlpha: 0, y: 40,
+      onStart: () => {
+        if (logoEls && logoEls.dataset.src) {
+          logoEls.src = img.dataset.src
+          logoEls.removeAttribute('data-src')
+        }
+      },
+    },
     {
       autoAlpha: 1,
       y: 0,
@@ -53,15 +62,6 @@ onMounted(async () => {
       },
     }
   )
-  ScrollTrigger.create({
-        trigger: '.logo-garden',
-        start: 'bottom 20%',
-        end: 'bottom bottom',
-        onEnter: () => {
-        //    store.setSliderArrowSticky(false)
-            store.setsliderTimeline('before') 
-        },
-    });
 })
 
 </script>

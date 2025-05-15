@@ -29,20 +29,7 @@
                         label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" />
                 </div>
             </div>
-            <div class="md:min-h-[60vh]" ref="artisan">
-                <div class="code-artisan lg:my-34 my-18  md:w-3/4 mx-auto relative md:sticky top-[20%]">
-                    <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition duriation-900 mb-4 delay-700"
-                        :class="isArtisan ? ['animate'] : ['opacity-0']"></div>
-                    <h3 class="font-heading font-semibold text-2xl lg:text-3xl leading-snug placeholder-line"
-                        data-splitting="words">
-                        Code artisan forging WordPress & Vue.js experiences by day,
-                        crafting dirt jumps & trails for bikes by night—
-                        UX zeal meets mud-and-grit creativity.
-                    </h3>
-                    <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition duriation-900 mt-4 delay-700"
-                        :class="isArtisan ? ['animate'] : ['opacity-0']"></div>
-                </div>
-            </div>
+            <Artisan />
         </div>
     </section>
 </template>
@@ -53,60 +40,21 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from './../../utils/placeholder.js';
 import MainButton from './../buttons/MainButton.vue'
-import { useMainStore } from '../../stores/main.js'
 import router from '../../routes/router';
-const store = useMainStore()
+import Artisan from './Artisan.vue';
 gsap.registerPlugin(ScrollTrigger);
-const isArtisan = ref(false);
 const isBQ = ref(false);
-const artisan = ref(null)
 const section = ref(null)
 const openAbout = () => {
     router.push('/about')
 }
 onMounted(() => {
-    const artisanEl = artisan.value;
     const sectionEl = section.value;
     const introduction = sectionEl.querySelector('.introduction');
     const btn = sectionEl.querySelector('.btn');
-    const artisanElHeadline = artisanEl.querySelector('h3');
     const listItems = sectionEl.querySelectorAll('li.placeholder-line');
     const subtitle = sectionEl.querySelector('.subtitle');
 
-
-
-    const artisanElHeadlineAnim = new PlaceholderJS(artisanElHeadline, { manual: true });
-
-    artisanElHeadlineAnim.getTimeline().progress(1).reverse();
-    ScrollTrigger.create({
-        trigger: artisanEl,
-        start: 'top 85%',
-        onEnter: () => {
-            isArtisan.value = true;
-            artisanElHeadlineAnim.play();
-            store.setSliderArrowSticky(false)
-            store.setsliderTimeline('before')
-        },
-        onEnterBack: () => {
-            store.setSliderArrowSticky(false)
-            store.setsliderTimeline('before')
-        },
-        onLeaveBack: () => {
-            isArtisan.value = false;
-            artisanElHeadlineAnim.getTimeline().progress(1).reverse();
-        },
-    });
-    ScrollTrigger.create({
-        trigger: artisanEl,
-        start: 'top 10%',
-        onEnter: () => {
-            document.body.classList.remove('dark')
-        },
-        onLeaveBack: () => {
-            document.body.classList.add('dark')
-        },
-    });
-    // Highlight blockquote
     ScrollTrigger.create({
         trigger: sectionEl.querySelector('.introduction blockquote'),
         start: 'top 75%',

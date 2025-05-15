@@ -1,6 +1,7 @@
 <template>
     <section ref="sliderSection" class="pt-20" id="work">
-        <div class="relative group h-[70vh] min-h-[550px] md:h-[570px] lg:h-[700px] xl:h-[900px] overflow-y-visible overflow-x-clip pb-8">
+        <div
+            class="relative group h-[70vh] min-h-[550px] md:h-[570px] lg:h-[700px] xl:h-[900px] overflow-y-visible overflow-x-clip pb-8">
             <h2 class="mb-6 lg:mb-18 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto text-2xl lg:text-5xl placeholder-line"
                 data-splitting="words">
                 Featured Work</h2>
@@ -9,18 +10,23 @@
                     <SplideSlide v-for="(slide, index) in slides" :key="index" class="transition-all duration-500 group"
                         :class="slide.textColor">
                         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
-                            <div class="flex flex-col md:flex-row justify-center items-start gap-8">
+                            <div class="flex flex-col md:flex-row justify-center items-start gap-8" v-if="loaded">
                                 <img :src="slide.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_960')"
-                                    class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all cursor-pointer duriation-900" @click.prevent="openWork(slide.slug)" />
+                                    class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all cursor-pointer duriation-900"
+                                    @click.prevent="openWork(slide.slug)" />
                                 <div
                                     class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block overflow-clip">
-                                    <video class="aspect-mobile" :data-src="slide.video.replace('q_auto', 'q_auto,w_360')" playsinline muted="" loop   :poster="(slide.video.replace('.m3u8', '.webp')).replace('q_auto', 'q_auto,so_0.2')"></video>
+                                    <video class="aspect-mobile"
+                                        :data-src="slide.video.replace('q_auto', 'q_auto,w_360')" playsinline muted=""
+                                        loop
+                                        :poster="(slide.video.replace('.m3u8', '.webp')).replace('q_auto', 'q_auto,so_0.2')"></video>
                                 </div>
                             </div>
                             <div class="h-0 opacity-0 flex flex-col justify-end items-start py-6 md:p-6 group-[.is-active]:opacity-100 group-[.is-active]:h-full transition-all duriation-700 w-[85%] lg:w-[65%] lg:mr-26"
                                 @mouseover="isHovered = true" @mouseleave="isHovered = false">
-                                <h3 :class="slide.textColor" class="text-2xl font-bold mb-2 subtle-slide-in">{{ slide.title
-                                }}
+                                <h3 :class="slide.textColor" class="text-2xl font-bold mb-2 subtle-slide-in">{{
+                                    slide.title
+                                    }}
                                 </h3>
                                 <div class="flex flex-col gap-6 mb-4">
                                     <div class="flex flex-col justify-between pr-8 lg:pr-18">
@@ -59,7 +65,7 @@
     </section>
     <div class="hidden stroke-sunburn-orange stroke-"></div>
 </template>
-  
+
 <script setup>
 import { ref, onMounted, computed, nextTick } from 'vue';
 import router from '../../routes/router.js'
@@ -84,7 +90,7 @@ const activeSlideIndex = ref(0)
 const progressOffset = ref(283);
 const strokeLength = 2 * Math.PI * 45;
 const progressCircle = ref(null);
-
+const loaded = ref(false)
 const shuffledWork = ref([])
 const onArrowHoverIn = () => {
     // Prevent stacking if already running
@@ -146,7 +152,7 @@ const splideOptions = {
     padding: '15%',
     breakpoints: {
         940: {
-            padding: { gap:'12px', left: '12px', right: '2rem' },
+            padding: { gap: '12px', left: '12px', right: '2rem' },
         },
     }
 };
@@ -159,17 +165,26 @@ const goNext = () => {
 };
 const handleSlideActive = (index) => {
     activeSlideIndex.value = index;
-        const currentSlide = document.querySelector('.is-active.is-visible');
-        const video = currentSlide.querySelector('video');
-        const player = new videoHandler(video);
-        player.play();
+    const currentSlide = document.querySelector('.is-active.is-visible');
+    const video = currentSlide.querySelector('video');
+    const player = new videoHandler(video);
+    player.play();
 };
 const openWork = (item) => {
     modalStore.queueModalBySlug(item)
     router.push('/work')
 }
 onMounted(() => {
-
+    const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            loaded.value = true;
+            observer.disconnect();
+        }
+    }, {
+        rootMargin: '200px',
+    });
+    const activeSlide = document.querySelector('.splide__slide.is-active');
+    if (activeSlide) observer.observe(activeSlide);
     const sliderSectionEl = sliderSection.value;
     const headline = sliderSectionEl.querySelector('h2');
     new placeholderJS((headline))
@@ -177,25 +192,25 @@ onMounted(() => {
 
     store.setSliderArrowSticky(false);
     const waitForSplide = () => {
-        nextTick(()=>{
-        const instance = splide.value?.splide;
-        if (!instance) {
-            requestAnimationFrame(waitForSplide); // try again next frame
-            return;
-        }
+        nextTick(() => {
+            const instance = splide.value?.splide;
+            if (!instance) {
+                requestAnimationFrame(waitForSplide); // try again next frame
+                return;
+            }
 
-        const allSlides = document.querySelectorAll('.splide__slide video');
-        allSlides.forEach((video, index) => {
-            const player = new videoHandler(video);
-            player.pause();
-        });
+            const allSlides = document.querySelectorAll('.splide__slide video');
+            allSlides.forEach((video, index) => {
+                const player = new videoHandler(video);
+                player.pause();
+            });
 
-        instance.on('moved', (destIndex) => {
-            handleSlideActive(destIndex);
-            //slideAnims()
-        });
-        handleSlideActive(splide.value.index);
-    })
+            instance.on('moved', (destIndex) => {
+                handleSlideActive(destIndex);
+                //slideAnims()
+            });
+            handleSlideActive(splide.value.index);
+        })
     };
 
 
@@ -239,7 +254,7 @@ onMounted(() => {
 
 });
 </script>
-  
+
 <style scoped>
 @keyframes spin-slow {
     0% {
@@ -259,4 +274,3 @@ onMounted(() => {
     border-image: conic-gradient(from 0deg, #00ffd5, #ff00c3, #00ffd5) 1;
 }
 </style>
-  
