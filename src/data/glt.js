@@ -19,7 +19,7 @@ export const sections = [
       ],
       tagIntro: 'Recent work includes:',
       tags: [
-        'Earth Week Salon graphics',
+        '2024-2029 Strategic Plan',
         '10-Year Anniversary badge and visual materials',
         'Support materials for community pledges and donor outreach'
       ]
@@ -27,10 +27,10 @@ export const sections = [
     {
       heading: 'Website Development',
       paragraph:
-        'Designed and built greenleadershiptrust.org to reflect GLT’s evolving mission.',
+        'Designed and built greenleadershiptrust.org to reflect GLT’s evolving mission. When I first started working on the GLT website it was using Elementor with a buggy theme; I ditched elementor for Gutenberg, built GLT a new theme using Twitter Bootstrap with both ACF Blocks and React based Blocks.',
       items: [
         'The site supports storytelling, calls-to-action for sponsorship, and seamless navigation across initiatives like the Vanguard Fellowship, Board Matchmaking, and partner programs.',
-        'Ensured the site is responsive, accessible, and optimized for performance.'
+        'Ensured the site is responsive, accessible, and optimized for performance.', 'Custom Block settings that control spacing, animation, look and feel', 'Theme options that allows GLT to change or add colors without needing to change code'
       ]
     },
     {
@@ -42,7 +42,8 @@ export const sections = [
         'Partner organization relationships',
         'Board matchmaking and placements',
         'Event attendance and outreach',
-        'Integrated forms, automations, and dashboards to minimize manual work and centralize data.'
+        'Integrated forms, automations, and dashboards to minimize manual work and centralize data.',
+        'Developed WordPress Form builder plugin that allows users to build and publish forms based off of Airtable Fields'
       ]
     }
   ]

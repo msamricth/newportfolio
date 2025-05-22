@@ -44,7 +44,7 @@
                     <li v-for="(item, i) in sections[1].items" :key="i" class="text-lg font-medium opacity-0" data-item>
                         {{ item }}</li>
                 </ul>
-                <p class="text-xl my-6 placeholder-line" data-splitting="words">{{ sections[1].tagIntro }}</p>
+                <h5 class="text-xl my-6 placeholder-line" data-splitting="words">{{ sections[1].tagIntro }}</h5>
                 <ul class="flex flex-wrap gap-2">
                     <li v-for="(tag, i) in sections[1].tags" :key="i"
                         class="bg-primary rounded-[6rem] dark:bg-background inverted:bg-background py-2 px-3 inline w-content text-background dark:text-primary inverted:text-primary text-xs tags opacity-0">
