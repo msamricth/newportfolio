@@ -84,10 +84,10 @@
                 </ul>
             </div>
             <div
-                class="order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 lg:top-28">
+                class="order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 lg:min-h-dvh flex flex-col justify-center">
                 <Gist gistId="11de8482695bd4c490300e3e4077edda" repoUrl="https://github.com/msamricth/theme-main"
                     FileName="sidebarBlockSettings.js" Caption="Block settings for GLT's custom WordPress Theme"
-                    class="lg:mr-12 lg:ml-auto" />
+                    class="lg:mx-auto" />
             </div>
         </section>
         <section ref="section4"
@@ -142,14 +142,14 @@
 
 
         <section ref="section5"
-            class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:pb-0">
+            class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:pt-24 lg:pb-0 lg:min-h-dvh">
 
             <div ref="resultImages"
-                class="md:absolute w-full max-w-xl overflow-hidden md:w-1/2 md:h-dvh left-0 tl max-md:flex max-md:flex-col gap-12 order-2 md:order-1">
+                class="md:absolute w-full max-w-xl overflow-hidden md:w-1/2 md:h-dvh left-0 tl flex flex-col gap-12 order-2 md:order-1 lg:justify-center">
                 <img v-for="(img, i) in finalImages" :key="i" :src="img" :class="'results-image-' + i"
                     class="md:absolute top-0 left-0 w-full object-contain md:object-cover opacity-0 blur-xl h-full lg:rounded-r-[3rem] tl" />
             </div>
-            <div class="w-full md:w-1/2 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2">
+            <div class="w-full md:w-1/2 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center">
 
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ results.heading }}
                 </h4>
