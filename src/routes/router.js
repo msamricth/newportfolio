@@ -31,6 +31,7 @@ const routes = [
             metaTags: [
                 { name: 'description', content: "Expore my featured work and learn more about the brands that I have empowered." },
                 { property: 'og:title', content: 'Featured Work | Code Artisan'},
+                { property: 'og:url', content: 'https://codeartisan.dev/work/'},
                 { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png " },
             ]
         }
@@ -44,6 +45,7 @@ const routes = [
             metaTags: [
                 { name: 'description', content: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis." },
                 { property: 'og:title', content: 'Green Leadership Trust - Featured Work | Code Artisan'},
+                { property: 'og:url', content: 'https://codeartisan.dev/work/glt'},
                 { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_990,f_auto/v1746750909/Title_2_jwbc2m.png " },
             ]
         }
@@ -57,6 +59,7 @@ const routes = [
             metaTags: [
                 { name: 'description', content: "Creating powerful digital products for brands that inspire us. " },
                 { property: 'og:title', content: 'About | Code Artisan'},
+                { property: 'og:url', content: 'https://codeartisan.dev/about'},
                 { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png " },
             ]
         }
