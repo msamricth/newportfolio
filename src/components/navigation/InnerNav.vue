@@ -4,19 +4,21 @@
         <InnerSecondaryNav />
     </div>
     <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
-    :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
+        :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
             <div ref="navBrand"
-                class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700 relative max-sm:z-10"
-                :class="isSticky ? 'opacity-75 hover:opacity-100' : 'opacity-0'">
+                class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all relative max-sm:z-10"
+                :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100' : 'opacity-0 duration-0'">
                 <RouterLink aria-label="Return Home" :to="brandURL"
                     class="animate subtle-slide-in font-black pb-10 md:pb-0 max-sm:z-0 text-nowrap"
-                    @mouseenter="onBrandHoverIn">{{brandLabel}}</RouterLink>
+                    @mouseenter="onBrandHoverIn">{{ brandLabel }}</RouterLink>
             </div>
             <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
                 data-splitting="words" ref="heading">
-                <span class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background" data-splitting="words">{{ title }}</span>
+                <span
+                    class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background"
+                    data-splitting="words">{{ title }}</span>
             </h1>
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
@@ -40,7 +42,7 @@
         </div>
     </header>
 </template>
-  
+
 <script setup>
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import gsap from 'gsap'
@@ -62,13 +64,18 @@ const stickyObserver = ref(null)
 const tl = gsap.timeline({ paused: true })
 
 function handleResize() {
+    const headingEl = heading.value
     isDesktop.value = window.innerWidth >= 620
-    console.log('isDesktop.value: ' + isDesktop.value)
-    console.log('window.innerWidth: ' + window.innerWidth)
+   // tl.clear();
     if (isSticky.value) {
         tl.restart();
     } else {
         tl.timeScale(3).reverse()
+    }
+    if (!isDesktop.value) {
+        setTimeout(() => {
+            gsap.set(headingEl, { x: 0 })
+        }, 100)
     }
 }
 
@@ -168,6 +175,7 @@ function updateStickyTimeline() {
     const yCom = computed(() => isDesktop.value ? -28 : 0)
     const xCom = computed(() => isDesktop.value ? 130 : 0)
     const intCom = computed(() => isDesktop.value ? 0.2 : 0)
+    const isReversed = tl.reversed()
 
     if (!nav.value || !heading.value || !navBrand.value) return
     const scaleAmt = scaleAmtCom.value
@@ -185,7 +193,7 @@ function updateStickyTimeline() {
     tl.fromTo(navBrand.value, { alpha: 0, y: 0 }, {
         alpha: 1,
         y: isDesktop.value ? 0 : -10,
-        duration: 0.2,
+        duration: isReversed ? 0 : 0.2,
         onStart: () => {
             const brandTL = effectTimeline(navBrand.value, 0.45)
             brandTL?.play()
@@ -264,8 +272,8 @@ const props = defineProps({
 .nav {
     --theme-main-animation-delay: 0;
 }
+
 header.fixed {
     top: env(safe-area-inset-top, 0px);
 }
 </style>
-  

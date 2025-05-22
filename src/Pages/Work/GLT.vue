@@ -5,9 +5,7 @@
         <Intro />
         <Overview />
         <FullImage />
-        <Section v-for="(item, i) in sections" :key="i" v-bind="item" class="lg:h-[40vh]" :heading="item.heading"
-            :paragraph="item.paragraph" :items="item.items" tagIntro="Recent work includes:" :tags="item.tags" />
-        <Results class="min-h-dvh" :heading="results.heading" :items="results.items" />
+        <Sections />
 
 
         <Contact />
@@ -20,11 +18,10 @@ import InnerNav from '../../components/navigation/InnerNav.vue';
 import Intro from '../../components/case-studies/Intro.vue';
 import Overview from '../../components/case-studies/Overview.vue';
 import FullImage from '../../components/case-studies/FullImage.vue';
-import Section from '../../components/case-studies/Section.vue';
+import Sections from '../../components/case-studies/Sections.vue';
 import Results from '../../components/case-studies/Results.vue';
 import Contact from '../../components/Contact.vue';
 import Footer from '../../components/Footer.vue';
-import { sections } from '../../data/glt';
 const results = {
     heading: 'Results',
     items: [

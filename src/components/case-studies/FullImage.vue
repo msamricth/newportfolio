@@ -1,13 +1,13 @@
 <template>
     <div ref="section"
-        class="overview flex-wrap max-w-full lg:max-w-[1290px] xl:max-w-[1840px] px-8 lg:px-12 mx-auto intro flex md:flex-row relative md:pb-20 justify-center pt-10 relative lg:pb-60 min-h-dvh">
+        class="max-w-full lg:max-w-[1290px] xl:max-w-[1840px] md:px-8 lg:px-12 mx-auto relative md:pb-20 justify-center pt-10 relative pb-10 lg:min-h-dvh">
 
-        <div class="swing-in-left-fwd-slow h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition mb-12 lg:mb-24 xl:mb-32 w-full lg:max-w-[842px] xl:max-w-[1260px] mx-auto lg:px-44"
+        <div class="swing-in-left-fwd-slow h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition mb-12 lg:mb-24 xl:mb-32 mx-8 lg:max-w-[842px] xl:max-w-[1260px] md:mx-auto lg:px-44"
             :class="sectionVis ? 'animate ' : 'opacity-0'" style="--theme-main-animation-delay:0s">
         </div>
         <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/w_100,e_pixelate,f_auto,e_grayscale/v1746750909/Title_2_jwbc2m.png"
-            data-src="https://res.cloudinary.com/dp1qyhhlo/image/upload/w_auto,f_auto/v1746750909/Title_2_jwbc2m.png"
-            alt="A screenshot of the Green leadership Trust Website" class="w-full mx-auto transition-all duration-700" :class="imgLoaded ? 'opacity-100' : 'opacity-20'" />
+            data-src="https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto/v1746750909/Title_2_jwbc2m.png"
+            alt="A screenshot of the Green leadership Trust Website" class="w-full h-auto mx-auto transition-all duration-700 object-cover" :class="imgLoaded ? 'opacity-100' : 'opacity-20'" />
     </div>
 </template>
 <script setup>

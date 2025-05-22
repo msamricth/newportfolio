@@ -12,7 +12,15 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        meta: {
+            title: 'Building digital bridges between ideas & impact',
+            metaTags: [
+                { name: 'description', content: "Code artisan forging WordPress & Vue.js experiences by day, crafting dirt jumps & trails for bikes by night UX zeal meets mud and grit creativity." },
+                { property: 'og:title', content: 'Building digital bridges between ideas & impact'},
+                { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png " },
+            ]
+        }
     },
     {
         path: '/work',
@@ -23,6 +31,7 @@ const routes = [
             metaTags: [
                 { name: 'description', content: "Expore my featured work and learn more about the brands that I have empowered." },
                 { property: 'og:title', content: 'Featured Work | Code Artisan'},
+                { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png " },
             ]
         }
     },
@@ -48,6 +57,7 @@ const routes = [
             metaTags: [
                 { name: 'description', content: "Creating powerful digital products for brands that inspire us. " },
                 { property: 'og:title', content: 'About | Code Artisan'},
+                { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png " },
             ]
         }
     },

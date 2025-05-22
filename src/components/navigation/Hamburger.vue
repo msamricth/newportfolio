@@ -1,6 +1,6 @@
 <template>
 <button v-if="!footer" ref="menuBTN"
-            class="animate group-hover/secondaryNav:opacity-40 text-current/80  cursor-pointer transition group/menu rounded-full subtle-slide-in hamburger hamburger--arrowturn-r flex flex-col justify-center md:hover:**:text-accent duration-700 "
+            class="animate group-hover/secondaryNav:opacity-80 text-current/80  cursor-pointer transition group/menu rounded-full subtle-slide-in hamburger hamburger--arrowturn-r flex flex-col justify-center md:hover:**:text-accent duration-700 "
             aria-label="Go to menu" style="--theme-main-animation-delay:0.7s" @click.prevent="smoothScroll('#main-menu')"
             :class="menuBTNActive ? 'is-active **:text-accent' : ''">
             <div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700">

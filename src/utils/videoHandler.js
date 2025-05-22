@@ -1,29 +1,26 @@
 export default class videoHandler {
-    constructor(video) {
-        this.video = video;
-        this.video.muted = true;
-        this.video.playsInline = true;
-        this.video.loop = true;
-
-        if (Hls.isSupported()) {
-            this.hls = new Hls();
-            this.hls.loadSource(video.dataset.src);
-            this.hls.attachMedia(video);
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = video.dataset.src;
-        }
+  constructor(video) {
+    this.video = video;
+    this.video.muted = true;
+    this.video.playsInline = true;
+    this.video.loop = true;
+    this.loaded = false;
+    if (typeof Hls === 'undefined') {
+      setTimeout(() => this.load(), 100);
+      return;
     }
+    this.load(); 
+  }
 
   load() {
     const src = this.video.dataset.src;
     if (!src || this.video.src) return;
-    this.loaded = true;
 
-    if (Hls.isSupported()) {
+    if (typeof Hls !== 'undefined' && Hls.isSupported()) {
       this.hls = new Hls();
       this.hls.loadSource(src);
       this.hls.attachMedia(this.video);
-    } else {
+    } else if (this.video.canPlayType('application/vnd.apple.mpegurl')) {
       this.video.src = src;
     }
 
@@ -33,33 +30,28 @@ export default class videoHandler {
 
   async play() {
     if (!this.video) return;
+    if (!this.loaded) this.load();
 
-    this.video.muted = true;
     const tryPlay = () => {
-        this.video.play().catch(() => {
-            setTimeout(tryPlay, 100);
-        });
+      this.video.play().catch(() => {
+        setTimeout(tryPlay, 100);
+      });
     };
 
     if (this.video.readyState >= 2) {
-        tryPlay();
+      tryPlay();
     } else {
-        this.video.addEventListener('loadeddata', tryPlay, { once: true });
+      this.video.addEventListener('loadeddata', tryPlay, { once: true });
     }
-}
-
+  }
 
   pause() {
     if (this.video.readyState >= 2) {
       this.video.pause();
     } else {
-      this.video.addEventListener(
-        'loadeddata',
-        () => {
-          this.video.pause();
-        },
-        { once: true }
-      );
+      this.video.addEventListener('loadeddata', () => {
+        this.video.pause();
+      }, { once: true });
     }
   }
 }
