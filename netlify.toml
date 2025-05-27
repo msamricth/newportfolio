@@ -1,11 +1,14 @@
 [build]
   command   = "npm run build"
   publish   = "dist"
-  functions = ".netlify/edge-functions"
+  functions = ".netlify/functions"
 
-[[edge_functions]]
-  function = "server"  
-  path     = "/*"     
-
+# All routes go to your SSR function
+[[redirects]]
+  from     = "/*"
+  to       = "/.netlify/functions/server"
+  status   = 200
+  force    = true
+  
 [functions]
   directory = ".netlify/functions"

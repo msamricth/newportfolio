@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   nitro: {
-    preset: 'netlify-edge',
+    preset: 'netlify',
   },
   compatibilityDate: '2025-05-22',
   devtools: { enabled: true },
