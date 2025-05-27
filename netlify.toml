@@ -4,6 +4,6 @@
   status = 200
 [build]
   command = "npm run build"
-  publish   = ".output/public"
+  publish   = "dist"
 [functions]
   directory = ".netlify/functions"
