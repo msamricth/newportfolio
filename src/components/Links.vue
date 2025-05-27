@@ -12,7 +12,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Splitting from '../utils/splitting.js'
 
-gsap.registerPlugin(ScrollTrigger)
+
 
 const props = defineProps({
   href: { type: String, required: true },

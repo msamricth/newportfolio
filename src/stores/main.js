@@ -6,7 +6,8 @@ export const useMainStore = defineStore('main', {
         sticky: true,
         darkMode: 'dark',
         sliderArrowSticky: false,
-        sliderTimeline: 'before'
+        sliderTimeline: 'before',
+    navOpen: false,
     }),
 
   getters: {
@@ -43,6 +44,8 @@ export const useMainStore = defineStore('main', {
             this.darkMode = value ? 'dark' : 'light';
             localStorage.setItem('theme', this.darkMode);
             document.body.classList.toggle('inverted', value);
-        }
+        },
+        openNav()  { this.navOpen = true },
+        closeNav() { this.navOpen = false },
     },
 });

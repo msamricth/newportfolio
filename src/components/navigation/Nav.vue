@@ -1,6 +1,6 @@
 <template>
     <div ref="sentinal"></div>
-    <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
+    <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu" id="nav"
         :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
@@ -36,12 +36,13 @@
   
 <script setup>
 import { ref, onMounted, onUnmounted, watch, computed, nextTick } from 'vue';
+import { useMainStore } from '../../stores/main.js'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Splitting from '../../utils/splitting.js'
 
 const navBrand = ref(null);
-gsap.registerPlugin(ScrollTrigger);
+const mainStore = useMainStore()
 const navContainer = ref(null);
 const isSticky = ref(false);
 const nav = ref(null)
@@ -49,7 +50,7 @@ const sentinal = ref(null)
 
 const isDesktop = ref(false)
 const stickyObserver = ref(null)
-const tl = gsap.timeline({ paused: true })
+let tl;
 function handleResize() {
     isDesktop.value = window.innerWidth >= 620
     console.log('isDesktop.value: ' + isDesktop.value)
@@ -254,6 +255,7 @@ function setupStickyObserver() {
 }
 onMounted(async() => {
     await nextTick()
+    tl = gsap.timeline({ paused: true });
     isDesktop.value = window.innerWidth >= 620;
     updateStickyTimeline()
     setupStickyObserver()
@@ -275,7 +277,23 @@ watch([isSticky, isDesktop], () => {
         tl.timeScale(3).reverse()
     }
 })
-
+watch(
+  () => mainStore.navOpen,
+  async (open) => {
+    if (open && navContainer.value) {
+      // wait for any open-animation / DOM changes
+      await nextTick()
+      const el = navContainer.value
+      const buffer = 200
+      const startY = window.scrollY
+      const targetY =
+        el.getBoundingClientRect().top + startY + buffer
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
+      // optionally close the flag so it only runs once
+      mainStore.closeNav()
+    }
+  }
+)
 </script>
   
 <style scoped>

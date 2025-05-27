@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Splitting from './splitting.js'
 
 
-gsap.registerPlugin(ScrollTrigger);
+
 
 export default class PlaceholderJS {
     constructor(el, {

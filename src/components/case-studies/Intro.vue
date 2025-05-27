@@ -26,7 +26,7 @@ import PlaceholderJS from './../../utils/placeholder.js'
 import videoHandler from '../../utils/videoHandler.js';
 import GLT from '../icons/GLT.vue'
 
-gsap.registerPlugin(ScrollTrigger)
+
 const intro = ref(null)
 const video = ref(null)
 onMounted(async() => {

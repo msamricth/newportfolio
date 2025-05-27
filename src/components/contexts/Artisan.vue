@@ -25,7 +25,7 @@ const artisan = ref(null)
 
 onMounted(async () => {
     await nextTick()
-    gsap.registerPlugin(ScrollTrigger)
+    
     const artisanEl = artisan.value;
     const artisanElHeadline = artisanEl.querySelector('h3');
     const artisanElHeadlineAnim = new PlaceholderJS(artisanElHeadline, { manual: true });

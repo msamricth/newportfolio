@@ -43,7 +43,7 @@ import { offerings } from '../../data/offerings'
 import PlaceholderJS from './../../utils/placeholder.js';
 
 const heading = ref(null);
-gsap.registerPlugin(ScrollTrigger)
+
 const section = ref(null)
 const offeringRefs = ref([])
 

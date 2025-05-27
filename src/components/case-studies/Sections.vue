@@ -192,7 +192,7 @@ import ActionNetwork from '../icons/ActionNetwork.vue'
 import MainButton from '../buttons/MainButton.vue'
 import { sections } from '../../data/glt'
 import Gist from '../contexts/Gist.vue'
-gsap.registerPlugin(ScrollTrigger)
+
 const mm = gsap.matchMedia()
 
 const container = ref(null)

@@ -3,10 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
+"scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "preview": "nuxt preview"
+    "generate": "npx nuxi generate",
+    "preview": "npx nuxi preview"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.11.0",

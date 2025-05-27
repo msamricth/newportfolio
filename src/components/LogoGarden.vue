@@ -13,7 +13,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ref, onMounted, nextTick } from 'vue'
 import { logos } from '../data/logos.js'
-gsap.registerPlugin(ScrollTrigger)
+
 
 
 const shuffledLogos = ref([])

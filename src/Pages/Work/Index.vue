@@ -25,7 +25,7 @@ const store = useWorkStore();
 
 import gsap from 'gsap';
 
-gsap.registerPlugin(ScrollTrigger);
+
 const workGrid = ref([]);
 const isHovered = ref([false])
 const buttonRefs = ref([])
@@ -233,7 +233,8 @@ function openModal(item) {
     });
 }
 
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     animateSquares();
     watch(() => store.filteredWork, async () => {
         await nextTick();

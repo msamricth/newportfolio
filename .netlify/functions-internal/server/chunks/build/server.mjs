@@ -1,4 +1,4 @@
-import { hasInjectionContext, getCurrentInstance, defineComponent, createElementBlock, shallowRef, provide, cloneVNode, ref, inject, h, Suspense, Fragment, createApp, shallowReactive, toRef, onErrorCaptured, onServerPrefetch, unref, createVNode, resolveDynamicComponent, reactive, effectScope, isReadonly, isRef, isShallow, isReactive, toRaw, defineAsyncComponent, mergeProps, getCurrentScope, useSSRContext } from 'vue';
+import { defineComponent, shallowRef, getCurrentInstance, provide, cloneVNode, createElementBlock, hasInjectionContext, ref, inject, h, Suspense, Fragment, createApp, shallowReactive, toRef, onErrorCaptured, onServerPrefetch, unref, createVNode, resolveDynamicComponent, reactive, effectScope, isReadonly, isRef, isShallow, isReactive, toRaw, defineAsyncComponent, mergeProps, getCurrentScope, useSSRContext } from 'vue';
 import { k as hasProtocol, l as isScriptProtocol, m as joinURL, w as withQuery, s as sanitizeStatusCode, o as getContext, $ as $fetch, p as createHooks, q as executeAsync, h as createError$1, t as toRouteMatcher, r as createRouter$1, v as defu } from '../_/nitro.mjs';
 import { b as baseURL } from '../routes/renderer.mjs';
 import { createPinia, setActivePinia, shouldHydrate } from 'pinia';
@@ -404,22 +404,22 @@ const _routes = [
   {
     name: "about",
     path: "/about",
-    component: () => import('./about-C2XYAM3F.mjs')
+    component: () => import('./about-FrLdssdP.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-i-RVgQsG.mjs')
+    component: () => import('./index-PB1sOdJa.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
-    component: () => import('./glt-2gQ0-8oM.mjs')
+    component: () => import('./glt-DVbrHDOy.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-Cdl3Itu7.mjs')
+    component: () => import('./index-DkDsngKg.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -768,7 +768,7 @@ defineComponent({
   }
 });
 const clientOnlySymbol = Symbol.for("nuxt:client-only");
-defineComponent({
+const __nuxt_component_0$1 = defineComponent({
   name: "ClientOnly",
   inheritAttrs: false,
   props: ["fallback", "placeholder", "placeholderTag", "fallbackTag"],
@@ -948,7 +948,7 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-BVohEbX7.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-Dfw5uC_X.mjs'));
     const _Error = defineAsyncComponent(() => import('./error-500-CVCzAFgW.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
@@ -1031,5 +1031,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { _export_sfc as _, useRouter as a, useRuntimeConfig as b, nuxtLinkDefaults as c, entry$1 as default, navigateTo as n, resolveRouteObject as r, tryUseNuxtApp as t, useNuxtApp as u };
+export { _export_sfc as _, __nuxt_component_0$1 as a, useRouter as b, useRuntimeConfig as c, nuxtLinkDefaults as d, entry$1 as default, navigateTo as n, resolveRouteObject as r, tryUseNuxtApp as t, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

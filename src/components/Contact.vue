@@ -127,7 +127,7 @@ const formHoverIn = () => {
 const formHoverOut = () => {
     formTL?.reverse()
 }
-gsap.registerPlugin(ScrollTrigger);
+
 function expandTextAreaPattern() {
 
     function calcHeight(value) {

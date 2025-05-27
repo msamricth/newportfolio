@@ -9,7 +9,9 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
-  nitro: { preset: 'netlify' },
+  nitro: {
+    preset: 'netlify',
+  },
   compatibilityDate: '2025-05-22',
   devtools: { enabled: true },
   vite: {
@@ -23,7 +25,8 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
-      link: [
+      link: [ 
+        { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
         { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
