@@ -3,7 +3,13 @@
   to = "/index.html"
   status = 200
 [build]
-  command = "npm run build"
+  command   = "npm run build"
   publish   = "dist"
+  functions = ".netlify/edge-functions"
+
+[[edge_functions]]
+  function = "server"  
+  path     = "/*"     
+  
 [functions]
   directory = ".netlify/functions"
