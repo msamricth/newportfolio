@@ -36,13 +36,16 @@
 </template>
 <script setup>
 
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, nextTick } from 'vue';
 import Testimonial from '../../components/contexts/Testimonial.vue';
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import '@splidejs/vue-splide/css'
 import { testimonials } from '../../data/testimonials.js'
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useNuxtApp } from '#app'
+//import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+const { $gsap: gsap } = useNuxtApp()
 import PlaceholderJS from './../../utils/placeholder.js';
 const testimonialSection = ref(null);
 const heading = ref(null);
@@ -73,7 +76,7 @@ function shuffleArray(array) {
     return newArray;
 }
 
-const loop = shuffleArray(testimonials);
+const loop = ref([]);
 const onArrowHoverIn = () => {
     // Prevent stacking if already running
     gsap.killTweensOf(progressOffset);
@@ -158,11 +161,13 @@ const splideOptions = {
     },
 };
 
-onMounted(() => {
+
+onMounted(async () => {
+  await nextTick()
     const testimonialSectionEl = testimonialSection.value;
     const headingEl = heading.value;
     new PlaceholderJS(headingEl, { scrub: true, speed: 2 });
-
+    loop.value = shuffleArray(testimonials)
     const tl = gsap.timeline({ paused: true })
 
     tl.fromTo(sliderArrow.value, {

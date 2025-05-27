@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Splitting from 'splitting';
+import Splitting from './splitting.js'
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,18 +16,19 @@ export default class PlaceholderJS {
         manual = false,
         scrub = false,
         markers = false,
-        triggerTarget = 'self', 
+        triggerTarget = 'self',
         speed = 1
     } = {}) {
         this.el = el;
         this.opts = { start, end, stagger, fadeDur, textDur, manual, scrub, triggerTarget, markers, speed };
         this.phClass = placeholderClass;
         this.timeline = null;
-
         this._split();
         this._injectPlaceholders();
         this._buildTimeline();
+
     }
+
 
     _split() {
         const results = Splitting({ target: this.el, by: 'words' });

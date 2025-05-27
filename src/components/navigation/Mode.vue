@@ -46,11 +46,13 @@
 
 
 <script setup>
-import { useMainStore } from '../../stores/main.js'
-import { onMounted, computed } from 'vue'
+import { useMainStore} from '../../stores/main.js'
+import { onMounted, computed, nextTick  } from 'vue'
 const store = useMainStore()
 
-onMounted(() => {
+
+onMounted(async() => {
+  await nextTick()
     store.setupDarkMode();
 })
 </script>

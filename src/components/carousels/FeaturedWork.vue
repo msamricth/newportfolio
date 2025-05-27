@@ -26,7 +26,7 @@
                                 @mouseover="isHovered = true" @mouseleave="isHovered = false">
                                 <h3 :class="slide.textColor" class="text-2xl font-bold mb-2 subtle-slide-in">{{
                                     slide.title
-                                    }}
+                                }}
                                 </h3>
                                 <div class="flex flex-col gap-6 mb-4">
                                     <div class="flex flex-col justify-between pr-8 lg:pr-18">
@@ -54,7 +54,7 @@
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 6L15 12L9 18" class="stroke-current" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <svg class="absolute inset-0 w-full h-full rounded-[9rem] w-full h-full pointer-events-none opacity-0 group-hover/slider:opacity-100 animate-spin-slow z-0"
+                <svg class="absolute inset-0 rounded-[9rem] w-full h-full pointer-events-none opacity-0 group-hover/slider:opacity-100 animate-spin-slow z-0"
                     :class="activeTextColor" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"
                         :stroke-dasharray="strokeLength" :stroke-dashoffset="progressOffset"
@@ -67,8 +67,8 @@
 </template>
 
 <script setup>
+import { navigateTo } from '#imports'
 import { ref, onMounted, computed, nextTick } from 'vue';
-import router from '../../routes/router.js'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -122,9 +122,15 @@ const onArrowHoverOut = () => {
     });
 };
 const truncateHtmlText = (html, maxChars = 140) => {
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    const text = div.textContent || div.innerText || '';
+    let text
+    if (process.client) {
+        const div = document.createElement('div')
+        div.innerHTML = html
+        text = div.textContent || div.innerText || ''
+    } else {
+        text = html.replace(/<[^>]+>/g, '')
+    }
+
     return text.length > maxChars ? text.slice(0, maxChars) + '…' : text;
 };
 const onArrowClick = () => {
@@ -164,17 +170,28 @@ const goNext = () => {
     }
 };
 const handleSlideActive = (index) => {
-    activeSlideIndex.value = index;
-    const currentSlide = document.querySelector('.is-active.is-visible');
-    const video = currentSlide.querySelector('video');
-    const player = new videoHandler(video);
-    player.play();
+    nextTick(() => {
+        activeSlideIndex.value = index;
+        const currentSlide = document.querySelector('.is-active.is-visible');
+        const video = currentSlide.querySelector('video');
+        if (!video) return;
+        console.log('vide0: ' + video)
+        const player = new videoHandler(video);
+        player.play();
+    })
+
 };
 const openWork = (item) => {
+    if (item.caseStudy) {
+        const slug = '/work/' + item.slug
+        navigateTo(slug)
+        return;
+    }
     modalStore.queueModalBySlug(item)
-    router.push('/work')
+    navigateTo('/work')
 }
-onMounted(() => {
+onMounted(async () => {
+    await nextTick()
     const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
             loaded.value = true;
@@ -207,7 +224,6 @@ onMounted(() => {
 
             instance.on('moved', (destIndex) => {
                 handleSlideActive(destIndex);
-                //slideAnims()
             });
             handleSlideActive(splide.value.index);
         })

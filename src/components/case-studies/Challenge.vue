@@ -52,7 +52,8 @@ const challenges = ref(null)
 const section = ref(null)
 const sectionVis = ref(false)
 
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     const sectionEl = section.value
     const challengesEl = challenges.value
     const heading = sectionEl.querySelector('h4.placeholder-line')

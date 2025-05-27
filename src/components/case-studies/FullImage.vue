@@ -21,7 +21,8 @@ const section = ref(null)
 const sectionVis = ref(false)
 const imgLoaded = ref(false)
 
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     const sectionEl = section.value
     const img = sectionEl.querySelector('img[data-src]')
     const tl = gsap.timeline({ paused: true })

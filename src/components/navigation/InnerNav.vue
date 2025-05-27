@@ -10,9 +10,9 @@
             <div ref="navBrand"
                 class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all relative max-sm:z-10"
                 :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100' : 'opacity-0 duration-0'">
-                <RouterLink aria-label="Return Home" :to="brandURL"
+                <NuxtLink aria-label="Return Home" :to="brandURL"
                     class="animate subtle-slide-in font-black pb-10 md:pb-0 max-sm:z-0 text-nowrap"
-                    @mouseenter="onBrandHoverIn">{{ brandLabel }}</RouterLink>
+                    @mouseenter="onBrandHoverIn">{{ brandLabel }}</NuxtLink>
             </div>
             <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
                 data-splitting="words" ref="heading">
@@ -23,16 +23,16 @@
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
                 :class="isSticky ? [''] : ['opacity-0']">
-                <RouterLink
+                <NuxtLink
                     class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
                     to="/about">
                     <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
-                </RouterLink>
-                <RouterLink
+                </NuxtLink>
+                <NuxtLink
                     class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
                     to="/work">
                     <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
-                </RouterLink>
+                </NuxtLink>
                 <a href="#sayHello"
                     class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
                     @click.prevent="smoothScrollTo('#sayHello')">
@@ -44,10 +44,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Splitting from 'splitting'
+import Splitting from '../../utils/splitting.js'
 import InnerSecondaryNav from './InnerSecondaryNav.vue'
 import placeholderJS from '../../utils/placeholder.js'
 
@@ -59,14 +59,14 @@ const navBrand = ref(null)
 const heading = ref(null)
 const utilityBar = ref(null)
 const isSticky = ref(false)
-const isDesktop = ref(window.innerWidth >= 620)
+const isDesktop = ref(false)
 const stickyObserver = ref(null)
 const tl = gsap.timeline({ paused: true })
 
 function handleResize() {
     const headingEl = heading.value
     isDesktop.value = window.innerWidth >= 620
-   // tl.clear();
+    // tl.clear();
     if (isSticky.value) {
         tl.restart();
     } else {
@@ -235,8 +235,9 @@ function setupStickyObserver() {
 
     stickyObserver.value.observe(utilityBar.value)
 }
-
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
+    isDesktop.value = window.innerWidth >= 620
     const anim = new placeholderJS(heading.value, { manual: true })
     anim.play()
 

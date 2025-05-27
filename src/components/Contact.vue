@@ -81,7 +81,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from "vue";
+import { ref, reactive, computed, onMounted, nextTick } from "vue";
 import { gsap } from "gsap";
 import PlaceholderJS from './../utils/placeholder.js';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -145,7 +145,8 @@ function expandTextAreaPattern() {
         });
     }
 }
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     const formHeaderEle = formHeader.value;
     const headlineAnim = new PlaceholderJS(formHeaderEle, { manual: true });
     ScrollTrigger.create({

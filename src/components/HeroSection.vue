@@ -57,14 +57,16 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import placeholderJS from './../utils/placeholder.js'
 import SecondaryNav from './navigation/SecondaryNav.vue';
 import { shuffleIcons } from '../utils/shuffler.js';
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+import { useNuxtApp } from '#app'
+//import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+const { $gsap: gsap } = useNuxtApp()
 
 const grid = ref(null)
 const container = ref(null)
@@ -76,7 +78,8 @@ const animDelay = computed(() => ({
 }))
 
 let interval
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     const triggerEl = trigger.value
     const gridEl = grid.value
     const headline = gridEl.querySelector('h1.headline')
@@ -125,9 +128,6 @@ onMounted(() => {
             document.body.classList.remove('dark')
             iconFadeTL.reverse()
         }
-    })
-    onUnmounted(() => {
-        clearInterval(interval)
     })
 })
 </script>

@@ -77,7 +77,8 @@ const tech = [
     'ACF', 'Webpack', 'Airtable', 'Cloudinary', 'React', 'Bootstrap', 'GSAP'
 
 ];
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     nextTick(() => {
 
         const overviewEl = overview.value

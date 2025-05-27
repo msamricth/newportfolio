@@ -31,7 +31,7 @@
   </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, nextTick } from 'vue'
   import gsap from 'gsap'
   
   const props = defineProps({
@@ -46,7 +46,8 @@
   
   let tl
   
-  onMounted(() => {
+  onMounted(async() => {
+    await nextTick()
     tl = gsap.timeline({ paused: true })
   
     tl.set(blobEl.value, { opacity: 0, width: 0 })

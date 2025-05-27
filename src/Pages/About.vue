@@ -1,10 +1,34 @@
+<script setup lang="ts">
+useHead({
+  title: 'About',
+  meta: [
+    {
+      name: 'description',
+      content: "Creating powerful digital products for brands that inspire us."
+    },
+    { property: 'og:title',   content: 'About | Code Artisan' },
+    { property: 'og:url',     content: 'https://codeartisan.dev/about' },
+    {
+      property: 'og:image',
+      content:
+        'https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png'
+    }
+  ]
+})
+import InnerNav from '../components/navigation/InnerNav.vue';
+import Contact from '../components/Contact.vue';
+import Footer from '../components/Footer.vue';
+import AboutContent  from '../components/contexts/About.vue';
+import Testimonials from '../components/carousels/Testimonials.vue';
+import Offerings from '../components/contexts/Offerings.vue';
+</script>
 <template>
     <div
         class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative">
 
         <InnerNav title="About" brandLabel="hi, i'm emm." brandURL="/" />
         <div class="flex flex-col gap-6 max-w-full mt-6 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
-            <About />
+            <AboutContent  />
         </div>
         <Testimonials />
         <Offerings />
@@ -13,17 +37,6 @@
     </div>
 </template>
   
-<script setup>
-import { ref, computed } from 'vue';
-import InnerNav from '../components/navigation/InnerNav.vue';
-import Contact from '../components/Contact.vue';
-import Footer from '../components/Footer.vue';
-import About from '../components/contexts/About.vue';
-import Testimonials from '../components/carousels/Testimonials.vue';
-import Offerings from '../components/contexts/Offerings.vue';
-
-
-</script>
   
 <style scoped>
 .sidebar button {
@@ -34,4 +47,3 @@ import Offerings from '../components/contexts/Offerings.vue';
     transform: scale(1.05);
 }
 </style>
-  

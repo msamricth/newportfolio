@@ -25,7 +25,7 @@
 <script setup>
 import Links from '../Links.vue'
 import Github from '../buttons/Github.vue'
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, watch, computed, nextTick } from 'vue'
 const props = defineProps({
     gistId: { type: String, required: true },
     repoUrl: { type: String, default: '' },
@@ -74,8 +74,8 @@ async function fetchGist() {
 
 function linkText() {
     return gistLinkText.value;
-}
-onMounted(() => {
+}onMounted(async() => {
+    await nextTick()
     fetchGist()
 })
 watch(() => [props.gistId, props.file], fetchGist)

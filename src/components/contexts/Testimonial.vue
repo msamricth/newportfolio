@@ -36,7 +36,7 @@
 <script setup>
 import { ref, watch, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
-import Splitting from 'splitting'
+import Splitting from './../../utils/splitting'
 import PlaceholderJS from './../../utils/placeholder.js'
 
 const props = defineProps({

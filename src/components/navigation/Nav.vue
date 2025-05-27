@@ -14,16 +14,16 @@
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
                 :class="isSticky ? [''] : ['opacity-0']">
-                <RouterLink
+                <NuxtLink
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
                     to="/about">
                     <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
-                </RouterLink>
-                <RouterLink
+                </NuxtLink>
+                <NuxtLink
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
                     to="/work">
                     <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
-                </RouterLink>
+                </NuxtLink>
                 <a href="#sayHello"
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
                     @click.prevent="smoothScrollTo('#sayHello')">
@@ -35,11 +35,10 @@
 </template>
   
 <script setup>
-import { ref, onMounted, onUnmounted, watch, computed } from 'vue';
+import { ref, onMounted, onUnmounted, watch, computed, nextTick } from 'vue';
 import gsap from 'gsap';
-import { RouterLink } from 'vue-router'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Splitting from 'splitting';
+import Splitting from '../../utils/splitting.js'
 
 const navBrand = ref(null);
 gsap.registerPlugin(ScrollTrigger);
@@ -48,7 +47,7 @@ const isSticky = ref(false);
 const nav = ref(null)
 const sentinal = ref(null)
 
-const isDesktop = ref(window.innerWidth >= 620)
+const isDesktop = ref(false)
 const stickyObserver = ref(null)
 const tl = gsap.timeline({ paused: true })
 function handleResize() {
@@ -64,7 +63,7 @@ function handleResize() {
 const onBrandHoverIn = (event) => {
     if (!isSticky.value) return;
     const targetEl = event.target;
-    const chars = targetEl.querySelectorAll('.char'); // Correct class from Splitting
+    const chars = targetEl.querySelectorAll('.char'); 
 
     if (!chars.length) return;
 
@@ -94,7 +93,7 @@ const onBrandHoverIn = (event) => {
 };
 const onNavHoverIn = (event) => {
     const targetEl = event.target;
-    const chars = targetEl.querySelectorAll('.char'); // Correct class from Splitting
+    const chars = targetEl.querySelectorAll('.char'); 
 
     if (!chars.length) return;
 
@@ -253,7 +252,9 @@ function setupStickyObserver() {
 
     stickyObserver.value.observe(sentinal.value)
 }
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
+    isDesktop.value = window.innerWidth >= 620;
     updateStickyTimeline()
     setupStickyObserver()
     window.addEventListener('resize', handleResize)

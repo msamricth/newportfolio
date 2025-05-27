@@ -16,15 +16,16 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from '../../utils/placeholder.js';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useNuxtApp } from '#app'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+const { $gsap: gsap } = useNuxtApp()
 const isArtisan = ref(false);
 const artisan = ref(null)
 
-onMounted(() => {
+onMounted(async () => {
+    await nextTick()
+    gsap.registerPlugin(ScrollTrigger)
     const artisanEl = artisan.value;
     const artisanElHeadline = artisanEl.querySelector('h3');
     const artisanElHeadlineAnim = new PlaceholderJS(artisanElHeadline, { manual: true });
