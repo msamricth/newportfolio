@@ -193,7 +193,7 @@ import MainButton from '../buttons/MainButton.vue'
 import { sections } from '../../data/glt'
 import Gist from '../contexts/Gist.vue'
 
-const mm = gsap.matchMedia()
+let mm;
 
 const container = ref(null)
 const section1 = ref(null)
@@ -229,6 +229,7 @@ const finalImages = [
 ]
 onMounted(async() => {
     await nextTick()
+    mm = gsap.matchMedia()
     nextTick(() => {
         const el1 = section1.value
         const el2 = section2.value
