@@ -1,6 +1,9 @@
 <script setup>
 useHead({
   title: 'Home',
+
+  link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+  ],
   meta: [
     { name: 'description', content: "Code artisan forging WordPress & Vue.js experiences by day, crafting dirt jumps & trails for bikes by night UX zeal meets mud and grit creativity." },
     { property: 'og:title', content: 'Building digital bridges between ideas & impact' },
