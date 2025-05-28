@@ -396,6 +396,7 @@ const unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU = /* @__PURE__ */ defin
 function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
+const __nuxt_page_meta = { prerender: true };
 const _routes = [
   {
     name: "About",
@@ -410,7 +411,8 @@ const _routes = [
   {
     name: "work-glt",
     path: "/work/glt",
-    component: () => import('./glt-DTN0oOjX.mjs')
+    meta: __nuxt_page_meta || {},
+    component: () => import('./glt-Bk-LZOhR.mjs')
   },
   {
     name: "work",

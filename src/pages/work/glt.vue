@@ -1,4 +1,5 @@
 <script setup>
+definePageMeta({ prerender: true })
 useHead({
     title: 'Green Leadership Trust | Featured Work',
     meta: [
