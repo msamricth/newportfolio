@@ -40,7 +40,7 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap' },
       ],
       script: [
-        { src: 'https://cdn.jsdelivr.net/npm/hls.js@1', defer: true },
+        { src: 'https://cdn.jsdelivr.net/npm/hls.js@1', defer: true, crossorigin:"anonymous" },
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5', async: true },
         {
           children: `
