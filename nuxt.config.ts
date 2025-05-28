@@ -9,8 +9,14 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
+  routeRules: {
+    '/work/glt':  { prerender: true },
+    '/work/glt/': { prerender: true },
+  },
   nitro: {
-    prerender: { routes: ['/work/glt/'] }
+    prerender: {
+      routes: ['/work/glt/', '/work/glt']
+    }
   },
   generate: {
     fallback: true,
@@ -20,9 +26,6 @@ export default defineNuxtConfig({
       '/work/',
       '/work/glt'
     ]
-  },
-  routeRules: {
-    '/work/glt/': { prerender: true }
   },
   compatibilityDate: '2025-05-22',
   devtools: { enabled: true },
