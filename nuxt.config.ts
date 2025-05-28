@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     preset: 'static',
   },
   generate: {
+    fallback: true,
     routes: [
       '/',
       '/about',
