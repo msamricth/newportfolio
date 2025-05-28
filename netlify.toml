@@ -1,7 +1,11 @@
 [build]
   command   = "npm run build"
   publish   = "dist"
-  functions = ".netlify/functions-internal/server"
+  functions = ".netlify/functions-internal"
+
+[dev]
+  # so `netlify dev` picks up your internal SSR lambda too
+  functions = ".netlify/functions-internal"
 
 [[redirects]]
   from   = "/*"
