@@ -11,6 +11,9 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'static',
+    output: {
+      publicDir: 'dist'
+    }
   },
   generate: {
     fallback: true,
