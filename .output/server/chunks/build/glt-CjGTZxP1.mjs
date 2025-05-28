@@ -1,5 +1,5 @@
-import { mergeProps, ref, unref, computed, onMounted, nextTick, watch, useSSRContext } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
-import { ssrRenderAttrs, ssrRenderComponent, ssrRenderClass, ssrRenderStyle, ssrRenderList, ssrInterpolate, ssrRenderAttr } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
+import { mergeProps, ref, unref, computed, onMounted, nextTick, watch, useSSRContext } from 'vue';
+import { ssrRenderAttrs, ssrRenderComponent, ssrRenderClass, ssrRenderStyle, ssrRenderList, ssrInterpolate, ssrRenderAttr } from 'vue/server-renderer';
 import { I as InnerNav } from './InnerNav-DTyxX4vK.mjs';
 import { _ as _export_sfc } from './server.mjs';
 import { C as Contact, _ as _sfc_main$a, a as _sfc_main$7$1 } from './Footer-CpeEpO-l.mjs';
@@ -7,35 +7,24 @@ import { _ as _sfc_main$b } from './Wordpress-DUY-2jWg.mjs';
 import { M as MainButton } from './MainButton-CMkhavkU.mjs';
 import { u as useHead } from './v3-Cu9oYNPx.mjs';
 import './nuxt-link-KCT0ISDr.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/gsap/dist/gsap.js';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ofetch/dist/node.mjs';
-import '../_/renderer.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
 import '../_/nitro.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/destr/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/hookable/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/node-mock-http/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unstorage/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unstorage/drivers/fs.mjs';
-import 'file:///C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/dist/core/runtime/nitro/utils/cache-driver.js';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unstorage/drivers/fs-lite.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ohash/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/klona/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/defu/dist/defu.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/scule/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/radix3/dist/index.mjs';
+import 'node:http';
+import 'node:https';
+import 'node:events';
+import 'node:buffer';
 import 'node:fs';
+import 'node:path';
+import 'node:crypto';
 import 'node:url';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pathe/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/server.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/devalue/index.js';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/utils.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unctx/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-router/dist/vue-router.node.mjs';
+import 'gsap';
+import '../routes/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import 'unhead/server';
+import 'devalue';
+import 'unhead/utils';
+import 'unhead/plugins';
+import 'pinia';
+import 'vue-router';
 
 const _sfc_main$9 = {};
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs) {
@@ -574,7 +563,8 @@ const _sfc_main = {
         { property: "og:title", content: "Green Leadership Trust \u2013 Featured Work | Code Artisan" },
         { property: "og:description", content: "Designed and developed Green Leadership Trust's website\u2026" },
         { property: "og:url", content: "https://codeartisan.dev/work/glt/" },
-        { name: "image", property: "og:image", content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2" },
+        { name: "image", content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2" },
+        { property: "og:image", content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2" },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "627" },
         { property: "og:image:alt", content: "Screenshot of the GLT project" },
@@ -606,4 +596,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=glt-BuWvUJMi.mjs.map
+//# sourceMappingURL=glt-CjGTZxP1.mjs.map
