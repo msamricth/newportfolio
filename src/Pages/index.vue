@@ -7,7 +7,7 @@ useHead({
   meta: [
     { name: 'description', content: "Code artisan forging WordPress & Vue.js experiences by day, crafting dirt jumps & trails for bikes by night UX zeal meets mud and grit creativity." },
     { property: 'og:title', content: 'Building digital bridges between ideas & impact' },
-    { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png " },
+    { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png" },
   ]
 })
 import Nav from '../components/navigation/Nav.vue';

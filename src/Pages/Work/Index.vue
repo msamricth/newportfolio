@@ -5,7 +5,7 @@ useHead({
         { name: 'description', content: "Expore my featured work and learn more about the brands that I have empowered." },
         { property: 'og:title', content: 'Featured Work | Code Artisan' },
         { property: 'og:url', content: 'https://codeartisan.dev/work/' },
-        { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png " },
+        { name: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png" },
     ]
 })
 import { ref, computed, onMounted, watch, nextTick } from 'vue';
