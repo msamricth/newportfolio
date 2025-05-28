@@ -2,10 +2,19 @@
   command = "npm run generate"
   functions = "netlify/functions"
   publish = ".output/public" 
-
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
 [[redirects]]
   from = "/favicon.svg"
   to   = "/favicon.svg"
+  status = 200
+  force  = true
+
+[[redirects]]
+  from = "/favicon2.svg"
+  to   = "/favicon2.svg"
   status = 200
   force  = true
 
