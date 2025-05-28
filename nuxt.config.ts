@@ -5,7 +5,7 @@ import { resolve } from 'path'
 export default defineNuxtConfig({
   srcDir: './src/',
   css: ['~/style.css'],
-  publicDir: 'public',
+  publicDir: resolve(__dirname, 'public'),
   modules: [
     '@pinia/nuxt',
   ],
@@ -21,6 +21,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-22',
   devtools: { enabled: true },
   vite: {
+    publicDir: resolve(__dirname, 'public'),
     plugins: [
       tailwindcss(),
     ],
