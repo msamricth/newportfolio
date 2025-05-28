@@ -86,6 +86,9 @@
       "public": [
         "../src/public"
       ],
+      "public/*": [
+        "../src/public/*"
+      ],
       "#app": [
         "../node_modules/nuxt/dist/app"
       ],
@@ -105,7 +108,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/4fc9efb1-f6c4-4288-ae49-3705322a88a8.json"
+        "./manifest/meta/b551c9cf-61b6-4e8c-874a-2e83e16663b3.json"
       ],
       "#components": [
         "./components"
