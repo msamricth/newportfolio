@@ -3,18 +3,11 @@ import { defineNuxtConfig } from 'nuxt/config'
 import { resolve } from 'path'
 
 export default defineNuxtConfig({
-  ssr: true,
   srcDir: './src/',
   css: ['~/style.css'],
   modules: [
     '@pinia/nuxt',
   ],
-  nitro: {
-    preset: 'static',
-    output: {
-      publicDir: 'dist'
-    }
-  },
   generate: {
     fallback: true,
     routes: [
