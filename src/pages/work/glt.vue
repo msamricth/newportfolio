@@ -2,10 +2,10 @@
 useHead({
     title: 'Green Leadership Trust | Featured Work',
     meta: [
+    { property: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_940,f_auto/v1746750909/Title_2_jwbc2m.png?v2" },
         { name: 'description', content: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis." },
         { property: 'og:title', content: 'Green Leadership Trust - Featured Work | Code Artisan' },
         { property: 'og:url', content: 'https://codeartisan.dev/work/glt' },
-        { property: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_990,f_auto/v1746750909/Title_2_jwbc2m.png" },
     ]
 })
 import InnerNav from '../../components/navigation/InnerNav.vue';
