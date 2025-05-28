@@ -8,7 +8,9 @@
     "build": "npx nuxi build",
     "generate": "npx nuxi generate",
     "run": "rm -rf .output/public && rm -rf dist && npx nuxi generate && npx nuxi build && netlify deploy",
-    "push": "rm -rf .output/public dist && npx nuxi generate && git add . && git commit -m \"npm run push - New deploy\" || true && git push"
+    "clean": "rm -rf .output/public dist",
+    "gitCommit" :"git add . && git commit -m \"npm run push - New deploy\" || true && git push",
+    "push": "npm run clean && npm run build && npm run gitCommit" 
   },
   "dependencies": {
     "@pinia/nuxt": "^0.11.0",

@@ -3,7 +3,7 @@ import { $fetch } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_mo
 import { b as baseURL } from '../_/renderer.mjs';
 import { createHooks } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/hookable/dist/index.mjs';
 import { getContext, executeAsync } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unctx/dist/index.mjs';
-import { sanitizeStatusCode, createError as createError$1, appendHeader } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
+import { sanitizeStatusCode, createError as createError$1 } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
 import { createPinia, setActivePinia, shouldHydrate } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
 import { defu } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/defu/dist/defu.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-router/dist/vue-router.node.mjs';
@@ -404,7 +404,7 @@ const unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU = /* @__PURE__ */ defin
     nuxtApp.vueApp.use(head);
   }
 });
-function toArray$1(value) {
+function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 const _routes = [
@@ -565,7 +565,7 @@ const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
     let __temp, __restore;
     let routerBase = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL;
     const history = ((_a = routerOptions.history) == null ? void 0 : _a.call(routerOptions, routerBase)) ?? createMemoryHistory(routerBase);
-    const routes2 = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
+    const routes = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
     let startPosition;
     const router = createRouter({
       ...routerOptions,
@@ -586,7 +586,7 @@ const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
         }
       },
       history,
-      routes: routes2
+      routes
     });
     nuxtApp.vueApp.use(router);
     const previousRoute = shallowRef(router.currentRoute.value);
@@ -668,7 +668,7 @@ const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
           if (!componentMiddleware) {
             continue;
           }
-          for (const entry2 of toArray$1(componentMiddleware)) {
+          for (const entry2 of toArray(componentMiddleware)) {
             middlewareEntries.add(entry2);
           }
         }
@@ -773,9 +773,6 @@ const revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms = /* @__
     }
   }
 });
-function toArray(value) {
-  return Array.isArray(value) ? value : [value];
-}
 defineComponent({
   name: "ServerPlaceholder",
   render() {
@@ -813,15 +810,6 @@ defineComponent({
     };
   }
 });
-function useRequestEvent(nuxtApp) {
-  var _a;
-  nuxtApp || (nuxtApp = useNuxtApp());
-  return (_a = nuxtApp.ssrContext) == null ? void 0 : _a.event;
-}
-function prerenderRoutes(path) {
-  const paths = toArray(path);
-  appendHeader(useRequestEvent(), "x-nitro-prerender", paths.map((p) => encodeURIComponent(p)).join(", "));
-}
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "pinia",
   setup(nuxtApp) {
@@ -841,51 +829,13 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
 const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:global-components"
 });
-let routes;
-const prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk = /* @__PURE__ */ defineNuxtPlugin(async () => {
-  let __temp, __restore;
-  if (routes && !routes.length) {
-    return;
-  }
-  (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules;
-  routes || (routes = Array.from(processRoutes(([__temp, __restore] = executeAsync(() => {
-    var _a;
-    return (_a = routerOptions.routes) == null ? void 0 : _a.call(routerOptions, _routes);
-  }), __temp = await __temp, __restore(), __temp) ?? _routes)));
-  const batch = routes.splice(0, 10);
-  prerenderRoutes(batch);
-});
-const OPTIONAL_PARAM_RE = /^\/?:.*(?:\?|\(\.\*\)\*)$/;
-function shouldPrerender(path) {
-  return true;
-}
-function processRoutes(routes2, currentPath = "/", routesToPrerender = /* @__PURE__ */ new Set()) {
-  var _a;
-  for (const route of routes2) {
-    if (OPTIONAL_PARAM_RE.test(route.path) && !((_a = route.children) == null ? void 0 : _a.length) && shouldPrerender()) {
-      routesToPrerender.add(currentPath);
-    }
-    if (route.path.includes(":")) {
-      continue;
-    }
-    const fullPath = joinURL(currentPath, route.path);
-    {
-      routesToPrerender.add(fullPath);
-    }
-    if (route.children) {
-      processRoutes(route.children, fullPath, routesToPrerender);
-    }
-  }
-  return routesToPrerender;
-}
 const plugins = [
   payloadPlugin,
   unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU,
   plugin$1,
   revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms,
   plugin,
-  components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4,
-  prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk
+  components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4
 ];
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,

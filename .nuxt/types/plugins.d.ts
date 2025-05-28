@@ -17,8 +17,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/chunk-reload.client.js")> &
   InjectionType<typeof import("../../node_modules/@pinia/nuxt/dist/runtime/plugin.vue3.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js")> &
-  InjectionType<typeof import("../../src/plugins/scrolltrigger.client")> &
-  InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prerender.server.js")>
+  InjectionType<typeof import("../../src/plugins/scrolltrigger.client")>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
