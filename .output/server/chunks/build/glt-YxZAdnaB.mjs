@@ -556,10 +556,18 @@ const _sfc_main = {
     useHead({
       title: "Green Leadership Trust | Featured Work",
       meta: [
-        { property: "og:image", content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_940,f_auto/v1746750909/Title_2_jwbc2m.png?v2" },
-        { name: "description", content: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis." },
-        { property: "og:title", content: "Green Leadership Trust - Featured Work | Code Artisan" },
-        { property: "og:url", content: "https://codeartisan.dev/work/glt" }
+        { name: "description", content: "Designed and developed Green Leadership Trust's website\u2026" },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "Code Artisan" },
+        { property: "og:locale", content: "en_US" },
+        { property: "og:title", content: "Green Leadership Trust \u2013 Featured Work | Code Artisan" },
+        { property: "og:description", content: "Designed and developed Green Leadership Trust's website\u2026" },
+        { property: "og:url", content: "https://codeartisan.dev/work/glt/" },
+        { property: "og:image", content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "627" },
+        { property: "og:image:alt", content: "Screenshot of the GLT project" },
+        { hid: "canonical", rel: "canonical", href: "https://codeartisan.dev/work/glt/" }
       ]
     });
     return (_ctx, _push, _parent, _attrs) => {
@@ -587,4 +595,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=glt-Bk-LZOhR.mjs.map
+//# sourceMappingURL=glt-YxZAdnaB.mjs.map
