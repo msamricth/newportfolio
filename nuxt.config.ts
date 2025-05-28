@@ -9,7 +9,9 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
   ],
-
+  nitro: {
+    prerender: { routes: ['/work/glt/'] }
+  },
   generate: {
     fallback: true,
     routes: [
