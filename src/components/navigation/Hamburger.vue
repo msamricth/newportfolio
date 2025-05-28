@@ -1,51 +1,33 @@
 <template>
-<button v-if="!footer" ref="menuBTN"
-            class="animate group-hover/secondaryNav:opacity-80 text-current/80  cursor-pointer transition group/menu rounded-full subtle-slide-in hamburger hamburger--arrowturn-r flex flex-col justify-center md:hover:**:text-accent duration-700 "
-            aria-label="Go to menu" style="--theme-main-animation-delay:0.7s" @click.prevent="smoothScroll('#main-menu')"
-            :class="menuBTNActive ? 'is-active **:text-accent' : ''">
-            <div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700">
-                <div class="hamburger-inner text-current **:transition-all **:duration-700"></div>
-            </div>
-        </button>
+    <button v-if="!footer" ref="menuBTN"
+        class="animate group-hover/secondaryNav:opacity-80 text-current/80  cursor-pointer transition group/menu rounded-full subtle-slide-in hamburger hamburger--arrowturn-r flex flex-col justify-center md:hover:**:text-accent duration-700 "
+        aria-label="Go to menu" style="--theme-main-animation-delay:0.7s" @click.prevent="smoothScroll('#main-menu')"
+        :class="menuBTNActive ? 'is-active **:text-accent' : ''">
+        <div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700">
+            <div class="hamburger-inner text-current **:transition-all **:duration-700"></div>
+        </div>
+    </button>
 </template>
 
 
 <script setup>
-import { onMounted, computed, ref } from 'vue'
-import Icons from './Icons.vue'
-import Mode from './Mode.vue'
+import { ref, nextTick } from 'vue'
+import { useMainStore} from '../../stores/main.js'
 
+const store = useMainStore()
 const menuBTN = ref(null)
 const menuBTNActive = ref(false)
+const smoothScroll = (duration = 500) => {
+    nextTick(() => {
+        menuAnim()
+        store.openNav()
+    })
 
-const smoothScroll = (target, buffer = 100, duration = 500) => {
-    menuAnim()
-    const targetPosition = 900;
-    const startPosition = window.scrollY;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const easeInOutCubic = progress < 0.5
-            ? 4 * progress ** 3
-            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-        window.scrollTo(0, startPosition + distance * easeInOutCubic);
-
-        if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-        }
-    }
-
-    requestAnimationFrame(animation);
 }
 
 defineProps({
     footer: { type: Boolean },
-  })
+})
 const menuAnim = () => {
     menuBTNActive.value = true;
     setTimeout(() => {
@@ -156,4 +138,5 @@ const menuAnim = () => {
         transform: translate3d(-8px, 0, 0) rotate(45deg) scale(0.7, 1);
     }
 
-}</style>
+}
+</style>

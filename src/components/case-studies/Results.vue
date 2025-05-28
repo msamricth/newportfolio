@@ -49,7 +49,7 @@ const images = [
     'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818458/3_1_mkdmee.png',
     'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818489/4_1_fz3muz.png',
 ]
-gsap.registerPlugin(ScrollTrigger)
+
 
 const props = defineProps({
     heading: String,

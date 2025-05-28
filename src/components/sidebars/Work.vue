@@ -81,7 +81,8 @@ function shuffleArray(array) {
 
 const techStack = ref([]);
 
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     techStack.value = shuffleArray(store.allTech);
 
 

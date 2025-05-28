@@ -62,7 +62,7 @@ import PlaceholderJS from './../../utils/placeholder.js'
 import videoHandler from '../../utils/videoHandler.js';
 
 import Github from '../buttons/Github.vue';
-gsap.registerPlugin(ScrollTrigger)
+
 
 const git = ref(null)
 const overview = ref(null)
@@ -77,7 +77,8 @@ const tech = [
     'ACF', 'Webpack', 'Airtable', 'Cloudinary', 'React', 'Bootstrap', 'GSAP'
 
 ];
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     nextTick(() => {
 
         const overviewEl = overview.value

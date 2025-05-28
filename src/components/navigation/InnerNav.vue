@@ -3,16 +3,16 @@
         ref="utilityBar">
         <InnerSecondaryNav />
     </div>
-    <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
+    <header id="nav" ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
         :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
             <div ref="navBrand"
                 class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all relative max-sm:z-10"
                 :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100' : 'opacity-0 duration-0'">
-                <RouterLink aria-label="Return Home" :to="brandURL"
+                <NuxtLink aria-label="Return Home" :to="brandURL"
                     class="animate subtle-slide-in font-black pb-10 md:pb-0 max-sm:z-0 text-nowrap"
-                    @mouseenter="onBrandHoverIn">{{ brandLabel }}</RouterLink>
+                    @mouseenter="onBrandHoverIn">{{ brandLabel }}</NuxtLink>
             </div>
             <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
                 data-splitting="words" ref="heading">
@@ -23,16 +23,16 @@
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
                 :class="isSticky ? [''] : ['opacity-0']">
-                <RouterLink
+                <NuxtLink
                     class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
                     to="/about">
                     <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
-                </RouterLink>
-                <RouterLink
+                </NuxtLink>
+                <NuxtLink
                     class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
                     to="/work">
                     <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
-                </RouterLink>
+                </NuxtLink>
                 <a href="#sayHello"
                     class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
                     @click.prevent="smoothScrollTo('#sayHello')">
@@ -44,29 +44,30 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Splitting from 'splitting'
+import Splitting from '../../utils/splitting.js'
 import InnerSecondaryNav from './InnerSecondaryNav.vue'
 import placeholderJS from '../../utils/placeholder.js'
 
-gsap.registerPlugin(ScrollTrigger)
+import { useMainStore } from '../../stores/main.js'
 
+const mainStore = useMainStore()
 const nav = ref(null)
 const navContainer = ref(null)
 const navBrand = ref(null)
 const heading = ref(null)
 const utilityBar = ref(null)
 const isSticky = ref(false)
-const isDesktop = ref(window.innerWidth >= 620)
+const isDesktop = ref(false)
 const stickyObserver = ref(null)
-const tl = gsap.timeline({ paused: true })
+let tl;
 
 function handleResize() {
     const headingEl = heading.value
     isDesktop.value = window.innerWidth >= 620
-   // tl.clear();
+    // tl.clear();
     if (isSticky.value) {
         tl.restart();
     } else {
@@ -235,8 +236,10 @@ function setupStickyObserver() {
 
     stickyObserver.value.observe(utilityBar.value)
 }
-
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
+    tl=gsap.timeline({ paused: true })
+    isDesktop.value = window.innerWidth >= 620
     const anim = new placeholderJS(heading.value, { manual: true })
     anim.play()
 
@@ -266,6 +269,23 @@ const props = defineProps({
     brandLabel: { type: String, default: () => "hi, i'm Emm." },
     brandURL: { type: String, default: () => '/' },
 })
+watch(
+  () => mainStore.navOpen,
+  async (open) => {
+    if (open && navContainer.value) {
+      // wait for any open-animation / DOM changes
+      await nextTick()
+      const el = navContainer.value
+      const buffer = 200
+      const startY = window.scrollY
+      const targetY =
+        el.getBoundingClientRect().top + startY + buffer
+      window.scrollTo({ top: targetY, behavior: 'smooth' })
+      // optionally close the flag so it only runs once
+      mainStore.closeNav()
+    }
+  }
+)
 </script>
 
 <style scoped>

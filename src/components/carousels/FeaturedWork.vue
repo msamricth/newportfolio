@@ -11,12 +11,12 @@
                         :class="slide.textColor">
                         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
                             <div class="flex flex-col md:flex-row justify-center items-start gap-8" v-if="loaded">
-                                <img :src="slide.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_1260')"
+                                <img crossorigin="anonymous" :src="slide.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_1260')"
                                     class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all cursor-pointer duriation-900"
                                     @click.prevent="openWork(slide.slug)" />
                                 <div
                                     class="opacity-0 rounded-xl w-0 group-[.is-active]:opacity-100 group-[.is-active]:w-[20%] transition-all duriation-900 hidden md:block overflow-clip">
-                                    <video class="aspect-mobile"
+                                    <video crossorigin="anonymous" class="aspect-mobile"
                                         :data-src="slide.video.replace('q_auto', 'q_auto,w_480')" playsinline muted=""
                                         loop
                                         :poster="(slide.video.replace('.m3u8', '.webp')).replace('q_auto', 'q_auto,so_0.2')"></video>
@@ -26,7 +26,7 @@
                                 @mouseover="isHovered = true" @mouseleave="isHovered = false">
                                 <h3 :class="slide.textColor" class="text-2xl font-bold mb-2 subtle-slide-in">{{
                                     slide.title
-                                    }}
+                                }}
                                 </h3>
                                 <div class="flex flex-col gap-6 mb-4">
                                     <div class="flex flex-col justify-between pr-8 lg:pr-18">
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col mt-6 md:mt-0">
 
-                                        <MainButton :href="slide.slug" :label="slide.projectTitle"
+                                        <MainButton href="/work" :label="slide.projectTitle"
                                             :onClick="() => openWork(slide.slug)" :delay="'0.7s'" />
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 6L15 12L9 18" class="stroke-current" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <svg class="absolute inset-0 w-full h-full rounded-[9rem] w-full h-full pointer-events-none opacity-0 group-hover/slider:opacity-100 animate-spin-slow z-0"
+                <svg class="absolute inset-0 rounded-[9rem] w-full h-full pointer-events-none opacity-0 group-hover/slider:opacity-100 animate-spin-slow z-0"
                     :class="activeTextColor" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"
                         :stroke-dasharray="strokeLength" :stroke-dashoffset="progressOffset"
@@ -67,8 +67,8 @@
 </template>
 
 <script setup>
+import { navigateTo } from '#imports'
 import { ref, onMounted, computed, nextTick } from 'vue';
-import router from '../../routes/router.js'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -79,7 +79,7 @@ import placeholderJS from '../../utils/placeholder.js'
 import { work as slides } from '../../data/work.js';
 import MainButton from '../buttons/MainButton.vue'
 import videoHandler from '../../utils/videoHandler.js';
-gsap.registerPlugin(ScrollTrigger);
+
 const store = useMainStore()
 const modalStore = useModalStore()
 const splide = ref(null);
@@ -122,9 +122,15 @@ const onArrowHoverOut = () => {
     });
 };
 const truncateHtmlText = (html, maxChars = 140) => {
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    const text = div.textContent || div.innerText || '';
+    let text
+    if (process.client) {
+        const div = document.createElement('div')
+        div.innerHTML = html
+        text = div.textContent || div.innerText || ''
+    } else {
+        text = html.replace(/<[^>]+>/g, '')
+    }
+
     return text.length > maxChars ? text.slice(0, maxChars) + '…' : text;
 };
 const onArrowClick = () => {
@@ -164,17 +170,28 @@ const goNext = () => {
     }
 };
 const handleSlideActive = (index) => {
-    activeSlideIndex.value = index;
-    const currentSlide = document.querySelector('.is-active.is-visible');
-    const video = currentSlide.querySelector('video');
-    const player = new videoHandler(video);
-    player.play();
+    nextTick(() => {
+        activeSlideIndex.value = index;
+        const currentSlide = document.querySelector('.is-active.is-visible');
+        const video = currentSlide.querySelector('video');
+        if (!video) return;
+        console.log('vide0: ' + video)
+        const player = new videoHandler(video);
+        player.play();
+    })
+
 };
 const openWork = (item) => {
+    if (item.caseStudy) {
+        const slug = '/work/' + item.slug
+        navigateTo(slug)
+        return;
+    }
     modalStore.queueModalBySlug(item)
-    router.push('/work')
+    navigateTo('/work')
 }
-onMounted(() => {
+onMounted(async () => {
+    await nextTick()
     const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
             loaded.value = true;
@@ -207,7 +224,6 @@ onMounted(() => {
 
             instance.on('moved', (destIndex) => {
                 handleSlideActive(destIndex);
-                //slideAnims()
             });
             handleSlideActive(splide.value.index);
         })

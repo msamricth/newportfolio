@@ -142,14 +142,14 @@
 
 
         <section ref="section5"
-            class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:pt-24 lg:pb-0 lg:min-h-dvh">
+            class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:pb-0 lg:min-h-dvh w-full relative">
 
             <div ref="resultImages"
-                class="md:absolute w-full max-w-xl overflow-hidden md:w-1/2 md:h-dvh left-0 tl flex flex-col gap-12 order-2 md:order-1 lg:justify-center">
+                class="md:absolute w-full max-w-xl overflow-hidden md:w-1/2 md:h-dvh left-0 tl flex flex-col gap-12 order-2 md:order-1 lg:justify-center lg:max-w-1/2 lg:h-screen">
                 <img v-for="(img, i) in finalImages" :key="i" :src="img" :class="'results-image-' + i"
-                    class="md:absolute top-0 left-0 w-full object-contain md:object-cover opacity-0 blur-xl h-full lg:rounded-r-[3rem] tl" />
+                    class="md:absolute top-0 left-0 w-full object-contain md:object-cover opacity-0 blur-xl h-full md:rounded-r-[3rem] tl lg:rounded-none" />
             </div>
-            <div class="w-full md:w-1/2 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center">
+            <div class="w-full md:w-1/2 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:mx-auto">
 
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ results.heading }}
                 </h4>
@@ -192,8 +192,8 @@ import ActionNetwork from '../icons/ActionNetwork.vue'
 import MainButton from '../buttons/MainButton.vue'
 import { sections } from '../../data/glt'
 import Gist from '../contexts/Gist.vue'
-gsap.registerPlugin(ScrollTrigger)
-const mm = gsap.matchMedia()
+
+let mm;
 
 const container = ref(null)
 const section1 = ref(null)
@@ -227,8 +227,9 @@ const finalImages = [
     'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818458/3_1_mkdmee.png',
     'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818489/4_1_fz3muz.png',
 ]
-onMounted(() => {
-
+onMounted(async() => {
+    await nextTick()
+    mm = gsap.matchMedia()
     nextTick(() => {
         const el1 = section1.value
         const el2 = section2.value
@@ -262,12 +263,12 @@ onMounted(() => {
                     setupSection2()
                     setupSection3()
                     setupSection4('top 15%')
-                    setupSection5()
+                    setupSection5('70%')
                 }
                 if (isTablet) {
                     setupSection3()
                     setupSection4()
-                    setupSection5()
+                    setupSection5('50%')
                     els = [el1, el2]
                     els.forEach((el) => {
                         textAnim(el, false, 'play none none reverse');
@@ -780,8 +781,8 @@ function setupSection4(start = 'top 15%') {
     })
 }
 
-function setupSection5() {
-
+function setupSection5(left) {
+if(!left) return;
     nextTick(() => {
         const el = section5.value
         const text = el.querySelector('.text-container')
@@ -801,20 +802,20 @@ function setupSection5() {
             }
         })
         tl.to(text, {
-            x: '50%',
+            x: left,
             ease: 'power2.inOut',
             duration: 1,
         })
 
-        tl.fromTo(img1, { y: 1000, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3 }, 0.5)
+        tl.fromTo(img1, { y: 1000, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3 }, '=+0.9')
         tl.fromTo(img1, { filter: 'blur(20px)' }, { filter: 'blur(0px)', duration: 0.2 }, 0.6)
         tl.to(img1, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.2 }, 1.4)
 
 
         tl.fromTo(img2, { y: 1000, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3 }, 1.35)
         tl.fromTo(img2, { filter: 'blur(20px)' }, { filter: 'blur(0px)', duration: 0.2 }, 1.5)
-        tl.to(img2, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.2 }, 2)
-        tl.to(el, { y: -200, autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 2)
+        tl.to(img2, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.2 }, 2.6)
+        tl.to(el, { y: -200, autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 2.8)
     })
 }
 </script>

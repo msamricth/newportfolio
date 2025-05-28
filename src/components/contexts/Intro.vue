@@ -35,20 +35,25 @@
 </template>
   
 <script setup>
-import { ref, onMounted } from 'vue';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { ref, onMounted, nextTick } from 'vue';
+import { useNuxtApp } from '#app'
+//import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+const { $gsap: gsap } = useNuxtApp()
+
 import PlaceholderJS from './../../utils/placeholder.js';
 import MainButton from './../buttons/MainButton.vue'
-import router from '../../routes/router';
+import { navigateTo } from '#imports';
 import Artisan from './Artisan.vue';
-gsap.registerPlugin(ScrollTrigger);
 const isBQ = ref(false);
 const section = ref(null)
 const openAbout = () => {
-    router.push('/about')
+    navigateTo('/about')
 }
-onMounted(() => {
+onMounted(async() => {
+    await nextTick();
     const sectionEl = section.value;
     const introduction = sectionEl.querySelector('.introduction');
     const btn = sectionEl.querySelector('.btn');

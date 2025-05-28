@@ -56,18 +56,21 @@
 </template>
   
 <script setup>
-import { ref, onMounted } from 'vue';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ref, onMounted, nextTick } from 'vue';
+import { useNuxtApp } from '#app'
+//import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+const { $gsap: gsap } = useNuxtApp()
 import PlaceholderJS from './../../utils/placeholder.js';
 import { useMainStore } from '../../stores/main.js'
 const store = useMainStore()
-gsap.registerPlugin(ScrollTrigger);
 const isArtisan = ref(false);
 const isBQ = ref(false);
 const artisan = ref(null)
 const section = ref(null)
-onMounted(() => {
+onMounted(async() => {
+  await nextTick();
   const sectionEl = section.value;
   const artisanEl = artisan.value;
   const introEl = sectionEl.querySelector('.introduction');
@@ -158,6 +161,8 @@ onMounted(() => {
     onEnterBack: () => document.body.classList.add('dark'),
     onLeaveBack: () => document.body.classList.remove('dark'),
   });
+
+  ScrollTrigger.refresh()
 });
 
 

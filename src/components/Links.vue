@@ -7,12 +7,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Splitting from 'splitting'
+import Splitting from '../utils/splitting.js'
 
-gsap.registerPlugin(ScrollTrigger)
+
 
 const props = defineProps({
   href: { type: String, required: true },
@@ -54,7 +54,8 @@ const effectTimeline = (targetEl) => {
   return tl
 }
 
-onMounted(() => {
+onMounted(async() => {
+  await nextTick()
   timeline = effectTimeline(linkEl.value)
   if (!timeline) return
   if(props.NoEntry) return

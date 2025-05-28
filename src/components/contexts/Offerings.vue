@@ -36,7 +36,7 @@
 </template>
   
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { offerings } from '../../data/offerings'
@@ -44,15 +44,11 @@ import PlaceholderJS from './../../utils/placeholder.js';
 
 const heading = ref(null);
 
-
-gsap.registerPlugin(ScrollTrigger)
-
 const section = ref(null)
 const offeringRefs = ref([])
 
-
-
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     const offeringsEl = section.value;
     const headingEl = heading.value;
     const headingAnim = new PlaceholderJS(headingEl, { manual: true, speed: 2 });
@@ -74,8 +70,9 @@ onMounted(() => {
                // headingAnim.getTimeline()?.progress(1).reverse()
             },
         });
-    offeringRefs.value.forEach((card, index) => {
+    offeringRefs.value.forEach(async(card, index) => {
 
+        await nextTick()
         const { textColor } = offerings[index];
         const baseIcon = card.querySelector('.text-current');
         const cardBorder = card.querySelector('.card-border');
@@ -96,7 +93,7 @@ onMounted(() => {
             scrollTrigger: {
                 trigger: card,
                 start: 'top 90%',
-                toggleActions: 'play none none reverse',
+                toggleActions: 'play none none none',
             }
         });
 
@@ -150,6 +147,8 @@ onMounted(() => {
                 card.classList.remove(textColor);
             },
         });
+        
+    ScrollTrigger.refresh()
     });
 });
 

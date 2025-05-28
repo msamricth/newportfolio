@@ -31,7 +31,6 @@ export const work = [
         title: "dat.com & DAT's Product Finder",
         text: "This project was a overhaul of DAT's website, which is built on wordpress; with elementor page builder. The theme is a child theme of hello elementor and features several heavy customized components built to work in elementor and utilizes ACF.",
         textColor: 'text-lime-glow',
-        video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745546408/DAT_1_nu49mn.m3u8',
         specialties: [
             'Custom Gutenberg Blocks', 'Custom Theme Functions', 'Plugin and Theme Development', 'Components built using ACF fields', 'Elementor Components + Extensions',
         ],

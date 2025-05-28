@@ -14,39 +14,39 @@
 
                 <!-- your 7 svgs -->
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346874/mixer_ha98hb.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346874/mixer_ha98hb.svg"
                         class="decor jello-horizontal h-auto" width="180" height="180" alt="Illustration of a mixer"
                         :style="animDelay" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-4_hnflq8.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-4_hnflq8.svg"
                         class="decor heartbeat h-auto" width="180" height="180" alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/headphones_asqozg.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/headphones_asqozg.svg"
                         class="decor shake-top h-auto" width="180" height="180" alt="Illustration of headphones" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/flower-5_xaniod.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/flower-5_xaniod.svg"
                         class="decor rotate-ccw90-forever h-auto" width="180" height="180"
                         alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390483/bmx_hzx4dd.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390483/bmx_hzx4dd.svg"
                         class="decor rotate-forever  h-auto" width="180" height="180"
                         alt="Illustration of a bmx bike" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg"
                         width="180" height="180" class="decor rotate-ccw90-forever h-auto" :style="animDelay"
                         alt="Illustration of a flower" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg"
                         class="decor jello-horizontal h-auto" width="180" height="180" alt="Illustration of a heart" />
                 </div>
                 <div class="decor-wrap">
-                    <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390928/code_tigrlv.svg"
+                    <img crossorigin="anonymous" src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390928/code_tigrlv.svg"
                         class="decor vibrate h-auto" width="180" height="180" alt="Illustration of code syntex" />
                 </div>
             </div>
@@ -57,14 +57,16 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import placeholderJS from './../utils/placeholder.js'
 import SecondaryNav from './navigation/SecondaryNav.vue';
 import { shuffleIcons } from '../utils/shuffler.js';
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+import { useNuxtApp } from '#app'
+//import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+const { $gsap: gsap } = useNuxtApp()
 
 const grid = ref(null)
 const container = ref(null)
@@ -76,7 +78,8 @@ const animDelay = computed(() => ({
 }))
 
 let interval
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     const triggerEl = trigger.value
     const gridEl = grid.value
     const headline = gridEl.querySelector('h1.headline')
@@ -125,9 +128,6 @@ onMounted(() => {
             document.body.classList.remove('dark')
             iconFadeTL.reverse()
         }
-    })
-    onUnmounted(() => {
-        clearInterval(interval)
     })
 })
 </script>

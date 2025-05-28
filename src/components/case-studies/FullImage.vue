@@ -15,13 +15,14 @@ import { ref, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger)
+
 
 const section = ref(null)
 const sectionVis = ref(false)
 const imgLoaded = ref(false)
 
-onMounted(() => {
+onMounted(async() => {
+    await nextTick()
     const sectionEl = section.value
     const img = sectionEl.querySelector('img[data-src]')
     const tl = gsap.timeline({ paused: true })
