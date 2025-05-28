@@ -3,6 +3,11 @@
   functions = "netlify/functions"
   publish = ".output/public" 
 
+[[redirects]]
+  from = "/favicon.svg"
+  to   = "/favicon.svg"
+  status = 200
+  force  = true
 
   [[redirects]]
   from = "/*"
