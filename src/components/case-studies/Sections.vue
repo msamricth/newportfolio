@@ -814,8 +814,8 @@ if(!left) return;
 
         tl.fromTo(img2, { y: 1000, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3 }, 1.35)
         tl.fromTo(img2, { filter: 'blur(20px)' }, { filter: 'blur(0px)', duration: 0.2 }, 1.5)
-        tl.to(img2, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.2 }, 2)
-        tl.to(el, { y: -200, autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 2)
+        tl.to(img2, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.2 }, 2.6)
+        tl.to(el, { y: -200, autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 2.8)
     })
 }
 </script>
