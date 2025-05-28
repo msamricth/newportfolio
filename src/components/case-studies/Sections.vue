@@ -5,7 +5,7 @@
         <section ref="section1" class="px-8 max-w-full min-h-[150dvh] flex flex-col pt-24 tl">
             <div class="w-full max-w-2xl text-container mx-auto sticky top-45 md:top-25 lg:top-45 xl:top-38">
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ sections[0].heading
-                    }}
+                }}
                 </h4>
                 <p class="text-xl mb-6 placeholder-line" data-splitting="words" v-if="sections[0].paragraph">{{
                     sections[0].paragraph }}</p>
@@ -142,14 +142,15 @@
 
 
         <section ref="section5"
-            class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:pb-0 lg:min-h-dvh w-full relative">
+            class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:my-40 lg:min-h-[350vh] lg:items-start w-full relative">
 
             <div ref="resultImages"
                 class="md:absolute w-full max-w-xl overflow-hidden md:w-1/2 md:h-dvh left-0 tl flex flex-col gap-12 order-2 md:order-1 lg:justify-center lg:max-w-1/2 lg:h-screen">
                 <img v-for="(img, i) in finalImages" :key="i" :src="img" :class="'results-image-' + i"
-                    class="md:absolute top-0 left-0 w-full object-contain md:object-cover opacity-0 blur-xl h-full md:rounded-r-[3rem] tl lg:rounded-none" />
+                    class="md:absolute top-0 left-0 w-full object-contain md:object-cover opacity-0 blur-xl h-full md:rounded-r-[3rem] tl md:h-[120vh]" />
             </div>
-            <div class="w-full md:w-1/2 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:mx-auto">
+            <div
+                class="w-full md:w-1/2 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:mx-auto">
 
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ results.heading }}
                 </h4>
@@ -227,7 +228,7 @@ const finalImages = [
     'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818458/3_1_mkdmee.png',
     'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818489/4_1_fz3muz.png',
 ]
-onMounted(async() => {
+onMounted(async () => {
     await nextTick()
     mm = gsap.matchMedia()
     nextTick(() => {
@@ -782,7 +783,7 @@ function setupSection4(start = 'top 15%') {
 }
 
 function setupSection5(left) {
-if(!left) return;
+    if (!left) return;
     nextTick(() => {
         const el = section5.value
         const text = el.querySelector('.text-container')
@@ -797,6 +798,7 @@ if(!left) return;
                 start: 'top top',
                 end: '+=300%',
                 id: 'sectionST',
+                pinSpacing: false,
                 scrub: true,
                 pin: true,
             }
@@ -807,15 +809,31 @@ if(!left) return;
             duration: 1,
         })
 
-        tl.fromTo(img1, { y: 1000, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3 }, '=+0.9')
-        tl.fromTo(img1, { filter: 'blur(20px)' }, { filter: 'blur(0px)', duration: 0.2 }, 0.6)
-        tl.to(img1, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.2 }, 1.4)
+        tl.fromTo(img1, { y: 1000, autoAlpha: 0 }, { y: -50, autoAlpha: 1, duration: 0.6 }, '=+0.9')
+        tl.fromTo(img1, { filter: 'blur(20px)' }, { filter: 'blur(0px)', duration: 0.3 }, '=+0.2')
+        tl.to(img1, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 1 }, '=+2')
+
+        tl.addLabel('img2Enter', '+=0')
 
 
-        tl.fromTo(img2, { y: 1000, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.3 }, 1.35)
-        tl.fromTo(img2, { filter: 'blur(20px)' }, { filter: 'blur(0px)', duration: 0.2 }, 1.5)
-        tl.to(img2, { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.2 }, 2.6)
-        tl.to(el, { y: -200, autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 2.8)
+        tl.fromTo(img2,
+            { y: 1000, autoAlpha: 0, filter: 'blur(20px)' },
+            { y: -50, autoAlpha: 1, duration: 0.3, ease: 'power1.out' },
+            'img2Enter'
+        )
+        tl.to(img2,
+            { filter: 'blur(0px)', duration: 0.3, ease: 'none' },
+            'img2Enter+=0.3'
+        )
+        tl.to(img2,
+            { y: -1000, autoAlpha: 0, filter: 'blur(20px)', duration: 0.7 },
+            'img2Enter+=2.3'
+        )
+
+        tl.to(el,
+            { y: -200, autoAlpha: 0, filter: 'blur(40px)', duration: 1 },
+            'img2Enter+=2.5'
+        )
     })
 }
 </script>

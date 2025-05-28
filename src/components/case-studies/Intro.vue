@@ -66,6 +66,7 @@ onMounted(async() => {
             end: 'bottom top',
             onEnter: () => {
                 tl.play()
+                if(document.body.classList.contains('dark')) document.body.classList.remove('dark')
             },
             onEnterBack: () => {
                 tl.play()

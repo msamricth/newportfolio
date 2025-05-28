@@ -426,7 +426,7 @@ const _routes = [
   {
     name: "work-glt",
     path: "/work/glt",
-    component: () => import('./glt-C59Wh0Hu.mjs')
+    component: () => import('./glt-CGcuuK9C.mjs')
   },
   {
     name: "work",
