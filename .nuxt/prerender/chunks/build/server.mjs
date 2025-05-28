@@ -421,12 +421,12 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DpidrjY3.mjs')
+    component: () => import('./index-MBtytJM1.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
-    component: () => import('./glt-DU7MGD8A.mjs')
+    component: () => import('./glt-B13jvxO5.mjs')
   },
   {
     name: "work",
