@@ -1,11 +1,11 @@
 <template>
-    <div ref="container" class="overflow-x-clip">
+    <div ref="container" class="overflow-clip">
         <!-- Section 1 -->
 
         <section ref="section1" class="px-8 max-w-full min-h-[150dvh] flex flex-col pt-24 tl">
             <div class="w-full max-w-2xl text-container mx-auto sticky top-45 md:top-25 lg:top-45 xl:top-38">
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ sections[0].heading
-                }}
+                    }}
                 </h4>
                 <p class="text-xl mb-6 placeholder-line" data-splitting="words" v-if="sections[0].paragraph">{{
                     sections[0].paragraph }}</p>
@@ -58,7 +58,7 @@
         <section ref="section3"
             class="min-h-dvh flex flex-col md:flex-row items-center justify-between py-14 gap-12 relative tl">
             <div ref="section3Image"
-                class="w-full order-3 md:order-1 md:w-1/3 h-[80vh] bg-cover bg-center md:opacity-0 md:rounded-r-[3rem] image tl md:px-8 lg:px-12 lg:mt-12"
+                class="w-full order-3 md:order-1 md:w-1/3 h-[80vh] bg-cover bg-center md:opacity-0 md:rounded-r-[3rem] image tl md:px-8 lg:px-12 lg:mt-12 xl:w-1/2"
                 :style="`background-image: url(${images[2]})`"></div>
             <div class="w-full order-1 md:order-2 lg:max-w-2xl md:mr-auto text-container px-8 lg:px-12 tl">
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ sections[2].heading }}
@@ -84,16 +84,16 @@
                 </ul>
             </div>
             <div
-                class="order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 lg:min-h-dvh flex flex-col justify-center">
+                class="order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 flex flex-col justify-center xl:max-w-xl">
                 <Gist gistId="11de8482695bd4c490300e3e4077edda" repoUrl="https://github.com/msamricth/theme-main"
                     FileName="sidebarBlockSettings.js" Caption="Block settings for GLT's custom WordPress Theme"
-                    class="lg:mx-auto" />
+                    class="lg:mx-auto w-full" />
             </div>
         </section>
         <section ref="section4"
-            class="relative flex flex-col md:flex-row justify-between py-14 md:py-0 gap-12 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto overflow-clip md:min-h-[480dvh] lg:min-h-[430dvh]">
+            class="relative flex flex-col md:flex-row justify-between py-14 md:py-0 gap-12 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto overflow-clip md:min-h-[480dvh] lg:min-h-[430dvh] lg:justify-center lg:items-start">
             <div ref="section4Content"
-                class="order-2 md:order-1 w-full md:max-w-4xl lg:max-w-2xl md:ml-auto text-container pt-6 md:pt-0 lg:pt-6 px-8 lg:px-12 tl">
+                class="order-2 md:order-1 w-full md:max-w-4xl lg:max-w-2xl xl:max-w-xl md:ml-auto text-container pt-6 md:pt-0 lg:pt-6 px-8 lg:pl-12 lg:pr-0 tl lg:min-h-[70vh] lg:flex lg:flex-col lg:justify-center">
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ sections[3].heading }}
                 </h4>
                 <p class="text-xl mb-6 placeholder-line" data-splitting="words" v-if="sections[3].paragraph">{{
@@ -119,8 +119,8 @@
             <Gist ref="gistContainer" gistId="2e77a8ac064d7665b942021b08e9aa85"
                 repoUrl="https://github.com/msamricth/airtable-WP" FileName="class-airtable-service.php"
                 Caption="WordPress form builder plugin that connects and syncs with Airtable"
-                class="order-3 md:order-2 md:absolute md:max-w-xl lg:max-w-2xl md:opacity-0 gist mx-2 md:mx-6 md:mt-6 lg:mt-0 tl" />
-            <div class="order-2 md:order-3 items-center relative space-y-12 md:w-2/5 lg:w-1/2 px-8 lg:px-12 tl">
+                class="order-3 md:order-2 md:absolute md:max-w-xl lg:max-w-2xl md:opacity-0 gist mx-2 md:mx-6 md:mt-6 lg:mt-0 tl left-0" />
+            <div class="order-2 md:order-3 items-center relative space-y-12 md:w-2/5 lg:w-lg px-8 lg:pr-12 lg:pl-0 tl  lg:h-[70vh]  lg:flex lg:flex-col lg:justify-center">
                 <div ref="iconTrack"
                     class="relative space-y-12 md:size-90 lg:size-95 origin-center max-md:flex justify-between gap-3 tl">
                     <div class="icon-btn md:absolute w-24 h-24 group md:min-w-[120px] top-0 left-30 tl">
@@ -264,7 +264,7 @@ onMounted(async () => {
                     setupSection2()
                     setupSection3()
                     setupSection4('top 15%')
-                    setupSection5('70%')
+                    setupSection5('58%')
                 }
                 if (isTablet) {
                     setupSection3()
