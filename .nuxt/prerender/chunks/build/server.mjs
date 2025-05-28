@@ -414,24 +414,24 @@ const _routes = [
     component: () => import('./test-BwEDgSdK.mjs')
   },
   {
-    name: "about",
-    path: "/about",
-    component: () => import('./about-Bn-DFpSl.mjs')
+    name: "About",
+    path: "/About",
+    component: () => import('./About-CcZg9f3D.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-MBtytJM1.mjs')
+    component: () => import('./index-CqJeh6a1.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
-    component: () => import('./glt-B13jvxO5.mjs')
+    component: () => import('./glt-C59Wh0Hu.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-D655k40s.mjs')
+    component: () => import('./index-D389Bwdu.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

@@ -6,7 +6,7 @@
 "scripts": {
     "dev": "nuxt dev",
     "build": "nuxi generate",
-    "generate": "npx nuxi generate",
+    "generate": "rm -rf .output/public && npx nuxi generate",
     "preview": "npx nuxi preview"
   },
   "dependencies": {

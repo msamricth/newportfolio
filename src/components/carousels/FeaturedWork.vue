@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col mt-6 md:mt-0">
 
-                                        <MainButton href="/work" :label="slide.projectTitle"
+                                        <MainButton href="/work/" :label="slide.projectTitle"
                                             :onClick="() => openWork(slide.slug)" :delay="'0.7s'" />
                                     </div>
                                 </div>

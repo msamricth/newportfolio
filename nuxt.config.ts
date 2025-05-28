@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     routes: [
       '/',
       '/about',
-      '/work',
+      '/work/',
       '/work/glt'
     ]
   },

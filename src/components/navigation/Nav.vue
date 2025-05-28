@@ -21,7 +21,7 @@
                 </NuxtLink>
                 <NuxtLink
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/work">
+                    to="/work/">
                     <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
                 </NuxtLink>
                 <a href="#sayHello"
