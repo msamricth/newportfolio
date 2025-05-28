@@ -10,12 +10,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   routeRules: {
-    '/work/glt':  { prerender: true },
     '/work/glt/': { prerender: true },
   },
   nitro: {
     prerender: {
-      routes: ['/work/glt/', '/work/glt']
+      routes: ['/work/glt/'],
     }
   },
   generate: {

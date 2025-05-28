@@ -407,7 +407,39 @@ const unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU = /* @__PURE__ */ defin
 function toArray$1(value) {
   return Array.isArray(value) ? value : [value];
 }
-const __nuxt_page_meta = { prerender: true };
+const __nuxt_page_meta = {
+  prerender: true,
+  head: {
+    title: "Green Leadership Trust | Featured Work",
+    link: [
+      { rel: "canonical", href: "https://codeartisan.dev/work/glt/" }
+    ],
+    meta: [
+      { hid: "desc", name: "description", content: "Designed and developed Green Leadership Trust's website…" },
+      { hid: "og:type", property: "og:type", content: "website" },
+      { hid: "og:site", property: "og:site_name", content: "Code Artisan" },
+      { hid: "og:locale", property: "og:locale", content: "en_US" },
+      { hid: "og:title", property: "og:title", content: "Green Leadership Trust – Featured Work | Code Artisan" },
+      { hid: "og:desc", property: "og:description", content: "Designed and developed Green Leadership Trust's website…" },
+      { hid: "og:url", property: "og:url", content: "https://codeartisan.dev/work/glt/" },
+      // legacy LinkedIn “image” tag
+      {
+        hid: "meta:image",
+        name: "image",
+        content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2"
+      },
+      // the real OG image tag
+      {
+        hid: "og:image",
+        property: "og:image",
+        content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2"
+      },
+      { hid: "og:image:width", property: "og:image:width", content: "1200" },
+      { hid: "og:image:height", property: "og:image:height", content: "627" },
+      { hid: "og:image:alt", property: "og:image:alt", content: "Screenshot of the GLT project" }
+    ]
+  }
+};
 const _routes = [
   {
     name: "About",
@@ -423,7 +455,7 @@ const _routes = [
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-CjGTZxP1.mjs')
+    component: () => import('./glt-CdPtQ9rP.mjs')
   },
   {
     name: "work",
