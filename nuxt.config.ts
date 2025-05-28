@@ -19,6 +19,9 @@ export default defineNuxtConfig({
       '/work/glt'
     ]
   },
+  routeRules: {
+    '/work/glt/': { prerender: true }
+  },
   compatibilityDate: '2025-05-22',
   devtools: { enabled: true },
   vite: {

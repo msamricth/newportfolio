@@ -367,10 +367,10 @@ async function getRouteRules(arg) {
   const path = typeof arg === "string" ? arg : arg.path;
   {
     useNuxtApp().ssrContext._preloadManifest = true;
-    const _routeRulesMatcher = toRouteMatcher(
+    const _routeRulesMatcher2 = toRouteMatcher(
       createRouter$1({ routes: (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules })
     );
-    return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
+    return defu({}, ..._routeRulesMatcher2.matchAll(path).reverse());
   }
 }
 function definePayloadReducer(name, reduce) {
@@ -393,7 +393,7 @@ const unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU = /* @__PURE__ */ defin
     nuxtApp.vueApp.use(head);
   }
 });
-function toArray(value) {
+function toArray$1(value) {
   return Array.isArray(value) ? value : [value];
 }
 const __nuxt_page_meta = { prerender: true };
@@ -551,7 +551,7 @@ const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
     let __temp, __restore;
     let routerBase = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL;
     const history = ((_a = routerOptions.history) == null ? void 0 : _a.call(routerOptions, routerBase)) ?? createMemoryHistory(routerBase);
-    const routes = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
+    const routes2 = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
     let startPosition;
     const router = createRouter({
       ...routerOptions,
@@ -572,7 +572,7 @@ const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
         }
       },
       history,
-      routes
+      routes: routes2
     });
     nuxtApp.vueApp.use(router);
     const previousRoute = shallowRef(router.currentRoute.value);
@@ -654,7 +654,7 @@ const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
           if (!componentMiddleware) {
             continue;
           }
-          for (const entry2 of toArray(componentMiddleware)) {
+          for (const entry2 of toArray$1(componentMiddleware)) {
             middlewareEntries.add(entry2);
           }
         }
@@ -815,13 +815,19 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
 const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:global-components"
 });
+const prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk = /* @__PURE__ */ defineNuxtPlugin(async () => {
+  {
+    return;
+  }
+});
 const plugins = [
   payloadPlugin,
   unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU,
   plugin$1,
   revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms,
   plugin,
-  components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4
+  components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4,
+  prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk
 ];
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,
