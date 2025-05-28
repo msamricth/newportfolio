@@ -409,11 +409,6 @@ function toArray(value) {
 }
 const _routes = [
   {
-    name: "test",
-    path: "/test",
-    component: () => import('./test-BwEDgSdK.mjs')
-  },
-  {
     name: "About",
     path: "/About",
     component: () => import('./About-CcZg9f3D.mjs')
@@ -421,17 +416,17 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CqJeh6a1.mjs')
+    component: () => import('./index-3QGfQ2j0.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
-    component: () => import('./glt-BF9IzqQa.mjs')
+    component: () => import('./glt-Bz80ZYKd.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-D389Bwdu.mjs')
+    component: () => import('./index-B5l7VJUQ.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
