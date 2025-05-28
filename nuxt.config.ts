@@ -10,7 +10,15 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
   nitro: {
-    preset: 'netlify',
+    preset: 'static',
+  },
+  generate: {
+    routes: [
+      '/',
+      '/about',
+      '/work',
+      '/work/glt'
+    ]
   },
   compatibilityDate: '2025-05-22',
   devtools: { enabled: true },
@@ -26,7 +34,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
-      link: [ 
+      link: [
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
         { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
