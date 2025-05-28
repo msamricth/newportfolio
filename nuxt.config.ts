@@ -5,6 +5,7 @@ import { resolve } from 'path'
 export default defineNuxtConfig({
   srcDir: './src/',
   css: ['~/style.css'],
+  publicDir: 'public',
   modules: [
     '@pinia/nuxt',
   ],
