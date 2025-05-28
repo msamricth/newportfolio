@@ -9,7 +9,7 @@
     "generate": "npx nuxi generate",
     "run": "rm -rf .output/public && rm -rf dist && npx nuxi generate && npx nuxi build && netlify deploy",
     "clean": "rm -rf .output/public dist",
-    "gitCommit": "sh -c \"git add . && git commit -m 'npm run push - New deploy $(date +%Y-%m-%dT%H:%M:%S)'\" || true",
+    "gitCommit": "node scripts/git-commit.js",
     "gitPush" : "git push",
     "git": "npm run gitCommit && npm run gitPush",
     "push": "npm run clean && npm run build && npm run git" 
