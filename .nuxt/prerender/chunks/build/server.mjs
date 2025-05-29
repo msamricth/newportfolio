@@ -26,8 +26,8 @@ import 'node:url';
 import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pathe/dist/index.mjs';
 import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/server.mjs';
 import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/devalue/index.js';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/utils.mjs';
 import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
+import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/utils.mjs';
 
 if (!globalThis.$fetch) {
   globalThis.$fetch = $fetch.create({
@@ -407,60 +407,28 @@ const unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU = /* @__PURE__ */ defin
 function toArray$1(value) {
   return Array.isArray(value) ? value : [value];
 }
-const __nuxt_page_meta = {
-  prerender: true,
-  head: {
-    title: "Green Leadership Trust | Featured Work",
-    link: [
-      { rel: "canonical", href: "https://codeartisan.dev/work/glt/" }
-    ],
-    meta: [
-      { hid: "desc", name: "description", content: "Designed and developed Green Leadership Trust's website…" },
-      { hid: "og:type", property: "og:type", content: "website" },
-      { hid: "og:site", property: "og:site_name", content: "Code Artisan" },
-      { hid: "og:locale", property: "og:locale", content: "en_US" },
-      { hid: "og:title", property: "og:title", content: "Green Leadership Trust – Featured Work | Code Artisan" },
-      { hid: "og:desc", property: "og:description", content: "Designed and developed Green Leadership Trust's website…" },
-      { hid: "og:url", property: "og:url", content: "https://codeartisan.dev/work/glt/" },
-      // legacy LinkedIn “image” tag
-      {
-        hid: "meta:image",
-        name: "image",
-        content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2"
-      },
-      // the real OG image tag
-      {
-        hid: "og:image",
-        property: "og:image",
-        content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2"
-      },
-      { hid: "og:image:width", property: "og:image:width", content: "1200" },
-      { hid: "og:image:height", property: "og:image:height", content: "627" },
-      { hid: "og:image:alt", property: "og:image:alt", content: "Screenshot of the GLT project" }
-    ]
-  }
-};
+const __nuxt_page_meta = { prerender: true };
 const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-CcZg9f3D.mjs')
+    component: () => import('./About-BK8qe4uZ.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-3QGfQ2j0.mjs')
+    component: () => import('./index-CEPpuGjF.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-CdPtQ9rP.mjs')
+    component: () => import('./glt-D1qFqsai.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-B5l7VJUQ.mjs')
+    component: () => import('./index-2rEyrVpa.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1043,8 +1011,8 @@ const _sfc_main$1 = {
     const statusMessage = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-BVohEbX7.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-CVCzAFgW.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-R01LOzLS.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-C5N79W2L.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ statusCode: unref(statusCode), statusMessage: unref(statusMessage), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
