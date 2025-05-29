@@ -9,7 +9,7 @@ useSeoMeta({
     canonical: 'https://codeartisan.dev/work/glt/',
     ogUrl: 'https://codeartisan.dev/work/glt/',
 
-    ogImage: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2',
+    ogImage: 'https://codeartisan.dev/glt-meta.webp',
     ogImageWidth: 1200,
     ogImageHeight: 627,
     ogImageAlt: 'Screenshot of the GLT project',
