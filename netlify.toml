@@ -1,5 +1,5 @@
 [build]
-  command = "npm run generate"
+  command = "npm install && npx nuxi generate"
   functions = "netlify/functions"
   publish = ".output/public" 
 
