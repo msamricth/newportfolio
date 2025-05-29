@@ -1,39 +1,21 @@
-<script setup>
-definePageMeta({
-  prerender: true,       
-  head: {
+<script setup lang="ts">
+definePageMeta({ prerender: true })
+
+useSeoMeta({
     title: 'Green Leadership Trust | Featured Work',
-    link: [
-      { rel: 'canonical', href: 'https://codeartisan.dev/work/glt/' }
-    ],
-    meta: [
-      { hid: 'desc',        name: 'description',      content: "Designed and developed Green Leadership Trust's website…" },
-      { hid: 'og:type',     property: 'og:type',      content: 'website' },
-      { hid: 'og:site',     property: 'og:site_name', content: 'Code Artisan' },
-      { hid: 'og:locale',   property: 'og:locale',    content: 'en_US' },
-      { hid: 'og:title',    property: 'og:title',     content: 'Green Leadership Trust – Featured Work | Code Artisan' },
-      { hid: 'og:desc',     property: 'og:description',content: "Designed and developed Green Leadership Trust's website…" },
-      { hid: 'og:url',      property: 'og:url',       content: 'https://codeartisan.dev/work/glt/' },
+    ogTitle: 'Green Leadership Trust – Featured Work | Code Artisan',
+    description: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis.",
+    ogDescription: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis.",
+    canonical: 'https://codeartisan.dev/work/glt/',
+    ogUrl: 'https://codeartisan.dev/work/glt/',
 
-      // legacy LinkedIn “image” tag
-      {
-        hid: 'meta:image',
-        name: 'image',
-        content: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2'
-      },
-      // the real OG image tag
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2'
-      },
-      { hid: 'og:image:width', 	property: 'og:image:width',  content: '1200' },
-      { hid: 'og:image:height', property: 'og:image:height', content: '627' },
-      { hid: 'og:image:alt',    property: 'og:image:alt',    content: 'Screenshot of the GLT project' },
-    ]
-  }
+    ogImage: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_1200,h_627,c_fill,f_auto/v1746750909/Title_2_jwbc2m.png?v2',
+    ogImageWidth: 1200,
+    ogImageHeight: 627,
+    ogImageAlt: 'Screenshot of the GLT project',
+
+    twitterCard: 'summary_large_image'
 })
-
 import InnerNav from '../../components/navigation/InnerNav.vue';
 import Intro from '../../components/case-studies/Intro.vue';
 import Overview from '../../components/case-studies/Overview.vue';
