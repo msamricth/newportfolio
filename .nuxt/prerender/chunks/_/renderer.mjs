@@ -5,9 +5,9 @@ import { renderToString } from 'file://C:/Users/emmta/Local%20Sites/newportfolio
 import { a as useRuntimeConfig, b as useStorage, d as defineRenderHandler, g as getRouteRules, u as useNitroApp } from './nitro.mjs';
 import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/server.mjs';
 import { stringify, uneval } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/devalue/index.js';
-import { FlatMetaPlugin, DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
 import { walkResolver } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/utils.mjs';
 import { toValue, isRef, hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
+import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
 
 const VueResolver = (_, value) => {
   return isRef(value) ? toValue(value) : value;
@@ -63,16 +63,6 @@ function clientUseHead(head, input, options = {}) {
     });
   }
   return entry;
-}
-function useSeoMeta(input = {}, options = {}) {
-  const head = options.head || injectHead();
-  head.use(FlatMetaPlugin);
-  const { title, titleTemplate, ...meta } = input;
-  return useHead({
-    title,
-    titleTemplate,
-    _flatMeta: meta
-  }, options);
 }
 
 function createHead(options = {}) {
@@ -451,5 +441,5 @@ const renderer$1 = /*#__PURE__*/Object.freeze({
   default: renderer
 });
 
-export { useSeoMeta as a, baseURL as b, headSymbol as h, renderer$1 as r, useHead as u };
+export { baseURL as b, headSymbol as h, renderer$1 as r, useHead as u };
 //# sourceMappingURL=renderer.mjs.map
