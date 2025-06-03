@@ -3145,51 +3145,51 @@ const _sfc_main$5 = {
         class: "max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto min-h-[85dvh] py-24 hero-container flex flex-col justify-center"
       }, _attrs))}><div class="hero-wrapper animate relative w-full"><div class="utilties absolute right-0 -top-15">`);
       _push(ssrRenderComponent(SecondaryNav, null, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "loaded": unref(store).loaded }, "headline-wrapper decor-grid group"])}"><h1 class="headline font-heading font-black text-6xl leading-none xl:pt-8 **:align-sub mt-6 uppercase placeholder-line opacity-0 max-md:min-h-110" data-splitting="words"> Building digital bridges between ideas &amp; impact </h1><div class="${ssrRenderClass([{ "-translate-x-[calc((50vw+30px)-22vw)] translate-y-[5vh] md:translate-x-0 md:-translate-y-[calc(560px-39vh)] lg:-translate-y-[40vh] lg:translate-x-5": !loading.value }, "decor-wrap preloading transition-all duration-1000 justify-center items-center flex md:order-4 lg:order-3"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "loaded": unref(store).loaded }, "headline-wrapper decor-grid group"])}"><h1 class="headline font-heading font-black text-6xl leading-none xl:pt-8 **:align-sub mt-6 uppercase placeholder-line opacity-0 max-md:min-h-110" data-splitting="words"> Building digital bridges between ideas &amp; impact </h1><div class="${ssrRenderClass([{ "-translate-x-[calc((50vw+30px)-22vw)] translate-y-[5vh] md:translate-x-0 md:-translate-y-[calc(560px-39vh)] lg:-translate-y-[40vh] lg:translate-x-5": !loading.value }, "decor-wrap preloading transition-all duration-1000 justify-center items-center flex md:order-4 lg:order-3 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(Mixer, {
         class: ["decor h-auto", loading.value ? "jello-horizontal" : "animate subtle-slide-in-attention scale-200"],
         width: "180",
         height: "180",
         style: animDelay.value
       }, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-2"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-2 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(Flower4, {
         class: "decor heartbeat h-auto",
         width: "180",
         height: "180"
       }, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "-translate-x-[calc((50vw+30px)-22vw)] translate-y-[8vh] md:translate-x-[19vw] lg:translate-x-[5vw] md:-translate-y-[calc(555px-39vh)] lg:-translate-y-[40vh]": !loading.value }, "decor-wrap preloading transition-all duration-1000 md:order-5"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "-translate-x-[calc((50vw+30px)-22vw)] translate-y-[8vh] md:translate-x-[19vw] lg:translate-x-[5vw] md:-translate-y-[calc(555px-39vh)] lg:-translate-y-[40vh]": !loading.value }, "decor-wrap preloading transition-all duration-1000 md:order-5 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(Flower2, {
         width: "180",
         height: "180",
         class: ["decor h-auto", loading.value ? "rotate-ccw90-forever" : "animate subtle-slide-in-attention scale-200"],
         style: !loading.value ? "--theme-main-animation-delay: 600ms" : animDelay.value
       }, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-3 lg:order-4"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-3 lg:order-4 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(Heart, {
         class: "decor jello-horizontal h-auto",
         width: "180",
         height: "180"
       }, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(Flower5, {
         class: "decor rotate-ccw90-forever h-auto",
         width: "180",
         height: "180"
       }, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-6"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-6 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(BMX, {
         class: "decor rotate-forever h-auto",
         width: "180",
         height: "180"
       }, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-7"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "animate": loading.value }, "decor-wrap subtle-slide-in opacity-0 md:order-7 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(Headphones, {
         class: "decor shake-top h-auto",
         width: "180",
         height: "180"
       }, null, _parent));
-      _push(`</div><div class="${ssrRenderClass([{ "-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-39vh)] md:-translate-x-[0vw]  md:-translate-y-[430px] lg:-translate-y-[40vh] lg:-translate-x-[2vw]": !loading.value }, "decor-wrap preloading transition-all duration-1000 md:order-8"])}">`);
+      _push(`</div><div class="${ssrRenderClass([{ "-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-39vh)] md:-translate-x-[0vw]  md:-translate-y-[430px] lg:-translate-y-[40vh] lg:-translate-x-[2vw]": !loading.value }, "decor-wrap preloading transition-all duration-1000 md:order-8 group-[.loaded]:transition-[filter]"])}">`);
       _push(ssrRenderComponent(Code, {
         class: ["decor h-auto", loading.value ? "vibrate" : "animate subtle-slide-in-attention scale-250"],
         width: "180",
@@ -3565,4 +3565,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index-DoavFhC-.mjs.map
+//# sourceMappingURL=index-DnejpEEq.mjs.map
