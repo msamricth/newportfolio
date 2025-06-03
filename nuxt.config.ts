@@ -60,7 +60,7 @@ export default defineNuxtConfig({
           onload: "this.media='all'" },
       ],
       script: [
-        { src: 'https://cdn.jsdelivr.net/npm/hls.js@1', defer: true, crossorigin:"anonymous" },
+        { src: '/script/hls.js', defer: true, crossorigin:"anonymous" },
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5', async: true },
         {
           children: `
