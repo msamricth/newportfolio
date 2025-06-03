@@ -46,9 +46,17 @@ interface _GlobalComponents {
     'IconsAPI': typeof import("../src/components/icons/API.vue")['default']
     'IconsActionNetwork': typeof import("../src/components/icons/ActionNetwork.vue")['default']
     'IconsAirtable': typeof import("../src/components/icons/Airtable.vue")['default']
+    'IconsBMX': typeof import("../src/components/icons/BMX.vue")['default']
+    'IconsCode': typeof import("../src/components/icons/Code.vue")['default']
     'IconsFire': typeof import("../src/components/icons/Fire.vue")['default']
+    'IconsFlower2': typeof import("../src/components/icons/Flower2.vue")['default']
+    'IconsFlower4': typeof import("../src/components/icons/Flower4.vue")['default']
+    'IconsFlower5': typeof import("../src/components/icons/Flower5.vue")['default']
     'IconsFrontend': typeof import("../src/components/icons/Frontend.vue")['default']
     'IconsGLT': typeof import("../src/components/icons/GLT.vue")['default']
+    'IconsHeadphones': typeof import("../src/components/icons/Headphones.vue")['default']
+    'IconsHeart': typeof import("../src/components/icons/Heart.vue")['default']
+    'IconsMixer': typeof import("../src/components/icons/Mixer.vue")['default']
     'IconsProblemSolving': typeof import("../src/components/icons/ProblemSolving.vue")['default']
     'IconsUX': typeof import("../src/components/icons/UX.vue")['default']
     'IconsWordpress': typeof import("../src/components/icons/Wordpress.vue")['default']
@@ -118,9 +126,17 @@ interface _GlobalComponents {
     'LazyIconsAPI': LazyComponent<typeof import("../src/components/icons/API.vue")['default']>
     'LazyIconsActionNetwork': LazyComponent<typeof import("../src/components/icons/ActionNetwork.vue")['default']>
     'LazyIconsAirtable': LazyComponent<typeof import("../src/components/icons/Airtable.vue")['default']>
+    'LazyIconsBMX': LazyComponent<typeof import("../src/components/icons/BMX.vue")['default']>
+    'LazyIconsCode': LazyComponent<typeof import("../src/components/icons/Code.vue")['default']>
     'LazyIconsFire': LazyComponent<typeof import("../src/components/icons/Fire.vue")['default']>
+    'LazyIconsFlower2': LazyComponent<typeof import("../src/components/icons/Flower2.vue")['default']>
+    'LazyIconsFlower4': LazyComponent<typeof import("../src/components/icons/Flower4.vue")['default']>
+    'LazyIconsFlower5': LazyComponent<typeof import("../src/components/icons/Flower5.vue")['default']>
     'LazyIconsFrontend': LazyComponent<typeof import("../src/components/icons/Frontend.vue")['default']>
     'LazyIconsGLT': LazyComponent<typeof import("../src/components/icons/GLT.vue")['default']>
+    'LazyIconsHeadphones': LazyComponent<typeof import("../src/components/icons/Headphones.vue")['default']>
+    'LazyIconsHeart': LazyComponent<typeof import("../src/components/icons/Heart.vue")['default']>
+    'LazyIconsMixer': LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
     'LazyIconsProblemSolving': LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
     'LazyIconsUX': LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>
     'LazyIconsWordpress': LazyComponent<typeof import("../src/components/icons/Wordpress.vue")['default']>
@@ -196,9 +212,17 @@ export const ContextsTestimonial: typeof import("../src/components/contexts/Test
 export const IconsAPI: typeof import("../src/components/icons/API.vue")['default']
 export const IconsActionNetwork: typeof import("../src/components/icons/ActionNetwork.vue")['default']
 export const IconsAirtable: typeof import("../src/components/icons/Airtable.vue")['default']
+export const IconsBMX: typeof import("../src/components/icons/BMX.vue")['default']
+export const IconsCode: typeof import("../src/components/icons/Code.vue")['default']
 export const IconsFire: typeof import("../src/components/icons/Fire.vue")['default']
+export const IconsFlower2: typeof import("../src/components/icons/Flower2.vue")['default']
+export const IconsFlower4: typeof import("../src/components/icons/Flower4.vue")['default']
+export const IconsFlower5: typeof import("../src/components/icons/Flower5.vue")['default']
 export const IconsFrontend: typeof import("../src/components/icons/Frontend.vue")['default']
 export const IconsGLT: typeof import("../src/components/icons/GLT.vue")['default']
+export const IconsHeadphones: typeof import("../src/components/icons/Headphones.vue")['default']
+export const IconsHeart: typeof import("../src/components/icons/Heart.vue")['default']
+export const IconsMixer: typeof import("../src/components/icons/Mixer.vue")['default']
 export const IconsProblemSolving: typeof import("../src/components/icons/ProblemSolving.vue")['default']
 export const IconsUX: typeof import("../src/components/icons/UX.vue")['default']
 export const IconsWordpress: typeof import("../src/components/icons/Wordpress.vue")['default']
@@ -268,9 +292,17 @@ export const LazyContextsTestimonial: LazyComponent<typeof import("../src/compon
 export const LazyIconsAPI: LazyComponent<typeof import("../src/components/icons/API.vue")['default']>
 export const LazyIconsActionNetwork: LazyComponent<typeof import("../src/components/icons/ActionNetwork.vue")['default']>
 export const LazyIconsAirtable: LazyComponent<typeof import("../src/components/icons/Airtable.vue")['default']>
+export const LazyIconsBMX: LazyComponent<typeof import("../src/components/icons/BMX.vue")['default']>
+export const LazyIconsCode: LazyComponent<typeof import("../src/components/icons/Code.vue")['default']>
 export const LazyIconsFire: LazyComponent<typeof import("../src/components/icons/Fire.vue")['default']>
+export const LazyIconsFlower2: LazyComponent<typeof import("../src/components/icons/Flower2.vue")['default']>
+export const LazyIconsFlower4: LazyComponent<typeof import("../src/components/icons/Flower4.vue")['default']>
+export const LazyIconsFlower5: LazyComponent<typeof import("../src/components/icons/Flower5.vue")['default']>
 export const LazyIconsFrontend: LazyComponent<typeof import("../src/components/icons/Frontend.vue")['default']>
 export const LazyIconsGLT: LazyComponent<typeof import("../src/components/icons/GLT.vue")['default']>
+export const LazyIconsHeadphones: LazyComponent<typeof import("../src/components/icons/Headphones.vue")['default']>
+export const LazyIconsHeart: LazyComponent<typeof import("../src/components/icons/Heart.vue")['default']>
+export const LazyIconsMixer: LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
 export const LazyIconsProblemSolving: LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
 export const LazyIconsUX: LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>
 export const LazyIconsWordpress: LazyComponent<typeof import("../src/components/icons/Wordpress.vue")['default']>

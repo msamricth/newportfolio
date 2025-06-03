@@ -1,4 +1,0 @@
-/index.html
-  cache-control: public, max-age=0, must-revalidate
-/js/hls.js
-  cache-control: public, max-age=31536000, immutable

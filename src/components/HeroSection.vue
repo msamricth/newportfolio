@@ -16,58 +16,40 @@
 
                 <div class="decor-wrap preloading transition-all duration-1000 justify-center items-center flex md:order-4 lg:order-3"
                     :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[5vh] md:translate-x-0 md:-translate-y-[calc(560px-39vh)] lg:-translate-y-[40vh] lg:translate-x-5': !loading }">
-                    <img crossorigin="anonymous"
-                        src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346874/mixer_ha98hb.svg"
-                        class="decor h-auto" width="180" height="180" alt="Illustration of a mixer"
+                    <Mixer class="decor h-auto" width="180" height="180" 
                         :style="animDelay"  :class="loading ? 'jello-horizontal' : 'animate subtle-slide-in-attention scale-200'" />
                 </div>
+
                 <div class="decor-wrap  subtle-slide-in opacity-0 md:order-2" :class="{ 'animate': loading }">
-                    <img crossorigin="anonymous"
-                        :src="store.loaded ? 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-4_hnflq8.svg' : 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_100,e_pixelate,f_auto,e_grayscale/v1745346872/flower-4_hnflq8.svg'"
-                        class="decor heartbeat h-auto" width="180" height="180" alt="Illustration of a flower" />
+                    <Flower4
+                        class="decor heartbeat h-auto" width="180" height="180" />
                 </div>
-
-
 
                 <div class="decor-wrap preloading transition-all duration-1000 md:order-5"
                     :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[8vh] md:translate-x-[19vw] lg:translate-x-[5vw] md:-translate-y-[calc(555px-39vh)] lg:-translate-y-[40vh]': !loading }">
-                    <img crossorigin="anonymous"
-                        src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/flower-2_ixqfek.svg"
-                        width="180" height="180" class="decor h-auto" 
-                        alt="Illustration of a flower"  :class="loading ? 'rotate-ccw90-forever' : 'animate subtle-slide-in-attention scale-200'" :style="!loading ? '--theme-main-animation-delay: 600ms' : animDelay"/>
+                    <Flower2 width="180" height="180" class="decor h-auto" :class="loading ? 'rotate-ccw90-forever' : 'animate subtle-slide-in-attention scale-200'" :style="!loading ? '--theme-main-animation-delay: 600ms' : animDelay"/>
                 </div>
-
-                
                 
                 <div class="decor-wrap  subtle-slide-in opacity-0 md:order-3 lg:order-4" :class="{ 'animate': loading }">
-                    <img crossorigin="anonymous"
-                        :src="store.loaded ? 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg' : 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_100,e_pixelate,f_auto,e_grayscale/v1745346872/heart_dfz3gf.svg'"
-                        class="decor jello-horizontal h-auto" width="180" height="180" alt="Illustration of a heart" />
+                    <Heart class="decor jello-horizontal h-auto" width="180" height="180" />
                 </div>
+
                 <div class="decor-wrap  subtle-slide-in opacity-0" :class="{ 'animate': loading }">
-                    <img crossorigin="anonymous"
-                        :src="store.loaded ? 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/flower-5_xaniod.svg' : 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_100,e_pixelate,f_auto,e_grayscale/v1745346873/flower-5_xaniod.svg'"
-                        class="decor rotate-ccw90-forever h-auto" width="180" height="180"
-                        alt="Illustration of a flower" />
+                    <Flower5 class="decor rotate-ccw90-forever h-auto" width="180" height="180" />
                 </div>
+
                 <div class="decor-wrap  subtle-slide-in opacity-0  md:order-6" :class="{ 'animate': loading }">
-                    <img crossorigin="anonymous"
-                        :src="store.loaded ? 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390483/bmx_hzx4dd.svg' : 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_100,e_pixelate,f_auto,e_grayscale/v1745390483/bmx_hzx4dd.svg'"
-                        class="decor rotate-forever  h-auto" width="180" height="180"
-                        alt="Illustration of a bmx bike" />
+                    <BMX class="decor rotate-forever  h-auto" width="180" height="180" />
                 </div>
 
                 <div class="decor-wrap  subtle-slide-in opacity-0  md:order-7" :class="{ 'animate': loading }">
-                    <img crossorigin="anonymous"
-                        :src="store.loaded ? 'https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346873/headphones_asqozg.svg' : 'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_100,e_pixelate,f_auto,e_grayscale/v1745346873/headphones_asqozg.svg'"
-                        class="decor shake-top h-auto" width="180" height="180" alt="Illustration of headphones" />
+                    <Headphones class="decor shake-top h-auto" width="180" height="180" />
                 </div>
 
                 <div class="decor-wrap preloading transition-all duration-1000 md:order-8" :class="{ '-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-39vh)] md:-translate-x-[0vw]  md:-translate-y-[430px] lg:-translate-y-[40vh] lg:-translate-x-[2vw]': !loading }">
-                    <img crossorigin="anonymous"
-                        src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745390928/code_tigrlv.svg"
-                        class="decor h-auto" width="180" height="180" alt="Illustration of code syntex" :style="{'--theme-main-animation-delay:900' : !loading}" :class="loading ? 'vibrate' : 'animate subtle-slide-in-attention scale-250'" />
+                    <Code class="decor h-auto" width="180" height="180" :style="{'--theme-main-animation-delay:900' : !loading}" :class="loading ? 'vibrate' : 'animate subtle-slide-in-attention scale-250'" />
                 </div>
+
             </div>
 
             <div ref="trigger"></div>
@@ -81,6 +63,14 @@ import placeholderJS from './../utils/placeholder.js'
 import SecondaryNav from './navigation/SecondaryNav.vue';
 import { shuffleIcons } from '../utils/shuffler.js';
 import { useMainStore } from '../stores/main.js';
+import Mixer from './icons/Mixer.vue';
+import Heart from './icons/Heart.vue';
+import BMX from './icons/BMX.vue'
+import Code from './icons/Code.vue'
+import Flower2 from './icons/Flower2.vue'
+import Flower4 from './icons/Flower4.vue'
+import Headphones from './icons/Headphones.vue'
+import Flower5 from './icons/Flower5.vue'
 const store = useMainStore()
 import { useNuxtApp } from '#app'
 //import gsap from 'gsap';
