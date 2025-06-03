@@ -8,7 +8,7 @@
 
 
             <div ref="grid" class="headline-wrapper decor-grid group" :class="{ 'loaded': store.loaded }">
-                <h1 class="headline font-heading font-black text-6xl leading-none xl:pt-8 **:align-sub mt-6 uppercase placeholder-line opacity-0"
+                <h1 class="headline font-heading font-black text-6xl leading-none xl:pt-8 **:align-sub mt-6 uppercase placeholder-line opacity-0 max-md:min-h-110"
                     data-splitting="words">
                     Building digital bridges
                     between ideas & impact
