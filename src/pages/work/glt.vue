@@ -25,10 +25,10 @@ import FullImage from '../../components/case-studies/FullImage.vue';
 import Sections from '../../components/case-studies/Sections.vue';
 import Contact from '../../components/Contact.vue';
 import Footer from '../../components/Footer.vue';
-import Basic from '../../components/case-studies/sections/basic.vue';
 import BasicImage from '../../components/case-studies/sections/BasicImage.vue';
 import Image from '../../components/case-studies/sections/Image.vue';
 import ImageGist from '../../components/case-studies/sections/ImageGist.vue';
+import Basic from '../../components/case-studies/sections/basic.vue';
 import IconGist from '../../components/case-studies/sections/IconGist.vue';
 import SlideShow from '../../components/case-studies/sections/SlideShow.vue';
 import { data } from '../../data/glt'
