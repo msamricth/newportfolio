@@ -132,7 +132,6 @@
 
   .decor-wrap {
     @apply flex flex-col justify-center items-center saturate-60 
-   /* transition-[filter]  to add back once loading anim is finished*/
     hover:saturate-100;
   }
 
