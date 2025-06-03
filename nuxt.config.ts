@@ -42,6 +42,9 @@ export default defineNuxtConfig({
     baseURL: '/',
     head: {
       titleTemplate: '%s | Code Artisan',
+      htmlAttrs: {
+          lang: 'en'
+      }
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
