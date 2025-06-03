@@ -1,6 +1,6 @@
 <template>
     <label class="inline-flex items-start cursor-pointer group max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
- transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100" for="mode">
+ transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100" for="mode-switch">
         <span class="me-3 text-xl font-medium animate subtle-slide-in block relative"
             style="--theme-main-animation-delay:0.1s">
             <svg width="1.6rem" :class="store.isDark ? 'opacity-100 duration-700' : 'opacity-0 duration-0'"
@@ -36,7 +36,7 @@
         </span>
         <span class="sr-only">Dark Mode</span>
         <input type="checkbox" class="sr-only peer" :checked="store.isDark"
-            @change="store.toggleTheme($event.target.checked)" name="mode" id="mode" />
+            @change="store.toggleTheme($event.target.checked)" name="mode" id="mode-switch" />
 
         <div class="relative w-11 h-6 bg-primary/60 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-accent inverted:peer-focus:ring-accent dark:peer-focus:ring-accent rounded-full peer inverted:bg-gray-700 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-accent after:border-primary after:border after:rounded-full after:h-5 after:w-5 after:transition-all inverted:border-gray-600 dark:border-gray-600 peer-checked:bg-border inverted:peer-checked:bg-border dark:peer-checked:bg-border animate subtle-slide-in"
             style="--theme-main-animation-delay:0.3s">
