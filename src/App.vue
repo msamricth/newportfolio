@@ -12,4 +12,5 @@ onMounted(() => {
 
 <template>
   <NuxtPage/>
+  <script src="/js/hls.js" defer></script>
 </template>

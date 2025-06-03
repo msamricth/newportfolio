@@ -412,23 +412,23 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-DnXkVFsr.mjs')
+    component: () => import('./About-BSREV5yC.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DD1CmjMl.mjs')
+    component: () => import('./index-Dk5j3MVV.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-DGlUXDkh.mjs')
+    component: () => import('./glt-D8RZZM4Y.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-B7J-E50V.mjs')
+    component: () => import('./index-CZYPP--1.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1051,7 +1051,9 @@ const _sfc_main$2 = {
     useMainStore();
     return (_ctx, _push, _parent, _attrs) => {
       const _component_NuxtPage = __nuxt_component_0;
-      _push(ssrRenderComponent(_component_NuxtPage, _attrs, null, _parent));
+      _push(`<!--[-->`);
+      _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
+      _push(`<script src="/js/hls.js" defer><\/script><!--]-->`);
     };
   }
 };
