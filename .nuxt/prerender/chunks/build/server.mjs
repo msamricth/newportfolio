@@ -5,7 +5,7 @@ import { createHooks } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/no
 import { getContext, executeAsync } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unctx/dist/index.mjs';
 import { sanitizeStatusCode, createError as createError$1, appendHeader } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
 import { defineStore, createPinia, setActivePinia, shouldHydrate } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
-import { defu } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/defu/dist/defu.mjs';
+import defu$1, { defu } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/defu/dist/defu.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-router/dist/vue-router.node.mjs';
 import { toRouteMatcher, createRouter as createRouter$1 } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/radix3/dist/index.mjs';
 import { hasProtocol, isScriptProtocol, joinURL, withQuery } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
@@ -378,10 +378,10 @@ async function getRouteRules(arg) {
   const path = typeof arg === "string" ? arg : arg.path;
   {
     useNuxtApp().ssrContext._preloadManifest = true;
-    const _routeRulesMatcher = toRouteMatcher(
+    const _routeRulesMatcher2 = toRouteMatcher(
       createRouter$1({ routes: (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules })
     );
-    return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
+    return defu({}, ..._routeRulesMatcher2.matchAll(path).reverse());
   }
 }
 function definePayloadReducer(name, reduce) {
@@ -417,7 +417,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BWv-K--O.mjs')
+    component: () => import('./index-BjrYg2N7.mjs')
   },
   {
     name: "work-glt",
@@ -839,12 +839,16 @@ const components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4 = /* @__PURE
   name: "nuxt:global-components"
 });
 let routes;
+let _routeRulesMatcher = void 0;
 const prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk = /* @__PURE__ */ defineNuxtPlugin(async () => {
   let __temp, __restore;
   if (routes && !routes.length) {
     return;
   }
-  (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules;
+  const routeRules = (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules;
+  if (routeRules && Object.values(routeRules).some((r) => r.prerender)) {
+    _routeRulesMatcher = toRouteMatcher(createRouter$1({ routes: routeRules }));
+  }
   routes || (routes = Array.from(processRoutes(([__temp, __restore] = executeAsync(() => {
     var _a;
     return (_a = routerOptions.routes) == null ? void 0 : _a.call(routerOptions, _routes);
@@ -854,19 +858,19 @@ const prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk = /* @__PURE_
 });
 const OPTIONAL_PARAM_RE = /^\/?:.*(?:\?|\(\.\*\)\*)$/;
 function shouldPrerender(path) {
-  return true;
+  return !_routeRulesMatcher || defu$1({}, ..._routeRulesMatcher.matchAll(path).reverse()).prerender;
 }
 function processRoutes(routes2, currentPath = "/", routesToPrerender = /* @__PURE__ */ new Set()) {
   var _a;
   for (const route of routes2) {
-    if (OPTIONAL_PARAM_RE.test(route.path) && !((_a = route.children) == null ? void 0 : _a.length) && shouldPrerender()) {
+    if (OPTIONAL_PARAM_RE.test(route.path) && !((_a = route.children) == null ? void 0 : _a.length) && shouldPrerender(currentPath)) {
       routesToPrerender.add(currentPath);
     }
     if (route.path.includes(":")) {
       continue;
     }
     const fullPath = joinURL(currentPath, route.path);
-    {
+    if (shouldPrerender(fullPath)) {
       routesToPrerender.add(fullPath);
     }
     if (route.children) {
