@@ -3045,17 +3045,7 @@ const _sfc_main$3 = {
         ref: section,
         class: "pt-16",
         id: "about"
-      }, _attrs))}><div class="${ssrRenderClass([{ "opacity-0": !unref(store).loaded }, "max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto"])}"><div class="min-h-[80vh]"><div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-8 top-[15%] md:top-[12%]"><h2 class="italic subtitle mb-4 text-3xl placeholder-line" data-splitting="words">So here&#39;s the thing: </h2>`);
-      if (unref(store).loaded) {
-        _push(`<ul class="list-disc mb-12 pl-6 hidden md:block"><li class="placeholder-line text-xl" data-splitting="words">A Developer with <strong>PASSION</strong></li><li class="placeholder-line text-xl" data-splitting="words">An eye for design</li><li class="placeholder-line text-xl" data-splitting="words">API nerd</li><li class="placeholder-line text-xl" data-splitting="words">Bootstrap &amp; Tailwind Queen\u{1F478}</li></ul>`);
-      } else {
-        _push(`<!---->`);
-      }
-      if (unref(store).loaded) {
-        _push(`<div class="placeholder-line introduction" data-splitting="words"><p class="text-secondary text-xl leading-[1.8] mb-6 lg:mb-14" data-splitting="words">I&#39;m a full-stack developer with a passion for clean code, bold design, and building things that actually work\u2014both on screen and in the dirt.\u{1F6B4}\u200D\u2640\uFE0F With deep experience in WordPress, Vue.js, and the occasional Tailwind bender, I specialize in crafting digital systems that are fast, accessible, and built to last.</p></div>`);
-      } else {
-        _push(`<!---->`);
-      }
+      }, _attrs))}><div class="${ssrRenderClass([{ "opacity-0": !unref(store).loaded }, "max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto"])}"><div class="min-h-[80vh]"><div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-8 top-[15%] md:top-[12%]"><h2 class="italic subtitle mb-4 text-3xl placeholder-line" data-splitting="words">So here&#39;s the thing: </h2><ul class="list-disc mb-12 pl-6 hidden md:block"><li class="placeholder-line text-xl" data-splitting="words">A Developer with <strong>PASSION</strong></li><li class="placeholder-line text-xl" data-splitting="words">An eye for design</li><li class="placeholder-line text-xl" data-splitting="words">API nerd</li><li class="placeholder-line text-xl" data-splitting="words">Bootstrap &amp; Tailwind Queen\u{1F478}</li></ul><div class="placeholder-line introduction" data-splitting="words"><p class="text-secondary text-xl leading-[1.8] mb-6 lg:mb-14" data-splitting="words">I&#39;m a full-stack developer with a passion for clean code, bold design, and building things that actually work\u2014both on screen and in the dirt.\u{1F6B4}\u200D\u2640\uFE0F With deep experience in WordPress, Vue.js, and the occasional Tailwind bender, I specialize in crafting digital systems that are fast, accessible, and built to last.</p></div>`);
       if (unref(store).loaded) {
         _push(ssrRenderComponent(MainButton, {
           href: "/about",
@@ -3375,4 +3365,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index-Dk5j3MVV.mjs.map
+//# sourceMappingURL=index-BWv-K--O.mjs.map

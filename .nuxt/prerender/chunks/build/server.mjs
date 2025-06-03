@@ -417,7 +417,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Dk5j3MVV.mjs')
+    component: () => import('./index-BWv-K--O.mjs')
   },
   {
     name: "work-glt",
@@ -1051,9 +1051,7 @@ const _sfc_main$2 = {
     useMainStore();
     return (_ctx, _push, _parent, _attrs) => {
       const _component_NuxtPage = __nuxt_component_0;
-      _push(`<!--[-->`);
-      _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-      _push(`<script src="/js/hls.js" defer><\/script><!--]-->`);
+      _push(ssrRenderComponent(_component_NuxtPage, _attrs, null, _parent));
     };
   }
 };
