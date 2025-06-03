@@ -25,7 +25,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         el.className = key;
       }
       if (text) {
-        el.innerHTML = text + '&nbsp;';
+        el.innerHTML = text;
       }
       return (parent && appendChild(parent, el)) || el;
     }
@@ -119,7 +119,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 
             each(bits, function(piece) {
               // Create a <span class="word mr-1">piece</span>
-              var span = createElement(frag, key, piece);
+              var span = createElement(frag, key, piece + '&nbsp;');
               out.push(span);
               all.push(span);
             });
@@ -141,25 +141,33 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       return splitText(el, 'word', /\s+/, 0, 0);
     }));
 
-    // For CHARS, we operate on the WORDS output; characters get no extra margin class
-    addPlugin(createPlugin(CHARS, [WORDS], 'char', function(el, opts, ctx) {
-      var res = [];
-      each(ctx[WORDS], function(w, i) {
-        var chars = [];
-        // Split each word into characters without adding mr-1
-        w.normalize();
-        var letters = (w.textContent || '').split('');
-        each(letters, function(letter) {
-          var charSpan = createElement(frag, 'char', letter);
-          chars.push(charSpan);
+    addPlugin(createPlugin(
+      CHARS,
+      [WORDS],
+      'char',
+      function(el, opts, ctx) {
+        var res = [];
+    
+        each(ctx[WORDS], function(w) {
+          w.normalize();
+    
+          var letters = (w.textContent || '').split('');
+          var chars = [];
+    
+          w.innerHTML = '';
+          letters.forEach(function(letter) {
+            var charSpan = createElement(w, 'char', letter);
+            chars.push(charSpan);
+          });
+    
+          res.push(chars);
         });
-        // replace the existing word span with its chars
-        w.innerHTML = '';
-        each(chars, function(c) { appendChild(w, c); });
-        res.push(chars);
-      });
-      return res;
-    }));
+    
+        return res;
+      }
+    ));
+
+    
 
     // If you have other plugins (lines, rows, etc.), add them similarly with no whitespace output
 
