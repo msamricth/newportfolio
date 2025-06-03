@@ -125,7 +125,7 @@
     @apply bg-border w-full left-0 opacity-0;
   }
 
-  .decor-grid img.decor {
+  .decor-grid svg {
     transform-origin: center center;
     @apply w-[22vw] md:w-[15vw] lg:w-[10vw];
   }

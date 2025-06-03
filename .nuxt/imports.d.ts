@@ -43,4 +43,5 @@ export { useMainStore } from '../src/stores/main';
 export { useModalStore } from '../src/stores/modal';
 export { useWorkStore } from '../src/stores/work';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
+export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';
