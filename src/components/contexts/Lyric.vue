@@ -7,7 +7,7 @@ import { ref, onMounted, nextTick, watch } from 'vue'
 import { useMainStore} from '../../stores/main.js'
 
 import confetti from 'canvas-confetti'
-import Fire from '../icons/fire.vue'
+import Fire from '../icons/Fire.vue'
 const showLyric = ref(false)
 const textWrapper = ref(null)
 const canvasEl = ref(null)
