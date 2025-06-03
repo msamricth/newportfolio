@@ -10,7 +10,7 @@
                     <SplideSlide v-for="(slide, index) in slides" :key="index" class="transition-all duration-500 group"
                         :class="slide.textColor">
                         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
-                            <div class="flex flex-col md:flex-row justify-center items-start gap-8" v-if="loaded">
+                            <div class="flex flex-col md:flex-row justify-center items-start gap-8" v-if="loaded && store.loaded">
                                 <img crossorigin="anonymous" :src="slide.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_1260')"
                                     class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all cursor-pointer duriation-900"
                                     @click.prevent="openWork(slide.slug)" />

@@ -43,10 +43,13 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
         { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
+        //{ rel: 'preload', href: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap', as: 'font' },
+
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'preconnect', href: 'https://res.cloudinary.com' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@600..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap', media: 'print',
+          onload: "this.media='all'" },
       ],
       script: [
         { src: 'https://cdn.jsdelivr.net/npm/hls.js@1', defer: true, crossorigin:"anonymous" },

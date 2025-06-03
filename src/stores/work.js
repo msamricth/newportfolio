@@ -45,7 +45,6 @@ export const useWorkStore = defineStore('work', () => {
   });
 
   const toggleFilter = (tag) => {
-    window.scrollTo(0, 0);
     if (activeFilters.value.includes(tag)) {
       activeFilters.value = activeFilters.value.filter(t => t !== tag);
     } else {
@@ -58,7 +57,6 @@ export const useWorkStore = defineStore('work', () => {
     activeFilters.value = [];
     isFiltered.value = false;
     gridResults.value = true;
-    window.scrollTo(0, 0);
   };
 
   return {

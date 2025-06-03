@@ -17,18 +17,20 @@ import LogoGarden from '../components/LogoGarden.vue'
 import FeaturedWork from '../components/carousels/FeaturedWork.vue'
 import Contact from '../components/Contact.vue';
 import Footer from '../components/Footer.vue';
+import { useMainStore } from '../stores/main';
 
+const store = useMainStore()
 </script>
 
 <template>
   <div
-    class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative">
+    class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-x-clip">
     <HeroSection />
     <Nav />
     <About />
-    <LogoGarden />
-    <FeaturedWork />
-    <Contact />
-    <Footer />
+    <LogoGarden v-if="store.loaded" />
+    <FeaturedWork v-if="store.loaded" />
+    <Contact v-if="store.loaded" />
+    <Footer v-if="store.loaded" />
   </div>
 </template>

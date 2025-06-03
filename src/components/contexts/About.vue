@@ -153,14 +153,7 @@ onMounted(async() => {
     onLeaveBack: () => (isBQ.value = false),
   });
 
-  ScrollTrigger.create({
-    trigger: sectionEl,
-    start: 'top top',
-    end: 'bottom 90%',
-    onEnter: () => document.body.classList.add('dark'),
-    onEnterBack: () => document.body.classList.add('dark'),
-    onLeaveBack: () => document.body.classList.remove('dark'),
-  });
+
 
   ScrollTrigger.refresh()
 });

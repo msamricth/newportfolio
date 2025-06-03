@@ -1,12 +1,12 @@
 <template>
     <section ref="section" class="pt-16" id="about">
-        <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto">
+        <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto" :class="{ 'opacity-0': !store.loaded }">
             <div class="min-h-[80vh]">
                 <div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-8 top-[15%] md:top-[12%]">
                     <h2 class="italic subtitle mb-4 text-3xl placeholder-line" data-splitting="words">So
                         here's the thing:
                     </h2>
-                    <ul class="list-disc mb-12 pl-6 hidden md:block">
+                    <ul class="list-disc mb-12 pl-6 hidden md:block"  v-if="store.loaded">
                         <li class="placeholder-line text-xl" data-splitting="words">A Developer with
                             <strong>PASSION</strong>
                         </li>
@@ -14,7 +14,7 @@
                         <li class="placeholder-line text-xl" data-splitting="words">API nerd</li>
                         <li class="placeholder-line text-xl" data-splitting="words">Bootstrap & Tailwind Queen👸</li>
                     </ul>
-                    <div class="placeholder-line introduction" data-splitting="words">
+                    <div class="placeholder-line introduction" data-splitting="words"  v-if="store.loaded">
                         <p class="text-secondary text-xl leading-[1.8] mb-6 lg:mb-14" data-splitting="words">I'm a
                             full-stack
                             developer with a passion for clean code, bold design, and building things that actually
@@ -26,7 +26,7 @@
                     </div>
                     <MainButton href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"
-                        label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" />
+                        label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" v-if="store.loaded" />
                 </div>
             </div>
             <Artisan />
@@ -42,11 +42,12 @@ import { useNuxtApp } from '#app'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
 const { $gsap: gsap } = useNuxtApp()
-
+import { useMainStore } from '../../stores/main.js';
 import PlaceholderJS from './../../utils/placeholder.js';
 import MainButton from './../buttons/MainButton.vue'
 import { navigateTo } from '#imports';
 import Artisan from './Artisan.vue';
+const store = useMainStore()
 const isBQ = ref(false);
 const section = ref(null)
 const openAbout = () => {

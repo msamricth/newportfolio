@@ -3,21 +3,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Splitting from './splitting.js'
 
 
-
-
 export default class PlaceholderJS {
     constructor(el, {
         start = 'top 90%',
         end = 'top top',
-        stagger = 0.015,
-        fadeDur = 0.3,
-        textDur = 0.2,
         placeholderClass = 'placeholder',
         manual = false,
         scrub = false,
         markers = false,
         triggerTarget = 'self',
-        speed = 1
+        speed = 1,
+        fadeDur = manual && speed != 1 ? 0.3 * speed : 0.3,
+        textDur =  manual && speed != 1 ? 0.2 * speed : 0.2,
+        stagger = manual && speed != 1 ? 0.025 * speed : 0.015
     } = {}) {
         this.el = el;
         this.opts = { start, end, stagger, fadeDur, textDur, manual, scrub, triggerTarget, markers, speed };
@@ -73,7 +71,10 @@ export default class PlaceholderJS {
         };
 
         this.timeline = gsap.timeline(scrollTrigger)
-            .fromTo(this.placeholders,
+        if(this.el.classList.contains('opacity-0')){
+            this.timeline.to(this.el,{autoAlpha:1,duration:0.2})
+        }
+        this.timeline.fromTo(this.placeholders,
                 { autoAlpha: 0 },
                 { autoAlpha: 1, duration: fadeDur, stagger }
             )

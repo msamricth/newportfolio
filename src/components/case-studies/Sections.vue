@@ -56,11 +56,11 @@
                 :style="`background-image: url(${images[1]})`"></div>
         </section>
         <section ref="section3"
-            class="min-h-dvh flex flex-col md:flex-row items-center justify-between py-14 gap-12 relative tl">
+            class="min-h-dvh flex flex-col md:flex-row items-center justify-between py-14 gap-12 relative tl lg:min-h-[200vh] lg:items-start">
             <div ref="section3Image"
-                class="w-full order-3 md:order-1 md:w-1/3 h-[80vh] bg-cover bg-center md:opacity-0 md:rounded-r-[3rem] image tl md:px-8 lg:px-12 lg:mt-12 xl:w-1/2"
+                class="w-full order-3 md:order-1 md:w-1/3 h-[80vh] bg-cover bg-center md:opacity-0 md:rounded-r-[3rem] image tl md:px-8 lg:px-12 lg:mt-8 xl:w-1/2"
                 :style="`background-image: url(${images[2]})`"></div>
-            <div class="w-full order-1 md:order-2 lg:max-w-2xl md:mr-auto text-container px-8 lg:px-12 tl">
+            <div class="w-full order-1 md:order-2 lg:max-w-2xl md:mr-auto text-container px-8 lg:px-12 tl lg:h-[80vh] lg:flex lg:flex-col lg:justify-center lg:mt-8">
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ sections[2].heading }}
                 </h4>
                 <p class="text-xl mb-6 placeholder-line" data-splitting="words" v-if="sections[2].paragraph">{{
@@ -84,14 +84,14 @@
                 </ul>
             </div>
             <div
-                class="order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 flex flex-col justify-center xl:max-w-xl">
+                class="order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 flex flex-col justify-center xl:max-w-xl  lg:mt-14">
                 <Gist gistId="11de8482695bd4c490300e3e4077edda" repoUrl="https://github.com/msamricth/theme-main"
                     FileName="sidebarBlockSettings.js" Caption="Block settings for GLT's custom WordPress Theme"
                     class="lg:mx-auto w-full" />
             </div>
         </section>
         <section ref="section4"
-            class="relative flex flex-col md:flex-row justify-between py-14 md:py-0 gap-12 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto overflow-clip md:min-h-[480dvh] lg:min-h-[430dvh] lg:justify-center lg:items-start">
+            class="relative flex flex-col md:flex-row justify-between py-14 md:py-0 gap-12 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto overflow-clip md:min-h-[280dvh] lg:min-h-[230dvh] lg:justify-center lg:items-start">
             <div ref="section4Content"
                 class="order-2 md:order-1 w-full md:max-w-4xl lg:max-w-2xl xl:max-w-xl md:ml-auto text-container pt-6 md:pt-0 lg:pt-6 px-8 lg:pl-12 lg:pr-0 tl lg:min-h-[70vh] lg:flex lg:flex-col lg:justify-center">
                 <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ sections[3].heading }}
@@ -191,11 +191,11 @@ import Airtable from '../icons/Airtable.vue'
 import Wordpress from '../icons/Wordpress.vue'
 import ActionNetwork from '../icons/ActionNetwork.vue'
 import MainButton from '../buttons/MainButton.vue'
-import { sections } from '../../data/glt'
+import { data } from '../../data/glt'
 import Gist from '../contexts/Gist.vue'
 
 let mm;
-
+const sections = data.sections
 const container = ref(null)
 const section1 = ref(null)
 const section2 = ref(null)
@@ -583,11 +583,13 @@ function setupSection3() {
                 end: '+=200%',
                 scrub: true,
                 id: 'sectionST',
+                pinSpacing: false,
                 pin: true,
             }
         })
+        tl.addLabel('entrance')
         tl.fromTo(img, { x: '-100%', autoAlpha: 0, filter: 'blur(40px)' }, { x: '0%', filter: 'blur(0px)', autoAlpha: 1, duration: 0.75 })
-        tl.fromTo(text, { x: '100%', autoAlpha: 0 }, { x: '0%', autoAlpha: 1, duration: 1 }, '-=0.65')
+        tl.fromTo(text, { x: '100%', autoAlpha: 0 }, { x: '0%', autoAlpha: 1, duration: 1 }, 'entrance-=0.05')
 
         tl.fromTo(h,
             { opacity: 0, y: 40 },
@@ -599,7 +601,7 @@ function setupSection3() {
                 onStart: () => {
                     phH.play()
                 }
-            }, 0.8
+            }, 'entrance+=0.8'
         );
         if (p) {
             const phP = new PlaceholderJS(p, { manual: true, speed: 2 });
@@ -613,7 +615,7 @@ function setupSection3() {
                     onStart: () => {
                         phP.play()
                     }
-                }, 1
+                }, 'entrance+=1'
             )
         }
         if (h5) {
@@ -629,7 +631,7 @@ function setupSection3() {
                         if (!tl.reversed()) phP.play()
                     }
                 }
-            ), 1
+            ), 'entrance+=1.1'
         }
         items.forEach((item, i) => {
             tl.fromTo(item,
@@ -640,7 +642,7 @@ function setupSection3() {
                     ease: 'power3.out',
                     duration: 0.3,
                 },
-                1 + (i * 0.15)
+                `entrance+=${1 + (i * 0.15)}`
             );
         })
 
@@ -653,12 +655,15 @@ function setupSection3() {
                 y: 0,
                 duration: 0.25,
                 ease: 'power2.out'
-            }, items.length * 0.15 + 1.2 + (i * 0.05))
+            }, `entrance+=${items.length * 0.15 + 1.2 + (i * 0.05)}`)
         })
-        tl.to(text, { x: '200%', filter: 'blur(40px)', autoAlpha: 1, duration: 0.5 }, '+=0.5')
-        tl.fromTo(gist, { x: '-200%', filter: 'blur(40px)', autoAlpha: 0 }, { x: '0', filter: 'blur(0px)', autoAlpha: 1, duration: 0.5 }, '-=0.5')
-        tl.to(gist, { x: '200%', filter: 'blur(40px)', autoAlpha: 1, duration: 0.5 }, '+=2')
-        tl.to(img, { y: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, '-=0.5')
+        tl.addLabel('gist', 'entrance+=2')
+        tl.to(text, { x: '200%', filter: 'blur(40px)', autoAlpha: 1, duration: 0.5 }, 'gist+=0.5')
+        tl.fromTo(gist, { x: '-200%', filter: 'blur(40px)', autoAlpha: 0 }, { x: '0', filter: 'blur(0px)', autoAlpha: 1, duration: 0.5 }, 'gist+=0.5')
+        
+        tl.addLabel('leave', 'gist+=2')
+        tl.to(gist, { x: '200%', filter: 'blur(40px)', autoAlpha: 1, duration: 0.5 }, 'leave+=0.5')
+        tl.to(img, { y: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 'leave+=0.5')
     })
 }
 
@@ -671,19 +676,26 @@ function setupSection4(start = 'top 15%') {
         let int = 0
         const icons = iconTrack.value.querySelectorAll('.icon-btn')
 
-        textAnim(elm, false, 'play none none none');
+        textAnim(elm, false, 'play none none reverse');
 
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: el,
                 start: start,
-                end: '+=400%',
+                end: '+=200%',
                 id: 'sectionST',
                 scrub: true,
                 pinSpacing: false,
                 pin: true,
             }
         })
+        tl.addLabel('enter')
+        tl.fromTo(elm, {
+                y: '100%', autoAlpha: 0, filter: 'blur(40px)'
+            },{
+                y: '0%', autoAlpha: 1, filter: 'none', duration: 0.5
+            },'enter+=0')
+        tl.addLabel('icons', 'enter+=0.1')
         icons.forEach((icon, index) => {
             const overlayIcon = icon.querySelector('.icon-wipe-overlay');
             const overlayPaths = overlayIcon.querySelectorAll('path');
@@ -691,14 +703,14 @@ function setupSection4(start = 'top 15%') {
             const cardBorder = icon.querySelector('.card-border');
             const iconBTN = icon.querySelector('.icon-btn');
             let len = 0;
-            int = index * 0.5;
+            int = index * 0.25;
             // tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, index * 0.5)
             overlayPaths.forEach((path) => {
                 len = path.getTotalLength();
                 path.style.strokeDasharray = len;
                 path.style.strokeDashoffset = len;
             });
-            tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, int)
+            tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, `icons+=${int}`)
 
             int = int * index
             tl.fromTo(overlayPaths, {
@@ -709,38 +721,41 @@ function setupSection4(start = 'top 15%') {
                 strokeDashoffset: 0,
                 duration: 1,
                 ease: 'power3.out',
-            }, int)
+            },  `icons+=${int}`)
             switch (index) {
                 case 0:
+                    tl.addLabel('iconsRP', 'icons+=3.5')
                     tl.to(icon, {
                         y: 70,
-                        duration: 0.8,
+                        duration: 1.2,
                         ease: 'power3.inOut'
-                    }, '+=3')
+                    }, 'iconsRP+=0')
                     break;
                 case 1:
                     tl.to(icon, {
                         x: -80,
                         y: 30,
-                        duration: 0.8,
+                        duration: 1.2,
                         ease: 'power3.inOut'
-                    }, '-=0.8')
+                    }, 'iconsRP+=0')
                     break;
                 case 2:
                     tl.to(icon, {
                         y: -104,
                         x: 80,
-                        duration: 0.8,
+                        duration: 1.2,
                         ease: 'power3.inOut'
-                    }, '-=0.8')
+                    }, 'iconsRP+=0')
                     break;
             }
         });
 
         if (gistEl) {
+            
+            tl.addLabel('gist', 'iconsRP+=2')
             tl.to(elm, {
-                x: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1
-            }, '+=0')
+                x: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1.5
+            }, 'gist+=0')
             tl.fromTo(gistEl, {
                 y: 1000,
                 autoAlpha: 0,
@@ -749,36 +764,38 @@ function setupSection4(start = 'top 15%') {
                 y: 0,
                 autoAlpha: 1,
                 filter: 'blur(0px)',
-                duration: 1
-            }, '+=0')
+                duration: 1.5
+            }, 'gist+=0')
         }
+        tl.addLabel('iconRoll', 'iconsRP+=1.5')
         tl.to(iconTrack.value, {
             rotation: '360deg',
-            duration: 8,
+            duration: 4,
             ease: 'power1.inOut'
-        }, '+=0.6')
+        }, 'iconRoll+=0.6')
 
         tl.to(icons, {
             rotation: '-360deg',
-            duration: 8,
+            duration: 4,
             ease: 'power1.inOut'
-        }, '-=8')
+        }, 'iconRoll+=0.6')
         tl.to(icons, {
             x: 0,
             y: 0,
             duration: 1.2,
             ease: 'power1.inOut'
-        }, '+=3')
+        }, 'iconRoll+=6')
+        tl.addLabel('leave', 'iconRoll+=8')
         tl.to(icons, {
             y: -60,
             autoAlpha: 0,
             duration: .6,
             stagger: 0.2,
             ease: 'power1.inOut'
-        }, '+=1')
+        }, 'leave+=1')
         tl.to(el, {
             x: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1
-        }, '+=0')
+        }, 'leave+=1')
     })
 }
 
@@ -837,10 +854,3 @@ function setupSection5(left) {
     })
 }
 </script>
-<style scoped>
-.tl,
-.image,
-.icon-btn {
-    will-change: transform, opacity;
-}
-</style>

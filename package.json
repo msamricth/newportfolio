@@ -3,22 +3,25 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
+  "scripts": {
     "dev": "nuxt dev",
     "build": "npx nuxi build",
     "generate": "npx nuxi generate",
+    "preview" : "npx nuxi generate && npx serve .output/public",
     "run": "rm -rf .output/public && rm -rf dist && npx nuxi generate && npx nuxi build && netlify deploy",
     "clean": "rm -rf .output/public dist",
     "gitCommit": "node scripts/git-commit.js",
-    "gitPush" : "git push",
+    "gitPush": "git push",
     "git": "npm run gitCommit && npm run gitPush",
-    "push": "npm run clean && npm run build && npm run git" 
+    "push": "npm run clean && npm run build && npm run git",
+    "static": "npm run clean && npm run git"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.11.0",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/vue-splide": "^0.6.12",
     "@tailwindcss/vite": "^4.1.7",
+    "canvas-confetti": "^1.9.3",
     "gsap": "^3.12.7",
     "hls": "^0.0.1",
     "nuxt": "^3.17.4",

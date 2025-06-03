@@ -7,7 +7,7 @@
             <div ref="navBrand"
                 class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
                 :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
-                <a aria-label="Return Home" href="/" class="text-nowrap animate subtle-slide-in font-black block "
+                <a aria-label="Return Home" href="/" class="text-nowrap subtle-slide-in font-black block opacity-0" :class="{'animate' : mainStore.loaded}"
                     @mouseenter="onBrandHoverIn">
                     hi, i’m Emm.</a>
             </div>
@@ -33,7 +33,7 @@
         </div>
     </header>
 </template>
-  
+
 <script setup>
 import { ref, onMounted, onUnmounted, watch, computed, nextTick } from 'vue';
 import { useMainStore } from '../../stores/main.js'
@@ -64,7 +64,7 @@ function handleResize() {
 const onBrandHoverIn = (event) => {
     if (!isSticky.value) return;
     const targetEl = event.target;
-    const chars = targetEl.querySelectorAll('.char'); 
+    const chars = targetEl.querySelectorAll('.char');
 
     if (!chars.length) return;
 
@@ -94,7 +94,7 @@ const onBrandHoverIn = (event) => {
 };
 const onNavHoverIn = (event) => {
     const targetEl = event.target;
-    const chars = targetEl.querySelectorAll('.char'); 
+    const chars = targetEl.querySelectorAll('.char');
 
     if (!chars.length) return;
 
@@ -209,6 +209,10 @@ function updateStickyTimeline() {
 
     tl.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0)
 
+    tl.call(() => {
+        const brandTL = effectTimeline(navBrand.value, 0.45)
+        brandTL?.play()
+    }, null, int)
     const navItems = nav.value.querySelectorAll('.nav-item')
     navItems.forEach((item, i) => {
         tl.fromTo(item, { autoAlpha: 0 }, {
@@ -253,7 +257,7 @@ function setupStickyObserver() {
 
     stickyObserver.value.observe(sentinal.value)
 }
-onMounted(async() => {
+onMounted(async () => {
     await nextTick()
     tl = gsap.timeline({ paused: true });
     isDesktop.value = window.innerWidth >= 620;
@@ -278,24 +282,24 @@ watch([isSticky, isDesktop], () => {
     }
 })
 watch(
-  () => mainStore.navOpen,
-  async (open) => {
-    if (open && navContainer.value) {
-      // wait for any open-animation / DOM changes
-      await nextTick()
-      const el = navContainer.value
-      const buffer = 200
-      const startY = window.scrollY
-      const targetY =
-        el.getBoundingClientRect().top + startY + buffer
-      window.scrollTo({ top: targetY, behavior: 'smooth' })
-      // optionally close the flag so it only runs once
-      mainStore.closeNav()
+    () => mainStore.navOpen,
+    async (open) => {
+        if (open && navContainer.value) {
+            // wait for any open-animation / DOM changes
+            await nextTick()
+            const el = navContainer.value
+            const buffer = 200
+            const startY = window.scrollY
+            const targetY =
+                el.getBoundingClientRect().top + startY + buffer
+            window.scrollTo({ top: targetY, behavior: 'smooth' })
+            // optionally close the flag so it only runs once
+            mainStore.closeNav()
+        }
     }
-  }
 )
 </script>
-  
+
 <style scoped>
 .nav {
     --theme-main-animation-delay: 0;
@@ -309,4 +313,3 @@ header.fixed {
     top: env(safe-area-inset-top, 0px);
 }
 </style>
-  

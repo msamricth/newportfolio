@@ -137,7 +137,7 @@ onMounted(async() => {
             onLeaveBack: () => {
                 sideBarVisible.value = false
                 //  headingAnim.getTimeline().progress(1).reverse()
-                entryAnims.forEach(anim => anim.getTimeline().progress(1).reverse())
+               // entryAnims.forEach(anim => anim.getTimeline().progress(1).reverse())
                 // sidebarAnims.forEach(anim => anim.getTimeline().progress(1).reverse())
                 tl.reverse()
             }

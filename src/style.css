@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import './css/animations.css';
-@import './css/animations.css';
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant inverted (&:where(.inverted, .inverted *));
 
@@ -26,6 +25,9 @@
   --line-height-base: 1.8;
   --font-weight-black: 900;
   --font-weight-semibold: 600;
+  --text-8mxl: clamp(5.6rem, 5vw, 8rem);
+  --text-8xl: clamp(5.6rem, 12vw, 9.6rem);
+  --text-7xl: clamp(4.76rem, 9vw, 8.6rem);
   --text-6xl: clamp(3.76rem, 8vw, 5.6rem);
   --text-5xl: 5.75rem;
   --text-4xl: 3.5rem;
@@ -129,7 +131,9 @@
   }
 
   .decor-wrap {
-    @apply flex flex-col justify-center items-center saturate-60 hover:saturate-100 transition-[filter];
+    @apply flex flex-col justify-center items-center saturate-60 
+   /* transition-[filter]  to add back once loading anim is finished*/
+    hover:saturate-100;
   }
 
   .decor-grid {
@@ -189,6 +193,12 @@
     --scrollbar-color-track: color-mix(in srgb, oklch(96.7% 0.003 264.542) 10%, transparent);
     --scrollbar-width: thin;
     --scrollbar-width-legacy: 12px;
+  }
+
+  .tl,
+  .image,
+  .icon-btn {
+    will-change: transform, opacity;
   }
 
   @-moz-document url-prefix() {
