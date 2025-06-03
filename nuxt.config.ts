@@ -11,10 +11,15 @@ export default defineNuxtConfig({
   ],
   routeRules: {
     '/work/glt/': { prerender: true },
+    '/':          { headers: { 'cache-control': 'public, max-age=0, must-revalidate' } },
   },
   nitro: {
     prerender: {
-      routes: ['/work/glt/'],
+      routes: [
+        '/',
+        '/about',
+        '/work/',
+        '/work/glt'],
     }
   },
   generate: {
