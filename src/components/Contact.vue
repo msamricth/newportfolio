@@ -38,6 +38,9 @@
 
                 </div>
 
+                <label for="message" class="sr-only focus:not-sr-only" tabindex="0">
+                            Type your message
+                        </label>
                 <textarea
                     class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6 text-primary dark:text-accent inverted:text-electric-purple"
                     :class="{ 'border-b border-yellow': messageError }" id="message" name="message"

@@ -47,7 +47,7 @@
                 </Splide>
             </div>
             <button ref="sliderArrow"
-                class="mt-8 block -right-2 md:-right-8 lg:right-65 xl:right-95 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:hover:bg-primary/20 inverted:bg-background/0 absolute bottom-90 md:bottom-0 xl:bottom-25"
+                class="mt-8 block -right-2 md:-right-8 lg:right-65 xl:right-95 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:hover:bg-primary/20 inverted:bg-background/0 absolute bottom-90 md:bottom-0 xl:bottom-25" title="Next Slide" aria-label="Next Slide"
                 :class="[isHovered ? 'md:opacity-80' : '']" @click="onArrowClick" @mouseenter="onArrowHoverIn"
                 @mouseleave="onArrowHoverOut">
                 <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" class="w-24 md:w-50" :class="activeTextColor"

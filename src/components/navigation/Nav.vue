@@ -16,17 +16,17 @@
                 :class="isSticky ? [''] : ['opacity-0']">
                 <NuxtLink
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/about">
+                    to="/about" aria-label="Find out more about me!">
                     <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
                 </NuxtLink>
                 <NuxtLink
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/work/">
+                    to="/work/"  aria-label="View my featured work!">
                     <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
                 </NuxtLink>
                 <a href="#sayHello"
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
-                    @click.prevent="smoothScrollTo('#sayHello')">
+                    @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
                     <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
                 </a>
             </nav>

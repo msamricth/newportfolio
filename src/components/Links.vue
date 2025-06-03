@@ -1,7 +1,7 @@
 <template>
   <a :href="href" :target="target" @click.prevent="handleClick" rel="noopener noreferrer"
     class="animated-link group transition-all duration-700 overflow-hidden inline-block hover:scale-[1.04]"
-    ref="linkEl" @mouseenter="onHoverIn" @mouseleave="onHoverOut">
+    ref="linkEl" @mouseenter="onHoverIn" @mouseleave="onHoverOut" :aria-label="text">
     <span class="nav-item" v-html="text"></span>
   </a>
 </template>
