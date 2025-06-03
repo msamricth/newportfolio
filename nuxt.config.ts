@@ -8,7 +8,15 @@ export default defineNuxtConfig({
   publicDir: resolve(__dirname, 'public'),
   modules: [
     '@pinia/nuxt',
+    '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    hostname: 'https://codeartisan.dev',
+    gzip: true,
+    routes: async () => {
+       return ['/','/about','/work','/work/glt']
+    }
+  },
   routeRules: {
     '/work/glt/': { prerender: true },
     '/':          { headers: { 'cache-control': 'public, max-age=0, must-revalidate' } },

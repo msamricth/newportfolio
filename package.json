@@ -7,7 +7,7 @@
     "dev": "nuxt dev",
     "build": "npx nuxi build",
     "generate": "npx nuxi generate",
-    "preview" : "npx nuxi generate && npx serve .output/public",
+    "preview": "npx nuxi generate && npx serve .output/public",
     "run": "rm -rf .output/public && rm -rf dist && npx nuxi generate && npx nuxi build && netlify deploy",
     "clean": "rm -rf .output/public dist",
     "gitCommit": "node scripts/git-commit.js",
@@ -17,6 +17,7 @@
     "static": "npm run clean && npm run git"
   },
   "dependencies": {
+    "@nuxtjs/sitemap": "^7.3.1",
     "@pinia/nuxt": "^0.11.0",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/vue-splide": "^0.6.12",

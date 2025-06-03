@@ -12,18 +12,19 @@ import 'node:https';
 import 'node:events';
 import 'node:buffer';
 import 'node:fs';
+import 'node:url';
+import 'consola';
 import 'node:path';
 import 'node:crypto';
-import 'node:url';
 import './server.mjs';
+import 'vue-router';
+import 'gsap';
 import '../routes/renderer.mjs';
 import 'vue-bundle-renderer/runtime';
 import 'unhead/server';
 import 'devalue';
 import 'unhead/plugins';
 import 'unhead/utils';
-import 'vue-router';
-import 'gsap';
 
 const useWorkStore = defineStore("work", () => {
   const activeFilters = ref([]);
