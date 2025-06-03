@@ -16,38 +16,47 @@
 
                 <div class="decor-wrap preloading transition-all duration-1000 justify-center items-center flex md:order-4 lg:order-3 group-[.loaded]:transition-[filter]"
                     :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[5vh] md:translate-x-0 md:-translate-y-[calc(560px-39vh)] lg:-translate-y-[40vh] lg:translate-x-5': !loading }">
-                    <Mixer class="decor h-auto" width="180" height="180" 
-                        :style="animDelay"  :class="loading ? 'jello-horizontal' : 'animate subtle-slide-in-attention scale-200'" />
+                    <Mixer class="decor h-auto" width="180" height="180" :style="animDelay"
+                        :class="loading ? 'jello-horizontal' : 'animate subtle-slide-in-attention scale-200'" />
                 </div>
 
-                <div class="decor-wrap  subtle-slide-in opacity-0 md:order-2 group-[.loaded]:transition-[filter]" :class="{ 'animate': loading }">
-                    <Flower4
-                        class="decor heartbeat h-auto" width="180" height="180" />
+                <div class="decor-wrap  subtle-slide-in opacity-0 md:order-2 group-[.loaded]:transition-[filter]"
+                    :class="{ 'animate': loading }">
+                    <Flower4 class="decor heartbeat h-auto" width="180" height="180" />
                 </div>
 
                 <div class="decor-wrap preloading transition-all duration-1000 md:order-5 group-[.loaded]:transition-[filter]"
                     :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[8vh] md:translate-x-[19vw] lg:translate-x-[5vw] md:-translate-y-[calc(555px-39vh)] lg:-translate-y-[40vh]': !loading }">
-                    <Flower2 width="180" height="180" class="decor h-auto" :class="loading ? 'rotate-ccw90-forever' : 'animate subtle-slide-in-attention scale-200'" :style="!loading ? '--theme-main-animation-delay: 600ms' : animDelay"/>
+                    <Flower2 width="180" height="180" class="decor h-auto"
+                        :class="loading ? 'rotate-ccw90-forever' : 'animate subtle-slide-in-attention scale-200'"
+                        :style="!loading ? '--theme-main-animation-delay: 600ms' : animDelay" />
                 </div>
-                
-                <div class="decor-wrap  subtle-slide-in opacity-0 md:order-3 lg:order-4 group-[.loaded]:transition-[filter]" :class="{ 'animate': loading }">
+
+                <div class="decor-wrap  subtle-slide-in opacity-0 md:order-3 lg:order-4 group-[.loaded]:transition-[filter]"
+                    :class="{ 'animate': loading }">
                     <Heart class="decor jello-horizontal h-auto" width="180" height="180" />
                 </div>
 
-                <div class="decor-wrap  subtle-slide-in opacity-0 group-[.loaded]:transition-[filter]" :class="{ 'animate': loading }">
+                <div class="decor-wrap  subtle-slide-in opacity-0 group-[.loaded]:transition-[filter]"
+                    :class="{ 'animate': loading }">
                     <Flower5 class="decor rotate-ccw90-forever h-auto" width="180" height="180" />
                 </div>
 
-                <div class="decor-wrap  subtle-slide-in opacity-0  md:order-6 group-[.loaded]:transition-[filter]" :class="{ 'animate': loading }">
+                <div class="decor-wrap  subtle-slide-in opacity-0  md:order-6 group-[.loaded]:transition-[filter]"
+                    :class="{ 'animate': loading }">
                     <BMX class="decor rotate-forever  h-auto" width="180" height="180" />
                 </div>
 
-                <div class="decor-wrap  subtle-slide-in opacity-0  md:order-7 group-[.loaded]:transition-[filter]" :class="{ 'animate': loading }">
+                <div class="decor-wrap  subtle-slide-in opacity-0  md:order-7 group-[.loaded]:transition-[filter]"
+                    :class="{ 'animate': loading }">
                     <Headphones class="decor shake-top h-auto" width="180" height="180" />
                 </div>
 
-                <div class="decor-wrap preloading transition-all duration-1000 md:order-8 group-[.loaded]:transition-[filter]" :class="{ '-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-39vh)] md:-translate-x-[0vw]  md:-translate-y-[430px] lg:-translate-y-[40vh] lg:-translate-x-[2vw]': !loading }">
-                    <Code class="decor h-auto" width="180" height="180" :style="{'--theme-main-animation-delay:900' : !loading}" :class="loading ? 'vibrate' : 'animate subtle-slide-in-attention scale-250'" />
+                <div class="decor-wrap preloading transition-all duration-1000 md:order-8 group-[.loaded]:transition-[filter]"
+                    :class="{ '-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-39vh)] md:-translate-x-[0vw]  md:-translate-y-[430px] lg:-translate-y-[40vh] lg:-translate-x-[2vw]': !loading }">
+                    <Code class="decor h-auto" width="180" height="180"
+                        :style="{ '--theme-main-animation-delay:900': !loading }"
+                        :class="loading ? 'vibrate' : 'animate subtle-slide-in-attention scale-250'" />
                 </div>
 
             </div>
@@ -100,34 +109,37 @@ onMounted(async () => {
 
     const icons = Array.from(gridEl.querySelectorAll('.decor-wrap'))
 
-    //gsap.set(icons, { scale: 1, transformOrigin: '50% 50%' })
     interval = setInterval(() => {
         delay.value = (Math.random() * 1.5).toFixed(2) + 's'
     }, 1000)
 
 
-    //  shuffleIcons(icons)
-    // setInterval(() => { shuffleIcons(icons) }, 2000)
+
 
     const iconFadeTL = gsap.timeline({ paused: true })
-    
-    loading.value = true
-    
-    /* iconFadeTL.fromTo(icons, {
-       //  alpha: 1,
-        // scale: 1,
-     }, {
-         alpha: 0,
-         scale: 0,
-         ease: 'cubic-bezier(.215, .61, .355, 1.000)',
-         duration: 0.35,
-         stagger: 0.01,
-     });
- */
 
-    iconFadeTL.progress(1).reverse();
-        anim = new placeholderJS((headline), { manual: true, speed:2 })
-        anim.play()
+    loading.value = true
+
+    if (loading.value) {
+        gsap.set(icons, { scale: 1, transformOrigin: '50% 50%' })
+        shuffleIcons(icons)
+        setInterval(() => { shuffleIcons(icons) }, 2000)
+        iconFadeTL.fromTo(icons, {
+            alpha: 1,
+            scale: 1,
+        }, {
+            alpha: 0,
+            scale: 0,
+            ease: 'cubic-bezier(.215, .61, .355, 1.000)',
+            duration: 0.35,
+            stagger: 0.01,
+        });
+
+
+        iconFadeTL.progress(1).reverse();
+    }
+    anim = new placeholderJS((headline), { manual: true, speed: 2 })
+    anim.play()
     ScrollTrigger.create({
         trigger: triggerEl,
         start: 'top 20%',
