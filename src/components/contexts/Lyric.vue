@@ -269,9 +269,6 @@ onMounted(async () => {
         .call(() => {
             tl.restart()
         }, null, 'encore+=3.5')
-
-    // play automatically
-    // tl.play()
     ScrollTrigger.create({
         trigger: '.header-scenes',
         onEnter:()=>{
@@ -284,7 +281,7 @@ onMounted(async () => {
             store.toggleFold(true);
         }
     })
-    setTimeout(() => loaded.value = true, tl.play(), 250)
+    setTimeout(() => loaded.value = true, 250)
 })
 </script>
 
