@@ -4,36 +4,36 @@
         :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
-            <div ref="navBrand"
+            <h1 ref="navBrand"
                 class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
                 :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
-                <a aria-label="Return Home" href="/" class="text-nowrap animate subtle-slide-in font-black block "
-                    @mouseenter="onBrandHoverIn">
+                <a aria-label="Return Home" href="/" class="text-nowrap subtle-slide-in font-black block opacity-0"
+                    :class="{ 'animate': mainStore.loaded }" @mouseenter="onBrandHoverIn">
                     hi, i’m Emm.</a>
-            </div>
+            </h1>
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
                 :class="isSticky ? [''] : ['opacity-0']">
                 <NuxtLink
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/about">
+                    to="/about" aria-label="Find out more about me!">
                     <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
                 </NuxtLink>
                 <NuxtLink
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/work/">
+                    to="/work/" aria-label="View my featured work!">
                     <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
                 </NuxtLink>
                 <a href="#sayHello"
                     class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
-                    @click.prevent="smoothScrollTo('#sayHello')">
+                    @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
                     <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
                 </a>
             </nav>
         </div>
     </header>
 </template>
-  
+
 <script setup>
 import { ref, onMounted, onUnmounted, watch, computed, nextTick } from 'vue';
 import { useMainStore } from '../../stores/main.js'
@@ -64,7 +64,7 @@ function handleResize() {
 const onBrandHoverIn = (event) => {
     if (!isSticky.value) return;
     const targetEl = event.target;
-    const chars = targetEl.querySelectorAll('.char'); 
+    const chars = targetEl.querySelectorAll('.char');
 
     if (!chars.length) return;
 
@@ -94,7 +94,7 @@ const onBrandHoverIn = (event) => {
 };
 const onNavHoverIn = (event) => {
     const targetEl = event.target;
-    const chars = targetEl.querySelectorAll('.char'); 
+    const chars = targetEl.querySelectorAll('.char');
 
     if (!chars.length) return;
 
@@ -209,6 +209,10 @@ function updateStickyTimeline() {
 
     tl.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0)
 
+    tl.call(() => {
+        const brandTL = effectTimeline(navBrand.value, 0.45)
+        brandTL?.play()
+    }, null, int)
     const navItems = nav.value.querySelectorAll('.nav-item')
     navItems.forEach((item, i) => {
         tl.fromTo(item, { autoAlpha: 0 }, {
@@ -253,7 +257,7 @@ function setupStickyObserver() {
 
     stickyObserver.value.observe(sentinal.value)
 }
-onMounted(async() => {
+onMounted(async () => {
     await nextTick()
     tl = gsap.timeline({ paused: true });
     isDesktop.value = window.innerWidth >= 620;
@@ -278,24 +282,24 @@ watch([isSticky, isDesktop], () => {
     }
 })
 watch(
-  () => mainStore.navOpen,
-  async (open) => {
-    if (open && navContainer.value) {
-      // wait for any open-animation / DOM changes
-      await nextTick()
-      const el = navContainer.value
-      const buffer = 200
-      const startY = window.scrollY
-      const targetY =
-        el.getBoundingClientRect().top + startY + buffer
-      window.scrollTo({ top: targetY, behavior: 'smooth' })
-      // optionally close the flag so it only runs once
-      mainStore.closeNav()
+    () => mainStore.navOpen,
+    async (open) => {
+        if (open && navContainer.value) {
+            // wait for any open-animation / DOM changes
+            await nextTick()
+            const el = navContainer.value
+            const buffer = 200
+            const startY = window.scrollY
+            const targetY =
+                el.getBoundingClientRect().top + startY + buffer
+            window.scrollTo({ top: targetY, behavior: 'smooth' })
+            // optionally close the flag so it only runs once
+            mainStore.closeNav()
+        }
     }
-  }
 )
 </script>
-  
+
 <style scoped>
 .nav {
     --theme-main-animation-delay: 0;
@@ -309,4 +313,3 @@ header.fixed {
     top: env(safe-area-inset-top, 0px);
 }
 </style>
-  

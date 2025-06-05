@@ -10,7 +10,7 @@
                     <SplideSlide v-for="(slide, index) in slides" :key="index" class="transition-all duration-500 group"
                         :class="slide.textColor">
                         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center">
-                            <div class="flex flex-col md:flex-row justify-center items-start gap-8" v-if="loaded">
+                            <div class="flex flex-col md:flex-row justify-center items-start gap-8" v-if="loaded && store.loaded">
                                 <img crossorigin="anonymous" :src="slide.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_1260')"
                                     class="w-full object-cover rounded-xl group-[.is-active]:w-[90%] md:group-[.is-active]:w-[var(--width-slide)] transition-all cursor-pointer duriation-900"
                                     @click.prevent="openWork(slide.slug)" />
@@ -47,7 +47,7 @@
                 </Splide>
             </div>
             <button ref="sliderArrow"
-                class="mt-8 block -right-2 md:-right-8 lg:right-65 xl:right-95 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:hover:bg-primary/20 inverted:bg-background/0 absolute bottom-90 md:bottom-0 xl:bottom-25"
+                class="mt-8 block -right-2 md:-right-8 lg:right-65 xl:right-95 mx-auto text-white px-6 py-2 rounded-full transition duriation-900 cursor-pointer w-24 md:w-50 flex flex-col justify-center items-center group/slider h-26 md:h-50 hover:opacity-80 dark:hover:bg-primary/20 inverted:bg-background/0 absolute bottom-90 md:bottom-0 xl:bottom-25" title="Next Slide" aria-label="Next Slide"
                 :class="[isHovered ? 'md:opacity-80' : '']" @click="onArrowClick" @mouseenter="onArrowHoverIn"
                 @mouseleave="onArrowHoverOut">
                 <svg fill="none" stroke-width="1.5" viewBox="0 0 24 24" class="w-24 md:w-50" :class="activeTextColor"

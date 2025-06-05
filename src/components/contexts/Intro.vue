@@ -1,6 +1,7 @@
 <template>
     <section ref="section" class="pt-16" id="about">
-        <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto">
+        <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto"
+            :class="{ 'opacity-0': !store.loaded }">
             <div class="min-h-[80vh]">
                 <div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-8 top-[15%] md:top-[12%]">
                     <h2 class="italic subtitle mb-4 text-3xl placeholder-line" data-splitting="words">So
@@ -26,14 +27,14 @@
                     </div>
                     <MainButton href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"
-                        label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" />
+                        label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" v-if="store.loaded" />
                 </div>
             </div>
             <Artisan />
         </div>
     </section>
 </template>
-  
+
 <script setup>
 
 import { ref, onMounted, nextTick } from 'vue';
@@ -42,17 +43,18 @@ import { useNuxtApp } from '#app'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
 const { $gsap: gsap } = useNuxtApp()
-
+import { useMainStore } from '../../stores/main.js';
 import PlaceholderJS from './../../utils/placeholder.js';
 import MainButton from './../buttons/MainButton.vue'
 import { navigateTo } from '#imports';
 import Artisan from './Artisan.vue';
+const store = useMainStore()
 const isBQ = ref(false);
 const section = ref(null)
 const openAbout = () => {
     navigateTo('/about')
 }
-onMounted(async() => {
+onMounted(async () => {
     await nextTick();
     const sectionEl = section.value;
     const introduction = sectionEl.querySelector('.introduction');
@@ -92,26 +94,27 @@ onMounted(async() => {
 
     });
     new PlaceholderJS(introduction, { scrub: true, speed: 2, start: 'top 70%' });
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: btn,
-            start: 'top 90%',
-            toggleActions: 'play reverse play reverse',
-            scrub: true
-        },
-        paused: true
-    });
-    tl.call(() => {
-        btn.classList.remove('wobble-ver-right')
-    }, null, 0)
-    tl.fromTo(btn, { autoAlpha: 0, y: 40 }, {
-        autoAlpha: 1, y: 0,
-        duration: 0.3, ease: 'power2.out',
-    }, 0)
-    tl.call(() => {
-        btn.classList.add('wobble-ver-right')
-    }, null, 0.1)
+    if (store.loaded) {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: btn,
+                start: 'top 90%',
+                toggleActions: 'play reverse play reverse',
+                scrub: true
+            },
+            paused: true
+        });
+        tl.call(() => {
+            btn.classList.remove('wobble-ver-right')
+        }, null, 0)
+        tl.fromTo(btn, { autoAlpha: 0, y: 40 }, {
+            autoAlpha: 1, y: 0,
+            duration: 0.3, ease: 'power2.out',
+        }, 0)
+        tl.call(() => {
+            btn.classList.add('wobble-ver-right')
+        }, null, 0.1)
+    }
 
 });
 

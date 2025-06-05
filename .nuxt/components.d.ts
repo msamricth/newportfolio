@@ -17,6 +17,8 @@ interface _GlobalComponents {
     'HeroSection': typeof import("../src/components/HeroSection.vue")['default']
     'Links': typeof import("../src/components/Links.vue")['default']
     'LogoGarden': typeof import("../src/components/LogoGarden.vue")['default']
+    'Preloader': typeof import("../src/components/Preloader.vue")['default']
+    'Testimonials': typeof import("../src/components/Testimonials.vue")['default']
     'AnimatedCTA': typeof import("../src/components/animatedCTA.vue")['default']
     'ButtonsGithub': typeof import("../src/components/buttons/Github.vue")['default']
     'ButtonsLinkedIn': typeof import("../src/components/buttons/LinkedIn.vue")['default']
@@ -27,20 +29,35 @@ interface _GlobalComponents {
     'CaseStudiesFullImage': typeof import("../src/components/case-studies/FullImage.vue")['default']
     'CaseStudiesIntro': typeof import("../src/components/case-studies/Intro.vue")['default']
     'CaseStudiesOverview': typeof import("../src/components/case-studies/Overview.vue")['default']
-    'CaseStudiesResults': typeof import("../src/components/case-studies/Results.vue")['default']
-    'CaseStudiesSection': typeof import("../src/components/case-studies/Section.vue")['default']
     'CaseStudiesSections': typeof import("../src/components/case-studies/Sections.vue")['default']
+    'CaseStudiesSectionsBasic': typeof import("../src/components/case-studies/sections/Basic.vue")['default']
+    'CaseStudiesSectionsBasicImage': typeof import("../src/components/case-studies/sections/BasicImage.vue")['default']
+    'CaseStudiesSectionsIconGist': typeof import("../src/components/case-studies/sections/IconGist.vue")['default']
+    'CaseStudiesSectionsImage': typeof import("../src/components/case-studies/sections/Image.vue")['default']
+    'CaseStudiesSectionsImageGist': typeof import("../src/components/case-studies/sections/ImageGist.vue")['default']
+    'CaseStudiesSectionsSlideShow': typeof import("../src/components/case-studies/sections/SlideShow.vue")['default']
     'ContextsAbout': typeof import("../src/components/contexts/About.vue")['default']
     'ContextsArtisan': typeof import("../src/components/contexts/Artisan.vue")['default']
     'ContextsGist': typeof import("../src/components/contexts/Gist.vue")['default']
     'ContextsIntro': typeof import("../src/components/contexts/Intro.vue")['default']
+    'ContextsLyric': typeof import("../src/components/contexts/Lyric.vue")['default']
+    'ContextsModal': typeof import("../src/components/contexts/Modal.vue")['default']
     'ContextsOfferings': typeof import("../src/components/contexts/Offerings.vue")['default']
     'ContextsTestimonial': typeof import("../src/components/contexts/Testimonial.vue")['default']
     'IconsAPI': typeof import("../src/components/icons/API.vue")['default']
     'IconsActionNetwork': typeof import("../src/components/icons/ActionNetwork.vue")['default']
     'IconsAirtable': typeof import("../src/components/icons/Airtable.vue")['default']
+    'IconsBMX': typeof import("../src/components/icons/BMX.vue")['default']
+    'IconsCode': typeof import("../src/components/icons/Code.vue")['default']
+    'IconsFire': typeof import("../src/components/icons/Fire.vue")['default']
+    'IconsFlower2': typeof import("../src/components/icons/Flower2.vue")['default']
+    'IconsFlower4': typeof import("../src/components/icons/Flower4.vue")['default']
+    'IconsFlower5': typeof import("../src/components/icons/Flower5.vue")['default']
     'IconsFrontend': typeof import("../src/components/icons/Frontend.vue")['default']
     'IconsGLT': typeof import("../src/components/icons/GLT.vue")['default']
+    'IconsHeadphones': typeof import("../src/components/icons/Headphones.vue")['default']
+    'IconsHeart': typeof import("../src/components/icons/Heart.vue")['default']
+    'IconsMixer': typeof import("../src/components/icons/Mixer.vue")['default']
     'IconsProblemSolving': typeof import("../src/components/icons/ProblemSolving.vue")['default']
     'IconsUX': typeof import("../src/components/icons/UX.vue")['default']
     'IconsWordpress': typeof import("../src/components/icons/Wordpress.vue")['default']
@@ -81,6 +98,8 @@ interface _GlobalComponents {
     'LazyHeroSection': LazyComponent<typeof import("../src/components/HeroSection.vue")['default']>
     'LazyLinks': LazyComponent<typeof import("../src/components/Links.vue")['default']>
     'LazyLogoGarden': LazyComponent<typeof import("../src/components/LogoGarden.vue")['default']>
+    'LazyPreloader': LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
+    'LazyTestimonials': LazyComponent<typeof import("../src/components/Testimonials.vue")['default']>
     'LazyAnimatedCTA': LazyComponent<typeof import("../src/components/animatedCTA.vue")['default']>
     'LazyButtonsGithub': LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
     'LazyButtonsLinkedIn': LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
@@ -91,20 +110,35 @@ interface _GlobalComponents {
     'LazyCaseStudiesFullImage': LazyComponent<typeof import("../src/components/case-studies/FullImage.vue")['default']>
     'LazyCaseStudiesIntro': LazyComponent<typeof import("../src/components/case-studies/Intro.vue")['default']>
     'LazyCaseStudiesOverview': LazyComponent<typeof import("../src/components/case-studies/Overview.vue")['default']>
-    'LazyCaseStudiesResults': LazyComponent<typeof import("../src/components/case-studies/Results.vue")['default']>
-    'LazyCaseStudiesSection': LazyComponent<typeof import("../src/components/case-studies/Section.vue")['default']>
     'LazyCaseStudiesSections': LazyComponent<typeof import("../src/components/case-studies/Sections.vue")['default']>
+    'LazyCaseStudiesSectionsBasic': LazyComponent<typeof import("../src/components/case-studies/sections/Basic.vue")['default']>
+    'LazyCaseStudiesSectionsBasicImage': LazyComponent<typeof import("../src/components/case-studies/sections/BasicImage.vue")['default']>
+    'LazyCaseStudiesSectionsIconGist': LazyComponent<typeof import("../src/components/case-studies/sections/IconGist.vue")['default']>
+    'LazyCaseStudiesSectionsImage': LazyComponent<typeof import("../src/components/case-studies/sections/Image.vue")['default']>
+    'LazyCaseStudiesSectionsImageGist': LazyComponent<typeof import("../src/components/case-studies/sections/ImageGist.vue")['default']>
+    'LazyCaseStudiesSectionsSlideShow': LazyComponent<typeof import("../src/components/case-studies/sections/SlideShow.vue")['default']>
     'LazyContextsAbout': LazyComponent<typeof import("../src/components/contexts/About.vue")['default']>
     'LazyContextsArtisan': LazyComponent<typeof import("../src/components/contexts/Artisan.vue")['default']>
     'LazyContextsGist': LazyComponent<typeof import("../src/components/contexts/Gist.vue")['default']>
     'LazyContextsIntro': LazyComponent<typeof import("../src/components/contexts/Intro.vue")['default']>
+    'LazyContextsLyric': LazyComponent<typeof import("../src/components/contexts/Lyric.vue")['default']>
+    'LazyContextsModal': LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
     'LazyContextsOfferings': LazyComponent<typeof import("../src/components/contexts/Offerings.vue")['default']>
     'LazyContextsTestimonial': LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
     'LazyIconsAPI': LazyComponent<typeof import("../src/components/icons/API.vue")['default']>
     'LazyIconsActionNetwork': LazyComponent<typeof import("../src/components/icons/ActionNetwork.vue")['default']>
     'LazyIconsAirtable': LazyComponent<typeof import("../src/components/icons/Airtable.vue")['default']>
+    'LazyIconsBMX': LazyComponent<typeof import("../src/components/icons/BMX.vue")['default']>
+    'LazyIconsCode': LazyComponent<typeof import("../src/components/icons/Code.vue")['default']>
+    'LazyIconsFire': LazyComponent<typeof import("../src/components/icons/Fire.vue")['default']>
+    'LazyIconsFlower2': LazyComponent<typeof import("../src/components/icons/Flower2.vue")['default']>
+    'LazyIconsFlower4': LazyComponent<typeof import("../src/components/icons/Flower4.vue")['default']>
+    'LazyIconsFlower5': LazyComponent<typeof import("../src/components/icons/Flower5.vue")['default']>
     'LazyIconsFrontend': LazyComponent<typeof import("../src/components/icons/Frontend.vue")['default']>
     'LazyIconsGLT': LazyComponent<typeof import("../src/components/icons/GLT.vue")['default']>
+    'LazyIconsHeadphones': LazyComponent<typeof import("../src/components/icons/Headphones.vue")['default']>
+    'LazyIconsHeart': LazyComponent<typeof import("../src/components/icons/Heart.vue")['default']>
+    'LazyIconsMixer': LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
     'LazyIconsProblemSolving': LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
     'LazyIconsUX': LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>
     'LazyIconsWordpress': LazyComponent<typeof import("../src/components/icons/Wordpress.vue")['default']>
@@ -151,6 +185,8 @@ export const Footer: typeof import("../src/components/Footer.vue")['default']
 export const HeroSection: typeof import("../src/components/HeroSection.vue")['default']
 export const Links: typeof import("../src/components/Links.vue")['default']
 export const LogoGarden: typeof import("../src/components/LogoGarden.vue")['default']
+export const Preloader: typeof import("../src/components/Preloader.vue")['default']
+export const Testimonials: typeof import("../src/components/Testimonials.vue")['default']
 export const AnimatedCTA: typeof import("../src/components/animatedCTA.vue")['default']
 export const ButtonsGithub: typeof import("../src/components/buttons/Github.vue")['default']
 export const ButtonsLinkedIn: typeof import("../src/components/buttons/LinkedIn.vue")['default']
@@ -161,20 +197,35 @@ export const CaseStudiesChallenge: typeof import("../src/components/case-studies
 export const CaseStudiesFullImage: typeof import("../src/components/case-studies/FullImage.vue")['default']
 export const CaseStudiesIntro: typeof import("../src/components/case-studies/Intro.vue")['default']
 export const CaseStudiesOverview: typeof import("../src/components/case-studies/Overview.vue")['default']
-export const CaseStudiesResults: typeof import("../src/components/case-studies/Results.vue")['default']
-export const CaseStudiesSection: typeof import("../src/components/case-studies/Section.vue")['default']
 export const CaseStudiesSections: typeof import("../src/components/case-studies/Sections.vue")['default']
+export const CaseStudiesSectionsBasic: typeof import("../src/components/case-studies/sections/Basic.vue")['default']
+export const CaseStudiesSectionsBasicImage: typeof import("../src/components/case-studies/sections/BasicImage.vue")['default']
+export const CaseStudiesSectionsIconGist: typeof import("../src/components/case-studies/sections/IconGist.vue")['default']
+export const CaseStudiesSectionsImage: typeof import("../src/components/case-studies/sections/Image.vue")['default']
+export const CaseStudiesSectionsImageGist: typeof import("../src/components/case-studies/sections/ImageGist.vue")['default']
+export const CaseStudiesSectionsSlideShow: typeof import("../src/components/case-studies/sections/SlideShow.vue")['default']
 export const ContextsAbout: typeof import("../src/components/contexts/About.vue")['default']
 export const ContextsArtisan: typeof import("../src/components/contexts/Artisan.vue")['default']
 export const ContextsGist: typeof import("../src/components/contexts/Gist.vue")['default']
 export const ContextsIntro: typeof import("../src/components/contexts/Intro.vue")['default']
+export const ContextsLyric: typeof import("../src/components/contexts/Lyric.vue")['default']
+export const ContextsModal: typeof import("../src/components/contexts/Modal.vue")['default']
 export const ContextsOfferings: typeof import("../src/components/contexts/Offerings.vue")['default']
 export const ContextsTestimonial: typeof import("../src/components/contexts/Testimonial.vue")['default']
 export const IconsAPI: typeof import("../src/components/icons/API.vue")['default']
 export const IconsActionNetwork: typeof import("../src/components/icons/ActionNetwork.vue")['default']
 export const IconsAirtable: typeof import("../src/components/icons/Airtable.vue")['default']
+export const IconsBMX: typeof import("../src/components/icons/BMX.vue")['default']
+export const IconsCode: typeof import("../src/components/icons/Code.vue")['default']
+export const IconsFire: typeof import("../src/components/icons/Fire.vue")['default']
+export const IconsFlower2: typeof import("../src/components/icons/Flower2.vue")['default']
+export const IconsFlower4: typeof import("../src/components/icons/Flower4.vue")['default']
+export const IconsFlower5: typeof import("../src/components/icons/Flower5.vue")['default']
 export const IconsFrontend: typeof import("../src/components/icons/Frontend.vue")['default']
 export const IconsGLT: typeof import("../src/components/icons/GLT.vue")['default']
+export const IconsHeadphones: typeof import("../src/components/icons/Headphones.vue")['default']
+export const IconsHeart: typeof import("../src/components/icons/Heart.vue")['default']
+export const IconsMixer: typeof import("../src/components/icons/Mixer.vue")['default']
 export const IconsProblemSolving: typeof import("../src/components/icons/ProblemSolving.vue")['default']
 export const IconsUX: typeof import("../src/components/icons/UX.vue")['default']
 export const IconsWordpress: typeof import("../src/components/icons/Wordpress.vue")['default']
@@ -215,6 +266,8 @@ export const LazyFooter: LazyComponent<typeof import("../src/components/Footer.v
 export const LazyHeroSection: LazyComponent<typeof import("../src/components/HeroSection.vue")['default']>
 export const LazyLinks: LazyComponent<typeof import("../src/components/Links.vue")['default']>
 export const LazyLogoGarden: LazyComponent<typeof import("../src/components/LogoGarden.vue")['default']>
+export const LazyPreloader: LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
+export const LazyTestimonials: LazyComponent<typeof import("../src/components/Testimonials.vue")['default']>
 export const LazyAnimatedCTA: LazyComponent<typeof import("../src/components/animatedCTA.vue")['default']>
 export const LazyButtonsGithub: LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
 export const LazyButtonsLinkedIn: LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
@@ -225,20 +278,35 @@ export const LazyCaseStudiesChallenge: LazyComponent<typeof import("../src/compo
 export const LazyCaseStudiesFullImage: LazyComponent<typeof import("../src/components/case-studies/FullImage.vue")['default']>
 export const LazyCaseStudiesIntro: LazyComponent<typeof import("../src/components/case-studies/Intro.vue")['default']>
 export const LazyCaseStudiesOverview: LazyComponent<typeof import("../src/components/case-studies/Overview.vue")['default']>
-export const LazyCaseStudiesResults: LazyComponent<typeof import("../src/components/case-studies/Results.vue")['default']>
-export const LazyCaseStudiesSection: LazyComponent<typeof import("../src/components/case-studies/Section.vue")['default']>
 export const LazyCaseStudiesSections: LazyComponent<typeof import("../src/components/case-studies/Sections.vue")['default']>
+export const LazyCaseStudiesSectionsBasic: LazyComponent<typeof import("../src/components/case-studies/sections/Basic.vue")['default']>
+export const LazyCaseStudiesSectionsBasicImage: LazyComponent<typeof import("../src/components/case-studies/sections/BasicImage.vue")['default']>
+export const LazyCaseStudiesSectionsIconGist: LazyComponent<typeof import("../src/components/case-studies/sections/IconGist.vue")['default']>
+export const LazyCaseStudiesSectionsImage: LazyComponent<typeof import("../src/components/case-studies/sections/Image.vue")['default']>
+export const LazyCaseStudiesSectionsImageGist: LazyComponent<typeof import("../src/components/case-studies/sections/ImageGist.vue")['default']>
+export const LazyCaseStudiesSectionsSlideShow: LazyComponent<typeof import("../src/components/case-studies/sections/SlideShow.vue")['default']>
 export const LazyContextsAbout: LazyComponent<typeof import("../src/components/contexts/About.vue")['default']>
 export const LazyContextsArtisan: LazyComponent<typeof import("../src/components/contexts/Artisan.vue")['default']>
 export const LazyContextsGist: LazyComponent<typeof import("../src/components/contexts/Gist.vue")['default']>
 export const LazyContextsIntro: LazyComponent<typeof import("../src/components/contexts/Intro.vue")['default']>
+export const LazyContextsLyric: LazyComponent<typeof import("../src/components/contexts/Lyric.vue")['default']>
+export const LazyContextsModal: LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
 export const LazyContextsOfferings: LazyComponent<typeof import("../src/components/contexts/Offerings.vue")['default']>
 export const LazyContextsTestimonial: LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
 export const LazyIconsAPI: LazyComponent<typeof import("../src/components/icons/API.vue")['default']>
 export const LazyIconsActionNetwork: LazyComponent<typeof import("../src/components/icons/ActionNetwork.vue")['default']>
 export const LazyIconsAirtable: LazyComponent<typeof import("../src/components/icons/Airtable.vue")['default']>
+export const LazyIconsBMX: LazyComponent<typeof import("../src/components/icons/BMX.vue")['default']>
+export const LazyIconsCode: LazyComponent<typeof import("../src/components/icons/Code.vue")['default']>
+export const LazyIconsFire: LazyComponent<typeof import("../src/components/icons/Fire.vue")['default']>
+export const LazyIconsFlower2: LazyComponent<typeof import("../src/components/icons/Flower2.vue")['default']>
+export const LazyIconsFlower4: LazyComponent<typeof import("../src/components/icons/Flower4.vue")['default']>
+export const LazyIconsFlower5: LazyComponent<typeof import("../src/components/icons/Flower5.vue")['default']>
 export const LazyIconsFrontend: LazyComponent<typeof import("../src/components/icons/Frontend.vue")['default']>
 export const LazyIconsGLT: LazyComponent<typeof import("../src/components/icons/GLT.vue")['default']>
+export const LazyIconsHeadphones: LazyComponent<typeof import("../src/components/icons/Headphones.vue")['default']>
+export const LazyIconsHeart: LazyComponent<typeof import("../src/components/icons/Heart.vue")['default']>
+export const LazyIconsMixer: LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
 export const LazyIconsProblemSolving: LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
 export const LazyIconsUX: LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>
 export const LazyIconsWordpress: LazyComponent<typeof import("../src/components/icons/Wordpress.vue")['default']>

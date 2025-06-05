@@ -1,5 +1,5 @@
 import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'vue-bundle-renderer/runtime';
-import { j as joinRelativeURL, u as useRuntimeConfig, g as getResponseStatusText, c as getResponseStatus, e as defineRenderHandler, f as getQuery, h as createError, i as getRouteRules, b as useNitroApp } from '../_/nitro.mjs';
+import { c as buildAssetsURL, u as useRuntimeConfig, g as getResponseStatusText, e as getResponseStatus, f as defineRenderHandler, p as publicAssetsURL, h as getQuery, i as createError, j as getRouteRules, b as useNitroApp } from '../_/nitro.mjs';
 import { renderToString } from 'vue/server-renderer';
 import { createHead as createHead$1, propsToString, renderSSRHead } from 'unhead/server';
 import { stringify, uneval } from 'devalue';
@@ -82,7 +82,7 @@ function createHead(options = {}) {
   return head;
 }
 
-const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"}],"link":[{"rel":"icon","href":"/favicon.svg","type":"image/svg+xml"},{"rel":"dns-prefetch","href":"//fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"preconnect","href":"https://res.cloudinary.com"},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"}],"style":[],"script":[{"src":"https://cdn.jsdelivr.net/npm/hls.js@1","defer":true,"crossorigin":"anonymous"},{"src":"https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5","async":true},{"children":"\n            window.dataLayer = window.dataLayer || [];\n            function gtag(){ dataLayer.push(arguments); }\n            gtag('js', new Date());\n            gtag('config', 'G-JPS46M3VH5');\n          "}],"noscript":[],"titleTemplate":"%s | Code Artisan"};
+const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"}],"link":[{"rel":"icon","href":"/favicon.svg","type":"image/svg+xml"},{"rel":"dns-prefetch","href":"//fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"preconnect","href":"https://res.cloudinary.com"},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap","media":"print","onload":"this.media='all'"}],"style":[],"script":[{"src":"/js/hls.mjs","type":"module","defer":true},{"src":"/js/hls.min.js","nomodule":true,"defer":true},{"src":"https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5","async":true},{"children":"\n            window.dataLayer = window.dataLayer || [];\n            function gtag(){ dataLayer.push(arguments); }\n            gtag('js', new Date());\n            gtag('config', 'G-JPS46M3VH5');\n          "}],"noscript":[],"titleTemplate":"%s | Code Artisan","htmlAttrs":{"lang":"en"}};
 
 const appRootTag = "div";
 
@@ -93,21 +93,6 @@ const appTeleportTag = "div";
 const appTeleportAttrs = {"id":"teleports"};
 
 const appId = "nuxt-app";
-
-function baseURL() {
-  return useRuntimeConfig().app.baseURL;
-}
-function buildAssetsDir() {
-  return useRuntimeConfig().app.buildAssetsDir;
-}
-function buildAssetsURL(...path) {
-  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
-}
-function publicAssetsURL(...path) {
-  const app = useRuntimeConfig().app;
-  const publicBase = app.cdnURL || app.baseURL;
-  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
-}
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
@@ -421,5 +406,5 @@ const renderer$1 = /*#__PURE__*/Object.freeze({
   default: renderer
 });
 
-export { useSeoMeta as a, baseURL as b, headSymbol as h, renderer$1 as r, useHead as u };
+export { useSeoMeta as a, headSymbol as h, renderer$1 as r, useHead as u };
 //# sourceMappingURL=renderer.mjs.map

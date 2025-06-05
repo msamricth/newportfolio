@@ -31,6 +31,9 @@
 import Icons from './Icons.vue'
 import Mode from './Mode.vue'
 import Hamburger from './Hamburger.vue'
+defineProps({
+    footer: { type: Boolean },
+})
 </script>
 <style scoped>
 .stroke-animate {

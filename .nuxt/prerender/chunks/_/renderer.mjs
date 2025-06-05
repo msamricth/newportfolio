@@ -1,8 +1,8 @@
 import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import { getResponseStatusText, getResponseStatus, getQuery, createError, appendResponseHeader } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
-import { joinRelativeURL, joinURL, withoutTrailingSlash } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
+import { joinURL, withoutTrailingSlash } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
 import { renderToString } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
-import { a as useRuntimeConfig, b as useStorage, d as defineRenderHandler, g as getRouteRules, u as useNitroApp } from './nitro.mjs';
+import { b as buildAssetsURL, a as useRuntimeConfig, c as useStorage, d as defineRenderHandler, p as publicAssetsURL, g as getRouteRules, u as useNitroApp } from './nitro.mjs';
 import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/server.mjs';
 import { stringify, uneval } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/devalue/index.js';
 import { FlatMetaPlugin, DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
@@ -84,7 +84,7 @@ function createHead(options = {}) {
   return head;
 }
 
-const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"}],"link":[{"rel":"icon","href":"/favicon.svg","type":"image/svg+xml"},{"rel":"dns-prefetch","href":"//fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"preconnect","href":"https://res.cloudinary.com"},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"}],"style":[],"script":[{"src":"https://cdn.jsdelivr.net/npm/hls.js@1","defer":true,"crossorigin":"anonymous"},{"src":"https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5","async":true},{"children":"\n            window.dataLayer = window.dataLayer || [];\n            function gtag(){ dataLayer.push(arguments); }\n            gtag('js', new Date());\n            gtag('config', 'G-JPS46M3VH5');\n          "}],"noscript":[],"titleTemplate":"%s | Code Artisan"};
+const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"}],"link":[{"rel":"icon","href":"/favicon.svg","type":"image/svg+xml"},{"rel":"dns-prefetch","href":"//fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"preconnect","href":"https://res.cloudinary.com"},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap","media":"print","onload":"this.media='all'"}],"style":[],"script":[{"src":"/js/hls.mjs","type":"module","defer":true},{"src":"/js/hls.min.js","nomodule":true,"defer":true},{"src":"https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5","async":true},{"children":"\n            window.dataLayer = window.dataLayer || [];\n            function gtag(){ dataLayer.push(arguments); }\n            gtag('js', new Date());\n            gtag('config', 'G-JPS46M3VH5');\n          "}],"noscript":[],"titleTemplate":"%s | Code Artisan","htmlAttrs":{"lang":"en"}};
 
 const appRootTag = "div";
 
@@ -95,21 +95,6 @@ const appTeleportTag = "div";
 const appTeleportAttrs = {"id":"teleports"};
 
 const appId = "nuxt-app";
-
-function baseURL() {
-  return useRuntimeConfig().app.baseURL;
-}
-function buildAssetsDir() {
-  return useRuntimeConfig().app.buildAssetsDir;
-}
-function buildAssetsURL(...path) {
-  return joinRelativeURL(publicAssetsURL(), buildAssetsDir(), ...path);
-}
-function publicAssetsURL(...path) {
-  const app = useRuntimeConfig().app;
-  const publicBase = app.cdnURL || app.baseURL;
-  return path.length ? joinRelativeURL(publicBase, ...path) : publicBase;
-}
 
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
@@ -451,5 +436,5 @@ const renderer$1 = /*#__PURE__*/Object.freeze({
   default: renderer
 });
 
-export { useSeoMeta as a, baseURL as b, headSymbol as h, renderer$1 as r, useHead as u };
+export { useSeoMeta as a, headSymbol as h, renderer$1 as r, useHead as u };
 //# sourceMappingURL=renderer.mjs.map

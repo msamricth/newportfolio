@@ -1,4 +1,3 @@
-// src/composables/smoothScroll.ts
 import { nextTick } from 'vue'
 
 export async function useSmoothScroll(duration = 500, buffer = 100) {

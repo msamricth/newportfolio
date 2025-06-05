@@ -1,7 +1,7 @@
 <template>
-  <a :href="href" :target="target" rel="noopener noreferrer"
+  <a :href="href" :target="target" @click.prevent="handleClick" rel="noopener noreferrer"
     class="animated-link group transition-all duration-700 overflow-hidden inline-block hover:scale-[1.04]"
-    ref="linkEl" @mouseenter="onHoverIn" @mouseleave="onHoverOut">
+    ref="linkEl" @mouseenter="onHoverIn" @mouseleave="onHoverOut" :aria-label="text">
     <span class="nav-item" v-html="text"></span>
   </a>
 </template>
@@ -18,9 +18,20 @@ const props = defineProps({
   href: { type: String, required: true },
   text: { type: String, required: true  },
   target: { type: String, default: '_blank' },
-  NoEntry: { type: Boolean, default: false}
+  NoEntry: { type: Boolean, default: false},
+  onClick: Function,
 })
-
+const handleClick = () => {
+  onHoverIn();
+  setTimeout(() => {
+    if(props.onClick){
+    props.onClick?.()
+    } else {
+      window.open(props.href, props.target);
+    }
+    onHoverOut()
+  }, 300)
+}
 const linkEl = ref(null)
 let chars = []
 let timeline = null

@@ -9,14 +9,16 @@ useHead({
     ]
 })
 import { ref, computed, onMounted, watch, nextTick } from 'vue';
+import InnerSecondaryNav from '../../components/navigation/InnerSecondaryNav.vue'
 import InnerNav from '../../components/navigation/InnerNav.vue';
 import Contact from '../../components/Contact.vue';
 import Footer from '../../components/Footer.vue';
 import Work from '../../components/sidebars/Work.vue';
-
+import Preloader from '../../components/Preloader.vue';
 import { navigateTo } from '#imports';
 import { useWorkStore } from '../../stores/work.js';
 import { useModalStore } from '../../stores/modal.js';
+import { useMainStore } from '../../stores/main.js';
 import videoHandler from '../../utils/videoHandler.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from '../../utils/placeholder.js'
@@ -25,7 +27,7 @@ const store = useWorkStore();
 
 import gsap from 'gsap';
 
-
+const mainStore = useMainStore()
 const workGrid = ref([]);
 const isHovered = ref([false])
 const buttonRefs = ref([])
@@ -154,59 +156,88 @@ function closeModal() {
 
     const workPageEL = workPage.value;
     const modalWindowEl = modalWindow.value;
-    if (!modalWindowEl) return;
+    if (modalWindowEl && !store.reduceMotion) {
 
-    const modalCopy = modalWindowEl.querySelector('.modal-copy');
-    const tl = gsap.timeline();
-    tl.fromTo(modalCopy, {
-        scale: 1
-    }, {
-        scale: 0,
-        duration: 0.3,
-    });
-    tl.fromTo(modalWindowEl, {
-        autoAlpha: 1
-    }, {
-        autoAlpha: 0,
-        duration: 0.2,
-        onComplete: () => {
-            modalStore.modalItem = null
-            workPageEL.classList.remove('max-h-[105vh]');
-        }
-    }, 0.2);
+        const modalCopy = modalWindowEl.querySelector('.modal-copy');
+        const tl = gsap.timeline({
+            onComplete: () => {
+                document.body.style.overflow = ''
+            }
+        });
+        tl.clear()
+        tl.fromTo(modalCopy, {
+            filter: 'none',
+        }, {
+            filter: 'blur(40px)',
+            duration: 0.6,
+            ease: 'power1.inOut'
+        })
+        tl.fromTo(modalCopy, {
+            autoAlpha: 1,
+            y: 0
+        }, {
+            y: 1000,
+            autoAlpha: 0,
+            duration: 0.6,
+            ease: 'power1.out'
+        }, '-=0.3')
+        tl.fromTo(modalWindowEl, {
+            autoAlpha: 1,
+            filter: 'none'
+        }, {
+            autoAlpha: 0,
+            filter: 'blur(40px)',
+            duration: 0.4,
+            ease: 'power1.out'
+        }, '-=0.6')
+        return
+    }
+    document.body.style.overflow = ''
 }
-function openModal(item) {
 
+
+function openModal(item) {
     if (item.caseStudy) {
         const slug = '/work/' + item.slug
         navigateTo(slug)
         return;
     }
+    document.body.style.overflow = 'hidden'
     modalStore.modalItem = item;
-    const workPageEL = workPage.value;
     window.scrollTo(0, 0);
-    workPageEL.classList.add('max-h-[105vh]');
 
     nextTick(() => {
         const modalWindowEl = modalWindow.value;
-        if (!modalWindowEl) return;
+        if (!modalWindowEl && store.reduceMotion) return
+        document.body.style.overflow = 'hidden'
 
         const placeholderItems = modalWindowEl.querySelectorAll('.placeholder-line');
         const modalCopy = modalWindowEl.querySelector('.modal-copy');
         const tl = gsap.timeline();
         const anims = [];
         tl.fromTo(modalWindowEl, {
-            autoAlpha: 0
+            autoAlpha: 0,
+            filter: 'blur(40px)'
         }, {
             autoAlpha: 1,
-            duration: 0.2
-        });
+            filter: 'none',
+            duration: 0.4,
+            ease: 'power1.out'
+        })
         tl.fromTo(modalCopy, {
-            scale: 0
+            y:0,
+            scale: 0,
+            autoAlpha: 0,
+            filter: 'blur(40px)',
         }, {
+            y:0,
+            autoAlpha: 1,
             scale: 1,
-            duration: 0.3
-        }, 0.1);
+            filter: 'none',
+            duration: 0.6,
+            ease: 'elastic.out(0.9)'
+        }, '-=0.2')
+
         placeholderItems.forEach((li) => {
             const anim = new PlaceholderJS(li, { manual: true, scrub: true });
             anims.push(anim);
@@ -223,8 +254,6 @@ function openModal(item) {
                 anims.forEach((anim) => anim.play());
             }
         });
-
-        // handle video
         const modalVideoEl = modalVideo.value;
         if (modalVideoEl) {
             const player = new videoHandler(modalVideoEl);
@@ -233,14 +262,13 @@ function openModal(item) {
     });
 }
 
-onMounted(async() => {
+
+onMounted(async () => {
     await nextTick()
     animateSquares();
     watch(() => store.filteredWork, async () => {
         await nextTick();
-
         const items = document.querySelectorAll('.work-grid--item');
-
         items.forEach(item => {
             const video = item.querySelector('video');
             if (video && !video.dataset.loaded) {
@@ -268,7 +296,6 @@ onMounted(async() => {
             if (!slug) return;
             const item = store.filteredWork.find(w => w.slug === slug);
             if (item) {
-                window.scrollTo(0, 300);
                 openModal(item);
                 modalStore.pendingModalSlug = null;
             }
@@ -299,11 +326,16 @@ onMounted(async() => {
     <div class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-clip"
         ref="workPage">
 
+        <div class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-24 pb-18 lg:pb-20"
+            ref="utilityBar">
+            <InnerSecondaryNav />
+        </div>
         <InnerNav title="Featured Work" brandLabel="hi, i'm emm." brandURL="/" />
+        <Preloader />
         <div
             class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
-            <Work />
-            <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid">
+            <Work v-show="mainStore.loaded"/>
+            <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid" v-show="mainStore.loaded">
                 <div v-if="!store.gridResults"
                     class="text-3xl italic transition-all duration-700 work-grid--no-results">
                     No matching items found.
@@ -327,23 +359,31 @@ onMounted(async() => {
                 </div>
             </div>
         </div>
-        <Contact />
-        <Footer />
+        <Contact  v-show="mainStore.loaded"/>
+        <Footer  v-show="mainStore.loaded"/>
 
 
     </div>
     <div ref="modalWindow" v-if="modalStore.modalItem"
-        class="absolute lg:inset-0 z-50 flex items-center justify-center lg:px-6 bg-black/50 backdrop-blur top-0 lg:min-h-[125vh] w-full overflow-clip"
+        class="fixed lg:inset-0 z-50 lg:px-6 bg-black/50 backdrop-blur top-0 h-dvh w-full overflow-y-auto overflow-x-clip lg:py-8"
         @click.self="closeModal">
         <div
-            class="modal-copy bg-primary text-black py-24 p-12 lg:rounded-xl lg:max-w-2xl lg:max-w-5xl w-full relative md:mt-0 lg:mt-5 lg:mb-20 is-active is-visible">
-            <button class="absolute top-1 right-3 text-3xl cursor-pointer transition duration-700 hover:text-background"
-                @click="closeModal" :class="modalStore.modalItem.textColor">&times;</button>
-            <div class="relative rounded-xl flex flex-col justify-center items-center"
+            class="modal-copy bg-primary text-black p-12 lg:p-18 lg:rounded-[3rem] lg:max-w-2xl lg:max-w-5xl w-full relative mx-auto md:mt-0 lg:mt-5 lg:mb-20 is-active is-visible">
+
+            <button
+                class="absolute top-1 z-20 right-1 text-3xl cursor-pointer transition duration-700 hover:text-background rounded-[3rem] px-6 py-3 hover:scale-[1.08] group size-18 flex flex-col justify-center items-center hover:rotate-270"
+                @click="closeModal" :class="modalStore.modalItem.textColor">
+                <span
+                    class="w-10 h-[4px] bg-current block rotate-45 rounded-[3rem] absolute left-4 group-hover:-rotate-135 transition-all duration-700 shadow-md shadow-primary"></span>
+                <span
+                    class="w-10 h-[4px] bg-current block -rotate-45 rounded-[3rem] absolute left-4 group-hover:rotate-135 transition-all duration-700 shadow-md shadow-primary"></span>
+            </button>
+
+            <div class="relative rounded-xl flex flex-col justify-center items-center z-10"
                 :class="modalStore.modalItem.textColor">
                 <div class="flex flex-col md:flex-row justify-center items-start gap-8">
                     <img :src="modalStore.modalItem.image"
-                        class="w-full object-cover rounded-xl w-full md:w-[73.5%] transition-all duriation-900" />
+                        class="max-md:-mx-12 max-md:-mt-12 max-md:pb-6 max-md:min-w-dvw object-cover md:rounded-[3rem] md:w-[73.5%] transition-all duriation-900" />
                     <div class="rounded-xl w-[26.5%] transition-all duriation-900 hidden md:block overflow-clip">
                         <video ref="modalVideo" class="aspect-mobile" :data-src="modalStore.modalItem.video" playsinline
                             muted loop></video>

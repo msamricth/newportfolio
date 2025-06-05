@@ -44,6 +44,7 @@ import { testimonials } from '../../data/testimonials.js'
 import { useNuxtApp } from '#app'
 //import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { useMainStore} from '../../stores/main.js'
 
 const { $gsap: gsap } = useNuxtApp()
 import PlaceholderJS from './../../utils/placeholder.js';
@@ -52,6 +53,7 @@ const heading = ref(null);
 const visibleSlides = ref([]);
 const slideRefs = ref([]); // indexed refs
 const observerReady = ref(false)
+const store = useMainStore()
 const setSlideRef = (el, index) => {
     if (el) {
         slideRefs.value[index] = el;
@@ -186,19 +188,19 @@ onMounted(async () => {
         onEnter: () => {
             tl.play()
             observerReady.value = true
-            document.body.classList.remove('dark')
+            store.toggleFold()
         },
         onEnterBack: () => {
             tl.play()
-            document.body.classList.remove('dark')
+            store.toggleFold()
         },
         onLeaveBack: () => {
             tl.reverse()
-            document.body.classList.add('dark')
+            store.toggleFold()
         },
         onLeave: () => {
             tl.reverse()
-            document.body.classList.add('dark')
+            store.toggleFold()
         },
     });
 

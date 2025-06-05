@@ -6,9 +6,6 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   Splitting = (function() {
     'use strict';
 
-    // ————— copy everything from INSIDE the original UMD factory —————
-    // (i.e. everything between “(function(){… return Splitting; })()”)
-
     var root = document;
     var createText = root.createTextNode.bind(root);
 
@@ -20,12 +17,15 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       return el.appendChild(child);
     }
 
-    function createElement(parent, key, text, whitespace) {
+    // Modified: createElement now accepts a "key" that can include multiple classes
+    function createElement(parent, key, text) {
       var el = root.createElement('span');
-      key && (el.className = key);
+      if (key) {
+        // key may be something like "word mr-1"
+        el.className = key;
+      }
       if (text) {
-        !whitespace && el.setAttribute('data-' + key, text);
-        el.textContent = text;
+        el.innerHTML = text;
       }
       return (parent && appendChild(parent, el)) || el;
     }
@@ -96,13 +96,14 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       plugins[o.by] = o;
     }
 
+    // Modified: splitText no longer creates whitespace nodes or spans; adds "mr-1" class to each word
     function splitText(el, key, splitOn, includePrev, preserveWhite) {
       el.normalize();
       var out = [], frag = document.createDocumentFragment(), all = [];
-      if (includePrev) out.push(el.previousSibling);
 
       $$(el.childNodes).some(function(node) {
         if (node.tagName && !node.hasChildNodes()) {
+          // if it's an element node with no children, keep it as-is
           all.push(node);
         } else if (node.childNodes && node.childNodes.length) {
           all.push(node);
@@ -110,18 +111,18 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         } else {
           var txt = (node.wholeText || '').trim();
           if (txt.length) {
-            if (node.wholeText[0] === ' ') all.push(createText(' '));
+            // Split on whitespace regex; for words, splitOn is /\s+/
             var useSeg = splitOn === '' && typeof Intl.Segmenter === 'function';
             var bits = useSeg
               ? Array.from(new Intl.Segmenter().segment(txt)).map(function(s) { return s.segment; })
               : txt.split(splitOn);
-            each(bits, function(piece, i) {
-              if (i && preserveWhite) all.push(createElement(frag, 'whitespace', ' ', preserveWhite));
-              var span = createElement(frag, key, piece);
+
+            each(bits, function(piece) {
+              // Create a <span class="word mr-1">piece</span>
+              var span = createElement(frag, key, piece + '&nbsp;');
               out.push(span);
               all.push(span);
             });
-            if (node.wholeText[node.wholeText.length - 1] === ' ') all.push(createText(' '));
           }
         }
       });
@@ -132,24 +133,43 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       return out;
     }
 
-    // define core plugins
+    // Define core plugins with the modified splitText behavior
     var WORDS = 'words';
     var CHARS = 'chars';
 
     addPlugin(createPlugin(WORDS, [], 'word', function(el) {
-      return splitText(el, 'word', /\s+/, 0, 1);
+      return splitText(el, 'word', /\s+/, 0, 0);
     }));
 
-    addPlugin(createPlugin(CHARS, [WORDS], 'char', function(el, opts, ctx) {
-      var res = [];
-      each(ctx[WORDS], function(w,i) {
-        res.push.apply(res, splitText(w, 'char', '', opts.whitespace && i));
-      });
-      return res;
-    }));
+    addPlugin(createPlugin(
+      CHARS,
+      [WORDS],
+      'char',
+      function(el, opts, ctx) {
+        var res = [];
+    
+        each(ctx[WORDS], function(w) {
+          w.normalize();
+    
+          var letters = (w.textContent || '').split('');
+          var chars = [];
+    
+          w.innerHTML = '';
+          letters.forEach(function(letter) {
+            var charSpan = createElement(w, 'char', letter);
+            chars.push(charSpan);
+          });
+    
+          res.push(chars);
+        });
+    
+        return res;
+      }
+    ));
 
-    // …you can register lines/items/rows/cols/grid/layout/cellRows/cellCols/cells
-    // exactly as in the original minified file by calling addPlugin(...) for each.
+    
+
+    // If you have other plugins (lines, rows, etc.), add them similarly with no whitespace output
 
     function SplittingAPI(opts) {
       opts = opts || {};
@@ -185,7 +205,6 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     };
     SplittingAPI.add = addPlugin;
 
-    // ————— end copy —————
     return SplittingAPI;
   })();
 }

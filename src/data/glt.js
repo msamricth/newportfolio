@@ -1,4 +1,11 @@
-export const sections = [
+export const data = {
+  intro: {
+    title: "Empowering Environmental Leadership with Green Leadership Trust",
+    video: "https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto,w_720/v1746727741/GLT-CaseStudy_bja6ze.m3u8",
+    poster: "https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto,w_480/v1746727741/GLT-CaseStudy_bja6ze.webp",
+  },
+  overview: {},
+  sections: [
     {
       heading: 'Challenges',
       paragraph:
@@ -46,5 +53,22 @@ export const sections = [
         'Developed WordPress Form builder plugin that allows users to build and publish forms based off of Airtable Fields'
       ]
     }
-  ]
-  
+  ],
+  results: {
+    heading: 'Results',
+    items: [
+      'Brand cohesion across digital and print, increasing audience trust and recognition',
+      'A scalable website that supports GLT’s external communication and internal programming needs',
+      'Streamlined internal operations using Airtable, resulting in more efficient board placements, tracking, and reporting',
+      'Enhanced GLT’s capacity to support its strategic plan (2024–2029), especially in areas of digital storytelling, recruitment, and fundraising'
+    ],
+    Images: [
+      'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818458/3_1_mkdmee.png',
+      'https://res.cloudinary.com/dp1qyhhlo/image/upload/w_900,q_auto/v1746818489/4_1_fz3muz.png',
+    ],
+    button: {
+      href: "https://greenleadershiptrust.org/",
+      label: "greenleadershiptrust.com"
+    }
+  }
+}
