@@ -19,7 +19,7 @@ useHead({
   }
 })
 
-
+import Preloader from '../components/Preloader.vue';
 import InnerSecondaryNav from '../components/navigation/InnerSecondaryNav.vue'
 import InnerNav from '../components/navigation/InnerNav.vue';
 import Lyric from '../components/contexts/Lyric.vue';
@@ -33,16 +33,16 @@ import Footer from '../components/Footer.vue';
   <div
     class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative">
     <div
-      class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-12 pb-0"
+      class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-12 pb-18 lg:pb-20"
       ref="utilityBar">
       <InnerSecondaryNav />
     </div>
-    <Lyric class="lg:mb-20" />
-    <InnerNav title="About" brandLabel="hi, i'm emm." brandURL="/" :topStacked="true" />
-    
+    <InnerNav title="About" brandLabel="hi, i'm emm." brandURL="/" />
+    <Preloader />
     <div class="flex flex-col gap-6 max-w-full mt-6 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
       <AboutContent />
     </div>
+    <Lyric class="mb-20" />
     <Testimonials />
     <Offerings />
     <Contact />

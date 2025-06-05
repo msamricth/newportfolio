@@ -396,23 +396,23 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-v1W21-vU.mjs')
+    component: () => import('./About-B2J2DAT9.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CVQeA2dI.mjs')
+    component: () => import('./index-Dr8Ag4-A.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-Blwba0R4.mjs')
+    component: () => import('./glt-UNW1fxUX.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-Cg27QDOg.mjs')
+    component: () => import('./index-DZf10web.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -970,7 +970,8 @@ const useMainStore = defineStore("main", {
     fold: false,
     navOpen: false,
     reduceMotion: false,
-    loaded: false
+    loaded: false,
+    ready: false
   }),
   getters: {
     isDark: (state) => state.darkMode === "dark",

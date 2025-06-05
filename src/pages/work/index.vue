@@ -14,10 +14,11 @@ import InnerNav from '../../components/navigation/InnerNav.vue';
 import Contact from '../../components/Contact.vue';
 import Footer from '../../components/Footer.vue';
 import Work from '../../components/sidebars/Work.vue';
-
+import Preloader from '../../components/Preloader.vue';
 import { navigateTo } from '#imports';
 import { useWorkStore } from '../../stores/work.js';
 import { useModalStore } from '../../stores/modal.js';
+import { useMainStore } from '../../stores/main.js';
 import videoHandler from '../../utils/videoHandler.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from '../../utils/placeholder.js'
@@ -26,7 +27,7 @@ const store = useWorkStore();
 
 import gsap from 'gsap';
 
-
+const mainStore = useMainStore()
 const workGrid = ref([]);
 const isHovered = ref([false])
 const buttonRefs = ref([])
@@ -330,10 +331,11 @@ onMounted(async () => {
             <InnerSecondaryNav />
         </div>
         <InnerNav title="Featured Work" brandLabel="hi, i'm emm." brandURL="/" />
+        <Preloader />
         <div
             class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
-            <Work />
-            <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid">
+            <Work v-show="mainStore.loaded"/>
+            <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid" v-show="mainStore.loaded">
                 <div v-if="!store.gridResults"
                     class="text-3xl italic transition-all duration-700 work-grid--no-results">
                     No matching items found.
@@ -357,8 +359,8 @@ onMounted(async () => {
                 </div>
             </div>
         </div>
-        <Contact />
-        <Footer />
+        <Contact  v-show="mainStore.loaded"/>
+        <Footer  v-show="mainStore.loaded"/>
 
 
     </div>

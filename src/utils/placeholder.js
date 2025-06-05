@@ -69,8 +69,8 @@ export default class PlaceholderJS {
                 ...config
             }
         };
-
-        this.timeline = gsap.timeline(scrollTrigger)
+        const timelineOpts = manual ? {paused:true} : scrollTrigger;
+        this.timeline = gsap.timeline(timelineOpts)
         if(this.el.classList.contains('opacity-0')){
             this.timeline.to(this.el,{autoAlpha:1,duration:0.2})
         }

@@ -109,6 +109,9 @@
     .disapear {
         animation: slide-out-bottom 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both !important;
     }
+    .disapear-up {
+        animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both !important;
+    }
 
     .wobble-ver-right {
         animation: wobble-ver-right 0.8s both;
@@ -210,7 +213,19 @@
             opacity: 0;
         }
     }
+    @keyframes slide-out-bottom {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+            filter: blur(0px);
+        }
 
+        100% {
+            transform: translateY(-100px);
+            opacity: 0;
+            filter: blur(40px);
+        }
+    }
     @keyframes scale-in-hor-right {
         0% {
             transform: scaleX(0);

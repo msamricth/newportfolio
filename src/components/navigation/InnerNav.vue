@@ -1,7 +1,7 @@
 <template>
     <div ref="sentinal"></div>
     <header id="nav" ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
-        :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
+        :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700 z-90' : ' absolute '">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
             <div ref="navBrand"
@@ -14,7 +14,7 @@
             <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
                 data-splitting="words" ref="heading">
                 <span
-                    class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background"
+                    class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background opacity-0"
                     data-splitting="words">{{ title }}</span>
             </h1>
             <nav ref="nav"
@@ -258,7 +258,7 @@ onMounted(async () => {
     await nextTick()
     tl = gsap.timeline({ paused: true })
     isDesktop.value = window.innerWidth >= 620
-    const anim = new placeholderJS(heading.value, { manual: true })
+    const anim = new placeholderJS(heading.value.querySelector('span'), { manual: true })
     anim.play()
     SectionsAboveNav.value = props.topStacked;
     updateStickyTimeline()

@@ -2,22 +2,30 @@
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useMatchMedia } from '@/composables/useMatchMedia'
-import { ref, onMounted, nextTick, watch } from 'vue'
+import { ref, onMounted, nextTick, watch, computed } from 'vue'
 
-import { useMainStore} from '../../stores/main.js'
-
+import { useMainStore } from '../../stores/main.js'
+import Heart from '../icons/Heart.vue'
 import confetti from 'canvas-confetti'
 import Fire from '../icons/Fire.vue'
+
 const showLyric = ref(false)
 const textWrapper = ref(null)
 const canvasEl = ref(null)
 const loaded = ref(false)
 const hasOpened = ref(false)
+const scene = ref(null)
 const store = useMainStore()
 
-function fireworks() {
+
+const sceneReady = ref(false)
+
+
+function fireworks(canvas) {
+    if(!canvas) return;
     var duration = 10;
     let timeLeft = 10;
+    canvas.confetti = canvas.confetti || confetti.create(canvas, { resize: true });
     var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
     function randomInRange(min, max) {
@@ -28,32 +36,33 @@ function fireworks() {
     const tl = gsap.timeline({ paused: false })
     var particleCount = 50 * (timeLeft / duration);
     tl.call(() => {
-        confetti({ ...defaults, particleCount, colors: ['#E2556C', '#E5742C'], origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        canvas.confetti({ ...defaults, particleCount, colors: ['#E2556C', '#E5742C'], origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
     }, null, '+=0.35')
     tl.call(() => {
-        confetti({ ...defaults, particleCount, colors: ['#A66EFF', '#33D6BB'], origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        canvas.confetti({ ...defaults, particleCount, colors: ['#A66EFF', '#33D6BB'], origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
     }, null, '+=0.4')
     tl.call(() => {
-        confetti({ ...defaults, particleCount, colors: ['#E2556C', '#E5742C'], origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        canvas.confetti({ ...defaults, particleCount, colors: ['#E2556C', '#E5742C'], origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
     }, null, '+=0.36')
     tl.call(() => {
-        confetti({ ...defaults, particleCount, colors: ['#E2556C', '#E5742C'], origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        canvas.confetti({ ...defaults, particleCount, colors: ['#E2556C', '#E5742C'], origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
     }, null, '+=0.39')
 
 }
 
 onMounted(async () => {
     await nextTick
+    const sceneEl = scene.value
+    const canvasElm = sceneEl.querySelector('#boom');
     watch(showLyric, (newVal) => {
         if (newVal) {
             hasOpened.value = true
         }
     })
+    sceneReady.value = "true"
     const textElm = textWrapper.value
-    store.toggleFold(true);
 
-    gsap.from('#introImage', { opacity: 0, y: -50 })
-    const tl = gsap.timeline({ paused: false, defaults: { duration: 0.6, ease: 'back.out(1.7)' } })
+    const tl = gsap.timeline({ paused: true, defaults: { duration: 0.6, ease: 'back.out(1.7)' } })
         .add(() => {
             if (!textElm.classList.contains('animating')) textElm.classList.add('animating')
         })
@@ -145,7 +154,7 @@ onMounted(async () => {
             'explEnter+=0.2'
         )
     tl.call(() => {
-        fireworks()
+        fireworks(canvasElm)
     }, null,
         'explEnter+=0.6')
 
@@ -167,13 +176,11 @@ onMounted(async () => {
         .to(
             '.row-3 .h1',
             {
-                x: 200, y: -200, rotation: 15, opacity: 0, duration: 0.4, stagger: 0.1,
-                ease: "back.inOut(1.7)"
+                x: 200, y: -200, rotation: 15, opacity: 0, duration: 0.25, stagger: 0.1,
+                ease: "power1.out"
             },
             'explExit+=0.6'
         )
-
-
 
         .addLabel('dontEnter', 'explEnter+=1.4')
 
@@ -231,7 +238,7 @@ onMounted(async () => {
         .addLabel('encore', 'dontExit+=0.2')
         .to(
             textElm,
-            { scale: 0.75, duration: 1, y: '-5%', ease: 'power1.out' },
+            { scale: 0.75, duration: 0.05, y: '-5%', ease: 'power1.out' },
             'encore'
         )
         .to('.row-3 .h1', {
@@ -267,31 +274,44 @@ onMounted(async () => {
     // tl.play()
     ScrollTrigger.create({
         trigger: '.header-scenes',
-        onLeave:()=> tl.pause(),
-        onEnterBack: ()=>{ tl.play()
-        store.toggleFold(true);}
+        onEnter:()=>{
+            tl.play()
+            store.toggleFold(true);
+        },
+        onLeave: () => tl.pause(),
+        onEnterBack: () => {
+            tl.play()
+            store.toggleFold(true);
+        }
     })
-    setTimeout(() => loaded.value = true, 250)
+    setTimeout(() => loaded.value = true, tl.play(), 250)
 })
 </script>
 
 <template>
-    <div class="overflow-x-clip motion-reduce:hidden w-full header-scenes">
+    <div ref="scene" class="overflow-x-clip motion-reduce:hidden w-full header-scenes 2xl:pt-24 relative">
+        <canvas class="absolute top-0 bottom-0 h-full w-full" id="boom"></canvas>
         <div
-            class="flex flex-col md:flex-row justify-center lg:justify-between items-start md:gap-6 max-w-full lg:max-w-[1024px] xl:max-w-[1440px] mx-auto lg:px-12 relative pt-22 md:py-0 lg:py-8 overflow-visible h-[85dvh] px-8 xl:items-center">
+            class="flex flex-col md:flex-row justify-center lg:justify-between items-start md:gap-6 max-w-full lg:max-w-[1024px] xl:max-w-[1440px] mx-auto lg:px-12 relative pt-22 md:py-0 lg:py-8 overflow-visible h-[85dvh] px-8 xl:items-center xl:max-h-218 2xl:max-h-270">
+            <div class="absolute top-0 h-full w-full flex justify-center items-center pointer-events-none left-0"
+                :class="store.loaded ? 'disapear opacity-0' : 'animate subtle-slide-in'">
+                <Heart class="w-1/2 self-start max-w-100 jello-horizontal h-full object-contain object-center" />
+            </div>
             <div ref="textWrapper"
-                class="flex flex-col justify-center gap-6 md:gap-0 lg:px-4 w-full md:max-w-3/5 lg:max-w-3xl relative z-20 font-heading animating h-dvh md:min-h-[70vh] xl:h-full lg:gap-8 2xl:gap-10 max-h-190">
-                <!-- Row 1 -->
+                class="flex flex-col justify-center gap-6 md:gap-0 lg:px-4 w-full md:max-w-3/5 lg:max-w-3xl relative z-20 font-heading animating lg:gap-6 xl:gap-8 group transition duration-700 h-dvh md:min-h-[70vh] xl:min-h-160 xl:h-160"
+                :class="{ 'opacity-0': !loaded }">
                 <div
                     class="flex max-md:flex-wrap md:flex-nowrap justify-between md:justify-center gap-6 items-center w-full row-1 row leading-1">
                     <span id="charA" class="h1 text-6xl lg:text-7xl font-extrabold  bounce-in fold">A</span>
                     <span id="charHeart" class="h1 text-6xl lg:text-7xl font-extrabold text-center">
                         HEART
                     </span>
-                    <img crossorigin="anonymous"
-                        src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg"
-                        alt="Illustration of a heart" id="icon"
-                        class="w-24 self-start max-w-60 jello-horizontal h-full object-contain object-center" />
+                    <div class="flex justify-center items-center h-full heart-container">
+                        <img crossorigin="anonymous"
+                            src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg"
+                            alt="Illustration of a heart" id="icon"
+                            class="w-24 self-start max-w-60 jello-horizontal h-full object-contain object-center" />
+                    </div>
                 </div>
 
                 <div
@@ -304,7 +324,7 @@ onMounted(async () => {
                     </span>
                 </div>
 
-                <div class="flex max-md:flex-col md:flex-nowrap justify-center max-md:items-center md:justify-between gap-6 w-full md:w-fit max-w-4xl lg:max-w-2xl mx-auto row-3 row -rotate-5 leading-1.8 md:-mb-2 lg:-mt-4"
+                <div class="flex max-md:flex-col md:flex-nowrap justify-center max-md:items-center md:justify-between gap-6 w-full md:w-fit max-w-4xl lg:max-w-2xl mx-auto row-3 row -rotate-5 leading-1.8 md:-mb-2 lg:-mt-4 xl:-mt-8"
                     style="opacity: 0;">
                     <span class="text-7xl md:text-4xl lg:text-8mxl font-extrabold the h1 row md:text-left">THE</span>
                     <span
@@ -312,7 +332,7 @@ onMounted(async () => {
                         id="exp">EXPLOSIONS</span>
                 </div>
 
-                <div class="flex flex-nowrap justify-center gap-6 w-full row-4 row  md:leading-1">
+                <div class="flex flex-nowrap justify-center group-[.animating]:max-md:flex-col text-center gap-6 w-full row-4 row lg:-mt-4 xl:-mt-8  md:leading-1">
                     <span class="text-7xl font-extrabold h1" style="opacity: 0;">
                         DONT
                     </span>
@@ -321,7 +341,7 @@ onMounted(async () => {
                     </span>
                 </div>
 
-                <div class="flex flex-nowrap justify-center gap-6 w-full row-5 row  leading-1 lg:-mt-10">
+                <div class="flex flex-nowrap group-[.animating]:max-md:flex-col text-center justify-center gap-6 w-full row-5 row  leading-1 lg:-mt-10">
                     <span class="text-8xl md:text-7xl lg:text-8xl font-extrabold h1" style="opacity: 0;">
                         SCARE
                     </span>
@@ -333,8 +353,8 @@ onMounted(async () => {
                     <Fire />
                 </div>
             </div>
-            <div
-                class="max-w-lg hidden md:flex ml-auto flex-col relative md:w-1/2 z-10 md:max-w-50 lg:max-w-60 xl:max-w-70 justify-center 2xl:max-w-100 h-full">
+            <div class="max-w-lg hidden md:flex flex-col relative md:w-1/2 z-10 md:max-w-50 lg:max-w-60  xl:max-w-70 justify-center items-start 2xl:max-w-110 h-full"
+                :class="loaded ? 'animate subtle-slide-in' : 'opacity-0'">
                 <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1748635877/1744399801866_qxlwrk.webp"
                     alt="Emm as an action figure" class="w-auto object-contain" id="introImage" />
             </div>
@@ -362,8 +382,8 @@ onMounted(async () => {
                     frameborder="0"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
             </div>
-            <div
-                class="w-full order-3 md:absolute md:bottom-6 lg:bottom-0 md:px-8 lg:px-12 z-40 max-w-full lg:max-w-[1024px] xl:max-w-[1440px] left-0">
+            <div class="w-full order-3 md:absolute md:bottom-6 lg:bottom-0 md:px-8 lg:px-12 z-40 max-w-full lg:max-w-[1024px] xl:max-w-[1440px] left-0 2xl:bottom-25"
+                :class="!store.loaded ? 'opacity-0' : 'animate subtle-slide-in'">
 
                 <!-- Lyric + Info Button -->
                 <div class="flex flex-nowrap justify-between items-end w-full">
@@ -388,16 +408,11 @@ onMounted(async () => {
                 </div>
 
             </div>
-            <div class="absolute top-0 w-full bottom-0 left-0 h-full z-0 lg:top-18 lg:h-[80vh] lg:w-3/4 overflow-visible"
-                ref="canvasEl">
-                <canvas id="myCanvas" class="overflow-visible"></canvas>
-            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-
 .animating .row {
     position: absolute;
     z-index: 20;
@@ -405,15 +420,15 @@ onMounted(async () => {
 
 
 .row-1 {
-    top: 15%;
+    top: 70px;
 }
 
 .row-2 {
-    top: calc(clamp(4.76rem, 9vw, 8.6rem) * 2);
+    top: calc(clamp(4.76rem, 9vw, 8.6rem) + 78px);
 }
 
 .row-3 {
-    top:20%;
+    top: 42px;
 }
 
 .animating .row-3 {
@@ -430,18 +445,63 @@ onMounted(async () => {
     left: 8vw;
 }
 
+.animating .row-4 {
+    margin-top: 0px;
+}
+
 .row-4 {
-    top: calc((clamp(5.6rem, 5vw, 8rem) * 1.3) * 2);
+    top: calc(clamp(5.6rem, 5vw, 8rem) + 70px);
 }
 
 .row-5 {
-    top: calc((clamp(5.6rem, 12vw, 9.6rem) + 32px + clamp(5.6rem, 5vw, 8rem) * 2));
+    top: calc((clamp(5.6rem, 12vw, 9.6rem) * 1.9));
 }
 
 @media screen and (min-width: 1024px) {
 
     .animating #icon {
         scale: 1.08;
+    }
+}
+
+@media screen and (min-width: 1365px) {
+    .row-3 {
+        top: 132px;
+    }
+
+    .row-4 {
+        top: 250px;
+    }
+
+    .row-5 {
+        top: 406px;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+
+    .row-1 {
+        top: 70px;
+    }
+
+    .row-2 {
+        top: calc(clamp(4.76rem, 9vw, 8.6rem) + 78px);
+    }
+
+    .row-3 {
+        top: 42px;
+    }
+
+    .row-3 {
+        top: 132px;
+    }
+
+    .row-4 {
+        top: 250px;
+    }
+
+    .row-5 {
+        top: 406px;
     }
 }
 
@@ -490,17 +550,24 @@ onMounted(async () => {
     }
 
     .animating .row-3.row .the {
+        text-align: center;
+        font-size: var(--text-4xl);
+        width: 100%;
         top: -2vh;
-        left:-1vw;
+        left: 0;
     }
 
     .animating .row .explosions {
+        text-align: center;
+        width: 100%;
+        left: -8px;
         top: calc(clamp(5.6rem, 5vw, 8rem) * 1.2);
-        font-size: var(--text-7xl);
+        font-size: var(--text-4xl);
         word-break: break-all;
     }
 
     .animating .row-3 {
+        top: 10%;
         scale: 0.8;
     }
 
@@ -517,11 +584,14 @@ onMounted(async () => {
     }
 
     .animating .row-4.row {
-        top: 38vh;
+        top: 26%;
     }
 
     .animating .row-5.row {
-        top: 46vh;
+        top: 54%;
+    }
+    .animating .heart-container {
+        width: 100%;
     }
 }
 </style>

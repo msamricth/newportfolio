@@ -15,8 +15,8 @@
                 </h1>
 
                 <div class="decor-wrap preloading transition-all duration-1000 justify-center items-center flex md:order-4 lg:order-3 group-[.loaded]:transition-[filter]"
-                    :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[5vh] md:translate-x-0 md:-translate-y-[calc(560px-39vh)] lg:-translate-y-[40vh] lg:translate-x-5': !loading }">
-                    <Mixer class="decor h-auto" width="180" height="180" :style="animDelay"
+                    :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[5vh] md:translate-x-0 md:-translate-y-[calc(560px-50vh)]  lg:translate-x-5': !loading }">
+                    <Mixer class="decor h-auto transition-all" width="180" height="180"  :style="!loading ? '--theme-main-animation-delay: 100ms' : animDelay"
                         :class="loading ? 'jello-horizontal' : 'animate subtle-slide-in-attention scale-200'" />
                 </div>
 
@@ -26,10 +26,10 @@
                 </div>
 
                 <div class="decor-wrap preloading transition-all duration-1000 md:order-5 group-[.loaded]:transition-[filter]"
-                    :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[8vh] md:translate-x-[19vw] lg:translate-x-[5vw] md:-translate-y-[calc(555px-39vh)] lg:-translate-y-[40vh]': !loading }">
-                    <Flower2 width="180" height="180" class="decor h-auto"
+                    :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[8vh] md:translate-x-[19vw] lg:translate-x-[5vw] md:-translate-y-[calc(555px-50vh)]': !loading }">
+                    <Flower2 width="180" height="180" class="decor h-auto transition-all"
                         :class="loading ? 'rotate-ccw90-forever' : 'animate subtle-slide-in-attention scale-200'"
-                        :style="!loading ? '--theme-main-animation-delay: 600ms' : animDelay" />
+                        :style="!loading ? '--theme-main-animation-delay: 200ms' : animDelay" />
                 </div>
 
                 <div class="decor-wrap  subtle-slide-in opacity-0 md:order-3 lg:order-4 group-[.loaded]:transition-[filter]"
@@ -53,9 +53,9 @@
                 </div>
 
                 <div class="decor-wrap preloading transition-all duration-1000 md:order-8 group-[.loaded]:transition-[filter]"
-                    :class="{ '-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-39vh)] md:-translate-x-[0vw]  md:-translate-y-[430px] lg:-translate-y-[40vh] lg:-translate-x-[2vw]': !loading }">
-                    <Code class="decor h-auto" width="180" height="180"
-                        :style="{ '--theme-main-animation-delay:900': !loading }"
+                    :class="{ '-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-50vh)] md:-translate-x-[0vw]  lg:-translate-x-[2vw]': !loading }">
+                    <Code class="decor h-auto transition-all" width="180" height="180"
+                         :style="!loading ? '--theme-main-animation-delay: 300ms' : animDelay"
                         :class="loading ? 'vibrate' : 'animate subtle-slide-in-attention scale-250'" />
                 </div>
 
@@ -117,45 +117,47 @@ onMounted(async () => {
 
 
     const iconFadeTL = gsap.timeline({ paused: true })
-
     loading.value = true
 
     if (loading.value) {
-        gsap.set(icons, { scale: 1, transformOrigin: '50% 50%' })
-        shuffleIcons(icons)
-        setInterval(() => { shuffleIcons(icons) }, 2000)
-        iconFadeTL.fromTo(icons, {
-            alpha: 1,
-            scale: 1,
-        }, {
-            alpha: 0,
-            scale: 0,
-            ease: 'cubic-bezier(.215, .61, .355, 1.000)',
-            duration: 0.35,
-            stagger: 0.01,
-        });
+        setTimeout(() => {
+            gsap.set(icons, { scale: 1, transformOrigin: '50% 50%' })
+            shuffleIcons(icons)
+            setInterval(() => { shuffleIcons(icons) }, 2000)
+            iconFadeTL.fromTo(icons, {
+                alpha: 1,
+                scale: 1,
+            }, {
+                alpha: 0,
+                scale: 0,
+                ease: 'cubic-bezier(.215, .61, .355, 1.000)',
+                duration: 0.35,
+                stagger: 0.01,
+            });
 
 
-        iconFadeTL.progress(1).reverse();
+            iconFadeTL.progress(1).reverse();
+
+            ScrollTrigger.create({
+                trigger: triggerEl,
+                start: 'top 20%',
+                end: 'top 50%',
+                onEnter: () => document.body.classList.add('dark'),
+                onLeave: () => {
+                    iconFadeTL.play()
+                    anim.getTimeline().progress(1).reverse();
+                    //  document.body.classList.remove('dark')
+                },
+                // onLeaveBack: () => document.body.classList.remove('dark'),
+                onEnterBack: () => {
+                    anim.play();
+                    document.body.classList.remove('dark')
+                    iconFadeTL.reverse()
+                }
+            })
+        }, 800)
     }
     anim = new placeholderJS((headline), { manual: true, speed: 2 })
     anim.play()
-    ScrollTrigger.create({
-        trigger: triggerEl,
-        start: 'top 20%',
-        end: 'top 50%',
-        onEnter: () => document.body.classList.add('dark'),
-        onLeave: () => {
-            iconFadeTL.play()
-            anim.getTimeline().progress(1).reverse();
-            //  document.body.classList.remove('dark')
-        },
-        // onLeaveBack: () => document.body.classList.remove('dark'),
-        onEnterBack: () => {
-            anim.play();
-            document.body.classList.remove('dark')
-            iconFadeTL.reverse()
-        }
-    })
 })
 </script>

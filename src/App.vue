@@ -8,10 +8,11 @@ onMounted(async () => {
   await nextTick()
   store.initReduceMotion()
   store.loaded = true
+  setTimeout(() => store.ready = true, 400)
 })
 </script>
 
 
 <template>
-  <NuxtPage/>
+  <NuxtPage />
 </template>

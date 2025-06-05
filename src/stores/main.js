@@ -10,7 +10,8 @@ export const useMainStore = defineStore('main', {
         fold: false,
         navOpen: false,
         reduceMotion: false,
-        loaded: false
+        loaded: false,
+        ready:false
     }),
 
     getters: {

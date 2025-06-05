@@ -29,6 +29,7 @@
     "pinia": "^3.0.2",
     "splitting": "^1.1.0",
     "tailwindcss": "^4.1.7",
+    "uuid": "^11.1.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {

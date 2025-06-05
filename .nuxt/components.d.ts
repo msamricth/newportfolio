@@ -17,6 +17,7 @@ interface _GlobalComponents {
     'HeroSection': typeof import("../src/components/HeroSection.vue")['default']
     'Links': typeof import("../src/components/Links.vue")['default']
     'LogoGarden': typeof import("../src/components/LogoGarden.vue")['default']
+    'Preloader': typeof import("../src/components/Preloader.vue")['default']
     'Testimonials': typeof import("../src/components/Testimonials.vue")['default']
     'AnimatedCTA': typeof import("../src/components/animatedCTA.vue")['default']
     'ButtonsGithub': typeof import("../src/components/buttons/Github.vue")['default']
@@ -97,6 +98,7 @@ interface _GlobalComponents {
     'LazyHeroSection': LazyComponent<typeof import("../src/components/HeroSection.vue")['default']>
     'LazyLinks': LazyComponent<typeof import("../src/components/Links.vue")['default']>
     'LazyLogoGarden': LazyComponent<typeof import("../src/components/LogoGarden.vue")['default']>
+    'LazyPreloader': LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
     'LazyTestimonials': LazyComponent<typeof import("../src/components/Testimonials.vue")['default']>
     'LazyAnimatedCTA': LazyComponent<typeof import("../src/components/animatedCTA.vue")['default']>
     'LazyButtonsGithub': LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
@@ -183,6 +185,7 @@ export const Footer: typeof import("../src/components/Footer.vue")['default']
 export const HeroSection: typeof import("../src/components/HeroSection.vue")['default']
 export const Links: typeof import("../src/components/Links.vue")['default']
 export const LogoGarden: typeof import("../src/components/LogoGarden.vue")['default']
+export const Preloader: typeof import("../src/components/Preloader.vue")['default']
 export const Testimonials: typeof import("../src/components/Testimonials.vue")['default']
 export const AnimatedCTA: typeof import("../src/components/animatedCTA.vue")['default']
 export const ButtonsGithub: typeof import("../src/components/buttons/Github.vue")['default']
@@ -263,6 +266,7 @@ export const LazyFooter: LazyComponent<typeof import("../src/components/Footer.v
 export const LazyHeroSection: LazyComponent<typeof import("../src/components/HeroSection.vue")['default']>
 export const LazyLinks: LazyComponent<typeof import("../src/components/Links.vue")['default']>
 export const LazyLogoGarden: LazyComponent<typeof import("../src/components/LogoGarden.vue")['default']>
+export const LazyPreloader: LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
 export const LazyTestimonials: LazyComponent<typeof import("../src/components/Testimonials.vue")['default']>
 export const LazyAnimatedCTA: LazyComponent<typeof import("../src/components/animatedCTA.vue")['default']>
 export const LazyButtonsGithub: LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>

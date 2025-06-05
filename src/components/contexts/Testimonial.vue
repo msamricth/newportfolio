@@ -1,14 +1,13 @@
 <template>
   <div
-    class="bg-primary dark:bg-background p-6 md:rounded-[2rem] mx-auto transition-all duration-700 max-w-dvw md:max-w-[58vw] sticky top-20 lg:top-0"
-    :class="width" ref="testimonial">
+    class="mx-auto transition-all duration-700" ref="testimonial">
     <div class="flex items-center gap-4 mb-4">
       <div>
-        <h3 class="text-lg font-semibold dark:text-primary text-background transition-all duration-700 placeholder-line"
+        <h3 class="text-lg xl:text-xl 2xl:text-2xl font-semibold text-primary dark:text-background transition-all duration-700 placeholder-line"
           data-splitting="words">
           {{ name }}
         </h3>
-        <p class="text-sm dark:text-gray-600 text-background/60 transition-all duration-700 placeholder-line"
+        <p class="text-sm xl:-text-lg 2xl:text-base text-gray-600 dark:text-background/60 transition-all duration-700 placeholder-line"
           data-splitting="words">
           {{ title }}
         </p>
@@ -16,17 +15,17 @@
     </div>
     <div class="flex items-stretch relative h-full mb-4 gap-6">
       <div
-        class="w-3 bg-background dark:bg-primary inverted:bg-primary inverted:dark:bg-background transition-all duration-700 bq-border min-h-full swing-in-top-bck">
+        class="w-3 bg-primary dark:bg-background transition-all duration-700 bq-border min-h-full swing-in-top-bck">
       </div>
 
       <blockquote
-        class="text-xs md:text-sm dark:text-gray-800 text-background/80 leading-relaxed transition-all duration-700 placeholder-line"
+        class="text-xs md:text-base xl:text-lg 2xl:text-xl leading-relaxed transition-all duration-700 placeholder-line italic font-heading font-normal tracking-wide"
         data-splitting="words" v-html="quote"></blockquote>
     </div>
 
     <a href="https://www.linkedin.com/in/emmtalarico/details/recommendations/?detailScreenTabIndex=0" target="_blank"
       rel="noopener noreferrer"
-      class="animated-link group transition duration-700 overflow-hidden inline-block dark:text-primary text-background hover:scale-[1.08] text-sm dark:group-hover:text-electric-purple group-hover:text-accent"
+      class="animated-link group transition duration-700 overflow-hidden inline-block text-primary dark:text-background hover:scale-[1.08] text-sm xl:text-base 2xl:text-lg dark:group-hover:text-electric-purple group-hover:text-accent"
       ref="linkEl" @mouseenter="onHoverIn" @mouseleave="onHoverOut">
       View on LinkedIn →
     </a>

@@ -7,26 +7,26 @@
             </h2>
         </div>
 
-        <!-- Excerpted Testimonial Rows -->
         <div
             class="max-w-full lg:max-w-[1024px] xl:max-w-[1290px] px-8 lg:px-12 mx-auto lg:flex gap-8 lg:gap-14 items-stretch lg:h-fit relative">
             <div v-for="(t, index) in loop" :key="index"
-                class="testimonial-row relative flex flex-col justify-between items-start mb-8 w-fit group">
+                class="testimonial-row relative flex flex-col justify-between items-start mb-8 w-fit group testimonal-card">
                 <div class="flex-grow **:transition-all py-6">
-                    <p class="font-semibold text-lg">{{ t.name }}</p>
-                    <p class="text-xs text-gray-500 mb-3">{{ t.title }}</p>
-                    <p class="text-sm" v-html="getExcerpt(t.body)">
+                    <p class="font-semibold text-lg placeholder-line opacity-0" data-splitting="words">{{ t.name }}</p>
+                    <p class="text-xs text-gray-500 mb-3 placeholder-line opacity-0" data-splitting="words">{{ t.title
+                    }}</p>
+                    <p v-for="(p, index) in getExcerptParagraphs(t.bodyPlain)" :key="index"
+                        class="text-sm placeholder-line mb-6 last:mb-0 opacity-0" data-splitting="words">
+                        {{ p }}
                     </p>
                 </div>
-                <Links href="#" text="Read More" :noEntry="true" :onClick="() => openModal(t)" class="text-sm mb-0" />
+                <Links href="#" text="Read More" :noEntry="true" :onClick="() => openModal(t)"
+                    class="text-sm mb-6 md:mb-0" />
                 <div
                     class="lg:absolute lg:-right-7 lg:top-15 card-border swing-in-responsive w-full  origin-center h-[3px] lg:w-[3px] lg:h-[75%] bg-current/20 transition duriation-900 animate group-last:hidden">
                 </div>
             </div>
         </div>
-
-
-
 
         <div v-if="selectedTestimonial" ref="modalContainer"
             class="fixed inset-0 bg-primary/60 backdrop-blur z-50 top-0 lg:p-5 lg:pb-15 overflow-y-auto opacity-0 overflow-x-clip"
@@ -41,21 +41,18 @@
                     <span
                         class="w-10 h-[4px] bg-current block -rotate-45 rounded-[3rem] absolute left-4 group-hover:rotate-135 transition-all duration-700"></span>
                 </button>
-                <div class="space-y-4 modal-contant">
-                    <p class="font-bold text-xl">{{ selectedTestimonial.name }}</p>
-                    <p class="text-sm text-gray-500">{{ selectedTestimonial.title }}</p>
-                    <p class="text-base whitespace-pre-line" v-html="selectedTestimonial.body">
-                    </p>
-                </div>
+                <Testimonial :name="selectedTestimonial.name" :title="selectedTestimonial.title"
+                    :quote="selectedTestimonial.body" active="true" class="modal-contant" />
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watch } from 'vue'
 import PlaceholderJS from '@/utils/placeholder.js'
 import { testimonials } from '@/data/testimonials.js'
+import Testimonial from './contexts/Testimonial.vue'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useNuxtApp } from '#app'
 import { useMainStore } from '@/stores/main.js'
@@ -72,6 +69,28 @@ const store = useMainStore()
 
 function getExcerpt(text) {
     return text.slice(0, excerptLength) + '...'
+}
+function getExcerptParagraphs(paragraphs) {
+    let remaining = excerptLength
+    const out = []
+
+    for (let i = 0; i < paragraphs.length; i++) {
+        const p = paragraphs[i]
+        if (remaining <= 0) break
+
+        if (p.length <= remaining) {
+            // take the entire paragraph
+            out.push(p)
+            remaining -= p.length
+        } else {
+            // this paragraph would exceed the limit, so slice it
+            out.push(p.slice(0, remaining) + "…")
+            remaining = 0
+            break
+        }
+    }
+
+    return out
 }
 function openModal(testimonial) {
     selectedTestimonial.value = testimonial
@@ -99,14 +118,14 @@ function openModal(testimonial) {
             scale: 1,
             duration: 0.6,
             ease: 'elastic.out(0.9)'
-        },'-=0.2')
+        }, '-=0.2')
         tl.fromTo(elC, {
             filter: 'blur(40px)',
         }, {
             filter: 'none',
             duration: 0.6,
             ease: 'power1.inOut'
-        },'-=0.3')
+        }, '-=0.3')
 
     })
 }
@@ -131,14 +150,14 @@ function closeModal() {
         })
         tl.fromTo(el, {
             scale: 1,
-            autoAlpha:1,
-            y:0
+            autoAlpha: 1,
+            y: 0
         }, {
-            y:1000,
-            autoAlpha:0,
+            y: 1000,
+            autoAlpha: 0,
             duration: 0.6,
             ease: 'power1.out'
-        },'-=0.3')
+        }, '-=0.3')
         tl.fromTo(elm, {
             autoAlpha: 1,
             filter: 'none'
@@ -155,41 +174,54 @@ function closeModal() {
 }
 
 onMounted(async () => {
-    await nextTick()
-    const testimonialSectionEl = testimonialSection.value
-    const headingEl = heading.value
+  // 1) populate and wait a tick so that `.testimonal-card` exists
+  loop.value = testimonials.map(t => ({ ...t })).sort(() => Math.random() - 0.5)
+  await nextTick()
 
-    new PlaceholderJS(headingEl, { scrub: true, speed: 2 })
+  const testimonialSectionEl = testimonialSection.value
+  const cards = testimonialSectionEl.querySelectorAll('.testimonal-card')
+  if (!cards.length) return
 
-    // Randomize testimonials order
-    loop.value = testimonials
-        .map((t) => ({ ...t }))
-        .sort(() => Math.random() - 0.5)
-
-    // Animate heading on scroll into view
-    const tl = gsap.timeline({ paused: true })
-
-
-    ScrollTrigger.create({
-        trigger: testimonialSectionEl,
-        start: 'top 80%',
-        end: 'bottom 60%',
-        onEnter: () => {
-            tl.play()
-            store.toggleFold()
-        },
-        onEnterBack: () => {
-            // tl.restart()
-            store.toggleFold()
-        },
-        onLeaveBack: () => {
-            store.toggleFold()
-        },
-        onLeave: () => {
-            store.toggleFold()
+  cards.forEach(card => {
+    const phEls = card.querySelectorAll('.placeholder-line')
+  const phInstances = Array.from(phEls).map((el) => new PlaceholderJS(el, { manual: true, speed: 0.5 }))
+    gsap.fromTo(
+      card,
+      { y: 40, autoAlpha: 0 },
+      {
+        y: 0,
+        autoAlpha: 1,
+        duration: 0.4,
+        ease: 'power1.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+          end: 'bottom 60%',
+          onEnter: () => {
+            // Staggered pH.play() calls
+            phInstances.forEach((pH, i) => {
+              setTimeout(() => pH.play(), i * 150)
+            })
+          },
+          onEnterBack: () => {
+            phInstances.forEach((pH, i) => {
+              setTimeout(() => pH.play(), i * 150)
+            })
+          },
+          onLeaveBack: () => {
+            phInstances.forEach((pH, i) => {
+              setTimeout(() => pH.getTimeline().reverse(), i * 150)
+            })
+          }
         }
-    })
+      }
+    )
+  })
+
+  //  since each card’s own timeline will reverse its placeholders for you.)
 })
+
+
 </script>
 
 <style scoped></style>
