@@ -113,6 +113,8 @@ declare module 'nuxt/schema' {
       cdnURL: string,
    },
 
+   githubToken: string,
+
    nitro: {
       envPrefix: string,
    },

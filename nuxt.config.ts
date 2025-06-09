@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/sitemap'
   ],
+  runtimeConfig: {
+    githubToken: '',
+  },
   sitemap: {
     hostname: 'https://codeartisan.dev',
     gzip: true,

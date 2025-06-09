@@ -49,7 +49,7 @@ const introData = data.intro;
             <InnerSecondaryNav />
         </div>
         <InnerNav title="GLT" brandLabel="Featured Work" brandURL="/work" />
-        <Intro :icon="GLT" :video="introData.video" :poster="introData.poster" :heading="introData.title" />
+        <Intro :icon="GLT" :videoURL="introData.video" :poster="introData.poster" :heading="introData.title" />
         <Overview />
         <FullImage />
 

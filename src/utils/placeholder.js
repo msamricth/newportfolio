@@ -29,18 +29,35 @@ export default class PlaceholderJS {
 
 
     _split() {
+        if(this.el.classList.contains('splitted')){
+            this.words = this.el.querySelectorAll('.word')
+         //   console.log('after: ')
+        //    console.log(this.words)
+            return;
+        } 
         const results = Splitting({ target: this.el, by: 'words' });
         const res = results.find(r => r.el === this.el);
         this.words = res.words;
+       // console.log('before: ')
+       // console.log(this.words)
+        this.el.classList.add('splitted')
     }
 
     _injectPlaceholders() {
+        if(this.el.classList.contains('placeholder-added')){
+            const words = this.words ?? Array.from(this.el.querySelectorAll('.word'));
+            this.placeholders = Array.from(words).map(word => {
+                return word.querySelector('.placeholder');
+            });
+            return;
+        } 
         this.placeholders = this.words.map(word => {
             const ph = document.createElement('span');
             ph.classList.add(this.phClass);
             word.appendChild(ph);
             return ph;
         });
+        this.el.classList.add('placeholder-added')
     }
 
     _buildTimeline() {
@@ -72,7 +89,9 @@ export default class PlaceholderJS {
         const timelineOpts = manual ? {paused:true} : scrollTrigger;
         this.timeline = gsap.timeline(timelineOpts)
         if(this.el.classList.contains('opacity-0')){
-            this.timeline.to(this.el,{autoAlpha:1,duration:0.2})
+            this.timeline.fromTo(this.el,
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration:0.2})
         }
         this.timeline.fromTo(this.placeholders,
                 { autoAlpha: 0 },

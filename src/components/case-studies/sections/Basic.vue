@@ -1,17 +1,17 @@
 <template>
     <section ref="el" class="px-8 max-w-full min-h-[150dvh] flex flex-col pt-24">
         <div class="w-full max-w-2xl text-container mx-auto sticky top-45 md:top-25 lg:top-45 xl:top-38">
-            <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ heading
+            <h4 class="text-2xl font-black placeholder-line mb-3 opacity-0" data-splitting="words">{{ heading
             }}
             </h4>
-            <p class="text-xl mb-6 placeholder-line" data-splitting="words" v-if="paragraph">{{
+            <p class="text-xl mb-6 placeholder-line opacity-0" data-splitting="words" v-if="paragraph">{{
                 paragraph }}</p>
             <ul class="list-disc pl-6 space-y-3">
-                <li v-for="(item, i) in items" :key="i" class="text-lg font-medium opacity-0" data-item>
+                <li v-for="(item, i) in items" :key="i" class="text-lg font-medium opacity-0 **:inline-flex **:flex-wrap" data-item>
                     {{ item }}</li>
             </ul>
 
-            <h5 v-if="tags && tags.length" class="text-xl my-6 placeholder-line" data-splitting="words">
+            <h5 v-if="tags && tags.length" class="text-xl my-6 placeholder-line opacity-0" data-splitting="words">
                 {{ tagIntro }}
             </h5>
 
@@ -27,10 +27,10 @@
 
 
 <script setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, onMounted } from 'vue'
 import PlaceholderJS from '@/utils/placeholder.js'
 import { useMatchMedia } from '@/composables/useMatchMedia'
-import { textAnim } from '@/composables/textAnims'
+import  textAnim  from '@/utils/TextAnims'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const props = defineProps({
@@ -40,34 +40,33 @@ const props = defineProps({
     tagIntro: String,
     tags: { type: Array, default: () => [] },
 })
-
 const el = ref(null)
 
 function setupSection1({ isDesktop, isTablet, isMobile }) {
     nextTick(() => {
-
-        textAnim(el.value, false, 'play none none reverse');
+        const anim = new textAnim(el.value, { manual: true })
         const leaveTL = gsap.timeline({
             paused: true,
         })
-
+        anim.init()
         leaveTL.fromTo(el.value, { x: '0%', autoAlpha: 1 }, { x: '-100%', autoAlpha: 0, duration: 1, filter: 'blur(40px)', ease: 'power3.inOut' })
         ScrollTrigger.create({
             trigger: el.value,
-            start: 'top top',
+            start: 'top 70%',
             end: 'bottom 70%',
             scrub: true,
             onEnter: () => {
+                anim?.play()
                 leaveTL.reverse()
             },
             onLeave: () => {
                 leaveTL.play()
             },
             onEnterBack: () => {
-                textAnim(el, true);
-                leaveTL.reverse()
+                leaveTL.pause(0)
             },
             onLeaveBack: () => {
+                anim?.reverse()
                 leaveTL.reverse()
             }
         })

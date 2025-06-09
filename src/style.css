@@ -154,11 +154,6 @@
     @apply text-2xl sm:text-5xl font-light;
   }
 
-  .icon-wipe-overlay path {
-    stroke-dasharray: 600;
-    stroke-dashoffset: 600;
-    transition: stroke-dashoffset 1s ease-in-out;
-  }
 
   .icon-btn:hover .icon-wipe-overlay path {
     stroke-dashoffset: 0;
@@ -176,7 +171,6 @@
   .icon-wipe-overlay path {
     stroke-dasharray: 600;
     stroke-dashoffset: 600;
-    transition: stroke-dashoffset 0.9s ease-in-out;
   }
 
   .icon-btn:hover .icon-wipe-overlay path {
@@ -220,6 +214,11 @@
     .gist-embed pre::-webkit-scrollbar {
       max-width: var(--scrollbar-width-legacy);
       max-height: var(--scrollbar-width-legacy);
+    }
+  }
+  @media screen and (min-width:778px) {
+    .icon-wipe-overlay path {
+      transition: stroke-dashoffset 0.9s ease-in-out;
     }
   }
 }

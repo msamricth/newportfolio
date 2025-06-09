@@ -45,6 +45,7 @@ export const useMainStore = defineStore('main', {
             document.body.classList.toggle('dark', this.darkMode === 'dark');
         },
         toggleTheme(value) {
+            console.log(value)
             this.darkMode = value ? 'dark' : 'light';
             localStorage.setItem('theme', this.darkMode);
             document.body.classList.toggle('dark', value);
@@ -58,7 +59,7 @@ export const useMainStore = defineStore('main', {
         },
         openNav() { this.navOpen = true },
         closeNav() { this.navOpen = false },
-        toggleFold(force = false, clear) {
+        toggleFold(force = false, clear=null) {
             if (this.darkMode === 'light') {
                 if (clear) {
                     this.fold = false;

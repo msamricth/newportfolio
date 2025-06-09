@@ -1,22 +1,22 @@
 <template>
     <section ref="elm"
-        class="min-h-dvh flex flex-col md:flex-row items-center justify-between py-14 gap-12 relative tl lg:min-h-[200vh] lg:items-start">
+        class="mt-10 md:mt-0 flex flex-col md:flex-row items-center md:justify-between py-14 gap-12 relative  tl md:min-h-[250vh] lg:min-h-[200vh] md:items-start">
         <div ref="imgEl"
-            class="w-full order-3 md:order-1 md:w-1/3 h-[80vh] bg-cover bg-center md:opacity-0 md:rounded-r-[3rem] image tl md:px-8 lg:px-12 lg:mt-8 xl:w-1/2"
+            class="w-full image order-2 md:order-1 md:w-1/3 h-[80vh] bg-cover bg-center md:opacity-0 md:rounded-r-[3rem] image tl md:px-8 lg:px-12 lg:mt-8 xl:w-1/2"
             :style="`background-image:url(${image})`"></div>
         <div
-            class="w-full order-1 md:order-2 lg:max-w-2xl md:mr-auto text-container px-8 lg:px-12 tl lg:h-[80vh] lg:flex lg:flex-col lg:justify-center lg:mt-8">
+            class="w-full order-1 md:order-2 lg:max-w-2xl md:mr-auto text-container md:pt-6 px-8 lg:px-12 tl lg:h-[80vh] lg:flex lg:flex-col lg:justify-center lg:mt-8">
             <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ heading }}
             </h4>
-            <p class="text-xl mb-6 placeholder-line" data-splitting="words" v-if="paragraph">{{
+            <p class="text-xl md:text-sm lg:text-xl mb-6 placeholder-line" data-splitting="words" v-if="paragraph">{{
                 paragraph }}</p>
             <ul class="list-disc pl-6 space-y-3">
-                <li v-for="(item, i) in items" :key="i" class="text-lg font-medium opacity-0" data-item>
+                <li v-for="(item, i) in items" :key="i" class="text-lg md:text-sm max-lg:mb-2 lg:text-xl font-medium opacity-0 **:inline-flex **:flex-wrap" data-item>
                     {{ item }}</li>
             </ul>
 
 
-            <h5 v-if="tags && tags.length" class="text-xl my-6 placeholder-line" data-splitting="words">
+            <h5 v-if="tags && tags.length" class="text-xl md:text-md lg:text-xl my-6 placeholder-line" data-splitting="words">
                 {{ tagIntro }}
             </h5>
 
@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </div>
-        <div class="order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 flex flex-col justify-center xl:max-w-xl  lg:mt-14"
+        <div class="order-3 md:order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 flex flex-col justify-center xl:max-w-xl  lg:mt-14"
             v-if="gistId">
             <Gist :gistId="gistId" :repoUrl="repoUrl" :FileName="FileName" :Caption="Caption"
                 class="lg:mx-auto w-full" />
@@ -39,27 +39,29 @@
 import { ref, nextTick } from 'vue'
 import PlaceholderJS from '@/utils/placeholder.js'
 import { useMatchMedia } from '@/composables/useMatchMedia'
+import {imgAnim} from '@/composables/imgAnims'
+import textAnim from '@/utils/TextAnims'
 import Gist from '../../contexts/Gist.vue'
 import gsap from 'gsap'
 
 const props = defineProps({
-  heading: String,
-  paragraph: String,
-  items: Array,
-  tagIntro: String,
-  tags: Array,
-  image: String,
-  gistId: String,
-  repoUrl: String,
-  FileName: String,
-  Caption: String
+    heading: String,
+    paragraph: String,
+    items: Array,
+    tagIntro: String,
+    tags: Array,
+    image: String,
+    gistId: String,
+    repoUrl: String,
+    FileName: String,
+    Caption: String
 })
 
 const elm = ref(null)
 const imgEl = ref(null)
 
-function setupSection3({ isDesktop }) {
- 
+function setupSection3({ isDesktop, isTablet, isMobile }) {
+
     nextTick(() => {
         const el = elm.value
         const text = el.querySelector('.text-container')
@@ -71,6 +73,15 @@ function setupSection3({ isDesktop }) {
         const tagEls = el.querySelectorAll('.tags')
         const phH = new PlaceholderJS(h, { manual: true });
         const img = imgEl.value
+
+
+        
+        if(isMobile){
+            imgAnim(el, false, 'play none none reverse');
+            const anim = new textAnim(text, { toggleActions: 'play none none reverse' })
+            anim?.init()
+            return;
+        }
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: el,
@@ -83,7 +94,7 @@ function setupSection3({ isDesktop }) {
             }
         })
         tl.addLabel('entrance')
-        tl.fromTo(img, { x: '-100%', autoAlpha: 0, filter: 'blur(40px)' }, { x: '0%', filter: 'blur(0px)', autoAlpha: 1, duration: 0.75 })
+        if (!isMobile) tl.fromTo(img, { x: '-100%', autoAlpha: 0, filter: 'blur(40px)' }, { x: '0%', filter: 'blur(0px)', autoAlpha: 1, duration: 0.75 })
         tl.fromTo(text, { x: '100%', autoAlpha: 0 }, { x: '0%', autoAlpha: 1, duration: 1 }, 'entrance-=0.05')
 
         tl.fromTo(h,
@@ -99,7 +110,7 @@ function setupSection3({ isDesktop }) {
             }, 'entrance+=0.8'
         );
         if (p) {
-            const phP = new PlaceholderJS(p, { manual: true, speed: 2 });
+            const phP = new PlaceholderJS(p, { manual: true, speed: 0.15 });
             tl.fromTo(p,
                 { opacity: 0, y: 40 },
                 {
@@ -154,11 +165,12 @@ function setupSection3({ isDesktop }) {
         })
         tl.addLabel('gist', 'entrance+=2')
         tl.to(text, { x: '200%', filter: 'blur(40px)', autoAlpha: 1, duration: 0.5 }, 'gist+=0.5')
-        tl.fromTo(gist, { x: '-200%', filter: 'blur(40px)', autoAlpha: 0 }, { x: '0', filter: 'blur(0px)', autoAlpha: 1, duration: 0.5 }, 'gist+=0.5')
-        
-        tl.addLabel('leave', 'gist+=2')
-        tl.to(gist, { x: '200%', filter: 'blur(40px)', autoAlpha: 1, duration: 0.5 }, 'leave+=0.5')
-        tl.to(img, { y: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 'leave+=0.5')
+
+            tl.fromTo(gist, { x: '-200%', filter: 'blur(40px)', autoAlpha: 0 }, { x: '0', filter: 'blur(0px)', autoAlpha: 1, duration: 0.5 }, 'gist+=0.5')
+            tl.addLabel('leave', 'gist+=2')
+            tl.to(gist, { x: '200%', filter: 'blur(40px)', autoAlpha: 1, duration: 0.5 }, 'leave+=0.5')
+            tl.to(img, { y: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1 }, 'leave+=0.5')
+
     })
 }
 

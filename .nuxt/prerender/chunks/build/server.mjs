@@ -407,23 +407,23 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-BdsiA5m9.mjs')
+    component: () => import('./About-CMDaWOko.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Dr8Ag4-A.mjs')
+    component: () => import('./index-B1UqbVu-.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-UNW1fxUX.mjs')
+    component: () => import('./glt-DfvD4WEA.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-DZf10web.mjs')
+    component: () => import('./index-DGedgnpw.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1054,6 +1054,7 @@ const useMainStore = defineStore("main", {
       (void 0).body.classList.toggle("dark", this.darkMode === "dark");
     },
     toggleTheme(value) {
+      console.log(value);
       this.darkMode = value ? "dark" : "light";
       localStorage.setItem("theme", this.darkMode);
       (void 0).body.classList.toggle("dark", value);
@@ -1071,7 +1072,7 @@ const useMainStore = defineStore("main", {
     closeNav() {
       this.navOpen = false;
     },
-    toggleFold(force = false, clear) {
+    toggleFold(force = false, clear = null) {
       if (this.darkMode === "light") {
         if (clear) {
           this.fold = false;

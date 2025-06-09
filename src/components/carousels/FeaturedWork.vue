@@ -192,6 +192,8 @@ const openWork = (item) => {
 }
 onMounted(async () => {
     await nextTick()
+    modalStore.modalItem = '';
+    modalStore.pendingModalSlug = '';
     const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
             loaded.value = true;
@@ -235,8 +237,8 @@ onMounted(async () => {
         start: 'top 20%',
         end: 'bottom bottom',
         onEnter: () => {
-            document.body.classList.add('dark')
             waitForSplide();
+            store.toggleFold(true)
         }
     });
     ScrollTrigger.create({
@@ -245,10 +247,6 @@ onMounted(async () => {
         end: 'bottom bottom',
         onEnter: () => {
             store.setSliderArrowSticky(true)
-            //splide.value?.mount();
-            //splide.value?.on('move', (newIndex) => {
-            // active.value = newIndex;
-            //});
         },
         onLeave: () => {
 
@@ -258,13 +256,11 @@ onMounted(async () => {
         onLeaveBack: () => {
             store.setSliderArrowSticky(false)
             store.setsliderTimeline('before')
-            //sliderArrowSticky.value = false
-            //document.body.classList.remove('dark')
         },
         onEnterBack: () => {
             store.setSliderArrowSticky(true)
             store.setsliderTimeline('before')
-            //document.body.classList.remove('dark')
+            store.toggleFold(false, true)
         },
     });
 
