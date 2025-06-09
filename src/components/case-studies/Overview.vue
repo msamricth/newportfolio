@@ -90,7 +90,7 @@ onMounted(async() => {
         const gitEl = sideBarEl.querySelectorAll('.overview-git')
         const tags = sideBarEl.querySelectorAll('.tags');
 
-        const entryAnims = Array.from(entry).map(el => new PlaceholderJS(el, { manual: true, speed: 65 }))
+        const entryAnims = Array.from(entry).map(el => new PlaceholderJS(el, { manual: true, speed: 0.45 }))
         const sidebarAnims = Array.from(sidebarPlaceholders).map(el => new PlaceholderJS(el, { manual: true }))
         let int = 0;
         const tl = gsap.timeline({ paused: true })
@@ -98,13 +98,13 @@ onMounted(async() => {
         //  tl.fromTo(heading, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.2, ease: 'power2.out' }, 0)
 
         entry.forEach((el, i) => {
-            int = int + i * 0.1
+            int = int + (i * 0.3)
             tl.fromTo(el, { opacity: 0, y: 40 }, {
                 opacity: 1, y: 0, duration: 0.3, ease: 'power3.out', onStart: () => entryAnims[i]?.play()
             }, int)
         })
         sidebarPlaceholders.forEach((el, i) => {
-            int = 0.2 + i * 0.3;
+            int = i * 0.3;
             tl.fromTo(el, { opacity: 0, y: 40 }, {
                 opacity: 1, y: 0, duration: 0.3, ease: 'power3.out', onStart: () => sidebarAnims[i]?.play()
             }, int)
@@ -132,12 +132,17 @@ onMounted(async() => {
             end: 'bottom 25%',
             onEnter: () => {
                 sideBarVisible.value = true
-                tl.play()
+                tl.play(0)
             },
             onLeaveBack: () => {
                 sideBarVisible.value = false
                 //  headingAnim.getTimeline().progress(1).reverse()
-               // entryAnims.forEach(anim => anim.getTimeline().progress(1).reverse())
+                entryAnims.forEach(anim => {
+                    const TLs = anim.getTimeline();
+                   // console.log(TLs)
+                    TLs.pause();
+                    TLs.seek(0);
+                })
                 // sidebarAnims.forEach(anim => anim.getTimeline().progress(1).reverse())
                 tl.reverse()
             }

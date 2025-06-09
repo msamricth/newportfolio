@@ -16,31 +16,38 @@ export function imgAnim(el, reversed = false, toggleActions = 'play none none no
                 const overlayIcon = icon.querySelector('.icon-wipe-overlay');
                 const overlayPaths = overlayIcon.querySelectorAll('path');
                 let len = 0;
-                int = index * 0.15;
-                // tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, index * 0.5)
+                int = (index + 1) * 0.015;
                 overlayPaths.forEach((path) => {
                     len = path.getTotalLength();
                     path.style.strokeDasharray = len;
                     path.style.strokeDashoffset = len;
                 });
-                tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, int)
-
-                int = int * index
-                tl.fromTo(overlayPaths, {
-                    autoAlpha: 0,
-                    strokeDashoffset: len
-                }, {
-                    autoAlpha: 1,
-                    strokeDashoffset: 0,
-                    duration: 1,
+                tl.fromTo(overlayIcon, { y: 40 }, {
+                    y: 0, duration: 0.2,
                     ease: 'power3.out',
-                }, int)
+                }, `+=${int}`)
+                tl.fromTo(overlayPaths, {
+                    strokeDashoffset: 0,
+                    autoAlpha: 0,
+                }, {
+                    strokeDashoffset: 0,
+                    autoAlpha: 1,
+                    duration: 0.61,
+                    ease: 'power3.out',
+                    stagger: 0.15
+                }, `+=${int}`)
             })
             ScrollTrigger.create({
                 trigger: svgCont,
-                start: 'top 80%',
-                onEnter: () => tl.play(),
-                onLeaveBack: () => tl.reverse().progress(0)
+                start: 'top 40%',
+                onEnter: () => {
+                    tl.timeScale(2)
+                    tl.play() 
+                },
+                onLeaveBack: () => {
+                    tl.timeScale(4)
+                    tl.reverse() 
+                }
             })
         }
 

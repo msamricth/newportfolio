@@ -1,6 +1,6 @@
 <template>
     <div class="absolute top-0 h-dvh w-full flex flex-col justify-center items-center pointer-events-none left-0"
-         v-show="!store.ready" :class="store.loaded ? 'disapear-up opacity-0' : 'animate subtle-slide-in'">
+         v-show="!store.ready" :class="store.loaded ? 'disapear-up opacity-0' : 'appear-up'">
         <svg width="300" height="217" viewBox="0 0 1061 770" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="relative w-1/2 max-w-100">
             <g clip-path="url(#clip0_7_2)">

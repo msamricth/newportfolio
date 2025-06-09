@@ -18,10 +18,12 @@
 import { ref, onMounted } from 'vue';
 import PlaceholderJS from '../../utils/placeholder.js';
 import { useNuxtApp } from '#app'
+import { useMainStore } from '../../stores/main.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const { $gsap: gsap } = useNuxtApp()
 const isArtisan = ref(false);
 const artisan = ref(null)
+const store = useMainStore()
 
 onMounted(async () => {
     await nextTick()
@@ -47,11 +49,12 @@ onMounted(async () => {
         trigger: artisanEl,
         start: 'top 10%',
         onEnter: () => {
-            document.body.classList.remove('dark')
+            store.toggleFold(false, true)
         },
-        onLeaveBack: () => {
-            document.body.classList.add('dark')
-        },
+        onLeaveBack: ()=>{
+            store.toggleFold(true)
+
+        }
     });
 
 

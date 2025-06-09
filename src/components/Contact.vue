@@ -174,7 +174,7 @@ onMounted(async() => {
     });
     tl.call(() => {
         if (tl.reversed()) {} else {
-            document.body.classList.add('dark')
+            store.toggleFold(true)
         }
     })
     tl.call(() => {

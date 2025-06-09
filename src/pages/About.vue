@@ -42,9 +42,9 @@ import Footer from '../components/Footer.vue';
     <div class="flex flex-col gap-6 max-w-full mt-6 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
       <AboutContent />
     </div>
-    <Lyric class="mb-20" />
     <Testimonials />
     <Offerings />
+    <Lyric class="my-20 lg:mt-34" />
     <Contact />
     <Footer />
   </div>

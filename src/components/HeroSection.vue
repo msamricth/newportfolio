@@ -16,7 +16,8 @@
 
                 <div class="decor-wrap preloading transition-all duration-1000 justify-center items-center flex md:order-4 lg:order-3 group-[.loaded]:transition-[filter]"
                     :class="{ '-translate-x-[calc((50vw+30px)-22vw)] translate-y-[5vh] md:translate-x-0 md:-translate-y-[calc(560px-50vh)]  lg:translate-x-5': !loading }">
-                    <Mixer class="decor h-auto transition-all" width="180" height="180"  :style="!loading ? '--theme-main-animation-delay: 100ms' : animDelay"
+                    <Mixer class="decor h-auto transition-all" width="180" height="180"
+                        :style="!loading ? '--theme-main-animation-delay: 100ms' : animDelay"
                         :class="loading ? 'jello-horizontal' : 'animate subtle-slide-in-attention scale-200'" />
                 </div>
 
@@ -55,7 +56,7 @@
                 <div class="decor-wrap preloading transition-all duration-1000 md:order-8 group-[.loaded]:transition-[filter]"
                     :class="{ '-translate-x-[calc((50vw+20px)-22vw)] translate-y-[10vh] md:-translate-y-[calc(570px-50vh)] md:-translate-x-[0vw]  lg:-translate-x-[2vw]': !loading }">
                     <Code class="decor h-auto transition-all" width="180" height="180"
-                         :style="!loading ? '--theme-main-animation-delay: 300ms' : animDelay"
+                        :style="!loading ? '--theme-main-animation-delay: 300ms' : animDelay"
                         :class="loading ? 'vibrate' : 'animate subtle-slide-in-attention scale-250'" />
                 </div>
 
@@ -142,7 +143,7 @@ onMounted(async () => {
                 trigger: triggerEl,
                 start: 'top 20%',
                 end: 'top 50%',
-                onEnter: () => document.body.classList.add('dark'),
+                onEnter: () => store.toggleFold(true),
                 onLeave: () => {
                     iconFadeTL.play()
                     anim.getTimeline().progress(1).reverse();
@@ -150,8 +151,9 @@ onMounted(async () => {
                 },
                 // onLeaveBack: () => document.body.classList.remove('dark'),
                 onEnterBack: () => {
+                    store.toggleFold(false, true)
                     anim.play();
-                    document.body.classList.remove('dark')
+                    //    document.body.classList.remove('dark')
                     iconFadeTL.reverse()
                 }
             })

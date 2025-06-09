@@ -1,7 +1,7 @@
 <template>
     <section ref="imageSection"
         class="max-w-full lg:max-w-[1290px] xl:max-w-[1680px] mx-auto lg:px-12 py-12 lg:py-0 relative">
-        <img class="md:max-h-[95dvh] mx-auto md:rounded-[3rem] lg:rounded-[6rem]" :src="image.replace('upload', 'upload/w_100,e_pixelate,f_auto,e_grayscale')"
+        <img class="md:max-h-[95dvh] mx-auto md:rounded-[3rem] lg:rounded-[6rem]" :src="image.replace('upload', 'upload/e_pixelate,q_auto:low,f_auto,e_grayscale')"
             :data-src="image" />
     </section>
 </template>

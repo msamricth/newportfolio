@@ -156,6 +156,8 @@ function closeModal() {
 
     const workPageEL = workPage.value;
     const modalWindowEl = modalWindow.value;
+    modalStore.modalItem = '';
+    modalStore.pendingModalSlug = '';
     if (modalWindowEl && !store.reduceMotion) {
 
         const modalCopy = modalWindowEl.querySelector('.modal-copy');

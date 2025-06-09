@@ -29,7 +29,6 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callback';
 export { setInterval } from '#app/compat/interval';
 export { imgAnim } from '../src/composables/imgAnims';
-export { textAnim } from '../src/composables/textAnims';
 export { useMatchMedia } from '../src/composables/useMatchMedia';
 export { useSmoothScroll } from '../src/composables/useSmoothScroll';
 export { effectTimeline } from '../src/utils/ContextAwareLogoAnimationScroll';
@@ -38,6 +37,7 @@ export { Confetti } from '../src/utils/confetti.min';
 export { default as placeholder } from '../src/utils/placeholder';
 export { shuffleIcons } from '../src/utils/shuffler';
 export { default as splitting } from '../src/utils/splitting';
+export { default as textAnims } from '../src/utils/textAnims';
 export { default as videoHandler } from '../src/utils/videoHandler';
 export { useMainStore } from '../src/stores/main';
 export { useModalStore } from '../src/stores/modal';

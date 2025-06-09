@@ -1,6 +1,6 @@
 <template>
     <section ref="elm"
-        class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:mt-40 lg:min-h-[300vh] lg:items-start relative w-full lg:mb-0 lg:py-0">
+        class="flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:mt-40  md:min-h-[350vh] lg:min-h-[300vh] xl:min-h-[350vh] md:items-start relative w-full lg:py-20 lg:mb-40">
 
         <div ref="imgContainer"
             class="md:absolute w-full max-w-xl overflow-hidden md:w-1/2 md:h-dvh left-0 tl flex flex-col gap-12 order-2 md:order-1 lg:justify-center lg:max-w-1/2 lg:h-screen">
@@ -9,14 +9,15 @@
         </div>
 
         <div
-            class="w-full md:w-1/2 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:mx-auto">
+            class="w-full md:w-9/20 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:mx-auto">
             <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">{{ heading }}
             </h4>
             <p class="text-xl mb-6 placeholder-line" data-splitting="words" v-if="paragraph">{{
                 paragraph }}</p>
 
             <ul class="list-disc pl-6 space-y-1 lg:space-y-3">
-                <li v-for="(item, i) in items" :key="i" class="text-sm lg:text-lg font-medium opacity-0" data-item data-splitting="words">
+                <li v-for="(item, i) in items" :key="i" class="text-sm lg:text-lg font-medium opacity-0 **:inline-flex **:flex-wrap" data-item
+                    data-splitting="words">
                     {{ item }}</li>
             </ul>
 
@@ -33,7 +34,7 @@
             </ul>
             <MainButton :onClick="() => ctaClick(buttonHref)" v-if="buttonLabel && buttonHref" :href="buttonHref"
                 :label="buttonLabel"
-                class="max-md:text-md min-w-[270px] md:min-w-[306px] text-electric-purple dark:text-accent mt-6 lg:mt-24 btn" />
+                class="max-md:text-md min-w-[270px] md:min-w-[306px] text-electric-purple dark:text-accent mt-6 lg:mt-14 btn lg:mb-35" />
         </div>
     </section>
 
@@ -44,7 +45,7 @@ import { ref, nextTick } from 'vue'
 import { useMatchMedia } from '@/composables/useMatchMedia'
 import MainButton from '@/components/buttons/MainButton.vue'
 import gsap from 'gsap'
-import { textAnim } from '@/composables/textAnims'
+import textAnim from '@/utils/textAnims'
 import { imgAnim } from '@/composables/imgAnims'
 const props = defineProps({
     heading: String,
@@ -58,15 +59,16 @@ const props = defineProps({
 
 const elm = ref(null)
 const imgContainer = ref(null)
-function Mobile({ isMobile }) {
-    nextTick(() => {
-        imgAnim(elm.value, false, 'play none none reverse');
-        textAnim(elm.value, false, 'play none none reverse');
 
-    })
-}
-function setupSection5({ isDesktop, isTablet }) {
+function setupSection5({ isDesktop, isTablet, isMobile }) {
     nextTick(() => {
+        if(isMobile){
+            const animM = new textAnim(elm.value, { toggleActions: 'play none none reverse' })
+            imgAnim(elm.value, false, 'play none none reverse');
+            animM?.init()
+            return;
+        }
+        const anim = new textAnim(elm.value, { toggleActions: 'play none none reverse' })
         let left = '58%'
         //if (isDesktop) left = '58%'
         const el = elm.value
@@ -74,7 +76,7 @@ function setupSection5({ isDesktop, isTablet }) {
         const img1 = el.querySelector('.results-image-0')
         const img2 = el.querySelector('.results-image-1')
         const imgs = imgContainer.value.querySelectorAll('img')
-        textAnim(el, false, 'play none play reverse');
+        anim?.init()
 
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -118,23 +120,13 @@ function setupSection5({ isDesktop, isTablet }) {
             'img2Enter+=2.5'
         )
         tl.to(text, {
-             filter: 'blur(40px)',
+            filter: 'blur(40px)',
             ease: 'power2.inOut',
             duration: 1,
         },
-        'img2Enter+=2.3')
+            'img2Enter+=2.3')
     })
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

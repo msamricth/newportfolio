@@ -609,7 +609,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "f24261fd-5df9-43cb-85ab-8c948256db8a",
+    "buildId": "5f8a2e70-3698-40c1-902f-dbb097bccacd",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -651,6 +651,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {},
+  "githubToken": "",
   "sitemap": {
     "isI18nMapped": false,
     "sitemapName": "sitemap.xml",
@@ -1342,57 +1343,57 @@ const plugins = [
 const assets = {
   "/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"97921-nK6gzlqUqcI9XqFfrZsTgOEHXCI\"",
-    "mtime": "2025-06-05T03:35:04.031Z",
-    "size": 620833,
+    "etag": "\"98e71-wO+B244uv48CiTXuP4FWQ3NyBg4\"",
+    "mtime": "2025-06-09T03:51:24.605Z",
+    "size": 626289,
     "path": "../../.output/public/index.html"
   },
   "/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-eBCJ7JTgdYnS+QsdheP2zTSk/4c\"",
-    "mtime": "2025-06-05T03:35:04.068Z",
+    "etag": "\"45-Lp8/uGNHQYtNr9oKA81EGagxcwA\"",
+    "mtime": "2025-06-09T03:51:24.621Z",
     "size": 69,
     "path": "../../.output/public/_payload.json"
   },
   "/about/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"2926e-Z8tbKw6zO4J8hXdPsniAEHS1kD0\"",
-    "mtime": "2025-06-05T03:35:04.417Z",
-    "size": 168558,
+    "etag": "\"2afa3-TPcehI0GS9hlYdZbd22jCnIF9mo\"",
+    "mtime": "2025-06-09T03:51:24.782Z",
+    "size": 176035,
     "path": "../../.output/public/about/index.html"
   },
   "/about/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-1AmtAZ2oiyxlTe8KRydHhvXHzOc\"",
-    "mtime": "2025-06-05T03:35:04.434Z",
+    "etag": "\"45-ZsXuzJ776/Z0+2xUMSPLHRJ2cQ0\"",
+    "mtime": "2025-06-09T03:51:24.834Z",
     "size": 69,
     "path": "../../.output/public/about/_payload.json"
   },
   "/work/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"1ea57-BZOjuvAr1D8mxBwJnuhiniAQgeQ\"",
-    "mtime": "2025-06-05T03:35:04.079Z",
-    "size": 125527,
+    "etag": "\"20a6e-6HMX6iy/pyk73jAAtA6n5szlnVQ\"",
+    "mtime": "2025-06-09T03:51:24.668Z",
+    "size": 133742,
     "path": "../../.output/public/work/index.html"
   },
   "/work/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-KQMQZ/ojLdXZ2E05stRHv1i4ADI\"",
-    "mtime": "2025-06-05T03:35:04.093Z",
+    "etag": "\"45-ZsXuzJ776/Z0+2xUMSPLHRJ2cQ0\"",
+    "mtime": "2025-06-09T03:51:24.686Z",
     "size": 69,
     "path": "../../.output/public/work/_payload.json"
   },
   "/work/glt/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"337a9-ZmJxchuez30F6PBstYGUAW1Tqbg\"",
-    "mtime": "2025-06-05T03:35:04.339Z",
-    "size": 210857,
+    "etag": "\"40331-gBZno6aeMz6MqY7mp+/8i8CrnF8\"",
+    "mtime": "2025-06-09T03:51:24.789Z",
+    "size": 262961,
     "path": "../../.output/public/work/glt/index.html"
   },
   "/work/glt/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-KQMQZ/ojLdXZ2E05stRHv1i4ADI\"",
-    "mtime": "2025-06-05T03:35:04.362Z",
+    "etag": "\"45-zKo7SO0QRLUd2gcPM/o/cVTXHEY\"",
+    "mtime": "2025-06-09T03:51:24.834Z",
     "size": 69,
     "path": "../../.output/public/work/glt/_payload.json"
   }
@@ -3011,10 +3012,12 @@ const _YYX6aA = defineEventHandler(async (e) => {
 
 const _SxA8c9 = defineEventHandler(() => {});
 
+const _lazy_dqKRfw = () => import('../routes/api/github/gitAuth.mjs');
 const _lazy_1l9Stg = () => import('./renderer.mjs').then(function (n) { return n.r; });
 
 const handlers = [
   { route: '', handler: _aB7OGb, lazy: false, middleware: true, method: undefined },
+  { route: '/api/github/gitAuth', handler: _lazy_dqKRfw, lazy: true, middleware: false, method: undefined },
   { route: '', handler: _0CMMRK, lazy: false, middleware: true, method: undefined },
   { route: '/__sitemap__/style.xsl', handler: _xk9goV, lazy: false, middleware: false, method: undefined },
   { route: '/sitemap.xml', handler: _YYX6aA, lazy: false, middleware: false, method: undefined },

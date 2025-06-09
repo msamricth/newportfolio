@@ -96,7 +96,7 @@ declare global {
   const shuffleIcons: typeof import('../../src/utils/shuffler')['shuffleIcons']
   const splitting: typeof import('../../src/utils/splitting')['default']
   const storeToRefs: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['storeToRefs']
-  const textAnim: typeof import('../../src/composables/textAnims')['textAnim']
+  const textAnims: typeof import('../../src/utils/textAnims')['default']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
@@ -300,7 +300,7 @@ declare module 'vue' {
     readonly shuffleIcons: UnwrapRef<typeof import('../../src/utils/shuffler')['shuffleIcons']>
     readonly splitting: UnwrapRef<typeof import('../../src/utils/splitting')['default']>
     readonly storeToRefs: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['storeToRefs']>
-    readonly textAnim: UnwrapRef<typeof import('../../src/composables/textAnims')['textAnim']>
+    readonly textAnims: UnwrapRef<typeof import('../../src/utils/textAnims')['default']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>

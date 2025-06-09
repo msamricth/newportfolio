@@ -1,5 +1,5 @@
 import { hasInjectionContext, getCurrentInstance, defineComponent, createElementBlock, shallowRef, provide, cloneVNode, ref, inject, h, Suspense, Fragment, createApp, shallowReactive, toRef, onErrorCaptured, onServerPrefetch, unref, createVNode, resolveDynamicComponent, reactive, effectScope, isReadonly, isRef, isShallow, isReactive, toRaw, defineAsyncComponent, mergeProps, getCurrentScope, useSSRContext } from 'vue';
-import { k as hasProtocol, l as isScriptProtocol, m as joinURL, w as withQuery, n as sanitizeStatusCode, o as getContext, $ as $fetch, q as baseURL, r as createHooks, v as executeAsync, i as createError$1, x as toRouteMatcher, y as createRouter$1, z as defu } from '../_/nitro.mjs';
+import { l as hasProtocol, m as isScriptProtocol, n as joinURL, w as withQuery, o as sanitizeStatusCode, q as getContext, $ as $fetch, r as baseURL, v as createHooks, x as executeAsync, e as createError$1, y as toRouteMatcher, z as createRouter$1, A as defu } from '../_/nitro.mjs';
 import { defineStore, createPinia, setActivePinia, shouldHydrate } from 'pinia';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
 import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode } from 'vue/server-renderer';
@@ -396,23 +396,23 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-BdsiA5m9.mjs')
+    component: () => import('./About-CMDaWOko.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Dr8Ag4-A.mjs')
+    component: () => import('./index-B1UqbVu-.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-UNW1fxUX.mjs')
+    component: () => import('./glt-kaOApax4.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-DZf10web.mjs')
+    component: () => import('./index-DGedgnpw.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1000,6 +1000,7 @@ const useMainStore = defineStore("main", {
       (void 0).body.classList.toggle("dark", this.darkMode === "dark");
     },
     toggleTheme(value) {
+      console.log(value);
       this.darkMode = value ? "dark" : "light";
       localStorage.setItem("theme", this.darkMode);
       (void 0).body.classList.toggle("dark", value);
@@ -1017,7 +1018,7 @@ const useMainStore = defineStore("main", {
     closeNav() {
       this.navOpen = false;
     },
-    toggleFold(force = false, clear) {
+    toggleFold(force = false, clear = null) {
       if (this.darkMode === "light") {
         if (clear) {
           this.fold = false;

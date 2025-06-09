@@ -112,9 +112,14 @@
     .disapear-up {
         animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both !important;
     }
-
+    .appear-up {
+        animation: slide-in-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both !important;
+    }
     .wobble-ver-right {
         animation: wobble-ver-right 0.8s both;
+    }
+    .wobble-ver-right-scale {
+        animation: wobble-ver-right-scale 0.8s both;
     }
 
     @keyframes wobble-ver-right {
@@ -145,7 +150,39 @@
             transform: translateY(-1px) rotate(0.2deg);
         }
     }
+    @keyframes wobble-ver-right-scale {
 
+        0% {
+            transform: translateY(0) rotate(0);
+            transform-origin: 50% 50%;
+            scale:1;
+        }
+
+        15% {
+            transform: translateY(-5px) rotate(3deg);
+        }
+
+        30% {
+            transform: translateY(2px) rotate(-3deg);
+        }
+
+        45% {
+            transform: translateY(-2px) rotate(1.8deg);
+        }
+
+        60% {
+            transform: translateY(0.5px) rotate(-0.6deg);
+        }
+
+        75% {
+            transform: translateY(-1px) rotate(0.2deg);
+        }
+        100% {
+            transform: translateY(0) rotate(0);
+            transform-origin: 50% 50%;
+            scale: 1.2;
+        }
+    }
     @keyframes slide-in-right-collapse {
         0% {
             transform: translateX(25px);
@@ -206,17 +243,6 @@
         0% {
             transform: translateY(0);
             opacity: 1;
-        }
-
-        100% {
-            transform: translateY(100px);
-            opacity: 0;
-        }
-    }
-    @keyframes slide-out-bottom {
-        0% {
-            transform: translateY(0);
-            opacity: 1;
             filter: blur(0px);
         }
 
@@ -224,6 +250,20 @@
             transform: translateY(-100px);
             opacity: 0;
             filter: blur(40px);
+        }
+    }
+    
+    @keyframes slide-in-bottom {
+        0% {
+            transform: translateY(100px);
+            opacity: 0;
+            filter: blur(40px);
+        }
+
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+            filter: none;
         }
     }
     @keyframes scale-in-hor-right {
