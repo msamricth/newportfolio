@@ -27,13 +27,14 @@ const props = defineProps({
     gistId: { type: String, required: true },
     repoUrl: { type: String, default: '' },
     FileName: { type: String, default: '' },
+    code: { type: String, default: '' },
     Caption: { type: String, default: '' },
+
 })
 
 const loading = ref(true)
 const error = ref('')
-const code = ref('')
-
+//const code = ref('')
 const gistLinkText = computed(() => {
     const intro = props.FileName
         ? `<strong class="block md:inline">${props.FileName} / </strong>`
@@ -42,14 +43,15 @@ const gistLinkText = computed(() => {
 })
 
 const defaultGistPage = computed(() => {
-    const id = props.gistId.split('/').pop()
-    return `https://gist.github.com/${id}`
-})
+    const id = props.gistId.split('/').pop();
+    return `https://gist.github.com/${id}`;
+});
 
+/*
 async function fetchGist() {
   loading.value = true
   error.value = ''
-  code.value = ''
+ // code.value = ''
   const id = props.gistId.includes('gist.github.com')
     ? props.gistId.split('/').pop()
     : props.gistId
@@ -67,16 +69,17 @@ async function fetchGist() {
     loading.value = false
   }
 }
-
-function linkText() {
-    return gistLinkText.value;
-} onMounted(async () => {
+onMounted(async () => {
     await nextTick()
     fetchGist()
 })
 watch(() => [props.gistId, props.file], fetchGist)
-</script>
+*/
+function linkText() {
+    return gistLinkText.value;
+} 
 
+</script>
 <style scoped>
 @import url('https://cdn.jsdelivr.net/npm/comic-mono@0.0.1/index.css');
 @import url('https://github.githubassets.com/assets/gist-embed-b1ee75c43dbe.css');
