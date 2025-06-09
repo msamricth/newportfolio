@@ -40,7 +40,7 @@ import { ref, nextTick } from 'vue'
 import PlaceholderJS from '@/utils/placeholder.js'
 import { useMatchMedia } from '@/composables/useMatchMedia'
 import {imgAnim} from '@/composables/imgAnims'
-import textAnim from '@/utils/TextAnims'
+import textAnim from '@/utils/textAnims'
 import Gist from '../../contexts/Gist.vue'
 import gsap from 'gsap'
 
