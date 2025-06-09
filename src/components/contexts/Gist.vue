@@ -75,6 +75,11 @@ onMounted(async () => {
 })
 watch(() => [props.gistId, props.file], fetchGist)
 */
+onMounted(async () => {
+    await nextTick()
+   // fetchGist()
+    loading.value = false
+})
 function linkText() {
     return gistLinkText.value;
 } 
