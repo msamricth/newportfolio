@@ -36,7 +36,7 @@
 import { ref, nextTick } from 'vue'
 import PlaceholderJS from '@/utils/placeholder.js'
 import { useMatchMedia } from '@/composables/useMatchMedia'
-import textAnim from '@/utils/TextAnims'
+import textAnim from '@/utils/textAnims'
 import gsap from 'gsap'
 
 const props = defineProps({
