@@ -1,5 +1,5 @@
-import { defineComponent, mergeProps, unref, ref, createVNode, resolveDynamicComponent, computed, onMounted, nextTick, watch, useSSRContext } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
-import { ssrRenderAttrs, ssrRenderComponent, ssrRenderVNode, ssrInterpolate, ssrRenderAttr, ssrRenderClass, ssrRenderStyle, ssrRenderList } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
+import { defineComponent, mergeProps, unref, ref, createVNode, resolveDynamicComponent, computed, onMounted, nextTick, watch, useSSRContext } from 'vue';
+import { ssrRenderAttrs, ssrRenderComponent, ssrRenderVNode, ssrInterpolate, ssrRenderAttr, ssrRenderClass, ssrRenderStyle, ssrRenderList } from 'vue/server-renderer';
 import { I as InnerSecondaryNav, a as InnerNav } from './InnerNav-CmnElNp8.mjs';
 import { u as useMainStore } from './server.mjs';
 import { C as Contact, _ as _sfc_main$f, b as _sfc_main$7$1 } from './Footer-D1OIHc6g.mjs';
@@ -7,36 +7,25 @@ import { _ as _sfc_main$e, L as Links } from './Wordpress-X4cNZJL0.mjs';
 import { a as useSeoMeta, _ as _export_sfc } from './_plugin-vue_export-helper-CxiIwPb2.mjs';
 import { M as MainButton } from './MainButton-BKS2LnZK.mjs';
 import './nuxt-link-BvcfoKbn.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/gsap/dist/gsap.js';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ofetch/dist/node.mjs';
 import '../_/nitro.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/destr/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/hookable/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/node-mock-http/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/klona/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/defu/dist/defu.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/scule/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/radix3/dist/index.mjs';
+import 'node:http';
+import 'node:https';
+import 'node:events';
+import 'node:buffer';
 import 'node:fs';
 import 'node:url';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pathe/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/consola/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unstorage/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unstorage/drivers/fs.mjs';
-import 'file:///C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/dist/core/runtime/nitro/utils/cache-driver.js';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unstorage/drivers/fs-lite.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ohash/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unctx/dist/index.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-router/dist/vue-router.node.mjs';
-import '../_/renderer.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/server.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/devalue/index.js';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
-import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/utils.mjs';
+import 'consola';
+import 'node:path';
+import 'node:crypto';
+import 'gsap';
+import 'pinia';
+import 'vue-router';
+import '../routes/renderer.mjs';
+import 'vue-bundle-renderer/runtime';
+import 'unhead/server';
+import 'devalue';
+import 'unhead/plugins';
+import 'unhead/utils';
 
 const _sfc_main$d = /* @__PURE__ */ defineComponent({
   __name: "Intro",
@@ -250,7 +239,7 @@ const _sfc_main$8 = {
     const props = __props;
     const loading = ref(true);
     const error = ref("");
-    const code = ref("");
+    const code2 = ref("");
     const gistLinkText = computed(() => {
       const intro = props.FileName ? `<strong class="block md:inline">${props.FileName} / </strong>` : "";
       return intro + "View the full repo \u2197";
@@ -262,7 +251,7 @@ const _sfc_main$8 = {
     async function fetchGist() {
       loading.value = true;
       error.value = "";
-      code.value = "";
+      code2.value = "";
       const id = props.gistId.includes("gist.github.com") ? props.gistId.split("/").pop() : props.gistId;
       try {
         const gist = await $fetch(`/api/github/gitAuth`, {
@@ -270,7 +259,7 @@ const _sfc_main$8 = {
         });
         const files = gist.files;
         const filename = Object.keys(files)[0];
-        code.value = files[filename].content;
+        code2.value = files[filename].content;
       } catch (e) {
         error.value = e.message || "Failed to load gist";
       } finally {
@@ -298,7 +287,7 @@ const _sfc_main$8 = {
         } else {
           _push(`<!---->`);
         }
-        _push(`</div><pre class="overflow-y-auto overflow-x-clip px-6 bg-gray-700/10 text-hot-coral h-[45dvh] lg:h-[60dvh] relative transition-all duration-700 [&amp;::-webkit-scrollbar-thumb]:rounded-full [&amp;::-webkit-scrollbar-thumb]:cursor-pointer" data-v-0e32ef75>                 <code class="text-xs/6 block opacity-70" data-v-0e32ef75>${ssrInterpolate(code.value)}</code>
+        _push(`</div><pre class="overflow-y-auto overflow-x-clip px-6 bg-gray-700/10 text-hot-coral h-[45dvh] lg:h-[60dvh] relative transition-all duration-700 [&amp;::-webkit-scrollbar-thumb]:rounded-full [&amp;::-webkit-scrollbar-thumb]:cursor-pointer" data-v-0e32ef75>                 <code class="text-xs/6 block opacity-70" data-v-0e32ef75>${ssrInterpolate(code2.value)}</code>
             </pre><div class="bg-gray-100/10 px-6 py-2 flex justify-between items-center text-background text-md" data-v-0e32ef75>`);
         if (!loading.value) {
           _push(ssrRenderComponent(Links, {
@@ -326,6 +315,182 @@ _sfc_main$8.setup = (props, ctx) => {
   return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
 const Gist = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-0e32ef75"]]);
+const code$1 = `import { enableSidebarSelectOnBlocks } from './blockList';
+import { setSidebarSelectAttribute } from './setAttributes';
+
+const { __ } = wp.i18n;
+const { createHigherOrderComponent } = wp.compose;
+const { Fragment } = wp.element;
+const { InspectorControls, InspectorAdvancedControls, MediaUpload, MediaUploadCheck } = wp.blockEditor;
+const { ToggleControl, PanelBody, TextControl, RadioControl, CheckboxControl, SelectControl, Button } = wp.components;
+
+export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
+    return (props) => {
+        if (!enableSidebarSelectOnBlocks.includes(props.name)) {
+            return <BlockEdit {...props} />;
+        }
+        const { attributes, setAttributes, isSelected } = props;
+        const { matchNavBackground, blockAnimation, animationDelay, fullHeight, fullWidth, hideMobile, hideTablet, hideDesktop, topPadding, bottomPadding, topMargin, bottomMargin, backgroundImage, seperatorTop, seperatorBottom } = attributes;
+
+        function onChangeBlockAnimation(newValue) {
+            setAttributes({ blockAnimation: newValue });
+        }
+        function onChangeAnimationDelay(newValue) {
+            setAttributes({ animationDelay: newValue });
+        }
+        function onChangeTopPadding(newValue) {
+            setAttributes({ topPadding: newValue });
+        }
+        function onChangeBottomPadding(newValue) {
+            setAttributes({ bottomPadding: newValue });
+        }
+        function onChangeTopMargin(newValue) {
+            setAttributes({ topMargin: newValue });
+        }
+        function onChangeBottomMargin(newValue) {
+            setAttributes({ bottomMargin: newValue });
+        }
+        function onChangeBackgroundImage(newImage) {
+            setAttributes({ backgroundImage: newImage.sizes.full.url });
+        }
+        return (
+            <Fragment>
+                <BlockEdit {...props} />
+                <InspectorControls>
+                    <PanelBody
+                        title={__('Theme Main Base')}
+                    >
+                        <PanelBody title={__('Block Settings')}>
+                            <ToggleControl
+                                label={wp.i18n.__('Match Nav Background on scroll', 'emm-bootstrap-base')}
+                                checked={!!attributes.matchNavBackground}
+                                onChange={(newval) => setAttributes({ matchNavBackground: !attributes.matchNavBackground })}
+                            />
+
+                            <ToggleControl
+                                label={wp.i18n.__('Make Full Width', 'emm-bootstrap-base')}
+                                help="Make this block go edge to edge (good for Background colors)"
+                                checked={!!attributes.fullWidth}
+                                onChange={(newval) => setAttributes({ fullWidth: !attributes.fullWidth })}
+                            />
+                            <ToggleControl
+                                label={wp.i18n.__('Make Full Height', 'emm-bootstrap-base')}
+                                help="Make this block go edge to edge (good for Background colors)"
+                                checked={!!attributes.fullHeight}
+                                onChange={(newval) => setAttributes({ fullHeight: !attributes.fullHeight })}
+                            />
+<SelectControl
+                                label="Animate this block"
+                                value={blockAnimation}
+                                options={[
+                                    { label: 'No Animation', value: '' },
+                                    { label: 'Fade In', value: 'fade-in' },
+                                    { label: 'Slide Up', value: 'slide-up' },
+                                    { label: 'Bounce In', value: 'bounce-in' },
+                                    { label: 'Bounce In Forward', value: 'bounce-in-fwd' },
+                                    { label: 'Subtle Slide In', value: 'subtle-slide-in' },
+                                    { label: 'TEXT: Focus In', value: 'text-focus-in' },
+                                    { label: 'TEXT: Tracking In', value: 'tracking-in-expand' },
+                                    { label: 'Custom', value: 'custom' },
+                                ]}
+                                onChange={onChangeBlockAnimation}
+                            />
+
+                            {blockAnimation !== '' && (
+                                <TextControl
+                                    label="Animation Delay (ex: 600ms, 0.6s)"
+                                    value={animationDelay}
+                                    onChange={onChangeAnimationDelay}
+                                />
+                            )}
+                            <MediaUploadCheck>
+                                <MediaUpload
+                                    onSelect={onChangeBackgroundImage}
+                                    allowedTypes={['image']}
+                                    value={backgroundImage}
+                                    render={({ open }) => (
+                                        <Button className="components-button is-primary" onClick={open}>Add Background image to block</Button>
+                                    )}
+                                />
+                            </MediaUploadCheck>
+                        </PanelBody>
+
+                        <PanelBody title={__('Spacing')}>
+                            <ToggleControl
+                                label={wp.i18n.__('Seperator Top', 'emm-bootstrap-base')}
+                                help="Add a seperator line to the top of this block"
+                                checked={!!attributes.seperatorTop}
+                                onChange={(newval) => setAttributes({ seperatorTop: !attributes.seperatorTop })}
+                            />
+
+                            <ToggleControl
+                                label={wp.i18n.__('Seperator Bottom', 'emm-bootstrap-base')}
+                                help="Add a seperator line to the Bottom of this block"
+                                checked={!!attributes.seperatorBottom}
+                                onChange={(newval) => setAttributes({ seperatorBottom: !attributes.seperatorBottom })}
+                            />
+                            <SelectControl
+                                label="Padding Top"
+                                value={topPadding}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'pt-1' },
+                                    { label: 'Small', value: 'pt-2' },
+                                    { label: 'Medium', value: 'pt-3' },
+                                    { label: 'Large', value: 'pt-4' },
+                                    { label: 'Largest', value: 'pt-5' },
+                                    { label: 'Size of gutter', value: 'pt-gutter' },
+                                ]}
+                                onChange={onChangeTopPadding}
+                            />
+                            <SelectControl
+                                label="Padding Bottom"
+                                value={bottomPadding}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'pb-1' },
+                                    { label: 'Small', value: 'pb-2' },
+                                    { label: 'Medium', value: 'pb-3' },
+                                    { label: 'Large', value: 'pb-4' },
+                                    { label: 'Largest', value: 'pb-5' },
+                                    { label: 'Size of gutter', value: 'pb-gutter' },
+                                ]}
+                                onChange={onChangeBottomPadding}
+                            />
+                            <SelectControl
+                                label="Margin Top"
+                                value={topMargin}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'mt-1' },
+                                    { label: 'Small', value: 'mt-2' },
+                                    { label: 'Medium', value: 'mt-3' },
+                                    { label: 'Large', value: 'mt-4' },
+                                    { label: 'Largest', value: 'mt-5' },
+                                    { label: 'Size of gutter', value: 'mt-gutter' },
+                                ]}
+                                onChange={onChangeTopMargin}
+                            />
+                            <SelectControl
+                                label="Margin Bottom"
+                                value={bottomMargin}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'mb-1' },
+                                    { label: 'Small', value: 'mb-2' },
+                                    { label: 'Medium', value: 'mb-3' },
+                                    { label: 'Large', value: 'mb-4' },
+                                    { label: 'Largest', value: 'mb-5' },
+                                    { label: 'Size of gutter', value: 'mb-gutter' },
+                                ]}
+                                onChange={onChangeBottomMargin}
+                            />
+                        </PanelBody>
+                        <PanelBody title={__('Visibility')}>
+                            <ToggleControl
+                                label={wp.i18n.__('Hide on Mobile', 'emm-bootstrap-base')}
+                                checked={!!attributes.hideMobile}
+   \u2026`;
 const _sfc_main$7 = {
   __name: "ImageGist",
   __ssrInlineRender: true,
@@ -382,6 +547,7 @@ const _sfc_main$7 = {
           repoUrl: __props.repoUrl,
           FileName: __props.FileName,
           Caption: __props.Caption,
+          code: code$1,
           class: "lg:mx-auto w-full"
         }, null, _parent));
         _push(`</div>`);
@@ -450,6 +616,164 @@ _sfc_main$6.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/case-studies/sections/Basic.vue");
   return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
+const code = `<?php
+namespace airtableWPInc;
+
+class AirtableService
+{
+    public static function airtableConfig()
+    {
+        $options = get_option('airtable_WP_options');
+        $apiKey = isset($options['api_key']) ? $options['api_key'] : '';
+        $baseId = isset($options['base_id']) ? $options['base_id'] : '';
+        $tableName = isset($options['table_name']) ? $options['table_name'] : '';
+        $email_field = isset($options['email_field_name']) ? $options['email_field_name'] : 'Primary Email';
+        return [
+            'api_key' => $apiKey,
+            'base_ID' => $baseId,
+            'table_name' => $tableName,
+            'email_field_name' => $email_field
+        ];
+    }
+
+    public static function email_exists_in_airtable($email)
+    {
+        // Airtable API details
+        $apiDetails = self::airtableConfig();
+        $api_key = $apiDetails['api_key'];
+        $base_id = $apiDetails['base_ID'];
+        $table_name = $apiDetails['table_name'];
+        $email_field = $apiDetails['email_field_name'];
+        if (is_array($email)) {
+            $email = implode(', ', $email); 
+        }
+    
+        $api_url = "https://api.airtable.com/v0/{$base_id}/{$table_name}?filterByFormula=" . urlencode("{" . $email_field . "}='{$email}'");
+        $response = wp_remote_get(
+            $api_url,
+            array(
+                'headers' => array(
+                    'Authorization' => 'Bearer ' . $api_key,
+                ),
+                'timeout' => 15, // Increase timeout to 15 seconds
+            )
+        );
+        if (is_wp_error($response)) {
+            error_log('Error checking email in Airtable: ' . $response->get_error_message());
+            return false;
+        }
+    
+        $body = wp_remote_retrieve_body($response);
+        $data = json_decode($body, true);
+        if (!empty($data['records'])) {
+            error_log('email_exists_in_airtable');
+        }
+        return !empty($data['records']);
+    }
+    
+    public static function add_record_to_airtable($data)
+    {
+        $apiDetails = self::airtableConfig();
+        $api_key = $apiDetails['api_key'];
+        $base_id = $apiDetails['base_ID'];
+        $table_name = $apiDetails['table_name'];
+        $api_url = "https://api.airtable.com/v0/{$base_id}/{$table_name}";
+
+        $response = wp_remote_post(
+            $api_url,
+            array(
+                'headers' => array(
+                    'Authorization' => 'Bearer ' . $api_key,
+                    'Content-Type' => 'application/json',
+                ),
+                'body' => wp_json_encode($data),
+            )
+        );
+
+        if (is_wp_error($response)) {
+            // Log or handle the error
+            error_log('Error adding email to Airtable: ' . $response->get_error_message());
+        } else {
+            // Check if the request was successful
+            $response_code = wp_remote_retrieve_response_code($response);
+            if ($response_code !== 200) {
+                error_log('Unexpected response adding email to Airtable: ' . $response_code);
+            }
+        }
+    }
+
+    public static function update_record_in_airtable($data, $email, $debug_info)
+    {
+        $apiDetails = self::airtableConfig();
+        $api_key = $apiDetails['api_key'];
+        $base_id = $apiDetails['base_ID'];
+        $table_name = $apiDetails['table_name'];
+        $emailField = $apiDetails['email_field_name'];
+        $logData = $data;
+        if (is_array($logData)) {
+            $logData = json_encode($logData, JSON_PRETTY_PRINT); // Convert array (including sub-arrays) to JSON string
+        }
+
+        $api_url = "https://api.airtable.com/v0/{$base_id}/{$table_name}?filterByFormula=" . urlencode("{" . $emailField . "}='{$email}'");
+        $response = wp_remote_get(
+            $api_url,
+            array(
+                'headers' => array(
+                    'Authorization' => 'Bearer ' . $api_key,
+                ),
+            )
+        );
+
+        if (is_wp_error($response)) {
+            error_log('Error searching email in Airtable: ' . $response->get_error_message());
+            return;
+        }
+
+        $body = wp_remote_retrieve_body($response);
+        $records = json_decode($body, true);
+        if (!empty($records['records'])) {
+            $record_id = $records['records'][0]['id'];
+            $update_url = "https://api.airtable.com/v0/{$base_id}/{$table_name}/{$record_id}";
+
+            $update_response = wp_remote_post(
+                $update_url,
+                array(
+                    'method' => 'PATCH',
+                    'headers' => array(
+                        'Authorization' => 'Bearer ' . $api_key,
+                        'Content-Type' => 'application/json',
+                    ),
+                    'body' => wp_json_encode(array('fields' => $data)),
+                )
+            );
+
+            if (is_wp_error($update_response)) {
+                error_log('Error updating record in Airtable: ' . $update_response->get_error_message());
+            } else {
+                $response_code = wp_remote_retrieve_response_code($update_response);
+                if ($response_code !== 200) {
+                    error_log('Unexpected response updating record in Airtable: ' . $response_code);
+                } else {
+                    self::SuccessResponse($record_id, $data, $debug_info);
+                }
+            }
+        } else {
+            error_log('Record not found in airtable');
+        }
+    }
+    public static function SuccessResponse($record_id,$form_data, $debug_info)
+    {
+        $debug_info['record ID'] = $record_id;
+        wp_send_json_success(
+            array(
+                'message' => 'Form data received successfully.',
+                'data' => $form_data,
+                'debug_info' => $debug_info,
+                'record_id' => $record_id
+            )
+        );
+    }
+}`;
 const _sfc_main$5 = {
   __name: "IconGist",
   __ssrInlineRender: true,
@@ -506,6 +830,7 @@ const _sfc_main$5 = {
           repoUrl: __props.repoUrl,
           FileName: __props.FileName,
           Caption: __props.Caption,
+          code,
           class: "order-3 md:order-2 md:absolute md:max-w-xl lg:max-w-2xl md:opacity-0 gist mx-2 md:mx-6 md:mt-6 lg:mt-0 tl left-0 max-md:mt-6 max-md:w-[calc(100%-16px)]"
         }, null, _parent));
       } else {
@@ -839,4 +1164,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=glt-DfvD4WEA.mjs.map
+//# sourceMappingURL=glt-kaOApax4.mjs.map

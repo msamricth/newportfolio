@@ -29,7 +29,7 @@
         </div>
         <div class="order-3 md:order-2 md:px-0 md:pt-6 lg:pt-0 px-2 w-full md:absolute relative md:opacity-0 gist tl md:right-8 lg:right-12 md:w-2/3 flex flex-col justify-center xl:max-w-xl  lg:mt-14"
             v-if="gistId">
-            <Gist :gistId="gistId" :repoUrl="repoUrl" :FileName="FileName" :Caption="Caption"
+            <Gist :gistId="gistId" :repoUrl="repoUrl" :FileName="FileName" :Caption="Caption" :code="code"
                 class="lg:mx-auto w-full" />
         </div>
     </section>
@@ -44,6 +44,182 @@ import textAnim from '@/utils/textAnims'
 import Gist from '../../contexts/Gist.vue'
 import gsap from 'gsap'
 
+const code = `import { enableSidebarSelectOnBlocks } from './blockList';
+import { setSidebarSelectAttribute } from './setAttributes';
+
+const { __ } = wp.i18n;
+const { createHigherOrderComponent } = wp.compose;
+const { Fragment } = wp.element;
+const { InspectorControls, InspectorAdvancedControls, MediaUpload, MediaUploadCheck } = wp.blockEditor;
+const { ToggleControl, PanelBody, TextControl, RadioControl, CheckboxControl, SelectControl, Button } = wp.components;
+
+export const withSidebarSelect = createHigherOrderComponent((BlockEdit) => {
+    return (props) => {
+        if (!enableSidebarSelectOnBlocks.includes(props.name)) {
+            return <BlockEdit {...props} />;
+        }
+        const { attributes, setAttributes, isSelected } = props;
+        const { matchNavBackground, blockAnimation, animationDelay, fullHeight, fullWidth, hideMobile, hideTablet, hideDesktop, topPadding, bottomPadding, topMargin, bottomMargin, backgroundImage, seperatorTop, seperatorBottom } = attributes;
+
+        function onChangeBlockAnimation(newValue) {
+            setAttributes({ blockAnimation: newValue });
+        }
+        function onChangeAnimationDelay(newValue) {
+            setAttributes({ animationDelay: newValue });
+        }
+        function onChangeTopPadding(newValue) {
+            setAttributes({ topPadding: newValue });
+        }
+        function onChangeBottomPadding(newValue) {
+            setAttributes({ bottomPadding: newValue });
+        }
+        function onChangeTopMargin(newValue) {
+            setAttributes({ topMargin: newValue });
+        }
+        function onChangeBottomMargin(newValue) {
+            setAttributes({ bottomMargin: newValue });
+        }
+        function onChangeBackgroundImage(newImage) {
+            setAttributes({ backgroundImage: newImage.sizes.full.url });
+        }
+        return (
+            <Fragment>
+                <BlockEdit {...props} />
+                <InspectorControls>
+                    <PanelBody
+                        title={__('Theme Main Base')}
+                    >
+                        <PanelBody title={__('Block Settings')}>
+                            <ToggleControl
+                                label={wp.i18n.__('Match Nav Background on scroll', 'emm-bootstrap-base')}
+                                checked={!!attributes.matchNavBackground}
+                                onChange={(newval) => setAttributes({ matchNavBackground: !attributes.matchNavBackground })}
+                            />
+
+                            <ToggleControl
+                                label={wp.i18n.__('Make Full Width', 'emm-bootstrap-base')}
+                                help="Make this block go edge to edge (good for Background colors)"
+                                checked={!!attributes.fullWidth}
+                                onChange={(newval) => setAttributes({ fullWidth: !attributes.fullWidth })}
+                            />
+                            <ToggleControl
+                                label={wp.i18n.__('Make Full Height', 'emm-bootstrap-base')}
+                                help="Make this block go edge to edge (good for Background colors)"
+                                checked={!!attributes.fullHeight}
+                                onChange={(newval) => setAttributes({ fullHeight: !attributes.fullHeight })}
+                            />
+<SelectControl
+                                label="Animate this block"
+                                value={blockAnimation}
+                                options={[
+                                    { label: 'No Animation', value: '' },
+                                    { label: 'Fade In', value: 'fade-in' },
+                                    { label: 'Slide Up', value: 'slide-up' },
+                                    { label: 'Bounce In', value: 'bounce-in' },
+                                    { label: 'Bounce In Forward', value: 'bounce-in-fwd' },
+                                    { label: 'Subtle Slide In', value: 'subtle-slide-in' },
+                                    { label: 'TEXT: Focus In', value: 'text-focus-in' },
+                                    { label: 'TEXT: Tracking In', value: 'tracking-in-expand' },
+                                    { label: 'Custom', value: 'custom' },
+                                ]}
+                                onChange={onChangeBlockAnimation}
+                            />
+
+                            {blockAnimation !== '' && (
+                                <TextControl
+                                    label="Animation Delay (ex: 600ms, 0.6s)"
+                                    value={animationDelay}
+                                    onChange={onChangeAnimationDelay}
+                                />
+                            )}
+                            <MediaUploadCheck>
+                                <MediaUpload
+                                    onSelect={onChangeBackgroundImage}
+                                    allowedTypes={['image']}
+                                    value={backgroundImage}
+                                    render={({ open }) => (
+                                        <Button className="components-button is-primary" onClick={open}>Add Background image to block</Button>
+                                    )}
+                                />
+                            </MediaUploadCheck>
+                        </PanelBody>
+
+                        <PanelBody title={__('Spacing')}>
+                            <ToggleControl
+                                label={wp.i18n.__('Seperator Top', 'emm-bootstrap-base')}
+                                help="Add a seperator line to the top of this block"
+                                checked={!!attributes.seperatorTop}
+                                onChange={(newval) => setAttributes({ seperatorTop: !attributes.seperatorTop })}
+                            />
+
+                            <ToggleControl
+                                label={wp.i18n.__('Seperator Bottom', 'emm-bootstrap-base')}
+                                help="Add a seperator line to the Bottom of this block"
+                                checked={!!attributes.seperatorBottom}
+                                onChange={(newval) => setAttributes({ seperatorBottom: !attributes.seperatorBottom })}
+                            />
+                            <SelectControl
+                                label="Padding Top"
+                                value={topPadding}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'pt-1' },
+                                    { label: 'Small', value: 'pt-2' },
+                                    { label: 'Medium', value: 'pt-3' },
+                                    { label: 'Large', value: 'pt-4' },
+                                    { label: 'Largest', value: 'pt-5' },
+                                    { label: 'Size of gutter', value: 'pt-gutter' },
+                                ]}
+                                onChange={onChangeTopPadding}
+                            />
+                            <SelectControl
+                                label="Padding Bottom"
+                                value={bottomPadding}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'pb-1' },
+                                    { label: 'Small', value: 'pb-2' },
+                                    { label: 'Medium', value: 'pb-3' },
+                                    { label: 'Large', value: 'pb-4' },
+                                    { label: 'Largest', value: 'pb-5' },
+                                    { label: 'Size of gutter', value: 'pb-gutter' },
+                                ]}
+                                onChange={onChangeBottomPadding}
+                            />
+                            <SelectControl
+                                label="Margin Top"
+                                value={topMargin}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'mt-1' },
+                                    { label: 'Small', value: 'mt-2' },
+                                    { label: 'Medium', value: 'mt-3' },
+                                    { label: 'Large', value: 'mt-4' },
+                                    { label: 'Largest', value: 'mt-5' },
+                                    { label: 'Size of gutter', value: 'mt-gutter' },
+                                ]}
+                                onChange={onChangeTopMargin}
+                            />
+                            <SelectControl
+                                label="Margin Bottom"
+                                value={bottomMargin}
+                                options={[
+                                    { label: 'None', value: '' },
+                                    { label: 'Smallest', value: 'mb-1' },
+                                    { label: 'Small', value: 'mb-2' },
+                                    { label: 'Medium', value: 'mb-3' },
+                                    { label: 'Large', value: 'mb-4' },
+                                    { label: 'Largest', value: 'mb-5' },
+                                    { label: 'Size of gutter', value: 'mb-gutter' },
+                                ]}
+                                onChange={onChangeBottomMargin}
+                            />
+                        </PanelBody>
+                        <PanelBody title={__('Visibility')}>
+                            <ToggleControl
+                                label={wp.i18n.__('Hide on Mobile', 'emm-bootstrap-base')}
+                                checked={!!attributes.hideMobile}
+   …`
 const props = defineProps({
     heading: String,
     paragraph: String,
