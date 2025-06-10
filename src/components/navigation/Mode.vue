@@ -1,5 +1,8 @@
 <template>
-
+    <button class="motion inline-flex items-start cursor-pointer group max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
+ transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in hover:text-accent" :class="store.reduceMotion ? 'text-sunburn-orange' : ''" @click.prevent="store.toggleReduceMotion(!store.reduceMotion)">
+        <Motion />
+    </button>
     <label class="inline-flex items-start cursor-pointer group max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
  transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in"
         :for="footer ? 'mode-footer' : 'mode'">
@@ -51,15 +54,17 @@
 
 <script setup>
 import { useMainStore } from '../../stores/main.js'
-import { onMounted, ref } from 'vue'
+import { onMounted, computed, ref } from 'vue'
+import Motion from '../icons/Motion.vue'
 const store = useMainStore()
 defineProps({
     footer: { type: Boolean },
 })
-
+const isActive = ref(false)
 onMounted(async () => {
     await nextTick()
 
+    store.initReduceMotion();
     store.setupDarkMode();
 })
 </script>
