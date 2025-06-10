@@ -44,18 +44,31 @@ export const useMainStore = defineStore('main', {
             this.darkMode = stored === 'dark' ? 'dark' : 'light';
             document.body.classList.toggle('dark', this.darkMode === 'dark');
         },
+        
         toggleTheme(value) {
-            console.log(value)
             this.darkMode = value ? 'dark' : 'light';
             localStorage.setItem('theme', this.darkMode);
             document.body.classList.toggle('dark', value);
         },
+        toggleReduceMotion(value){
+            console.log(value)
+            this.reduceMotion = value;
+            localStorage.setItem('reduceMotion', this.reduceMotion);
+            document.body.classList.toggle('motionless', value);
+        },
         initReduceMotion() {
+            const stored = localStorage.getItem('reduceMotion');
             const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
+            if(stored){
+                this.reduceMotion = stored;
+                return;
+            }
             this.reduceMotion = mql.matches
             mql.addEventListener('change', (e) => {
                 this.reduceMotion = e.matches
             })
+            
+            document.body.classList.toggle('motionless', this.reduceMotion);
         },
         openNav() { this.navOpen = true },
         closeNav() { this.navOpen = false },

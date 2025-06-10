@@ -2,6 +2,7 @@
 @import './css/animations.css';
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant inverted (&:where(.inverted, .inverted *));
+@custom-variant motionless (&:where(.motionless, .motionless *));
 
 @theme {
   --color-primary: #07000D;
@@ -116,7 +117,12 @@
     color: transparent;
     white-space: nowrap;
   }
-
+  .placeholder-line {
+    @apply motion-reduce:opacity-1;
+  }
+  .motionless .placeholder-line {
+    opacity: 1;
+  }
   .placeholder-line .word .placeholder {
     position: absolute;
     top: 8%;
@@ -131,8 +137,7 @@
   }
 
   .decor-wrap {
-    @apply flex flex-col justify-center items-center saturate-60 
-    hover:saturate-100;
+    @apply flex flex-col justify-center items-center saturate-60 hover:saturate-100;
   }
 
   .decor-grid {
@@ -216,6 +221,15 @@
       max-height: var(--scrollbar-width-legacy);
     }
   }
+
+  .headline span.word {
+    @apply inline-flex
+  }
+
+  .headline span.word span {
+    @apply inline-flex
+  }
+
   @media screen and (min-width:778px) {
     .icon-wipe-overlay path {
       transition: stroke-dashoffset 0.9s ease-in-out;

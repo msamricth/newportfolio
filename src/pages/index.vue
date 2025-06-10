@@ -12,6 +12,7 @@ useHead({
 })
 import Nav from '../components/navigation/Nav.vue';
 import HeroSection from '../components/HeroSection.vue';
+import HomeHero from '../components/contexts/HomeHero.vue';
 import About from '../components/contexts/Intro.vue'
 import LogoGarden from '../components/LogoGarden.vue'
 import FeaturedWork from '../components/carousels/FeaturedWork.vue'
@@ -25,7 +26,7 @@ const store = useMainStore()
 <template>
   <div
     class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-x-clip">
-    <HeroSection />
+    <HomeHero />
     <Nav />
     <About />
     <LogoGarden v-if="store.loaded" />

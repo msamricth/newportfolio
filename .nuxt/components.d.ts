@@ -39,6 +39,7 @@ interface _GlobalComponents {
     'ContextsAbout': typeof import("../src/components/contexts/About.vue")['default']
     'ContextsArtisan': typeof import("../src/components/contexts/Artisan.vue")['default']
     'ContextsGist': typeof import("../src/components/contexts/Gist.vue")['default']
+    'ContextsHomeHero': typeof import("../src/components/contexts/HomeHero.vue")['default']
     'ContextsIntro': typeof import("../src/components/contexts/Intro.vue")['default']
     'ContextsLyric': typeof import("../src/components/contexts/Lyric.vue")['default']
     'ContextsModal': typeof import("../src/components/contexts/Modal.vue")['default']
@@ -58,6 +59,7 @@ interface _GlobalComponents {
     'IconsHeadphones': typeof import("../src/components/icons/Headphones.vue")['default']
     'IconsHeart': typeof import("../src/components/icons/Heart.vue")['default']
     'IconsMixer': typeof import("../src/components/icons/Mixer.vue")['default']
+    'IconsMotion': typeof import("../src/components/icons/Motion.vue")['default']
     'IconsProblemSolving': typeof import("../src/components/icons/ProblemSolving.vue")['default']
     'IconsUX': typeof import("../src/components/icons/UX.vue")['default']
     'IconsWordpress': typeof import("../src/components/icons/Wordpress.vue")['default']
@@ -120,6 +122,7 @@ interface _GlobalComponents {
     'LazyContextsAbout': LazyComponent<typeof import("../src/components/contexts/About.vue")['default']>
     'LazyContextsArtisan': LazyComponent<typeof import("../src/components/contexts/Artisan.vue")['default']>
     'LazyContextsGist': LazyComponent<typeof import("../src/components/contexts/Gist.vue")['default']>
+    'LazyContextsHomeHero': LazyComponent<typeof import("../src/components/contexts/HomeHero.vue")['default']>
     'LazyContextsIntro': LazyComponent<typeof import("../src/components/contexts/Intro.vue")['default']>
     'LazyContextsLyric': LazyComponent<typeof import("../src/components/contexts/Lyric.vue")['default']>
     'LazyContextsModal': LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
@@ -139,6 +142,7 @@ interface _GlobalComponents {
     'LazyIconsHeadphones': LazyComponent<typeof import("../src/components/icons/Headphones.vue")['default']>
     'LazyIconsHeart': LazyComponent<typeof import("../src/components/icons/Heart.vue")['default']>
     'LazyIconsMixer': LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
+    'LazyIconsMotion': LazyComponent<typeof import("../src/components/icons/Motion.vue")['default']>
     'LazyIconsProblemSolving': LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
     'LazyIconsUX': LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>
     'LazyIconsWordpress': LazyComponent<typeof import("../src/components/icons/Wordpress.vue")['default']>
@@ -207,6 +211,7 @@ export const CaseStudiesSectionsSlideShow: typeof import("../src/components/case
 export const ContextsAbout: typeof import("../src/components/contexts/About.vue")['default']
 export const ContextsArtisan: typeof import("../src/components/contexts/Artisan.vue")['default']
 export const ContextsGist: typeof import("../src/components/contexts/Gist.vue")['default']
+export const ContextsHomeHero: typeof import("../src/components/contexts/HomeHero.vue")['default']
 export const ContextsIntro: typeof import("../src/components/contexts/Intro.vue")['default']
 export const ContextsLyric: typeof import("../src/components/contexts/Lyric.vue")['default']
 export const ContextsModal: typeof import("../src/components/contexts/Modal.vue")['default']
@@ -226,6 +231,7 @@ export const IconsGLT: typeof import("../src/components/icons/GLT.vue")['default
 export const IconsHeadphones: typeof import("../src/components/icons/Headphones.vue")['default']
 export const IconsHeart: typeof import("../src/components/icons/Heart.vue")['default']
 export const IconsMixer: typeof import("../src/components/icons/Mixer.vue")['default']
+export const IconsMotion: typeof import("../src/components/icons/Motion.vue")['default']
 export const IconsProblemSolving: typeof import("../src/components/icons/ProblemSolving.vue")['default']
 export const IconsUX: typeof import("../src/components/icons/UX.vue")['default']
 export const IconsWordpress: typeof import("../src/components/icons/Wordpress.vue")['default']
@@ -288,6 +294,7 @@ export const LazyCaseStudiesSectionsSlideShow: LazyComponent<typeof import("../s
 export const LazyContextsAbout: LazyComponent<typeof import("../src/components/contexts/About.vue")['default']>
 export const LazyContextsArtisan: LazyComponent<typeof import("../src/components/contexts/Artisan.vue")['default']>
 export const LazyContextsGist: LazyComponent<typeof import("../src/components/contexts/Gist.vue")['default']>
+export const LazyContextsHomeHero: LazyComponent<typeof import("../src/components/contexts/HomeHero.vue")['default']>
 export const LazyContextsIntro: LazyComponent<typeof import("../src/components/contexts/Intro.vue")['default']>
 export const LazyContextsLyric: LazyComponent<typeof import("../src/components/contexts/Lyric.vue")['default']>
 export const LazyContextsModal: LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
@@ -307,6 +314,7 @@ export const LazyIconsGLT: LazyComponent<typeof import("../src/components/icons/
 export const LazyIconsHeadphones: LazyComponent<typeof import("../src/components/icons/Headphones.vue")['default']>
 export const LazyIconsHeart: LazyComponent<typeof import("../src/components/icons/Heart.vue")['default']>
 export const LazyIconsMixer: LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
+export const LazyIconsMotion: LazyComponent<typeof import("../src/components/icons/Motion.vue")['default']>
 export const LazyIconsProblemSolving: LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
 export const LazyIconsUX: LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>
 export const LazyIconsWordpress: LazyComponent<typeof import("../src/components/icons/Wordpress.vue")['default']>
