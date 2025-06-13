@@ -30,25 +30,21 @@ export default class PlaceholderJS {
 
 
     _split() {
-        
-        if (this.store?.reduceMotion) return;
+        //console.log(this.store?.reduceMotion)
+        if (this.store?.reduceMotion === true) return;
         if(this.el.classList.contains('splitted')){
             this.words = this.el.querySelectorAll('.word')
-         //   console.log('after: ')
-        //    console.log(this.words)
             return;
         } 
         const results = Splitting({ target: this.el, by: 'words' });
         const res = results.find(r => r.el === this.el);
         this.words = res.words;
-       // console.log('before: ')
-       // console.log(this.words)
         this.el.classList.add('splitted')
     }
 
     _injectPlaceholders() {
         
-        if (this.store?.reduceMotion) return;
+        if (this.store?.reduceMotion === true) return;
         if(this.el.classList.contains('placeholder-added')){
             const words = this.words ?? Array.from(this.el.querySelectorAll('.word'));
             this.placeholders = Array.from(words).map(word => {
@@ -99,7 +95,7 @@ export default class PlaceholderJS {
                 { autoAlpha: 1, duration:0.2})
         }
         
-        if (this.store?.reduceMotion) return;
+        if (this.store?.reduceMotion === true) return;
         this.timeline.fromTo(this.placeholders,
                 { autoAlpha: 0 },
                 { autoAlpha: 1, duration: fadeDur, stagger }

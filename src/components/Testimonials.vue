@@ -29,7 +29,7 @@
         </div>
 
         <div v-if="selectedTestimonial" ref="modalContainer"
-            class="fixed inset-0 bg-primary/60 backdrop-blur z-50 top-0 lg:p-5 lg:pb-15 overflow-y-auto opacity-0 overflow-x-clip"
+            class="fixed inset-0 bg-primary/60 backdrop-blur z-50 top-0 py-5 lg:p-5 lg:pb-15 overflow-y-auto opacity-0 overflow-x-clip"
             @click.self="closeModal">
             <div
                 class="bg-white dark:bg-gray-800 rounded-lg  lg:rounded-[3rem] lg:max-w-5xl xl:max-w-7xl w-full mx-auto p-6 lg:p-12 relative mt-10 modal-window origin-top">

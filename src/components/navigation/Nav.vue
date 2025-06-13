@@ -4,13 +4,13 @@
         :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
         <div
             class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
-            <h1 ref="navBrand"
+            <h2 ref="navBrand"
                 class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
                 :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
                 <a aria-label="Return Home" href="/" class="text-nowrap subtle-slide-in font-black block opacity-0"
                     :class="{ 'animate': mainStore.loaded }" @mouseenter="onBrandHoverIn">
                     hi, i’m Emm.</a>
-            </h1>
+            </h2>
             <nav ref="nav"
                 class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
                 :class="isSticky ? [''] : ['opacity-0']">

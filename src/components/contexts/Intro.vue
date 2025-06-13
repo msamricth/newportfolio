@@ -27,7 +27,7 @@
                     </div>
                     <MainButton href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"
-                        label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" v-if="store.loaded" />
+                        label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" />
                 </div>
             </div>
             <Artisan />
@@ -56,66 +56,67 @@ const openAbout = () => {
 }
 onMounted(async () => {
     await nextTick();
-    const sectionEl = section.value;
-    const introduction = sectionEl.querySelector('.introduction');
-    const btn = sectionEl.querySelector('.btn');
-    const listItems = sectionEl.querySelectorAll('li.placeholder-line');
-    const subtitle = sectionEl.querySelector('.subtitle');
-
-    ScrollTrigger.create({
-        trigger: sectionEl.querySelector('.introduction blockquote'),
-        start: 'top 75%',
-        onEnter: () => {
-            isBQ.value = true;
-        },
-        onLeaveBack: () => {
-            isBQ.value = false;
-        },
-    });
-
-    new PlaceholderJS(subtitle, { scrub: true, speed: 2 });
-
-
-    listItems.forEach((li, i) => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: li,
-                start: 'top 70%',
-                toggleActions: 'play reverse play reverse',
-                scrub: true
-            },
-            paused: true
-        });
-        tl.fromTo(li, { autoAlpha: 0 }, {
-            autoAlpha: 1,
-            duration: 0.5, ease: 'power2.out', stagger: 0.3
-        })
-        new PlaceholderJS(li, { scrub: true, speed: 3 });
-
-    });
-    new PlaceholderJS(introduction, { scrub: true, speed: 2, start: 'top 70%' });
     if (store.loaded) {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: btn,
-                start: 'top 90%',
-                toggleActions: 'play reverse play reverse',
-                scrub: true
-            },
-            paused: true
-        });
-        tl.call(() => {
-            btn.classList.remove('wobble-ver-right')
-        }, null, 0)
-        tl.fromTo(btn, { autoAlpha: 0, y: 40 }, {
-            autoAlpha: 1, y: 0,
-            duration: 0.3, ease: 'power2.out',
-        }, 0)
-        tl.call(() => {
-            btn.classList.add('wobble-ver-right')
-        }, null, 0.1)
-    }
+        const sectionEl = section.value;
+        const introduction = sectionEl.querySelector('.introduction');
+        const btn = sectionEl.querySelector('.btn');
+        const listItems = sectionEl.querySelectorAll('li.placeholder-line');
+        const subtitle = sectionEl.querySelector('.subtitle');
 
+        ScrollTrigger.create({
+            trigger: sectionEl.querySelector('.introduction blockquote'),
+            start: 'top 75%',
+            onEnter: () => {
+                isBQ.value = true;
+            },
+            onLeaveBack: () => {
+                isBQ.value = false;
+            },
+        });
+
+        new PlaceholderJS(subtitle, { scrub: true, speed: 2 });
+
+
+        listItems.forEach((li, i) => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: li,
+                    start: 'top 70%',
+                    toggleActions: 'play reverse play reverse',
+                    scrub: true
+                },
+                paused: true
+            });
+            tl.fromTo(li, { autoAlpha: 0 }, {
+                autoAlpha: 1,
+                duration: 0.5, ease: 'power2.out', stagger: 0.3
+            })
+            new PlaceholderJS(li, { scrub: true, speed: 3 });
+
+        });
+        new PlaceholderJS(introduction, { scrub: true, speed: 2, start: 'top 70%' });
+        if (store.loaded) {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: btn,
+                    start: 'top 90%',
+                    toggleActions: 'play reverse play reverse',
+                    scrub: true
+                },
+                paused: true
+            });
+            tl.call(() => {
+                btn.classList.remove('wobble-ver-right')
+            }, null, 0)
+            tl.fromTo(btn, { autoAlpha: 0, y: 40 }, {
+                autoAlpha: 1, y: 0,
+                duration: 0.3, ease: 'power2.out',
+            }, 0)
+            tl.call(() => {
+                btn.classList.add('wobble-ver-right')
+            }, null, 0.1)
+        }
+    }
 });
 
 </script>
