@@ -30,7 +30,7 @@
     "entities": "4.5.0",
     "estree-walker": "2.0.2",
     "fast-content-type-parse": "3.0.0",
-    "gsap": "3.12.7",
+    "gsap": "3.13.0",
     "hookable": "5.5.3",
     "perfect-debounce": "1.0.0",
     "pinia": "3.0.2",

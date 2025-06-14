@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Splitting from './splitting.js'
-
+import { useMainStore } from '../stores/main.js';
 
 export default class PlaceholderJS {
     constructor(el, {
@@ -21,6 +21,7 @@ export default class PlaceholderJS {
         this.opts = { start, end, stagger, fadeDur, textDur, manual, scrub, triggerTarget, markers, speed };
         this.phClass = placeholderClass;
         this.timeline = null;
+        this.store = useMainStore?.();
         this._split();
         this._injectPlaceholders();
         this._buildTimeline();
@@ -29,21 +30,21 @@ export default class PlaceholderJS {
 
 
     _split() {
+        //console.log(this.store?.reduceMotion)
+        if (this.store?.reduceMotion === true) return;
         if(this.el.classList.contains('splitted')){
             this.words = this.el.querySelectorAll('.word')
-         //   console.log('after: ')
-        //    console.log(this.words)
             return;
         } 
         const results = Splitting({ target: this.el, by: 'words' });
         const res = results.find(r => r.el === this.el);
         this.words = res.words;
-       // console.log('before: ')
-       // console.log(this.words)
         this.el.classList.add('splitted')
     }
 
     _injectPlaceholders() {
+        
+        if (this.store?.reduceMotion === true) return;
         if(this.el.classList.contains('placeholder-added')){
             const words = this.words ?? Array.from(this.el.querySelectorAll('.word'));
             this.placeholders = Array.from(words).map(word => {
@@ -93,6 +94,8 @@ export default class PlaceholderJS {
                 { autoAlpha: 0 },
                 { autoAlpha: 1, duration:0.2})
         }
+        
+        if (this.store?.reduceMotion === true) return;
         this.timeline.fromTo(this.placeholders,
                 { autoAlpha: 0 },
                 { autoAlpha: 1, duration: fadeDur, stagger }

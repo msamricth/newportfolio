@@ -20,6 +20,9 @@ export default defineNuxtConfig({
        return ['/','/about','/work','/work/glt']
     }
   },
+  render: {
+    resourceHints: false
+  },
   routeRules: {
     '/work/glt/': { prerender: true },
     '/':          { headers: { 'cache-control': 'public, max-age=0, must-revalidate' } },

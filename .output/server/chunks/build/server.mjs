@@ -396,12 +396,12 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-CMDaWOko.mjs')
+    component: () => import('./About-BuHfzgBo.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-B1UqbVu-.mjs')
+    component: () => import('./index-DpAYCPYe.mjs')
   },
   {
     name: "work-glt",
@@ -412,7 +412,7 @@ const _routes = [
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-DGedgnpw.mjs')
+    component: () => import('./index-S7b-rPts.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1000,17 +1000,28 @@ const useMainStore = defineStore("main", {
       (void 0).body.classList.toggle("dark", this.darkMode === "dark");
     },
     toggleTheme(value) {
-      console.log(value);
       this.darkMode = value ? "dark" : "light";
       localStorage.setItem("theme", this.darkMode);
       (void 0).body.classList.toggle("dark", value);
     },
+    toggleReduceMotion(value) {
+      console.log(value);
+      this.reduceMotion = value;
+      localStorage.setItem("reduceMotion", this.reduceMotion);
+      (void 0).body.classList.toggle("motionless", value);
+    },
     initReduceMotion() {
+      const stored = localStorage.getItem("reduceMotion");
       const mql = (void 0).matchMedia("(prefers-reduced-motion: reduce)");
+      if (stored) {
+        this.reduceMotion = stored;
+        return;
+      }
       this.reduceMotion = mql.matches;
       mql.addEventListener("change", (e) => {
         this.reduceMotion = e.matches;
       });
+      (void 0).body.classList.toggle("motionless", this.reduceMotion);
     },
     openNav() {
       this.navOpen = true;
