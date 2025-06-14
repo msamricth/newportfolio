@@ -26,8 +26,10 @@ const store = useMainStore()
 <template>
   <div
     class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-x-clip">
-    <HomeHero />
-    <Nav />
+    <div class="overflow-clip">
+      <HomeHero />
+      <Nav />
+    </div>
     <About />
     <LogoGarden v-if="store.loaded" />
     <FeaturedWork v-if="store.loaded" />
