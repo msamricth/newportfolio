@@ -708,6 +708,7 @@ const _inlineRuntimeConfig = {
           "/_nuxt/**",
           "/_nuxt/**",
           "/_nuxt/**",
+          "/_nuxt/**",
           "/_nuxt/**"
         ],
         "includeAppSources": true
