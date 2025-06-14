@@ -232,7 +232,7 @@ export function buildVideoTL(container) {
             "videoLeave+=0.8")
         .to(
             sliderArrow,
-            { y: -40, repeat: 2, yoyo: true, duration: 0.8, },
+            { y: 40, repeat: 2, yoyo: true, duration: 0.8, },
             "videoLeave+=0.2")
         .to(
             sliderArrow,
@@ -244,11 +244,8 @@ export function buildVideoTL(container) {
                 ease: "elastic.out(1)",
                 stagger: 0
             },
-            "videoLeave+=1"
+            "videoLeave+=1.2"
         );
-
-
-
 
     tl.to(
         ["#video-small", "#video-lines path"],

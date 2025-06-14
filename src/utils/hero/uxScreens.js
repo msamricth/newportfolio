@@ -263,7 +263,7 @@ export function buildUXTL(container) {
             y: 0,
             autoAlpha: 1,
             scale: 1,
-            stagger: 0.05,
+            stagger: 0.15,
             duration: 0.6,
             ease: "elastic.out(1)"
         },
@@ -277,54 +277,51 @@ export function buildUXTL(container) {
             { drawSVG: "0%" },
             { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" },
             "separatorStart+=0.2"
-        );
+        )
 
-    tl.addLabel("squareStart", "separatorStart+=0.4")
-        .set(phoneSquare, { autoAlpha: 1 })
         .fromTo(
             phoneSquare,
-            { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" }
+            { drawSVG: "0%", autoAlpha: 0 },
+            { drawSVG: "100%", autoAlpha: 1, duration: 0.6, stagger: 0.15, ease: "power1.out" },
+            "separatorStart+=0.25"
         )
         .to(
             phoneSquare,
             {
                 rotation: 45,
                 transformOrigin: "50% 50%",
-                duration: 0.23
+                duration: 0.4
             },
-            "squareStart+=0.2"
-        );
-
-    tl.addLabel("circleStart", "squareStart+=0.3")
+            "separatorStart+=0.32"
+        )
         .set(phoneCircle, { autoAlpha: 1 })
         .fromTo(
             phoneCircle,
             { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" }
+            { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" }, 
+            "separatorStart-=0.08"
         )
         .to(
             phoneCircle,
             {
                 rotation: 360,
                 transformOrigin: "50% 50%",
-                duration: 1
+                duration: 0.4
             },
-            "circleStart+=0.2"
+            "separatorStart+=0.6"
         )
-        .addLabel("lineartStart", "circleStart+=0.3")
 
-    tl.set(phoneLineart, { autoAlpha: 1 })
-
-        .to(phoneLineart, { drawSVG: "0%", duration: 0 }, "lineartStart")
         .to(bgScreens, {
-            autoAlpha: 1, duration: 1.2, ease: "power1.out"
+            autoAlpha: 1, duration: 0.6, ease: "power1.out"
         },
-            "lineartStart"
+            "separatorStart=0.25"
+        )
+        .fromTo(
+            phoneLineart,
+            { drawSVG: "0%", autoAlpha: 0 },
+            { drawSVG: "100%",autoAlpha: 1, duration: 0.6, stagger: 0.15, ease: "power1.out" }, "separatorStart+=0.8"
         )
 
-
-        .to(phoneLineart, { drawSVG: "100%", duration: 1 }, "lineartStart+=1.4")
 
 
     tl

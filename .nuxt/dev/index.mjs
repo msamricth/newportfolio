@@ -706,10 +706,6 @@ const _inlineRuntimeConfig = {
         "exclude": [
           "/_**",
           "/_nuxt/**",
-          "/_nuxt/**",
-          "/_nuxt/**",
-          "/_nuxt/**",
-          "/_nuxt/**",
           "/_nuxt/**"
         ],
         "includeAppSources": true

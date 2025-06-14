@@ -9,7 +9,7 @@
             <div ref="grid"
                 class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end h-[70dvh] -mb-24"
                 :class="{ 'loaded': store.loaded }">
-                <SceneLoader :sceneLoaded="screens" />
+                <SceneLoader :sceneLoaded="screens" v-if="!playing" />
                 <SceneTetris v-if="loadedScenes[0]" />
                 <SceneUX v-if="loadedScenes[1]" />
                 <SceneVideo v-if="loadedScenes[2]" />
@@ -42,24 +42,21 @@ const activeScene = ref(0)
 
 const loading = ref(false)
 const grid = ref(null)
-const sliderArrow = ref(null)
+const playing = ref(false)
 const screens = ref(false)
-const delay = ref('0.5s')
-const animDelay = computed(() => ({ '--theme-main-animation-delay': delay.value }))
 const loadedScenes = ref([true, false, false])
+let master = null
 onMounted(async () => {
     await nextTick()
     loading.value = true
     loadedScenes.value[0] = true
-
-})
-
-async function heroAnim({ isMobile, isDesktop }) {
     gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger)
-
-    const master = gsap.timeline({ paused: true })
-
-    master.addLabel('Tetris', '+=2.5')
+    if (master) {
+        master.play(0)
+        return
+    }
+    master = gsap.timeline({ paused: true })
+    master.addLabel('Tetris')
     master.call(async () => {
         activeScene.value = 0
         await nextTick()
@@ -78,6 +75,7 @@ async function heroAnim({ isMobile, isDesktop }) {
         master.add(tl0, 'Tetris')
     }, null, 'Tetris+=2.6')
     master.call(() => {
+        playing.value="true"
         loadedScenes.value[1] = true
     }, null, 'Tetris+=9')
 
@@ -111,10 +109,9 @@ async function heroAnim({ isMobile, isDesktop }) {
 
     master.call(() => {
         master.restart(0)
-    }, null, 'Video+=10')
-    master.play()
-}
+    }, null, 'Video+=11')
+    gsap.delayedCall(2.5, () => master.play())
 
-// feed into your responsive watcher
-useMatchMedia(heroAnim)
+})
+
 </script>

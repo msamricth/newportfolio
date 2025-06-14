@@ -2,7 +2,7 @@
 
     <div class="video-screens w-full h-full flex-col flex justify-center items-center absolute top-0 opacity-0">
         <span id="impact"
-                class="absolute top-30 md:top-0 placeholder-line text-3xl md:text-4xl opacity-0 font-heading font-black leading-none uppercase text-center w-11/12 md:max-w-2xl mx-auto"
+                class="block absolute placeholder-line text-3xl md:text-4xl opacity-0 font-heading font-black leading-none uppercase text-center w-11/12 md:max-w-2xl mx-auto -translate-y-24 md:-translate-y-40 lg:-translate-y-50 2xl:-translate-y-58"
                 data-splitting="words">
                 Building Bridges <br />
                 between ideas & impact
@@ -53,7 +53,7 @@
             </svg>
             <svg class="absolute inset-0 rounded-[9rem] w-full h-full pointer-events-none animate-spin-slow z-0 text-electric-purple"
                 viewBox="0 0 100 100" id="progCircle">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6" id="progressCircle"
+                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="12" id="progressCircle"
                     />
             </svg>
         </div>

@@ -13,6 +13,14 @@ export function buildTetrisTL(container) {
     //Tetris bro
     tetrisTL.timeScale(1.5)
     if (tetris) {
+
+        tetrisTL.to(tetris, {
+            autoAlpha: 0.6,
+            filter: 'none',
+            duration: 0.6,
+            ease: 'power1.out'
+
+        })
         tetrisTL.fromTo(
             "#tetris-line path",
             {
@@ -170,15 +178,7 @@ export function buildTetrisTL(container) {
     tl.addLabel('Enter');
 
 
-    tl.to(tetris, {
-        autoAlpha: 0.6,
-        filter: 'none',
-        duration: 0.6,
-        ease: 'power1.out'
 
-    },
-        'Enter')
-        
     letters.forEach((el, i) => {
         tl.fromTo(
             el,

@@ -5,12 +5,12 @@
         <h1 class="headline font-heading font-black leading-none uppercase text-center md:ml-16 flex flex-col justify-between relative z-10 mb-60 md:mb-20 lg:pb-20"
             data-splitting="words">
 
-            <div class="text-2xl md:text-4xl translate-y-[10dvh] lg:translate-y-[20dvh] transition-all flex gap-x-3 justify-center **:transition-all"
+            <div class="text-2xl md:text-4xl translate-y-[10dvh] lg:translate-y-[20dvh] transition-all flex gap-x-3 justify-center"
                 id="bridges">
                 <span class="opacity-0 scale-[0.4]">Building</span> <span class="opacity-0 scale-[0.4]">bridges</span>
             </div>
 
-            <div class="text-2xl md:text-4xl translate-y-[10dvh] lg:translate-y-[20dvh] transition-all **:transition-all flex gap-3 justify-center"
+            <div class="text-2xl md:text-4xl translate-y-[10dvh] lg:translate-y-[20dvh] transition-all flex gap-3 justify-center"
                 id="design">
                 <span class="opacity-0 scale-[0.4]">between</span> <span class="opacity-0 scale-[0.4]">good</span> <span
                     class="opacity-0 scale-[0.4]">design</span>

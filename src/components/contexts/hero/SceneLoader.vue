@@ -2,7 +2,7 @@
     <section ref="container" class="absolute w-full h-dvh flex items-center md:justify-center z-40">
         <!-- single unified icon container -->
 
-        <div class="hero-icon-wrap absolute flex flex-wrap justify-center lg:bottom-70 max-md:w-full right-0">
+        <div class="hero-icon-wrap absolute flex flex-wrap justify-center max-md:w-full">
             <div class="flex justify-between mx-auto relative gap-5 md:gap-12" ref="icons">
                 <div class="decor main-icon origin-center">
                     <Mixer class="h-auto transition-all" width="120" height="120"
@@ -81,8 +81,8 @@ const Code = defineAsyncComponent(() => import('@/components/icons/Code.vue'))
 const BMX = defineAsyncComponent(() => import('@/components/icons/BMX.vue'))
 const Syntax = defineAsyncComponent(() => import('@/components/icons/Syntax.vue'))
 
-async function heroAnimation({ isDesktop, isTablet, isMobile }) {
-
+onMounted(async ()=>{
+    
     await nextTick()
     await new Promise(r => requestAnimationFrame(r))
     const iconsContainer = icons.value
@@ -146,8 +146,7 @@ async function heroAnimation({ isDesktop, isTablet, isMobile }) {
 
         heroAnim.play()
     }
-}
-useMatchMedia(heroAnimation)
+})
 watch(
     () => props.sceneLoaded,
     async (loaded) => {

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="ux-screens gap-4 md:gap-6 lg:gap-14 items-center md:items-end flex h-full justify-center absolute top-0 opacity-0 w-full">
+        class="ux-screens gap-4 md:gap-6 lg:gap-14 items-center md:items-end xl:items-center flex h-full justify-center absolute top-0 opacity-0 w-full">
         <svg width="254" height="424" viewBox="0 0 254 424" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="background-screens hidden md:block min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36 transition-all duration-700">
             <path
@@ -81,7 +81,7 @@
 
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="300"
-            style="overflow:visible; position:relative" id="phone" class="md:w-50 lg:w-80 2xl:h-[70dvh] -mx-3 md:mx-0">
+            style="overflow:visible; position:relative" id="phone" class="md:w-50 lg:w-80 2xl:h-[70dvh] -mx-3 md:-mx-4 xl:-mx-8">
             <defs>
                 <filter id="filter0_d_17_135" x="302" y="30" width="56" height="46" filterUnits="userSpaceOnUse"
                     color-interpolation-filters="sRGB">
