@@ -1,25 +1,34 @@
 <template>
-    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh  mb-12" ref="workSection">
+    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh  mb-12"
+        ref="workSection">
         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center md:max-w-4xl mx-auto px-8 lg:px-12"
-            @click="handleClick" @mouseenter="onHoverIn" @mouseleave="onHoverOut" :class="item.hoverColor">
-            <div class="flex flex-col md:flex-row justify-center items-start gap-8">
-                <img crossorigin="anonymous"
-                    :src="!store.ready ? item.image.replace('upload/q_auto,f_auto', 'upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_896') : item.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_896')"
-                    class="w-full object-cover md:rounded-[3rem] rounded-t-[3rem] transition-all cursor-pointer duriation-900" width="896" height="504" />
-
-            </div>
-            <div class="flex flex-col justify-end items-start pt-6 md:px-6 transition-all duriation-700 w-full"
-                @mouseover="isHovered = true" @mouseleave="isHovered = false">
-                <div class="flex flex-col gap-6 justify-between w-full">
-                    <div class="flex flex-col justify-between pr-8 lg:pr-18 cursor-pointer work-item-entry">
-                        <h3 class="text-lg font-normal subtle-slide-in h4 transition-colors duration-1000">{{ item.client }}</h3>
-                        <h4 class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex **:**:inline-flex">{{
-                            item.projectTitle
-                        }}
-                        </h4>
-                    </div>
+            @mouseenter="onHoverIn" @mouseleave="onHoverOut" :class="item.hoverColor">
+            <div class="relative">
+                <a :href="Link" @click.prevent="handleClick" class="absolute h-full w-full z-20"></a>
+                <div class="flex flex-col md:flex-row justify-center items-start gap-8">
+                    <img crossorigin="anonymous"
+                        :src="!store.ready ? item.image.replace('upload/q_auto,f_auto', 'upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_896') : item.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_896')"
+                        class="w-full object-cover md:rounded-[3rem] rounded-t-[3rem] transition-all cursor-pointer duriation-900"
+                        width="896" height="504" />
 
                 </div>
+                <div class="flex flex-col justify-end items-start pt-6 md:px-6 transition-all duriation-700 w-full"
+                    @mouseover="isHovered = true" @mouseleave="isHovered = false">
+                    <div class="flex flex-col gap-6 justify-between w-full">
+                        <div class="flex flex-col justify-between pr-8 lg:pr-18 cursor-pointer work-item-entry">
+                            <h3 class="text-lg font-normal subtle-slide-in h4 transition-colors duration-1000">{{
+                                item.client }}</h3>
+                            <h4
+                                class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex **:**:inline-flex">
+                                {{
+                                    item.projectTitle
+                                }}
+                            </h4>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -42,6 +51,7 @@ let chars = []
 
 const props = defineProps({
     item: { type: Object, required: true },
+    Link: String,
     onClick: Function,
 })
 const handleClick = () => {

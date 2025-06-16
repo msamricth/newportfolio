@@ -1,6 +1,6 @@
 <template>
   <a target="_blank" :href="href" @click.prevent="handleClick"
-    class="cursor-pointer relative flex flex-wrap items-center transition group/cta overflow-clip w-65 text-center subtle-slide-in rounded-full transition-all"
+    class="cursor-pointer relative flex flex-wrap items-center group/cta overflow-clip w-65 text-center subtle-slide-in rounded-full transition-all"
     :style="{ '--theme-main-animation-delay': delay }" ref="buttonEl" @mouseenter="handleHoverIn"
     @mouseleave="handleHoverOut" >
     <span
