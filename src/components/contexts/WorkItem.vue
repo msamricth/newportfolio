@@ -6,8 +6,8 @@
             <div class="relative">
                 <a :href="Link" @click.prevent="handleClick" class="absolute h-full w-full z-20"></a>
                 <div class="flex flex-col md:flex-row justify-center items-start gap-8">
-                    <img crossorigin="anonymous"
-                        :src="!store.ready ? item.image.replace('upload/q_auto,f_auto', 'upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_896') : item.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_896')"
+                    <img crossorigin="anonymous" :src="optimizedSrc" :srcset="srcSet"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 896px"
                         class="w-full object-cover md:rounded-[3rem] rounded-t-[3rem] transition-all cursor-pointer duriation-900"
                         width="896" height="504" />
 
@@ -48,6 +48,17 @@ const loaded = ref(false)
 
 let chars = []
 
+const getSrc = computed(() => (width) => {
+    return store.ready
+        ? props.item.image.replace('/q_auto,f_auto', `/q_auto,f_auto,w_${width}`)
+        : props.item.image.replace('upload/q_auto,f_auto', `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_${width}`);
+});
+
+const optimizedSrc = computed(() => getSrc.value(896));
+
+const srcSet = computed(() =>
+    [480, 768, 896, 1280].map(w => `${getSrc.value(w)} ${w}w`).join(', ')
+);
 
 const props = defineProps({
     item: { type: Object, required: true },
