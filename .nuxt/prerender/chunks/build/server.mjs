@@ -407,7 +407,7 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-Bh4KdLbZ.mjs')
+    component: () => import('./About-BFLRBzAV.mjs')
   },
   {
     name: "index",
@@ -418,12 +418,12 @@ const _routes = [
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-tmOca0Qq.mjs')
+    component: () => import('./glt-DRcUZYr-.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-DC5PRy2G.mjs')
+    component: () => import('./index-DG3nQLtk.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

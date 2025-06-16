@@ -293,6 +293,7 @@ onMounted(async () => {
     animateSquares();
     watch(() => store.filteredWork, async () => {
         await nextTick();
+        store.toggleFold(false, true) 
         const items = document.querySelectorAll('.work-grid--item');
         items.forEach(item => {
             const video = item.querySelector('video');
@@ -317,6 +318,7 @@ onMounted(async () => {
         }
 
         watch(() => store.filteredWork.length, () => {
+            store.toggleFold(false, true) 
             const slug = modalStore.pendingModalSlug;
             if (!slug) return;
             const item = store.filteredWork.find(w => w.slug === slug);
