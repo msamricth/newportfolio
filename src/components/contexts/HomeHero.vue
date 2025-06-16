@@ -3,7 +3,7 @@
         class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto min-h-[85dvh] py-24 hero-container flex flex-col md:justify-center relative">
         <div class="hero-wrapper animate relative w-full">
             <div class="utilties absolute right-0 -top-15">
-                <SecondaryNav />
+                <SecondaryNav  v-if="playing" />
             </div>
 
             <div ref="grid"
@@ -65,7 +65,7 @@ onMounted(async () => {
     }, null, "Tetris")
 
     master.call(async () => {
-        // first time we hit scene 0, make sure it's mounted
+        playing.value="true"
         if (!loadedScenes.value[0]) loadedScenes.value[0] = true
 
         await nextTick()
@@ -75,7 +75,6 @@ onMounted(async () => {
         master.add(tl0, 'Tetris')
     }, null, 'Tetris+=2.6')
     master.call(() => {
-        playing.value="true"
         loadedScenes.value[1] = true
     }, null, 'Tetris+=9')
 

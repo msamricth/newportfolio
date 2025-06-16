@@ -5,26 +5,42 @@ export default class videoHandler {
     this.video.playsInline = true;
     this.video.loop = true;
     this.loaded = false;
-    if (typeof Hls === 'undefined') {
-      setTimeout(() => this.load(), 100);
-      return;
-    }
-    this.load(); 
+    this.init()
   }
-
+  async init() {
+    if (!window.Hls) {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = '/js/hls.js';
+        s.onload = () => {
+          if (window.Hls) resolve();
+          else reject(new Error('Hls failed to load'));
+        };
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+  
+    if (window.Hls && window.Hls.isSupported()) {
+      this.hls = new window.Hls();
+    } else {
+      this.hls = null;
+    }
+    this.load();
+  }
+  
   load() {
     const src = this.video.dataset.src;
     if (!src || this.video.src) return;
 
     if (typeof Hls !== 'undefined' && Hls.isSupported()) {
-      this.hls = new Hls();
       this.hls.loadSource(src);
       this.hls.attachMedia(this.video);
     } else if (this.video.canPlayType('application/vnd.apple.mpegurl')) {
       this.video.src = src;
     }
 
-    this.video.muted = true;
+    this.video.dataset.loaded = 'true';
     this.loaded = true;
   }
 

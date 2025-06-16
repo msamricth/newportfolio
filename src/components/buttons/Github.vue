@@ -1,10 +1,10 @@
 <template>
     <a ref="btn"
-        class="group-hover/secondaryNav:opacity-40 text-primary/80 dark:text-background/80 dark:group-has-[a]/footer:text-primary/80 group-hover/secondaryNav:hover:opacity-100 cursor-pointer group icon-btn rounded-full h-8 w-8 hover:scale-[1.25] transition-all duration-700"
+        class="group-hover/secondaryNav:opacity-40 text-primary/80 dark:text-background/80 dark:group-has-[a]/footer:text-primary/80 group-hover/secondaryNav:hover:opacity-100 cursor-pointer group icon-btn rounded-full h-8 w-8 transition-all duration-700"
         :aria-label="aria" target="_blank" :href="url">
 
         <svg fill="none" height="56" stroke-width="1.5" viewBox="0 0 24 24" width="56"
-            xmlns="http://www.w3.org/2000/svg" class="group-hover/secondaryNav:opacity-80 absolute top-0 left-0 w-full h-full z-0 transition-opacity duration-700">
+            xmlns="http://www.w3.org/2000/svg" class="group-hover/secondaryNav:opacity-80 absolute top-0 left-0 w-full h-full z-0 transition-all duration-700 group-hover:scale-[1.25]">
             <path
                 d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -15,7 +15,7 @@
                 stroke-linejoin="round" />
         </svg>
         <svg stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"
-            class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-700">
+            class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-700 group-hover:scale-[1.25]">
             <path
                 d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
                 stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -25,10 +25,11 @@
             <path d="M9.66667 17.7018C7.66667 18.3335 6 17.7018 5 15.7544" stroke="currentColor" stroke-linecap="round"
                 stroke-linejoin="round" />
         </svg>
-
+        <Tooltips class="mt-11" message="View my GitHub account" />
     </a>
 </template>
 <script setup>
+import Tooltips from './Tooltips.vue'
 import { onMounted, ref } from 'vue'
 const props = defineProps({
     url: String,

@@ -74,16 +74,6 @@ export default defineNuxtConfig({
           onload: "this.media='all'" },
       ],
       script: [
-        {
-          src: '/js/hls.mjs',
-          type: 'module',
-          defer: true
-        },
-        {
-          src: '/js/hls.min.js',
-          nomodule: true,
-          defer: true
-        },
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5', async: true },
         {
           children: `

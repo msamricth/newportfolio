@@ -17,6 +17,7 @@ useSeoMeta({
     twitterCard: 'summary_large_image'
 })
 
+import {onMounted } from 'vue';
 import InnerSecondaryNav from '../../components/navigation/InnerSecondaryNav.vue'
 import InnerNav from '../../components/navigation/InnerNav.vue';
 import Intro from '../../components/case-studies/Intro.vue';
@@ -40,6 +41,13 @@ const icons = [Airtable, Wordpress, ActionNetwork]
 const sections = data.sections;
 const results = data.results;
 const introData = data.intro;
+
+import { useHls } from '../../composables/useHLS.js';
+
+const { loadHls } = useHls()
+onMounted(()=>{
+    loadHls()
+})
 </script>
 <template>
     <div

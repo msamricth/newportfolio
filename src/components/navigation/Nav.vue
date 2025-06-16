@@ -73,13 +73,9 @@ const onBrandHoverIn = (event) => {
     tl.fromTo(
         chars,
         {
-            x: () => gsap.utils.random(-50, 50),
-            y: () => gsap.utils.random(-40, 0),
             autoAlpha: 0,
         },
         {
-            x: 0,
-            y: 0,
             autoAlpha: 1,
             ease: 'power3.out',
             duration: 0.5,
@@ -103,13 +99,9 @@ const onNavHoverIn = (event) => {
     tl.fromTo(
         chars,
         {
-            x: () => gsap.utils.random(-50, 50),
-            y: () => gsap.utils.random(-40, 0),
             className: 'char text-current'
         },
         {
-            x: 0,
-            y: 0,
             className: 'char text-electric-purple dark:text-accent',
             ease: 'power3.out',
             duration: 0.5,
@@ -122,13 +114,9 @@ const onNavHoverIn = (event) => {
     tl.fromTo(
         chars,
         {
-            x: () => gsap.utils.random(-50, 50),
-            y: () => gsap.utils.random(-40, 0),
             className: 'char text-electric-purple dark:text-accent'
         },
         {
-            x: 0,
-            y: 0,
             className: 'char text-current',
             ease: 'power3.out',
             duration: 0.5,
@@ -180,13 +168,9 @@ const effectTimeline = (targetEl, interval = 0) => {
     tl.fromTo(
         chars,
         {
-            x: () => gsap.utils.random(-50, 50),
-            y: () => gsap.utils.random(-40, 0),
             autoAlpha: 0,
         },
         {
-            x: 0,
-            y: 0,
             autoAlpha: 1,
             ease: 'power3.out',
             duration: 0.5,

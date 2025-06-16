@@ -7,7 +7,6 @@ gsap.registerPlugin(DrawSVGPlugin);
 export function buildVideoTL(container) {
     const scope = container
     if (!container) return;
-    console.log('Video Screen loaded')
     const tl = gsap.timeline();
 
     const videoScreens = scope.querySelector('.video-screens');

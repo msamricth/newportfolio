@@ -1,5 +1,5 @@
 <template>
-  <div class="logo-garden max-w-full px-0 mx-auto mb-6 md:mb-32">
+  <div class="logo-garden max-w-full px-0 mx-auto mb-6 md:mb-32 lg:max-w-[1024px] xl:max-w-[1440px]">
     <div class="flex **:max-w-1/2 xl:**:max-w-1/4 opacity-80 flex-wrap justify-center items-center">
       <img class="dark:invert inverted:invert transition-all mb-8 delay-700 w-70 md:w-100 md:delay-0 h-auto"
         v-for="(logo, i) in shuffledLogos" :key="i"

@@ -13,8 +13,8 @@ type HydrationStrategies = {
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 interface _GlobalComponents {
       'Contact': typeof import("../src/components/Contact.vue")['default']
+    'FeaturedWork': typeof import("../src/components/FeaturedWork.vue")['default']
     'Footer': typeof import("../src/components/Footer.vue")['default']
-    'HeroSection': typeof import("../src/components/HeroSection.vue")['default']
     'Links': typeof import("../src/components/Links.vue")['default']
     'LogoGarden': typeof import("../src/components/LogoGarden.vue")['default']
     'Preloader': typeof import("../src/components/Preloader.vue")['default']
@@ -23,6 +23,7 @@ interface _GlobalComponents {
     'ButtonsGithub': typeof import("../src/components/buttons/Github.vue")['default']
     'ButtonsLinkedIn': typeof import("../src/components/buttons/LinkedIn.vue")['default']
     'ButtonsMainButton': typeof import("../src/components/buttons/MainButton.vue")['default']
+    'ButtonsTooltips': typeof import("../src/components/buttons/Tooltips.vue")['default']
     'CarouselsFeaturedWork': typeof import("../src/components/carousels/FeaturedWork.vue")['default']
     'CarouselsTestimonials': typeof import("../src/components/carousels/Testimonials.vue")['default']
     'CaseStudiesChallenge': typeof import("../src/components/case-studies/Challenge.vue")['default']
@@ -45,6 +46,7 @@ interface _GlobalComponents {
     'ContextsModal': typeof import("../src/components/contexts/Modal.vue")['default']
     'ContextsOfferings': typeof import("../src/components/contexts/Offerings.vue")['default']
     'ContextsTestimonial': typeof import("../src/components/contexts/Testimonial.vue")['default']
+    'ContextsWorkItem': typeof import("../src/components/contexts/WorkItem.vue")['default']
     'ContextsHeroSceneLoader': typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']
     'ContextsHeroSceneTetris': typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']
     'ContextsHeroSceneUX': typeof import("../src/components/contexts/hero/SceneUX.vue")['default']
@@ -102,8 +104,8 @@ interface _GlobalComponents {
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
       'LazyContact': LazyComponent<typeof import("../src/components/Contact.vue")['default']>
+    'LazyFeaturedWork': LazyComponent<typeof import("../src/components/FeaturedWork.vue")['default']>
     'LazyFooter': LazyComponent<typeof import("../src/components/Footer.vue")['default']>
-    'LazyHeroSection': LazyComponent<typeof import("../src/components/HeroSection.vue")['default']>
     'LazyLinks': LazyComponent<typeof import("../src/components/Links.vue")['default']>
     'LazyLogoGarden': LazyComponent<typeof import("../src/components/LogoGarden.vue")['default']>
     'LazyPreloader': LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
@@ -112,6 +114,7 @@ interface _GlobalComponents {
     'LazyButtonsGithub': LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
     'LazyButtonsLinkedIn': LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
     'LazyButtonsMainButton': LazyComponent<typeof import("../src/components/buttons/MainButton.vue")['default']>
+    'LazyButtonsTooltips': LazyComponent<typeof import("../src/components/buttons/Tooltips.vue")['default']>
     'LazyCarouselsFeaturedWork': LazyComponent<typeof import("../src/components/carousels/FeaturedWork.vue")['default']>
     'LazyCarouselsTestimonials': LazyComponent<typeof import("../src/components/carousels/Testimonials.vue")['default']>
     'LazyCaseStudiesChallenge': LazyComponent<typeof import("../src/components/case-studies/Challenge.vue")['default']>
@@ -134,6 +137,7 @@ interface _GlobalComponents {
     'LazyContextsModal': LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
     'LazyContextsOfferings': LazyComponent<typeof import("../src/components/contexts/Offerings.vue")['default']>
     'LazyContextsTestimonial': LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
+    'LazyContextsWorkItem': LazyComponent<typeof import("../src/components/contexts/WorkItem.vue")['default']>
     'LazyContextsHeroSceneLoader': LazyComponent<typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']>
     'LazyContextsHeroSceneTetris': LazyComponent<typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']>
     'LazyContextsHeroSceneUX': LazyComponent<typeof import("../src/components/contexts/hero/SceneUX.vue")['default']>
@@ -197,8 +201,8 @@ declare module 'vue' {
 }
 
 export const Contact: typeof import("../src/components/Contact.vue")['default']
+export const FeaturedWork: typeof import("../src/components/FeaturedWork.vue")['default']
 export const Footer: typeof import("../src/components/Footer.vue")['default']
-export const HeroSection: typeof import("../src/components/HeroSection.vue")['default']
 export const Links: typeof import("../src/components/Links.vue")['default']
 export const LogoGarden: typeof import("../src/components/LogoGarden.vue")['default']
 export const Preloader: typeof import("../src/components/Preloader.vue")['default']
@@ -207,6 +211,7 @@ export const AnimatedCTA: typeof import("../src/components/animatedCTA.vue")['de
 export const ButtonsGithub: typeof import("../src/components/buttons/Github.vue")['default']
 export const ButtonsLinkedIn: typeof import("../src/components/buttons/LinkedIn.vue")['default']
 export const ButtonsMainButton: typeof import("../src/components/buttons/MainButton.vue")['default']
+export const ButtonsTooltips: typeof import("../src/components/buttons/Tooltips.vue")['default']
 export const CarouselsFeaturedWork: typeof import("../src/components/carousels/FeaturedWork.vue")['default']
 export const CarouselsTestimonials: typeof import("../src/components/carousels/Testimonials.vue")['default']
 export const CaseStudiesChallenge: typeof import("../src/components/case-studies/Challenge.vue")['default']
@@ -229,6 +234,7 @@ export const ContextsLyric: typeof import("../src/components/contexts/Lyric.vue"
 export const ContextsModal: typeof import("../src/components/contexts/Modal.vue")['default']
 export const ContextsOfferings: typeof import("../src/components/contexts/Offerings.vue")['default']
 export const ContextsTestimonial: typeof import("../src/components/contexts/Testimonial.vue")['default']
+export const ContextsWorkItem: typeof import("../src/components/contexts/WorkItem.vue")['default']
 export const ContextsHeroSceneLoader: typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']
 export const ContextsHeroSceneTetris: typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']
 export const ContextsHeroSceneUX: typeof import("../src/components/contexts/hero/SceneUX.vue")['default']
@@ -286,8 +292,8 @@ export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
 export const LazyContact: LazyComponent<typeof import("../src/components/Contact.vue")['default']>
+export const LazyFeaturedWork: LazyComponent<typeof import("../src/components/FeaturedWork.vue")['default']>
 export const LazyFooter: LazyComponent<typeof import("../src/components/Footer.vue")['default']>
-export const LazyHeroSection: LazyComponent<typeof import("../src/components/HeroSection.vue")['default']>
 export const LazyLinks: LazyComponent<typeof import("../src/components/Links.vue")['default']>
 export const LazyLogoGarden: LazyComponent<typeof import("../src/components/LogoGarden.vue")['default']>
 export const LazyPreloader: LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
@@ -296,6 +302,7 @@ export const LazyAnimatedCTA: LazyComponent<typeof import("../src/components/ani
 export const LazyButtonsGithub: LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
 export const LazyButtonsLinkedIn: LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
 export const LazyButtonsMainButton: LazyComponent<typeof import("../src/components/buttons/MainButton.vue")['default']>
+export const LazyButtonsTooltips: LazyComponent<typeof import("../src/components/buttons/Tooltips.vue")['default']>
 export const LazyCarouselsFeaturedWork: LazyComponent<typeof import("../src/components/carousels/FeaturedWork.vue")['default']>
 export const LazyCarouselsTestimonials: LazyComponent<typeof import("../src/components/carousels/Testimonials.vue")['default']>
 export const LazyCaseStudiesChallenge: LazyComponent<typeof import("../src/components/case-studies/Challenge.vue")['default']>
@@ -318,6 +325,7 @@ export const LazyContextsLyric: LazyComponent<typeof import("../src/components/c
 export const LazyContextsModal: LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
 export const LazyContextsOfferings: LazyComponent<typeof import("../src/components/contexts/Offerings.vue")['default']>
 export const LazyContextsTestimonial: LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
+export const LazyContextsWorkItem: LazyComponent<typeof import("../src/components/contexts/WorkItem.vue")['default']>
 export const LazyContextsHeroSceneLoader: LazyComponent<typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']>
 export const LazyContextsHeroSceneTetris: LazyComponent<typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']>
 export const LazyContextsHeroSceneUX: LazyComponent<typeof import("../src/components/contexts/hero/SceneUX.vue")['default']>

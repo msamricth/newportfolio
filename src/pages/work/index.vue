@@ -6,6 +6,16 @@ useHead({
         { property: 'og:title', content: 'Featured Work | Code Artisan' },
         { property: 'og:url', content: 'https://codeartisan.dev/work/' },
         { property: 'og:image', content: "https://res.cloudinary.com/dp1qyhhlo/image/upload/f_auto,w_960/v1745552050/Title_bjlnl8.png" },
+    ],
+    script: [
+        {
+            src: '/js/hls.mjs',
+            type: 'module',
+        },
+        {
+            src: '/js/hls.min.js',
+            nomodule: true,
+        }
     ]
 })
 import { ref, computed, onMounted, watch, nextTick } from 'vue';
@@ -22,10 +32,9 @@ import { useMainStore } from '../../stores/main.js';
 import videoHandler from '../../utils/videoHandler.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from '../../utils/placeholder.js'
-
 const store = useWorkStore();
-
 import gsap from 'gsap';
+import { onBeforeRouteLeave } from 'vue-router';
 
 const mainStore = useMainStore()
 const workGrid = ref([]);
@@ -98,6 +107,9 @@ const hoverOut = (slideIndex, btnIndex) => {
     hoverTimelines[slideIndex]?.[btnIndex]?.reverse();
 };
 
+onBeforeRouteLeave(() => {
+  document.body.style.overflow = '';
+});
 function startHover(event) {
     const gridItemEl = event.currentTarget;
     const video = gridItemEl.querySelector('video');
@@ -227,12 +239,12 @@ function openModal(item) {
             ease: 'power1.out'
         })
         tl.fromTo(modalCopy, {
-            y:0,
+            y: 0,
             scale: 0,
             autoAlpha: 0,
             filter: 'blur(40px)',
         }, {
-            y:0,
+            y: 0,
             autoAlpha: 1,
             scale: 1,
             filter: 'none',
@@ -267,6 +279,17 @@ function openModal(item) {
 
 onMounted(async () => {
     await nextTick()
+    ScrollTrigger.create({
+        trigger: workPage.value,
+        start: 'top top',
+        end: '+=1', // very short range
+        onEnter: () => {
+            if (window.scrollY <= 10) {
+                mainStore.toggleFold(false, true)
+            }
+        },
+        once: true,
+    });
     animateSquares();
     watch(() => store.filteredWork, async () => {
         await nextTick();
@@ -328,15 +351,15 @@ onMounted(async () => {
     <div class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-clip"
         ref="workPage">
 
-        <div class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-24 pb-18 lg:pb-20"
+        <div class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9  pb-18 lg:pb-20"
             ref="utilityBar">
             <InnerSecondaryNav />
         </div>
         <InnerNav title="Featured Work" brandLabel="hi, i'm emm." brandURL="/" />
         <Preloader />
         <div
-            class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
-            <Work v-show="mainStore.loaded"/>
+            class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start lg:pb-60">
+            <Work v-show="mainStore.loaded" />
             <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid" v-show="mainStore.loaded">
                 <div v-if="!store.gridResults"
                     class="text-3xl italic transition-all duration-700 work-grid--no-results">
@@ -361,8 +384,8 @@ onMounted(async () => {
                 </div>
             </div>
         </div>
-        <Contact  v-show="mainStore.loaded"/>
-        <Footer  v-show="mainStore.loaded"/>
+        <Contact v-show="mainStore.ready" />
+        <Footer v-show="mainStore.loaded" />
 
 
     </div>
