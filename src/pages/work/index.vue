@@ -333,13 +333,13 @@ onMounted(async () => {
         start: 'top 5%',
         end: 'bottom 70%',
         onEnter: () => {
-            document.body.classList.remove('dark')
+            store.toggleFold(false, true) 
         },
         onEnterBack: () => {
-            document.body.classList.remove('dark')
+            store.toggleFold(false, true) 
         },
         onLeave: () => {
-            document.body.classList.add('dark')
+            store.toggleFold(true) 
         },
     });
 

@@ -407,23 +407,23 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-BuHfzgBo.mjs')
+    component: () => import('./About-Bh4KdLbZ.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DpAYCPYe.mjs')
+    component: () => import('./index-CN7gWye-.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-DW_cOqGY.mjs')
+    component: () => import('./glt-tmOca0Qq.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-S7b-rPts.mjs')
+    component: () => import('./index-DC5PRy2G.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1018,7 +1018,8 @@ function normalizeSlot(slot, data) {
 const useMainStore = defineStore("main", {
   state: () => ({
     sticky: true,
-    darkMode: "light",
+    darkMode: "clear",
+    useMode: false,
     sliderArrowSticky: false,
     sliderTimeline: "before",
     fold: false,
@@ -1049,14 +1050,31 @@ const useMainStore = defineStore("main", {
       this.sliderArrowSticky = !this.sliderArrowSticky;
     },
     setupDarkMode() {
+      const storedUseMode = localStorage.getItem("useLightMode");
+      this.useMode = storedUseMode === "true";
       const stored = localStorage.getItem("theme");
+      if (!this.useMode) {
+        this.darkMode = "clear";
+        (void 0).body.classList.remove("dark");
+        return;
+      }
       this.darkMode = stored === "dark" ? "dark" : "light";
       (void 0).body.classList.toggle("dark", this.darkMode === "dark");
     },
     toggleTheme(value) {
+      if (!this.useMode) {
+        this.darkMode = "clear";
+        (void 0).body.classList.remove("dark");
+        localStorage.setItem("theme", "clear");
+        return;
+      }
       this.darkMode = value ? "dark" : "light";
       localStorage.setItem("theme", this.darkMode);
       (void 0).body.classList.toggle("dark", value);
+    },
+    toggleUseMode() {
+      this.useMode = !this.useMode;
+      localStorage.setItem("useLightMode", this.useMode);
     },
     toggleReduceMotion(value) {
       console.log(value);
@@ -1084,23 +1102,22 @@ const useMainStore = defineStore("main", {
       this.navOpen = false;
     },
     toggleFold(force = false, clear = null) {
-      if (this.darkMode === "light") {
-        if (clear) {
-          this.fold = false;
-          (void 0).body.classList.remove("dark");
-          return;
-        }
-        if (force) {
-          this.fold = true;
-          (void 0).body.classList.add("dark");
-          return;
-        }
-        this.fold = !this.fold;
-        if (this.fold) {
-          (void 0).body.classList.add("dark");
-        } else {
-          (void 0).body.classList.remove("dark");
-        }
+      if (this.useMode) return;
+      if (clear) {
+        this.fold = false;
+        (void 0).body.classList.remove("dark");
+        return;
+      }
+      if (force) {
+        this.fold = true;
+        (void 0).body.classList.add("dark");
+        return;
+      }
+      this.fold = !this.fold;
+      if (this.fold) {
+        (void 0).body.classList.add("dark");
+      } else {
+        (void 0).body.classList.remove("dark");
       }
     }
   }
@@ -1109,6 +1126,7 @@ const _sfc_main$2 = {
   __name: "App",
   __ssrInlineRender: true,
   setup(__props) {
+    const { $gsap: gsap } = useNuxtApp();
     useMainStore();
     return (_ctx, _push, _parent, _attrs) => {
       const _component_NuxtPage = __nuxt_component_0;
