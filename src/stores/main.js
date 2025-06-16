@@ -4,7 +4,8 @@ import { ref, computed } from 'vue';
 export const useMainStore = defineStore('main', {
     state: () => ({
         sticky: true,
-        darkMode: 'light',
+        darkMode: 'clear',
+        useMode: false,
         sliderArrowSticky: false,
         sliderTimeline: 'before',
         fold: false,
@@ -40,15 +41,35 @@ export const useMainStore = defineStore('main', {
             this.sliderArrowSticky = !this.sliderArrowSticky
         },
         setupDarkMode() {
+            const storedUseMode = localStorage.getItem('useLightMode');
+            this.useMode = storedUseMode === 'true';
+        
             const stored = localStorage.getItem('theme');
+        
+            if (!this.useMode) {
+                this.darkMode = 'clear';
+                document.body.classList.remove('dark');
+                return;
+            }
+        
             this.darkMode = stored === 'dark' ? 'dark' : 'light';
             document.body.classList.toggle('dark', this.darkMode === 'dark');
         },
-        
         toggleTheme(value) {
+            if (!this.useMode) {
+                this.darkMode = 'clear';
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'clear');
+                return;
+            }
+        
             this.darkMode = value ? 'dark' : 'light';
             localStorage.setItem('theme', this.darkMode);
             document.body.classList.toggle('dark', value);
+        },
+        toggleUseMode() {
+            this.useMode = !this.useMode
+            localStorage.setItem('useLightMode', this.useMode);
         },
         toggleReduceMotion(value){
             console.log(value)
@@ -73,7 +94,7 @@ export const useMainStore = defineStore('main', {
         openNav() { this.navOpen = true },
         closeNav() { this.navOpen = false },
         toggleFold(force = false, clear=null) {
-            if (this.darkMode === 'light') {
+            if (this.useMode) return;
                 if (clear) {
                     this.fold = false;
                     document.body.classList.remove('dark');
@@ -90,7 +111,6 @@ export const useMainStore = defineStore('main', {
                 } else {
                     document.body.classList.remove('dark');
                 }
-            }
         }
     },
 });

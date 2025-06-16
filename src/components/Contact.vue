@@ -157,10 +157,12 @@ onMounted(async() => {
         start: 'top top',
         end: 'bottom 70%',
         onEnter: () => {
-            store.setsliderTimeline('after') 
+            
+            store.toggleFold(true)
         },
         onEnterBack: () => {
-            store.setsliderTimeline('after') 
+            
+            store.toggleFold(false, true)
         },
     });
     expandTextAreaPattern();
@@ -174,7 +176,6 @@ onMounted(async() => {
     });
     tl.call(() => {
         if (tl.reversed()) {} else {
-            store.toggleFold(true)
         }
     })
     tl.call(() => {

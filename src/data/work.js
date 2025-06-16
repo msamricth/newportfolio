@@ -3,6 +3,7 @@ export const work = [
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745385371/workwithsupply_mj0pag.png',
         title: 'workwithsupply.com',
         projectTitle: 'workwithsupply.com',
+        client: 'Supply',
         slug: 'supply',
         text: 'Full website build for digital marketing agency <i><strong>Supply</strong></i>.',
         specialties: [
@@ -23,14 +24,17 @@ export const work = [
 
         video: 'https://res.cloudinary.com/dp1qyhhlo/video/upload/q_auto/v1745546389/supply_tysvko.m3u8',
         textColor: 'text-toxic-mint',
+        hoverColor: 'hover:text-toxic-mint',
     },
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745385370/Product-Finder_ofzt6p.png',
         slug: 'dat',
+        client: 'DAT',
         projectTitle: 'dat.com',
         title: "dat.com & DAT's Product Finder",
         text: "This project was a overhaul of DAT's website, which is built on wordpress; with elementor page builder. The theme is a child theme of hello elementor and features several heavy customized components built to work in elementor and utilizes ACF.",
         textColor: 'text-lime-glow',
+        hoverColor: 'hover:text-lime-glow',
         specialties: [
             'Custom Gutenberg Blocks', 'Custom Theme Functions', 'Plugin and Theme Development', 'Components built using ACF fields', 'Elementor Components + Extensions',
         ],
@@ -54,7 +58,8 @@ export const work = [
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745385369/DM-Presents_iauzjs.png',
         slug: 'dr-martens',
-        projectTitle: 'Dr Martens',
+        client: 'Dr. Martens',
+        projectTitle: 'Store Locator',
         title: 'Dr Martens: DM Presents, Store Locator, & specialty pages',
         text: "Built several speciality pages, a platform for Dr Marten's live event series that integrates with EventBrite, and a interactive store locator that works with Dr Marten's existing Sharepoint/Hybris system",
 
@@ -83,16 +88,19 @@ export const work = [
                 url: 'https://www.drmartens.com/us/en/celebrating-black-voices'
             },
         ],
-        textColor: 'text-hot-coral'
+        textColor: 'text-hot-coral',
+        hoverColor: 'hover:text-hot-coral'
     },
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/4_qsn9jm.jpg',
         slug: 'jetfuel',
-        title: 'jetfuelstudios.com',
-        projectTitle: 'jetfuelstudios.com',
-        text: 'Developed website for Jetfuel Studios.',
+        client: 'Jetfuel',
+        title: 'jetfuelstudio.com',
+        projectTitle: 'jetfuelstudio.com',
+        text: 'Developed website for Jetfuel Studio.',
         buttonText: 'Explore',
         textColor: 'text-sunburn-orange',
+        hoverColor: 'hover:text-sunburn-orange',
         specialties: [
             'Custom Theme and Plugin Development', 'GSAP Animations', 'Video and Image optimizations',
         ],
@@ -112,10 +120,12 @@ export const work = [
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/3_mwhi9l.jpg',
         slug: 'glt',
+        client: 'Green Leadership Trust',
         projectTitle: 'Web & Brand Work',
         title: 'Green Leadership Trust - Website, Branding & Media',
         text: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis",
         textColor: 'text-electric-purple',
+        hoverColor: 'hover:text-electric-purple',
         specialties: [
             'Print and Digital Media', 'Video and Image optimizations', 'API Integrations', 'Custom Theme and Plugin Development', 'CRM & Communications Strategy'
         ],
@@ -137,10 +147,12 @@ export const work = [
     {
         image: 'https://res.cloudinary.com/dp1qyhhlo/image/upload/q_auto,f_auto/v1745546407/5_vf2btn.jpg',
         slug: 'gators',
-        projectTitle: 'Gators Dockside',
+        client: 'Gators Dockside',
+        projectTitle: 'SweepStakes App',
         title: 'Gators Dockside SweepStakes Landing Page',
         text: 'Build a series of Landing pages for Gators Dockside and Piesanos Stone Fire Pizza',
         textColor: 'text-lime-glow',
+        hoverColor: 'hover:text-lime-glow',
         specialties: [
             'Vue landing page', 'ADA & WCAG Web Accessibility', 'GSAP Animations', "SVG Customization"
         ],

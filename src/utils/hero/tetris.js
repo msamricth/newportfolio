@@ -3,7 +3,6 @@ import { gsap } from 'gsap'
 export function buildTetrisTL(container) {
     const scope = container
     if (!container) return;
-    console.log('tetris loaded')
     const tl = gsap.timeline()
     const tetrisTL = gsap.timeline();
     const tetris = scope.querySelector("#tetris");

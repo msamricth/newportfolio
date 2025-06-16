@@ -5,7 +5,6 @@ export function buildUXTL(container) {
     const scope = container
     
     if (!container) return;
-    console.log('UX Screen loaded')
     gsap.registerPlugin(DrawSVGPlugin);
     const tl = gsap.timeline()
     const secondarytl = gsap.timeline({paused:true})

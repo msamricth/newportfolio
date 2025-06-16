@@ -29,6 +29,7 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callback';
 export { setInterval } from '#app/compat/interval';
 export { imgAnim } from '../src/composables/imgAnims';
+export { useHls } from '../src/composables/useHLS';
 export { useMatchMedia } from '../src/composables/useMatchMedia';
 export { useSmoothScroll } from '../src/composables/useSmoothScroll';
 export { effectTimeline } from '../src/utils/ContextAwareLogoAnimationScroll';

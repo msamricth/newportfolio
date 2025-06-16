@@ -1,6 +1,6 @@
 <template>
     <div
-        class="secondary-nav group/secondaryNav max-w-1440 px-0 md:px-12 flex justify-end items-center relative gap-8 md:gap-6">
+        class="secondary-nav group/secondaryNav max-w-1440 px-0 md:px-12 flex justify-end items-center relative gap-8 md:gap-6 z-200">
         <Mode :footer="footer" />
         <icons />
         <Hamburger :footer="footer"/>
