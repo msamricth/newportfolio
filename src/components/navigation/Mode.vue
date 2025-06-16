@@ -3,7 +3,7 @@
     <label class="inline-flex items-start cursor-pointer group max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
  transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in"
         :for="footer ? 'mode-footer' : 'mode'">
-        <span
+        <button
             class="text-xl font-medium animate subtle-slide-in block relative cursor-pointer group-icon transition-all group"
             style="--theme-main-animation-delay:0.1s" @click="store.toggleUseMode()"
             :class="{ 'scale-140': !store.useMode }">
@@ -19,7 +19,7 @@
             <svg width="1.6rem" :class="sunVisible
                 ? 'opacity-100'
                 : 'opacity-0 duration-0'"
-                class="group-hover:text-accent group-hover:rotate-360 transition absolute top-0" viewBox="0 0 24 24"
+                class="group-hover:text-accent group-hover:rotate-450 transition absolute top-0" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <title />
                 <circle cx="12" cy="12" fill="currentColor" r="5" />
@@ -41,7 +41,7 @@
                     fill="currentColor" />
             </svg>
             <Tooltips message="Change light/dark mode" v-if="!store.useMode" class="scale-70" />
-        </span>
+        </button>
         <span class="sr-only">Dark Mode</span>
 
         <input type="checkbox" class="sr-only peer" :checked="store.isDark"
