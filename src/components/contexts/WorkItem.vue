@@ -5,7 +5,7 @@
             <div class="flex flex-col md:flex-row justify-center items-start gap-8">
                 <img crossorigin="anonymous"
                     :src="!store.ready ? item.image.replace('upload/q_auto,f_auto', 'upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_896') : item.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_896')"
-                    class="w-full object-cover rounded-[3rem] transition-all cursor-pointer duriation-900" width="896" height="504" />
+                    class="w-full object-cover md:rounded-[3rem] rounded-t-[3rem] transition-all cursor-pointer duriation-900" width="896" height="504" />
 
             </div>
             <div class="flex flex-col justify-end items-start pt-6 md:px-6 transition-all duriation-700 w-full"
