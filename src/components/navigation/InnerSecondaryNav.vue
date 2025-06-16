@@ -12,7 +12,7 @@
             </svg>
 
 
-            <svg class="absolute inset-0 stroke-current text-accent transition-all duration-700 ease-in-out stroke-animate group-hover:scale-[1.25]"
+            <svg class="absolute inset-0 stroke-current text-accent transition-all duration-700 ease-in-out stroke-animate group-hover:scale-[1.26]"
                 viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="112 352 48 288 112 224" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="32" />

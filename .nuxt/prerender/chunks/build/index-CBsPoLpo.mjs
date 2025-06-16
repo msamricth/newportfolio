@@ -710,7 +710,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/contexts/WorkItem.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const workItem = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-1b32c2a9"]]);
+const WorkItem = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-1b32c2a9"]]);
 const _sfc_main$1 = {
   __name: "FeaturedWork",
   __ssrInlineRender: true,
@@ -759,7 +759,7 @@ const _sfc_main$1 = {
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[--><section class="pt-20" id="work"><div class="relative group overflow-x-clip pb-8 lg:pb-24"><div class="relative"><!--[-->`);
       ssrRenderList(shuffledWork.value, (w, index) => {
-        _push(ssrRenderComponent(workItem, {
+        _push(ssrRenderComponent(WorkItem, {
           key: index,
           item: w,
           onClick: () => {
@@ -839,4 +839,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index-CN7gWye-.mjs.map
+//# sourceMappingURL=index-CBsPoLpo.mjs.map

@@ -2,7 +2,7 @@
     <section ref="workSection" class="pt-20" id="work">
         <div class="relative group overflow-x-clip pb-8 lg:pb-24">
             <div class="relative">
-                <workItem v-for="(w, index) in shuffledWork" :key="index" :item="w"
+                <WorkItem v-for="(w, index) in shuffledWork" :key="index" :item="w"
                     :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" />
                 <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col items-end md:max-w-4xl mx-auto opacity-0 -translate-x-100" ref="button">
 
@@ -26,7 +26,7 @@ import { useMainStore } from '@/stores/main.js'
 import { useModalStore } from '@/stores/modal.js'
 import { work } from '@/data/work.js';
 import MainButton from '@/components/buttons/MainButton.vue'
-import workItem from '@/components/contexts/workItem.vue';
+import WorkItem from '@/components/contexts/WorkItem.vue';
 const store = useMainStore()
 const modalStore = useModalStore()
 const workSection = ref(null);
