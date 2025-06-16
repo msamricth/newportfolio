@@ -293,7 +293,7 @@ onMounted(async () => {
     animateSquares();
     watch(() => store.filteredWork, async () => {
         await nextTick();
-        store.toggleFold(false, true) 
+        mainStore.toggleFold(false, true)
         const items = document.querySelectorAll('.work-grid--item');
         items.forEach(item => {
             const video = item.querySelector('video');
@@ -335,13 +335,13 @@ onMounted(async () => {
         start: 'top 5%',
         end: 'bottom 70%',
         onEnter: () => {
-            store.toggleFold(false, true) 
+            mainStore.toggleFold(false, true) 
         },
         onEnterBack: () => {
-            store.toggleFold(false, true) 
+            mainStore.toggleFold(false, true) 
         },
         onLeave: () => {
-            store.toggleFold(true) 
+            mainStore.toggleFold(true) 
         },
     });
 
