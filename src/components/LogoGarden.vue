@@ -57,7 +57,7 @@ onMounted(async () => {
       scrollTrigger: {
         trigger: '.logo-garden',
         start: 'top 80%',
-        toggleActions: 'play reverse play reverse',
+        toggleActions: 'play none none reverse',
       },
     }
   )
