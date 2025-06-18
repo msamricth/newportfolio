@@ -1,25 +1,27 @@
 <template>
-    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh lg:min-h-[50dvh] mb-12 lg:mb-18 xl:mb-24"
+    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh lg:min-h-[50dvh] mb-20 md:mb-12 lg:mb-20 xl:mb-28"
         ref="workSection">
-        <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center md:max-w-4xl mx-auto px-8 lg:px-12"
+        <div class="relative flex flex-col items-center justify-center mx-auto rounded-xl md:max-w-4xl"
             @mouseenter="onHoverIn" @mouseleave="onHoverOut" :class="item.hoverColor">
             <div class="relative">
-                <a :href="Link" @click.prevent="handleClick" class="absolute h-full w-full z-20"></a>
-                <div class="flex flex-col md:flex-row justify-center items-start gap-8">
+                <a :href="Link" @click.prevent="handleClick" class="absolute z-20 w-full h-full"></a>
+                <div class="flex flex-col items-start justify-center gap-8 md:flex-row">
                     <img crossorigin="anonymous" :src="optimizedSrc" :srcset="srcSet"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 896px"
-                        class="w-full object-cover md:rounded-[3rem] rounded-t-[3rem] transition-all cursor-pointer duriation-900"
+                        class="-mx-8 max-md:max-w-[calc(100%+64px)] w-[calc(100%+64px)] md:w-full object-cover md:rounded-[3rem] transition-all cursor-pointer duriation-900"
                         width="896" height="504" />
 
                 </div>
-                <div class="flex flex-col justify-end items-start pt-6 md:px-6 transition-all duriation-700 w-full"
+                <div class="flex flex-col items-start justify-end w-full pt-6 overflow-hidden md:px-6"
                     @mouseover="isHovered = true" @mouseleave="isHovered = false">
-                    <div class="flex flex-col gap-6 justify-between w-full">
-                        <div class="flex flex-col justify-between pr-8 lg:pr-18 cursor-pointer work-item-entry">
-                            <h3 class="text-lg font-normal subtle-slide-in h4 transition-colors duration-700">{{
-                                item.client }}</h3>
+                    <div class="flex flex-col justify-between w-full gap-6">
+                        <div class="flex flex-col justify-between text-center cursor-pointer md:text-start md:pr-8 lg:pr-18 work-item-entry">
+                            <h3
+                                class="text-primary dark:text-background text-lg font-normal **:**:transition-none duration-0 subtle-slide-in h4 lg:duration-700">
+                                {{
+                                    item.client }}</h3>
                             <h4
-                                class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex **:**:inline-flex">
+                                class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex **:**:inline-flex justify-center md:justify-start">
                                 {{
                                     item.projectTitle
                                 }}
@@ -130,7 +132,7 @@ function animateSquares() {
             scrollTrigger: {
                 trigger: workSectionEl,
                 start: 'top 60%',
-                toggleActions: 'play none none reverse',
+                toggleActions: 'play none none none',
                 once: false,
             },
         })
@@ -230,26 +232,7 @@ watch(() => props.item.image, async () => {
         img.addEventListener('load', animateSquares, { once: true });
     }
 }, { immediate: true });
-onMounted(async () => {
-    await nextTick()
 
-    if (!workSection.value) return;
-
-    const workSectionEl = workSection.value;
-
-
-    ScrollTrigger.create({
-        trigger: workSectionEl,
-        start: 'top 20%',
-        end: 'bottom bottom',
-        onEnter: () => {
-            store.toggleFold(true)
-            loaded.value = true;
-        }
-    });
-
-
-});
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@
         <div class="code-artisan lg:my-34 my-18  md:w-3/4 mx-auto relative md:sticky top-[20%]">
             <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition duriation-900 mb-4 delay-700"
                 :class="isArtisan ? ['animate'] : ['opacity-0']"></div>
-            <h3 class="font-heading font-semibold text-2xl lg:text-3xl leading-snug placeholder-line"
+            <h3 class="text-2xl font-semibold leading-snug font-heading lg:text-3xl placeholder-line"
                 data-splitting="words">
                 Code artisan forging WordPress & Vue.js experiences by day,
                 crafting dirt jumps & trails for bikes by night—
@@ -47,12 +47,11 @@ onMounted(async () => {
     });
     ScrollTrigger.create({
         trigger: artisanEl,
-        start: 'top 10%',
+        start: 'top 60%',
         onEnter: () => {
             store.toggleFold(false, true)
         },
         onLeaveBack: ()=>{
-            store.toggleFold(true)
 
         }
     });

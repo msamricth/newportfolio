@@ -1,8 +1,8 @@
 <template>
-    <section ref="testimonialSection" class="pb-0 lg:pb-24 overflow-clip relative">
+    <section ref="testimonialSection" class="relative pb-0 lg:pb-24 overflow-clip">
         <div
             class="max-w-full lg:max-w-[1024px] xl:max-w-[1290px] px-8 lg:px-12 mx-auto flex justify-between items-end md:items-start heading">
-            <h2 class="text-2xl md:text-3xl mb-8 max-w-110 placeholder-line" data-splitting="words" ref="heading">
+            <h2 class="mb-8 text-2xl md:text-3xl max-w-110 placeholder-line" data-splitting="words" ref="heading">
                 Past Experiences
             </h2>
         </div>
@@ -10,18 +10,18 @@
         <div
             class="max-w-full lg:max-w-[1024px] xl:max-w-[1290px] px-8 lg:px-12 mx-auto lg:flex gap-8 lg:gap-14 items-stretch lg:h-fit relative">
             <div v-for="(t, index) in loop" :key="index"
-                class="testimonial-row relative flex flex-col justify-between items-start mb-8 w-fit group testimonal-card">
+                class="relative flex flex-col items-start justify-between mb-8 testimonial-row w-fit group testimonal-card">
                 <div class="flex-grow **:transition-all py-6">
-                    <p class="font-semibold text-lg placeholder-line opacity-0" data-splitting="words">{{ t.name }}</p>
-                    <p class="text-xs text-gray-500 mb-3 placeholder-line opacity-0" data-splitting="words">{{ t.title
+                    <p class="text-lg font-semibold opacity-0 text-primary dark:text-background placeholder-line" data-splitting="words">{{ t.name }}</p>
+                    <p class="mb-3 text-xs text-gray-500 opacity-0 placeholder-line" data-splitting="words">{{ t.title
                     }}</p>
                     <p v-for="(p, index) in getExcerptParagraphs(t.bodyPlain)" :key="index"
-                        class="text-sm placeholder-line mb-6 last:mb-0 opacity-0" data-splitting="words">
+                        class="mb-6 text-sm opacity-0 text-primary dark:text-background placeholder-line last:mb-0" data-splitting="words">
                         {{ p }}
                     </p>
                 </div>
                 <Links href="#" text="Read More" :noEntry="true" :onClick="() => openModal(t)"
-                    class="text-sm mb-6 md:mb-0" />
+                    class="mb-6 text-sm md:mb-0" />
                 <div
                     class="lg:absolute lg:-right-7 lg:top-15 card-border swing-in-responsive w-full  origin-center h-[3px] lg:w-[3px] lg:h-[75%] bg-current/20 transition duriation-900 animate group-last:hidden">
                 </div>
@@ -29,7 +29,7 @@
         </div>
 
         <div v-if="selectedTestimonial" ref="modalContainer"
-            class="fixed inset-0 bg-primary/60 backdrop-blur z-50 top-0 py-5 lg:p-5 lg:pb-15 overflow-y-auto opacity-0 overflow-x-clip"
+            class="fixed inset-0 top-0 z-50 py-5 overflow-y-auto opacity-0 bg-primary/60 backdrop-blur lg:p-5 lg:pb-15 overflow-x-clip"
             @click.self="closeModal">
             <div
                 class="bg-white dark:bg-gray-800 rounded-lg  lg:rounded-[3rem] lg:max-w-5xl xl:max-w-7xl w-full mx-auto p-6 lg:p-12 relative mt-10 modal-window origin-top">
@@ -198,17 +198,20 @@ onMounted(async () => {
           start: 'top 80%',
           end: 'bottom 60%',
           onEnter: () => {
+          store.toggleFold(true)
             // Staggered pH.play() calls
             phInstances.forEach((pH, i) => {
               setTimeout(() => pH.play(), i * 150)
             })
           },
           onEnterBack: () => {
+            store.toggleFold(false, true)
             phInstances.forEach((pH, i) => {
               setTimeout(() => pH.play(), i * 150)
             })
           },
           onLeaveBack: () => {
+           // store.toggleFold(false, true)
             phInstances.forEach((pH, i) => {
               setTimeout(() => pH.getTimeline().reverse(), i * 150)
             })

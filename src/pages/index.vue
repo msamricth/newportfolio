@@ -1,6 +1,7 @@
 <script setup>
 useHead({
-  title: 'Web and Application Development',
+  titleTemplate: ' Code Artisan | %s',
+  title: 'Bridging good design & things that actually work',
 
   link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
   ],
@@ -34,7 +35,7 @@ const store = useMainStore()
     <About />
     <LogoGarden v-if="store.loaded" />
     <FeaturedWork v-if="store.loaded" :featuredItems="work" />
-    <Contact v-if="store.loaded" />
+    <Contact v-if="store.loaded" v-show="!store.showBooking" />
     <ReturningUser  v-if="store.ready && store.returning && store.showBooking"/>
     <Footer></Footer>
   </div>
