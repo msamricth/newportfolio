@@ -1,14 +1,13 @@
 <template>
     <section ref="container"
-        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto py-24 hero-container flex flex-col md:justify-center lg:justify-start relative min-h-[85dvh]"
-                :class="store.returning ? 'md:min-h-[80dvh]': 'md:min-h-[85dvh]'">
-        <div class="hero-wrapper animate relative w-full">
-            <div class="utilties absolute right-0 -top-12">
+        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto py-24 hero-container flex flex-col md:justify-center lg:justify-start relative min-h-[85dvh]">
+        <div class="relative w-full hero-wrapper animate">
+            <div class="absolute right-0 utilties -top-12">
                 <SecondaryNav  v-if="playing" />
             </div>
 
             <div ref="grid"
-                class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end -mb-24 lg:mt-10 xl:mt-14 2xl:mt-18 h-[75dvh] lg:h-full">
+                class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end -mb-24 2xl:mt-18 h-[75dvh] lg:h-full">
                 <SceneLoader :sceneLoaded="screens" v-show="!playing" />
                 <SceneTetris v-if="loadedScenes[0]" />
                 <SceneUX v-if="loadedScenes[1]" />

@@ -59,13 +59,13 @@ const sources = [
             "/work/",
             "/work/glt",
             {
+                "loc": "/work/glt"
+            },
+            {
                 "loc": "/work/"
             },
             {
                 "loc": "/work/glt/"
-            },
-            {
-                "loc": "/work/glt"
             },
             {
                 "loc": "/about"

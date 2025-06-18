@@ -4,16 +4,16 @@
       :class="{ 'opacity-0': !store.ready }">
       <div class="min-h-screen">
         <div class="introduction-wrapper sticky md:max-w-2/3 mt-4 md:mt-6 top-[15%] md:top-[10%]">
-          <h2 class="italic subtitle mb-4 text-2xl placeholder-line opacity-0" data-splitting="words">So
+          <h2 class="mb-4 text-2xl italic opacity-0 subtitle placeholder-line" data-splitting="words">So
             here's the thing:
           </h2>
-          <ul class="list-disc mb-12 pl-6 hidden md:block">
-            <li class="placeholder-line opacity-0 text-xl" data-splitting="words">A Developer with
+          <ul class="hidden pl-6 mb-12 list-disc md:block">
+            <li class="text-xl opacity-0 placeholder-line" data-splitting="words">A Developer with
               <strong>PASSION</strong>
             </li>
-            <li class="placeholder-line opacity-0 text-xl" data-splitting="words">An eye for design</li>
-            <li class="placeholder-line opacity-0 text-xl" data-splitting="words">API nerd</li>
-            <li class="placeholder-line opacity-0 text-xl" data-splitting="words">Bootstrap & Tailwind Queen👸</li>
+            <li class="text-xl opacity-0 placeholder-line" data-splitting="words">An eye for design</li>
+            <li class="text-xl opacity-0 placeholder-line" data-splitting="words">API nerd</li>
+            <li class="text-xl opacity-0 placeholder-line" data-splitting="words">Bootstrap & Tailwind Queen👸</li>
           </ul>
           <div class="placeholder-line" data-splitting="words">
             <p class="placeholder-line opacity-0 text-secondary text-base leading-[1.8] mb-6 introduction"
@@ -24,7 +24,7 @@
               and in the dirt.🚴‍♀️ With deep experience in WordPress, Vue.js, and the occasional Tailwind
               bender, I
               specialize in crafting digital systems that are fast, accessible, and built to last.</p>
-            <blockquote class="transition duriation-900 border-l-4 pl-4 mt-4 mb-8 py-2 opacity-0" data-splitting="words"
+            <blockquote class="py-2 pl-4 mt-4 mb-8 transition border-l-4 opacity-0 duriation-900" data-splitting="words"
               :class="isBQ ? ['border-current'] : ['border-transparent']">
               “A problem solver who will keep you honest, but isn’t going to ‘value engineer’ a perfectly good
               design into something unrecognizable.”
@@ -43,7 +43,7 @@
           <div
             class="swing-in-left-fwd h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition duriation-900 mb-4 delay-700"
             :class="isArtisan ? ['animate'] : ['opacity-0']"></div>
-          <h3 class="font-heading font-semibold text-2xl lg:text-3xl leading-snug placeholder-line opacity-0"
+          <h3 class="text-2xl font-semibold leading-snug opacity-0 font-heading lg:text-3xl placeholder-line"
             data-splitting="words">
             Code artisan forging WordPress & Vue.js experiences by day,
             crafting dirt jumps & trails for bikes by night—
@@ -148,7 +148,7 @@ watch(
           onLeaveBack: () => {
             isArtisan.value = false;
             artisanAnim.getTimeline().progress(1).reverse();
-          },
+          }
         });
 
         ScrollTrigger.create({
