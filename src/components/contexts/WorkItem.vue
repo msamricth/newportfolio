@@ -1,13 +1,13 @@
 <template>
-    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh  mb-12"
+    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh lg:min-h-[50dvh] mb-12 lg:mb-18 xl:mb-24"
         ref="workSection">
         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center md:max-w-4xl mx-auto px-8 lg:px-12"
             @mouseenter="onHoverIn" @mouseleave="onHoverOut" :class="item.hoverColor">
             <div class="relative">
                 <a :href="Link" @click.prevent="handleClick" class="absolute h-full w-full z-20"></a>
                 <div class="flex flex-col md:flex-row justify-center items-start gap-8">
-                    <img crossorigin="anonymous"
-                        :src="!store.ready ? item.image.replace('upload/q_auto,f_auto', 'upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_896') : item.image.replace('/q_auto,f_auto', '/q_auto,f_auto,w_896')"
+                    <img crossorigin="anonymous" :src="optimizedSrc" :srcset="srcSet"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 896px"
                         class="w-full object-cover md:rounded-[3rem] rounded-t-[3rem] transition-all cursor-pointer duriation-900"
                         width="896" height="504" />
 
@@ -16,7 +16,7 @@
                     @mouseover="isHovered = true" @mouseleave="isHovered = false">
                     <div class="flex flex-col gap-6 justify-between w-full">
                         <div class="flex flex-col justify-between pr-8 lg:pr-18 cursor-pointer work-item-entry">
-                            <h3 class="text-lg font-normal subtle-slide-in h4 transition-colors duration-1000">{{
+                            <h3 class="text-lg font-normal subtle-slide-in h4 transition-colors duration-700">{{
                                 item.client }}</h3>
                             <h4
                                 class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex **:**:inline-flex">
@@ -48,6 +48,17 @@ const loaded = ref(false)
 
 let chars = []
 
+const getSrc = computed(() => (width) => {
+    return store.ready
+        ? props.item.image.replace('/q_auto,f_auto', `/q_auto,f_auto,w_${width}`)
+        : props.item.image.replace('upload/q_auto,f_auto', `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_${width}`);
+});
+
+const optimizedSrc = computed(() => getSrc.value(896));
+
+const srcSet = computed(() =>
+    [480, 768, 896, 1280].map(w => `${getSrc.value(w)} ${w}w`).join(', ')
+);
 
 const props = defineProps({
     item: { type: Object, required: true },
@@ -62,7 +73,6 @@ const handleClick = () => {
     }, 300)
 }
 const onHoverIn = () => {
-
     const textEntry = workSection.value.querySelector('.work-item-entry')
     const textElms = workSection.value.querySelectorAll('.work-item-entry h3, .work-item-entry h4')
     const colorCLass = props.item.textColor
@@ -72,12 +82,14 @@ const onHoverIn = () => {
             {
                 x: () => gsap.utils.random(-50, 50),
                 y: () => gsap.utils.random(-40, 0),
+                className: 'char text-current',
                 autoAlpha: 0,
             },
             {
                 x: 0,
                 y: 0,
                 autoAlpha: 1,
+                className: `char ${colorCLass}`,
                 ease: 'power3.out',
                 duration: 0.3,
                 stagger: {
@@ -86,21 +98,7 @@ const onHoverIn = () => {
                 },
             }, "+=0.05"
         )
-            .fromTo(
-                chars,
-                {
-                    className: 'char text-current',
-                },
-                {
-                    className: `char ${colorCLass}`,
-                    ease: 'power3.out',
-                    duration: 0.3,
-                    stagger: {
-                        amount: 0.3,
-                        from: 'random',
-                    },
-                }, "-=0.25"
-            )
+
     }
     )
 }
@@ -126,6 +124,7 @@ const onHoverOut = () => {
 }
 function animateSquares() {
     nextTick(() => {
+        if (!workSection.value) return;
         const workSectionEl = workSection.value;
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -221,6 +220,7 @@ function animateSquares() {
 }
 watch(() => props.item.image, async () => {
     await nextTick();
+    if (!workSection.value) return;
     const img = workSection.value?.querySelector('img');
     if (!img) return;
 
@@ -233,6 +233,7 @@ watch(() => props.item.image, async () => {
 onMounted(async () => {
     await nextTick()
 
+    if (!workSection.value) return;
 
     const workSectionEl = workSection.value;
 

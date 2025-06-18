@@ -116,7 +116,7 @@
         animation: slide-in-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both !important;
     }
     .wobble-ver-right {
-        animation: wobble-ver-right 0.8s both;
+        animation: wobble-ver-right 0.8s both var(--theme-main-animation-delay);
     }
     .wobble-ver-right-scale {
         animation: wobble-ver-right-scale 0.8s both;

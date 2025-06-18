@@ -8,8 +8,8 @@
                 touch!</h3>
 
             <div v-if="submitted" class="text-center pt-16 fade-up absolute z-30" id="thanks">
-                <h4 class="text-3xl mb-2 font-bold mb-2 text-yellow">Success</h4>
-                <p class="text-white">ss
+                <h4 class="text-3xl mb-2 font-bold text-yellow">Message sent!</h4>
+                <p class="text-white">We'll be in touch, thanks!
                 </p>
             </div>
             <form ref="formRef" @submit.prevent="submitForm" class="transition-all w-full px-2 block flex flex-col gap-6 text-primary dark:text-accent inverted:text-electric-purple"

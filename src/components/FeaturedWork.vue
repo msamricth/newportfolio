@@ -6,7 +6,6 @@
                     :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" />
                 <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col items-center md:items-end md:max-w-4xl mx-auto opacity-0 -translate-x-100"
                     ref="button">
-
                     <MainButton href="/work/" label="View all work" class="hover:text-accent" :delay="'0.7s'" />
                 </div>
             </div>

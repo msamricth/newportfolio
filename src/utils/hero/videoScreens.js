@@ -66,7 +66,7 @@ export function buildVideoTL(container) {
     }, null, "videoStart+=1.2")
         .to(
             "#video-lines path",
-            { y: 25, duration: 0.8, ease: "power1.out" },
+            { y: 5, duration: 0.8, ease: "power1.out" },
             "videoStart+=1.2"
         )
         .to("#video-lines path", { autoAlpha: 1, duration: 0.2 }, "videoStart+=1.4")

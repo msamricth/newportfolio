@@ -17,7 +17,7 @@ useSeoMeta({
     twitterCard: 'summary_large_image'
 })
 
-import {onMounted } from 'vue';
+import {nextTick, onMounted } from 'vue';
 import InnerSecondaryNav from '../../components/navigation/InnerSecondaryNav.vue'
 import InnerNav from '../../components/navigation/InnerNav.vue';
 import Intro from '../../components/case-studies/Intro.vue';
@@ -37,16 +37,19 @@ import Airtable from '../../components/icons/Airtable.vue'
 import Wordpress from '../../components/icons/Wordpress.vue'
 import ActionNetwork from '../../components/icons/ActionNetwork.vue'
 import GLT from '../../components/icons/GLT.vue'
+import { useMainStore } from '../../stores/main.js';
 const icons = [Airtable, Wordpress, ActionNetwork]
 const sections = data.sections;
 const results = data.results;
 const introData = data.intro;
-
+const store = useMainStore()
 import { useHls } from '../../composables/useHLS.js';
 
 const { loadHls } = useHls()
-onMounted(()=>{
+onMounted(async()=>{
+    await nextTick()
     loadHls()
+    store.ready = true
 })
 </script>
 <template>

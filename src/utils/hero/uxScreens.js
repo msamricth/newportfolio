@@ -106,7 +106,7 @@ export function buildUXTL(container) {
                 y: 0,
                 scale: 2,
                 autoAlpha: 1,
-                duration: 0.6,
+                duration: 0.4,
                 ease: "elastic.out(0.9)"
             }, "bikeStart"
         )
@@ -119,12 +119,12 @@ export function buildUXTL(container) {
             scale: 1,
             xPercent: 0,
             yPercent: 0,
-            duration: 1,
+            duration: 0.6,
             ease: "power2.inOut"
         },
-        "bikeStart+=0.8"
+        "bikeStart+=0.4"
     )
-    tl.addLabel("gearStart", "bikeStart+=1.8")
+    tl.addLabel("gearStart", "bikeStart+=0.2")
         .to(
             [phoneGear, phoneGearPath],
             { autoAlpha: 1, duration: 0 }, "gearStart")
@@ -135,7 +135,7 @@ export function buildUXTL(container) {
             },
             {
                 drawSVG: "100%",
-                duration: 0.5,
+                duration: 0.4,
                 stagger: 0.15
             }, "gearStart+=0.2"
         )
@@ -144,31 +144,31 @@ export function buildUXTL(container) {
             {
                 x: "0",
                 rotation: 720,
-                duration: 1,
+                duration: 0.6,
                 ease: "power2.out"
             },
-            "gearStart+=0.8"
+            "gearStart+=0.6"
         )
 
 
-        .addLabel("outlineStart", "gearStart+=0.6");
+        .addLabel("outlineStart", "gearStart+=0.4");
     tl.set(scope.querySelectorAll("#phone-outline"), { autoAlpha: 1 }, "outlineStart").fromTo(
         scope.querySelectorAll( "#phone-outline"),
         { drawSVG: "0%" },
-        { drawSVG: "100%", duration: 1.2, ease: "power1.out" },
+        { drawSVG: "100%", duration: 1, ease: "power1.out" },
         "outlineStart+=0.2"
     );
 
 
 
-    tl.addLabel("menuToggle", "outlineStart+=1.4")
+    tl.addLabel("menuToggle", "outlineStart+=1.2")
         .to(
             phoneOffPaths,
             {
                 y: "6px",
                 duration: 0
             },
-            "menuToggle-=0.8"
+            "menuToggle-=0.6"
         )
         .to(
             phoneOff,
@@ -182,7 +182,7 @@ export function buildUXTL(container) {
         .fromTo(
             phoneOffPaths,
             { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" },
+            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" },
             "menuToggle-=0.5"
         )
         .to(
@@ -233,7 +233,7 @@ export function buildUXTL(container) {
             "menuToggle+=1"
         )
 
-        .addLabel("menuStart", "menuToggle+=1.2");
+        .addLabel("menuStart", "menuToggle+=1");
     tl.set(phoneMenuOutline, { autoAlpha: 1 }, "menuStart")
 
         .call(
@@ -246,10 +246,10 @@ export function buildUXTL(container) {
         .fromTo(
             phoneMenuOutline,
             { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" },
+            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" },
             "menuStart"
         )
-        .to(phoneMenuBg, { autoAlpha: 0.2, duration: 0.8 }, "menuStart+=0.5")
+        .to(phoneMenuBg, { autoAlpha: 0.2, duration: 0.6 }, "menuStart+=0.4")
         .addLabel("squigglesStart", "menuStart+=0.4");
     tl.fromTo(
         phoneSquigglesPaths,
@@ -263,7 +263,7 @@ export function buildUXTL(container) {
             autoAlpha: 1,
             scale: 1,
             stagger: 0.15,
-            duration: 0.6,
+            duration: 0.4,
             ease: "elastic.out(1)"
         },
         "squigglesStart"
@@ -274,15 +274,15 @@ export function buildUXTL(container) {
         .fromTo(
             scope.querySelectorAll("#phone-seperator"),
             { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" },
+            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" },
             "separatorStart+=0.2"
         )
 
         .fromTo(
             phoneSquare,
             { drawSVG: "0%", autoAlpha: 0 },
-            { drawSVG: "100%", autoAlpha: 1, duration: 0.6, stagger: 0.15, ease: "power1.out" },
-            "separatorStart+=0.25"
+            { drawSVG: "100%", autoAlpha: 1, duration: 0.4, stagger: 0.15, ease: "power1.out" },
+            "separatorStart+=0.24"
         )
         .to(
             phoneSquare,
@@ -291,13 +291,13 @@ export function buildUXTL(container) {
                 transformOrigin: "50% 50%",
                 duration: 0.4
             },
-            "separatorStart+=0.32"
+            "separatorStart+=0.28"
         )
         .set(phoneCircle, { autoAlpha: 1 })
         .fromTo(
             phoneCircle,
             { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.6, stagger: 0.15, ease: "power1.out" }, 
+            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" }, 
             "separatorStart-=0.08"
         )
         .to(
@@ -311,30 +311,30 @@ export function buildUXTL(container) {
         )
 
         .to(bgScreens, {
-            autoAlpha: 1, duration: 0.6, ease: "power1.out"
+            autoAlpha: 1, duration: 0.4, ease: "power1.out"
         },
             "separatorStart=0.25"
         )
         .fromTo(
             phoneLineart,
             { drawSVG: "0%", autoAlpha: 0 },
-            { drawSVG: "100%",autoAlpha: 1, duration: 0.6, stagger: 0.15, ease: "power1.out" }, "separatorStart+=0.8"
+            { drawSVG: "100%",autoAlpha: 1, duration: 0.4, stagger: 0.15, ease: "power1.out" }, "separatorStart+=0.6"
         )
 
 
 
-    tl
+    tl. addLabel("lineartStart", "separatorStart")
         .to(phoneScreen, { y: 40, repeat: 2, yoyo: true, duration: 0.8 },
-            "lineartStart+=3.25")
+            "lineartStart+=2.25")
         .to(
             phoneScreen,
             { y: 1000, x: -100, duration: 1.5, ease: "back.inOut(0.7)" },
-            "lineartStart+=3.6"
+            "lineartStart+=2.6"
         )
         .to(
             phoneScreen,
             { width: 0, duration: 0.5, ease: "power1.out" },
-            "lineartStart+=4"
+            "lineartStart+=3"
         )
         .to(
             allLines,
@@ -344,7 +344,7 @@ export function buildUXTL(container) {
                 stagger: 0.05,
                 ease: "power1.out"
             },
-            "lineartStart+=4.4"
+            "lineartStart+=3.4"
         )
 
         .to(
@@ -355,7 +355,7 @@ export function buildUXTL(container) {
                 stagger: 0.05,
                 ease: "power1.out"
             },
-            "lineartStart+=4.8"
+            "lineartStart+=3.8"
         )
         .to(
             allShapesG,
@@ -365,7 +365,7 @@ export function buildUXTL(container) {
                 stagger: 0.05,
                 ease: "power1.out"
             },
-            "lineartStart+=4.8"
+            "lineartStart+=3.8"
         )
         .to(
             allShapesPaths,
@@ -377,18 +377,18 @@ export function buildUXTL(container) {
                 transformOrigin: "center",
                 ease: "power1.out"
             },
-            "lineartStart+=5"
+            "lineartStart+=4"
         );
     tl.to(
         [bgScreens[0], bgScreens[2]],
         { y: 1000, duration: 1, stagger: 0.05 },
-        `lineartStart+=6.5`
+        `lineartStart+=4.5`
     );
 
     tl.to(
         [bgScreens[1], bgScreens[3]],
         { y: -1000, duration: 1, stagger: 0.05 },
-        `lineartStart+=6.5`
+        `lineartStart+=4.5`
     );
     return tl
 }

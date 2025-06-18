@@ -20,6 +20,7 @@ interface _GlobalComponents {
     'Preloader': typeof import("../src/components/Preloader.vue")['default']
     'Testimonials': typeof import("../src/components/Testimonials.vue")['default']
     'AnimatedCTA': typeof import("../src/components/animatedCTA.vue")['default']
+    'ButtonsClose': typeof import("../src/components/buttons/Close.vue")['default']
     'ButtonsGithub': typeof import("../src/components/buttons/Github.vue")['default']
     'ButtonsLinkedIn': typeof import("../src/components/buttons/LinkedIn.vue")['default']
     'ButtonsMainButton': typeof import("../src/components/buttons/MainButton.vue")['default']
@@ -45,6 +46,7 @@ interface _GlobalComponents {
     'ContextsLyric': typeof import("../src/components/contexts/Lyric.vue")['default']
     'ContextsModal': typeof import("../src/components/contexts/Modal.vue")['default']
     'ContextsOfferings': typeof import("../src/components/contexts/Offerings.vue")['default']
+    'ContextsReturningUser': typeof import("../src/components/contexts/ReturningUser.vue")['default']
     'ContextsTestimonial': typeof import("../src/components/contexts/Testimonial.vue")['default']
     'ContextsWorkItem': typeof import("../src/components/contexts/WorkItem.vue")['default']
     'ContextsHeroSceneLoader': typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']
@@ -111,6 +113,7 @@ interface _GlobalComponents {
     'LazyPreloader': LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
     'LazyTestimonials': LazyComponent<typeof import("../src/components/Testimonials.vue")['default']>
     'LazyAnimatedCTA': LazyComponent<typeof import("../src/components/animatedCTA.vue")['default']>
+    'LazyButtonsClose': LazyComponent<typeof import("../src/components/buttons/Close.vue")['default']>
     'LazyButtonsGithub': LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
     'LazyButtonsLinkedIn': LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
     'LazyButtonsMainButton': LazyComponent<typeof import("../src/components/buttons/MainButton.vue")['default']>
@@ -136,6 +139,7 @@ interface _GlobalComponents {
     'LazyContextsLyric': LazyComponent<typeof import("../src/components/contexts/Lyric.vue")['default']>
     'LazyContextsModal': LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
     'LazyContextsOfferings': LazyComponent<typeof import("../src/components/contexts/Offerings.vue")['default']>
+    'LazyContextsReturningUser': LazyComponent<typeof import("../src/components/contexts/ReturningUser.vue")['default']>
     'LazyContextsTestimonial': LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
     'LazyContextsWorkItem': LazyComponent<typeof import("../src/components/contexts/WorkItem.vue")['default']>
     'LazyContextsHeroSceneLoader': LazyComponent<typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']>
@@ -208,6 +212,7 @@ export const LogoGarden: typeof import("../src/components/LogoGarden.vue")['defa
 export const Preloader: typeof import("../src/components/Preloader.vue")['default']
 export const Testimonials: typeof import("../src/components/Testimonials.vue")['default']
 export const AnimatedCTA: typeof import("../src/components/animatedCTA.vue")['default']
+export const ButtonsClose: typeof import("../src/components/buttons/Close.vue")['default']
 export const ButtonsGithub: typeof import("../src/components/buttons/Github.vue")['default']
 export const ButtonsLinkedIn: typeof import("../src/components/buttons/LinkedIn.vue")['default']
 export const ButtonsMainButton: typeof import("../src/components/buttons/MainButton.vue")['default']
@@ -233,6 +238,7 @@ export const ContextsIntro: typeof import("../src/components/contexts/Intro.vue"
 export const ContextsLyric: typeof import("../src/components/contexts/Lyric.vue")['default']
 export const ContextsModal: typeof import("../src/components/contexts/Modal.vue")['default']
 export const ContextsOfferings: typeof import("../src/components/contexts/Offerings.vue")['default']
+export const ContextsReturningUser: typeof import("../src/components/contexts/ReturningUser.vue")['default']
 export const ContextsTestimonial: typeof import("../src/components/contexts/Testimonial.vue")['default']
 export const ContextsWorkItem: typeof import("../src/components/contexts/WorkItem.vue")['default']
 export const ContextsHeroSceneLoader: typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']
@@ -299,6 +305,7 @@ export const LazyLogoGarden: LazyComponent<typeof import("../src/components/Logo
 export const LazyPreloader: LazyComponent<typeof import("../src/components/Preloader.vue")['default']>
 export const LazyTestimonials: LazyComponent<typeof import("../src/components/Testimonials.vue")['default']>
 export const LazyAnimatedCTA: LazyComponent<typeof import("../src/components/animatedCTA.vue")['default']>
+export const LazyButtonsClose: LazyComponent<typeof import("../src/components/buttons/Close.vue")['default']>
 export const LazyButtonsGithub: LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
 export const LazyButtonsLinkedIn: LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
 export const LazyButtonsMainButton: LazyComponent<typeof import("../src/components/buttons/MainButton.vue")['default']>
@@ -324,6 +331,7 @@ export const LazyContextsIntro: LazyComponent<typeof import("../src/components/c
 export const LazyContextsLyric: LazyComponent<typeof import("../src/components/contexts/Lyric.vue")['default']>
 export const LazyContextsModal: LazyComponent<typeof import("../src/components/contexts/Modal.vue")['default']>
 export const LazyContextsOfferings: LazyComponent<typeof import("../src/components/contexts/Offerings.vue")['default']>
+export const LazyContextsReturningUser: LazyComponent<typeof import("../src/components/contexts/ReturningUser.vue")['default']>
 export const LazyContextsTestimonial: LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
 export const LazyContextsWorkItem: LazyComponent<typeof import("../src/components/contexts/WorkItem.vue")['default']>
 export const LazyContextsHeroSceneLoader: LazyComponent<typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']>

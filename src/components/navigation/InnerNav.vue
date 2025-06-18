@@ -1,43 +1,45 @@
 <template>
-    <div ref="sentinal"></div>
-    <header id="nav" ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
-        :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700 z-90' : ' absolute '">
-        <div
-            class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
-            <div ref="navBrand"
-                class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all relative max-sm:z-10"
-                :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100' : 'opacity-0 duration-0'">
-                <NuxtLink ref="navBrandLink" aria-label="Return Home" :to="brandURL"
-                    class="navbrand-link animate subtle-slide-in pb-10 md:pb-0 max-sm:z-0 text-nowrap"
-                    @mouseenter="onBrandHoverIn">{{ brandLabel }}</NuxtLink>
+    <div class="nav-wrapper">
+        <div ref="sentinal"></div>
+        <header id="nav" ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
+            :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700 z-90' : ' absolute '">
+            <div
+                class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
+                <div ref="navBrand"
+                    class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all relative max-sm:z-10"
+                    :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100' : 'opacity-0 duration-0'">
+                    <NuxtLink ref="navBrandLink" aria-label="Return Home" :to="brandURL"
+                        class="navbrand-link animate subtle-slide-in pb-10 md:pb-0 max-sm:z-0 text-nowrap"
+                        @mouseenter="onBrandHoverIn">{{ brandLabel }}</NuxtLink>
+                </div>
+                <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
+                    data-splitting="words" ref="heading">
+                    <span
+                        class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background opacity-0"
+                        data-splitting="words">{{ title }}</span>
+                </h1>
+                <nav ref="nav"
+                    class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
+                    :class="isSticky ? [''] : ['opacity-0']">
+                    <NuxtLink
+                        class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        to="/about" aria-label="Find out more about me!">
+                        <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
+                    </NuxtLink>
+                    <NuxtLink
+                        class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        to="/work/" aria-label="View my featured work!">
+                        <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
+                    </NuxtLink>
+                    <a href="#sayHello"
+                        class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
+                        @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
+                        <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
+                    </a>
+                </nav>
             </div>
-            <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
-                data-splitting="words" ref="heading">
-                <span
-                    class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background opacity-0"
-                    data-splitting="words">{{ title }}</span>
-            </h1>
-            <nav ref="nav"
-                class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
-                :class="isSticky ? [''] : ['opacity-0']">
-                <NuxtLink
-                    class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/about" aria-label="Find out more about me!">
-                    <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
-                </NuxtLink>
-                <NuxtLink
-                    class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/work/" aria-label="View my featured work!">
-                    <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
-                </NuxtLink>
-                <a href="#sayHello"
-                    class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
-                    @click.prevent="smoothScrollTo('#sayHello')"  aria-label="Send me a message!">
-                    <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
-                </a>
-            </nav>
-        </div>
-    </header>
+        </header>
+    </div>
 </template>
 
 <script setup>
@@ -194,12 +196,12 @@ function updateStickyTimeline() {
         y: isDesktop.value ? 0 : -10,
         duration: isReversed ? 0 : 0.2
     }, int)
-    tl.call(()=>{
-            const brandTL = effectTimeline(navBrand.value, 0.45)
-            brandTL?.play()
-        },null, int)
+    tl.call(() => {
+        const brandTL = effectTimeline(navBrand.value, 0.45)
+        brandTL?.play()
+    }, null, int)
 
- //   tl.fromTo(heading.value, { fontWeight: 700 }, { fontWeight: 400, duration: 0.2 }, int + 0.1)
+    //   tl.fromTo(heading.value, { fontWeight: 700 }, { fontWeight: 400, duration: 0.2 }, int + 0.1)
 
     const navItems = nav.value.querySelectorAll('.nav-item')
     navItems.forEach((item, i) => {
