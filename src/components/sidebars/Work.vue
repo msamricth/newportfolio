@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-wrap sidebar w-full lg:w-1/4 gap-2 mb-8 md:mb-0 lg:sticky lg:top-30 xl:pr-8">
         <div class="flex justify-between w-full">
-            <h4 class="font-bold placeholder-line" data-splitting="words" ref="headline">Tech Stack</h4>
+            <h4 class="font-bold placeholder-line h3" data-splitting="words" ref="headline">Tech Stack</h4>
 
             <button v-if="store.isFiltered"
                 class="text-primary dark:text-accent inverted:text-accent inverted:dark:text-border tag-button relative overflow-hidden rounded-[6rem] transition-all duration-700 border-transparent dark:border-current border hover:text-accent dark:hover:text-electric-purple inverted:hover:text-electric-purple inverted:dark:hover:text-accent hover:scale-[1.15] hover:opacity-80 group cursor-pointer subtle-slide-in w-8 flex justify-center items-center"

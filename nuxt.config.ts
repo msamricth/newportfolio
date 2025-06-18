@@ -20,6 +20,9 @@ export default defineNuxtConfig({
        return ['/','/about','/work','/work/glt']
     }
   },
+  render: {
+    resourceHints: false
+  },
   routeRules: {
     '/work/glt/': { prerender: true },
     '/':          { headers: { 'cache-control': 'public, max-age=0, must-revalidate' } },
@@ -34,7 +37,7 @@ export default defineNuxtConfig({
     }
   },
   generate: {
-    fallback: true,
+    fallback: '200.html',
     routes: [
       '/',
       '/about',
@@ -71,16 +74,6 @@ export default defineNuxtConfig({
           onload: "this.media='all'" },
       ],
       script: [
-        {
-          src: '/js/hls.mjs',
-          type: 'module',
-          defer: true
-        },
-        {
-          src: '/js/hls.min.js',
-          nomodule: true,
-          defer: true
-        },
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5', async: true },
         {
           children: `

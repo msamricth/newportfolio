@@ -1,11 +1,13 @@
 <template>
     <button v-if="!footer" ref="menuBTN"
-        class="animate group-hover/secondaryNav:opacity-80 text-current/80  cursor-pointer transition group/menu rounded-full subtle-slide-in hamburger hamburger--arrowturn-r flex flex-col justify-center md:hover:**:text-accent duration-700 "
+        class="animate group-hover/secondaryNav:opacity-80 text-current/80 relative cursor-pointer transition group/menu rounded-full subtle-slide-in hamburger hamburger--arrowturn-r flex flex-col justify-center duration-700 group"
         aria-label="Go to menu" style="--theme-main-animation-delay:0.7s" @click.prevent="smoothScroll('#main-menu')"
         :class="menuBTNActive ? 'is-active **:text-accent' : ''">
-        <div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700">
+        <div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700  md:group-hover:text-accent">
             <div class="hamburger-inner text-current **:transition-all **:duration-700"></div>
         </div>
+        
+        <Tooltips class="mt-20 text-white" message="Scroll to navigation" />
     </button>
 </template>
 
@@ -13,7 +15,7 @@
 <script setup>
 import { ref, nextTick } from 'vue'
 import { useMainStore} from '../../stores/main.js'
-
+import Tooltips from '../buttons/Tooltips.vue'
 const store = useMainStore()
 const menuBTN = ref(null)
 const menuBTNActive = ref(false)

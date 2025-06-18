@@ -29,6 +29,7 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callback';
 export { setInterval } from '#app/compat/interval';
 export { imgAnim } from '../src/composables/imgAnims';
+export { useHls } from '../src/composables/useHLS';
 export { useMatchMedia } from '../src/composables/useMatchMedia';
 export { useSmoothScroll } from '../src/composables/useSmoothScroll';
 export { effectTimeline } from '../src/utils/ContextAwareLogoAnimationScroll';
@@ -47,5 +48,4 @@ export { useNitroOrigin } from '../node_modules/nuxt-site-config/dist/runtime/ap
 export { useSiteConfig } from '../node_modules/nuxt-site-config/dist/runtime/app/composables/useSiteConfig';
 export { createSitePathResolver, withSiteTrailingSlash, withSiteUrl } from '../node_modules/nuxt-site-config/dist/runtime/app/composables/utils';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
-export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

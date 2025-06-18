@@ -3,7 +3,7 @@
         class="overview flex-wrap max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 xl:px-26 mx-auto intro flex md:flex-row relative md:pb-16 justify-center">
         <div class="flex flex-col md:w-1/3 lg:w-1/4 py-6 side" ref="sidebar">
             <div class="w-full flex justify-between relative">
-                <h4 class="text-2xl font-black w-full placeholder-line" data-splitting="words">Overview</h4>
+                <h4 class="text-2xl font-black w-full placeholder-line h3" data-splitting="words">Overview</h4>
                 <Github url="https://github.com/msamricth/greenleadershiptrust" aria="Green Leadership Trust's Github"
                     class="w-10 relative overview-git" ref="git" />
             </div>

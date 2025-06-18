@@ -1,7 +1,7 @@
 <template>
-  <div class="logo-garden max-w-full px-0 mx-auto mb-6 md:mb-32">
+  <div class="logo-garden max-w-full px-0 mx-auto mb-6 md:mb-32 lg:max-w-[1024px] xl:max-w-[1440px]">
     <div class="flex **:max-w-1/2 xl:**:max-w-1/4 opacity-80 flex-wrap justify-center items-center">
-      <img class="dark:invert inverted:invert transition-all mb-8 delay-700 w-70 md:w-100 md:delay-0 h-auto"
+      <img class="h-auto mb-8 transition-all dark:invert inverted:invert w-70 md:w-100 md:delay-0"
         v-for="(logo, i) in shuffledLogos" :key="i"
         :src="logo.src.replace('q_auto,f_auto', 'w_100,e_pixelate,f_auto,e_grayscale')" :data-src="logo.src"
         :alt="logo.alt" width="400" height="133" />
@@ -57,7 +57,7 @@ onMounted(async () => {
       scrollTrigger: {
         trigger: '.logo-garden',
         start: 'top 80%',
-        toggleActions: 'play reverse play reverse',
+        toggleActions: 'play none none none',
       },
     }
   )

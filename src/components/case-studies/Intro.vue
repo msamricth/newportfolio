@@ -6,7 +6,7 @@
              <component :is="icon" />
             <h2 class="bg-primary rounded-[6rem] dark:bg-background inverted:bg-background py-3 px-6 mb-2 placeholder-line inline w-content text-background dark:text-primary inverted:text-primary"
                 data-splitting="words">Case Study:</h2>
-            <h3 class="italic subtitle mb-4 text-3xl placeholder-line pr-6" data-splitting="words" v-if="heading">
+            <h3 class="italic subtitle mb-4 text-3xl h3 placeholder-line pr-6" data-splitting="words" v-if="heading">
                 {{ heading }}
             </h3>
         </div>

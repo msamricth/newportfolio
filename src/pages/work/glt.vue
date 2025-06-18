@@ -2,6 +2,7 @@
 definePageMeta({ prerender: true })
 
 useSeoMeta({
+    titleTemplate: '%s | Code Artisan',
     title: 'Green Leadership Trust | Featured Work',
     ogTitle: 'Green Leadership Trust – Featured Work | Code Artisan',
     description: "Designed and developed Green Leadership Trust's website, and design most of GLT's media on an on-going basis.",
@@ -17,12 +18,12 @@ useSeoMeta({
     twitterCard: 'summary_large_image'
 })
 
+import {nextTick, onMounted } from 'vue';
 import InnerSecondaryNav from '../../components/navigation/InnerSecondaryNav.vue'
 import InnerNav from '../../components/navigation/InnerNav.vue';
 import Intro from '../../components/case-studies/Intro.vue';
 import Overview from '../../components/case-studies/Overview.vue';
 import FullImage from '../../components/case-studies/FullImage.vue';
-import Sections from '../../components/case-studies/Sections.vue';
 import Contact from '../../components/Contact.vue';
 import Footer from '../../components/Footer.vue';
 import BasicImage from '../../components/case-studies/sections/BasicImage.vue';
@@ -36,14 +37,24 @@ import Airtable from '../../components/icons/Airtable.vue'
 import Wordpress from '../../components/icons/Wordpress.vue'
 import ActionNetwork from '../../components/icons/ActionNetwork.vue'
 import GLT from '../../components/icons/GLT.vue'
+import { useMainStore } from '../../stores/main.js';
 const icons = [Airtable, Wordpress, ActionNetwork]
 const sections = data.sections;
 const results = data.results;
 const introData = data.intro;
+const store = useMainStore()
+import { useHls } from '../../composables/useHLS.js';
+
+const { loadHls } = useHls()
+onMounted(async()=>{
+    await nextTick()
+    loadHls()
+    store.ready = true
+})
 </script>
 <template>
     <div
-        class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700">
+        class="transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary">
         <div class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-24 pb-18 lg:pb-20"
             ref="utilityBar">
             <InnerSecondaryNav />
