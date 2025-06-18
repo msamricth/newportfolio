@@ -7,7 +7,7 @@
             </div>
 
             <div ref="grid"
-                class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end -mb-24 xl:mt-14 2xl:mt-18 h-[75dvh] lg:h-full">
+                class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end -mb-24 2xl:mt-18 h-[75dvh] lg:h-full">
                 <SceneLoader :sceneLoaded="screens" v-show="!playing" />
                 <SceneTetris v-if="loadedScenes[0]" />
                 <SceneUX v-if="loadedScenes[1]" />
