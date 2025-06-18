@@ -351,7 +351,6 @@ onMounted(async () => {
 
 })
 </script>
-
 <template>
     <div class="relative transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary overflow-clip"
         ref="workPage">
