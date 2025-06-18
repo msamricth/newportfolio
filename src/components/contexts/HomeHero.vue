@@ -1,9 +1,8 @@
 <template>
     <section ref="container"
-        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto py-24 hero-container flex flex-col md:justify-center lg:justify-start relative min-h-[85dvh]"
-                :class="store.returning ? 'md:min-h-[80dvh]': 'md:min-h-[85dvh]'">
-        <div class="hero-wrapper animate relative w-full">
-            <div class="utilties absolute right-0 -top-12">
+        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto py-24 hero-container flex flex-col md:justify-center lg:justify-start relative min-h-[85dvh]">
+        <div class="relative w-full hero-wrapper animate">
+            <div class="absolute right-0 utilties -top-12">
                 <SecondaryNav  v-if="playing" />
             </div>
 
