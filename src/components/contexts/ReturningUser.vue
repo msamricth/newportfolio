@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center justify-center w-full max-w-full bg-sunburn-orange h-30 lg:h-70 overflow-x-clip"
+    <div class="flex flex-col items-center justify-center w-full max-w-full bg-sunburn-orange h-30 lg:h-45 overflow-x-clip"
         ref="bookingAlertContainer" v-if="store.showBooking">
         <div class="bg-sunburn-orange w-full group/booking fixed bottom-0 max-lg:left-0 justify-center lg:justify-start max-w-full lg:max-w-200 lg:translate-x-[-50%] lg:left-[50%] mx-auto lg:rounded-[3rem] flex gap-8 md:pl-12 lg:py-2 p-4 items-center  z-100 opacity-0 transition-opacity duration-700 overflow-clip text-background subtle-slide-in lg:bottom-4 lg:gap-12 xl:gap-16"
             :class="{ 'disapear': !show }" ref="bookingAlert">

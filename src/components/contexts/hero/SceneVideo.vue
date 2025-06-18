@@ -1,14 +1,14 @@
 <template>
 
-    <div class="video-screens h-full flex-col flex justify-center items-center absolute top-0 opacity-0 w-full px-6 lg:px-12 md:max-w-4xl mx-auto lg:-top-10">
+    <div class="absolute top-0 flex flex-col items-center justify-center w-full h-full px-6 mx-auto opacity-0 video-screens lg:px-12 md:max-w-4xl md:-top-10">
         <span id="impact"
-            class="block placeholder-line text-3xl md:text-4xl opacity-0 font-heading font-black leading-none uppercase text-center -mb-10"
+            class="block -mb-10 text-3xl font-black leading-none text-center uppercase opacity-0 placeholder-line md:text-4xl font-heading"
             data-splitting="words">
             Building Bridges <br />
             between ideas & impact
         </span>
 
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 331" id="video-screen" class="md:max-w-80 lg:max-w-2xl mx-auto pb-20 md:pb-0 overflow-visible">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 331" id="video-screen" class="pb-20 mx-auto overflow-visible md:max-w-80 lg:max-w-2xl md:pb-0">
             <path
                 d="M 496.817 20.298 C 522.304 20.299 542.998 40.804 543.312 66.214 L 543.316 66.815 L 543.251 264.192 C 543.242 289.67 522.747 310.356 497.346 310.677 L 496.745 310.68 L 78.048 310.652 C 52.207 310.65 31.323 289.582 31.55 263.742 L 33.278 66.363 L 33.287 65.765 C 33.826 40.518 54.456 20.265 79.783 20.267 L 496.817 20.298 Z"
                 stroke="#E2556C" fill="none" stroke-width="6" stroke-linecap="round" style="stroke-width: 6;" id="video-big"></path>

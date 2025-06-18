@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  titleTemplate: ' Code Artisan | %s',
+  titleTemplate: 'Code Artisan | %s',
   title: 'Bridging good design & things that actually work',
 
   link: [{ rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
@@ -27,7 +27,7 @@ const store = useMainStore()
 
 <template>
   <div
-    class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-x-clip">
+    class="relative transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary overflow-x-clip">
     <div class="overflow-clip">
       <HomeHero />
       <Nav v-show="store.loaded"></Nav>
