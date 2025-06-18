@@ -10,7 +10,7 @@ export function buildTetrisTL(container) {
         '#bridges span, #design span'
     );
     //Tetris bro
-    tetrisTL.timeScale(1.5)
+    tetrisTL.timeScale(2)
     if (tetris) {
 
         tetrisTL.to(tetris, {

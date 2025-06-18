@@ -54,6 +54,7 @@ const section = ref(null)
 const openAbout = () => {
     navigateTo('/about')
 }
+
 onMounted(async () => {
     await nextTick();
     if (store.loaded) {

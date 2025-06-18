@@ -59,9 +59,6 @@ const sources = [
             "/work/",
             "/work/glt",
             {
-                "loc": "/"
-            },
-            {
                 "loc": "/work/"
             },
             {
@@ -72,6 +69,9 @@ const sources = [
             },
             {
                 "loc": "/about"
+            },
+            {
+                "loc": "/"
             }
         ],
         "sourceType": "app"

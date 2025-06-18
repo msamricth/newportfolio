@@ -1,15 +1,15 @@
 <template>
     <section ref="container"
-        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto min-h-[85dvh] py-24 hero-container flex flex-col md:justify-center relative">
+        class="max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto py-24 hero-container flex flex-col md:justify-center lg:justify-start relative min-h-[85dvh]"
+                :class="store.returning ? 'md:min-h-[80dvh]': 'md:min-h-[85dvh]'">
         <div class="hero-wrapper animate relative w-full">
-            <div class="utilties absolute right-0 -top-15">
+            <div class="utilties absolute right-0 -top-12">
                 <SecondaryNav  v-if="playing" />
             </div>
 
             <div ref="grid"
-                class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end h-[70dvh] -mb-24"
-                :class="{ 'loaded': store.loaded }">
-                <SceneLoader :sceneLoaded="screens" v-if="!playing" />
+                class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end -mb-24 lg:mt-10 xl:mt-14 2xl:mt-18 h-[75dvh] lg:h-full">
+                <SceneLoader :sceneLoaded="screens" v-show="!playing" />
                 <SceneTetris v-if="loadedScenes[0]" />
                 <SceneUX v-if="loadedScenes[1]" />
                 <SceneVideo v-if="loadedScenes[2]" />
@@ -21,14 +21,10 @@
 <script setup>
 import { ref, computed, onMounted, nextTick, defineAsyncComponent } from 'vue'
 import SecondaryNav from '@/components/navigation/SecondaryNav.vue'
-import { shuffleIcons } from '@/utils/shuffler.js'
 import { useMainStore } from '@/stores/main.js'
-import PlaceholderJS from '@/utils/placeholder'
 import SceneLoader from './hero/SceneLoader.vue'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-//import SceneTetris from './hero/SceneTetris.vue'
-import { useMatchMedia } from '@/composables/useMatchMedia'
 import { useNuxtApp } from '#app'
 
 const store = useMainStore()
@@ -66,6 +62,7 @@ onMounted(async () => {
 
     master.call(async () => {
         playing.value="true"
+        store.ready = true
         if (!loadedScenes.value[0]) loadedScenes.value[0] = true
 
         await nextTick()
@@ -76,10 +73,10 @@ onMounted(async () => {
     }, null, 'Tetris+=2.6')
     master.call(() => {
         loadedScenes.value[1] = true
-    }, null, 'Tetris+=9')
+    }, null, 'Tetris+=8')
 
 
-    master.addLabel('UX', "Tetris+=11.3")
+    master.addLabel('UX', "Tetris+=10")
 
     master.call(async () => {
         await nextTick()
@@ -91,7 +88,7 @@ onMounted(async () => {
     }, null, 'UX+=0.2')
 
 
-    master.addLabel('Video', "UX+=15.8") //need to acttually count how long UX is, this is a temp estimate
+    master.addLabel('Video', "UX+=10.2") //need to acttually count how long UX is, this is a temp estimate
     master.call(() => {
         loadedScenes.value[2] = true
     }, null, 'Video+=0')

@@ -396,23 +396,23 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-D4FELlaR.mjs')
+    component: () => import('./About-Cpb-HsEz.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BdS1Oh7d.mjs')
+    component: () => import('./index-BUE-MHup.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-a8q17yq7.mjs')
+    component: () => import('./glt-ANMSs5K9.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-CeT53DDx.mjs')
+    component: () => import('./index-zgH0mUNr.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -972,7 +972,9 @@ const useMainStore = defineStore("main", {
     navOpen: false,
     reduceMotion: false,
     loaded: false,
-    ready: false
+    ready: false,
+    returning: false,
+    showBooking: true
   }),
   getters: {
     isDark: (state) => state.darkMode === "dark",
@@ -995,10 +997,20 @@ const useMainStore = defineStore("main", {
     toggleSliderArrowSticky() {
       this.sliderArrowSticky = !this.sliderArrowSticky;
     },
-    setupDarkMode() {
+    setupStateManagement() {
       const storedUseMode = localStorage.getItem("useLightMode");
+      const storedHideBooking = localStorage.getItem("showBooking");
       this.useMode = storedUseMode === "true";
       const stored = localStorage.getItem("theme");
+      if (localStorage.getItem("visited") === null) {
+        localStorage.setItem("visited", "true");
+      } else {
+        this.returning = true;
+      }
+      if (storedHideBooking) {
+        this.showBooking = false;
+        this.returning = false;
+      }
       if (!this.useMode) {
         this.darkMode = "clear";
         (void 0).body.classList.remove("dark");
@@ -1006,6 +1018,12 @@ const useMainStore = defineStore("main", {
       }
       this.darkMode = stored === "dark" ? "dark" : "light";
       (void 0).body.classList.toggle("dark", this.darkMode === "dark");
+    },
+    hideBooking() {
+      localStorage.setItem("showBooking", "false");
+      setTimeout(() => {
+        this.showBooking = false;
+      }, 800);
     },
     toggleTheme(value) {
       if (!this.useMode) {

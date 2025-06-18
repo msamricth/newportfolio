@@ -108,7 +108,7 @@ const hoverOut = (slideIndex, btnIndex) => {
 };
 
 onBeforeRouteLeave(() => {
-  document.body.style.overflow = '';
+    document.body.style.overflow = '';
 });
 function startHover(event) {
     const gridItemEl = event.currentTarget;
@@ -290,6 +290,8 @@ onMounted(async () => {
         },
         once: true,
     });
+
+    setTimeout(() => store.ready = true, 400)
     animateSquares();
     watch(() => store.filteredWork, async () => {
         await nextTick();
@@ -318,7 +320,7 @@ onMounted(async () => {
         }
 
         watch(() => store.filteredWork.length, () => {
-            store.toggleFold(false, true) 
+            store.toggleFold(false, true)
             const slug = modalStore.pendingModalSlug;
             if (!slug) return;
             const item = store.filteredWork.find(w => w.slug === slug);
@@ -335,13 +337,13 @@ onMounted(async () => {
         start: 'top 5%',
         end: 'bottom 70%',
         onEnter: () => {
-            mainStore.toggleFold(false, true) 
+            mainStore.toggleFold(false, true)
         },
         onEnterBack: () => {
-            mainStore.toggleFold(false, true) 
+            mainStore.toggleFold(false, true)
         },
         onLeave: () => {
-            mainStore.toggleFold(true) 
+            mainStore.toggleFold(true)
         },
     });
 

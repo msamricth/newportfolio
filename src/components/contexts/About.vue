@@ -173,6 +173,8 @@ onMounted(async () => {
   const blockquoteEl = sectionEl.querySelector('blockquote');
   const finalP = sectionEl.querySelector('.final-p');
   const artisanHeadline = artisanEl.querySelector('h3');
+  
+  setTimeout(() => store.ready = true, 400)
 
   const tl = gsap.timeline({ paused: true });
   if (store.ready) {

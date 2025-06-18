@@ -1,5 +1,5 @@
 <template>
-    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh  mb-12"
+    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh lg:min-h-[50dvh] mb-12 lg:mb-18 xl:mb-24"
         ref="workSection">
         <div class="relative rounded-xl overflow-hidden flex flex-col justify-center items-center md:max-w-4xl mx-auto px-8 lg:px-12"
             @mouseenter="onHoverIn" @mouseleave="onHoverOut" :class="item.hoverColor">
@@ -16,7 +16,7 @@
                     @mouseover="isHovered = true" @mouseleave="isHovered = false">
                     <div class="flex flex-col gap-6 justify-between w-full">
                         <div class="flex flex-col justify-between pr-8 lg:pr-18 cursor-pointer work-item-entry">
-                            <h3 class="text-lg font-normal subtle-slide-in h4 transition-colors duration-1000">{{
+                            <h3 class="text-lg font-normal subtle-slide-in h4 transition-colors duration-700">{{
                                 item.client }}</h3>
                             <h4
                                 class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex **:**:inline-flex">
@@ -73,7 +73,6 @@ const handleClick = () => {
     }, 300)
 }
 const onHoverIn = () => {
-
     const textEntry = workSection.value.querySelector('.work-item-entry')
     const textElms = workSection.value.querySelectorAll('.work-item-entry h3, .work-item-entry h4')
     const colorCLass = props.item.textColor
@@ -83,12 +82,14 @@ const onHoverIn = () => {
             {
                 x: () => gsap.utils.random(-50, 50),
                 y: () => gsap.utils.random(-40, 0),
+                className: 'char text-current',
                 autoAlpha: 0,
             },
             {
                 x: 0,
                 y: 0,
                 autoAlpha: 1,
+                className: `char ${colorCLass}`,
                 ease: 'power3.out',
                 duration: 0.3,
                 stagger: {
@@ -97,21 +98,7 @@ const onHoverIn = () => {
                 },
             }, "+=0.05"
         )
-            .fromTo(
-                chars,
-                {
-                    className: 'char text-current',
-                },
-                {
-                    className: `char ${colorCLass}`,
-                    ease: 'power3.out',
-                    duration: 0.3,
-                    stagger: {
-                        amount: 0.3,
-                        from: 'random',
-                    },
-                }, "-=0.25"
-            )
+
     }
     )
 }
@@ -137,6 +124,7 @@ const onHoverOut = () => {
 }
 function animateSquares() {
     nextTick(() => {
+        if (!workSection.value) return;
         const workSectionEl = workSection.value;
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -232,6 +220,7 @@ function animateSquares() {
 }
 watch(() => props.item.image, async () => {
     await nextTick();
+    if (!workSection.value) return;
     const img = workSection.value?.querySelector('img');
     if (!img) return;
 
@@ -244,6 +233,7 @@ watch(() => props.item.image, async () => {
 onMounted(async () => {
     await nextTick()
 
+    if (!workSection.value) return;
 
     const workSectionEl = workSection.value;
 
