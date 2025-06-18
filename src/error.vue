@@ -94,8 +94,8 @@ onMounted(async () => {
                 </svg>
 
                 <h3
-                    class="order-1 pb-20 text-3xl lg:text-4xl 2xl:text-6xl font-black lg:pb-46 font-heading md:order-2 px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto animate subtle-slide-in" v-if="store.ready">
-                    Sorry, nothing here!</h3>
+                    class="order-1 pb-20 text-3xl lg:text-4xl 2xl:text-6xl font-black lg:pb-46 font-heading md:order-2 px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto animate subtle-slide-in" v-if="store.ready">{{ error?.statusMessage || "Sorry, there's nothing here!" }}
+                    </h3>
                 <svg width="131" height="128" viewBox="0 0 131 128" fill="none" xmlns="http://www.w3.org/2000/svg"
                     style="overflow:visible" class="absolute bottom-0 z-20 overflow-visible -translate-x-120"
                     id="tumbleweed">
