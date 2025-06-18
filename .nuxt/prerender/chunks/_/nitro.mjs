@@ -609,7 +609,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "8a45e0f7-5245-476a-acc6-16c5e21ea522",
+    "buildId": "3f8b27fe-c053-4f97-a564-a66de7447d74",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -1343,57 +1343,57 @@ const plugins = [
 const assets = {
   "/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"31c2b-NzL81G6gIImiuEwS1MV6aRGgGak\"",
-    "mtime": "2025-06-18T03:51:11.247Z",
+    "etag": "\"31c2b-/2Wkr8ERhC3ow6ivbmG0ASpADLQ\"",
+    "mtime": "2025-06-18T04:02:56.416Z",
     "size": 203819,
     "path": "../../.output/public/index.html"
   },
   "/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-0PHEQZUab/zNEI85Wc0lrcNkNmI\"",
-    "mtime": "2025-06-18T03:51:11.398Z",
+    "etag": "\"45-8XuGzVJc3OrWxoOOU9eSOcJexWQ\"",
+    "mtime": "2025-06-18T04:02:56.549Z",
     "size": 69,
     "path": "../../.output/public/_payload.json"
   },
   "/about/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"2c926-DbkB8K6whAQqKRkV6G4qhSV916E\"",
-    "mtime": "2025-06-18T03:51:11.244Z",
-    "size": 182566,
+    "etag": "\"2c8c3-opb2Rw7isYTJ5BGOauA6giuiKOs\"",
+    "mtime": "2025-06-18T04:02:56.317Z",
+    "size": 182467,
     "path": "../../.output/public/about/index.html"
   },
   "/about/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-C8r0WYCTLKYIgxOomX+gG4z8MUg\"",
-    "mtime": "2025-06-18T03:51:11.398Z",
+    "etag": "\"45-EHjSQpIDEg0JPLy/FmaNmpLbVY4\"",
+    "mtime": "2025-06-18T04:02:56.520Z",
     "size": 69,
     "path": "../../.output/public/about/_payload.json"
   },
   "/work/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"22453-prXIvyTO1m46cvgPWEdP8lnB1xc\"",
-    "mtime": "2025-06-18T03:51:10.996Z",
-    "size": 140371,
+    "etag": "\"223f0-nCqed6ENnbc8dl9KoCHX8V+zS5I\"",
+    "mtime": "2025-06-18T04:02:55.958Z",
+    "size": 140272,
     "path": "../../.output/public/work/index.html"
   },
   "/work/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-C8r0WYCTLKYIgxOomX+gG4z8MUg\"",
-    "mtime": "2025-06-18T03:51:11.021Z",
+    "etag": "\"45-8UYoRtDcTrkWQ0rj9DLmN9xH/1g\"",
+    "mtime": "2025-06-18T04:02:56.148Z",
     "size": 69,
     "path": "../../.output/public/work/_payload.json"
   },
   "/work/glt/index.html": {
     "type": "text/html; charset=utf-8",
-    "etag": "\"3d848-/hxhV3wvtShISWbd6ifncYObIrM\"",
-    "mtime": "2025-06-18T03:51:11.114Z",
-    "size": 251976,
+    "etag": "\"3d7e5-ExY2rFQ7bcEJZ4qA1lENagmDxRQ\"",
+    "mtime": "2025-06-18T04:02:56.148Z",
+    "size": 251877,
     "path": "../../.output/public/work/glt/index.html"
   },
   "/work/glt/_payload.json": {
     "type": "application/json",
-    "etag": "\"45-hsyYnqosjuimk1NMyIGhDphfkzU\"",
-    "mtime": "2025-06-18T03:51:11.206Z",
+    "etag": "\"45-8UYoRtDcTrkWQ0rj9DLmN9xH/1g\"",
+    "mtime": "2025-06-18T04:02:56.421Z",
     "size": 69,
     "path": "../../.output/public/work/glt/_payload.json"
   }

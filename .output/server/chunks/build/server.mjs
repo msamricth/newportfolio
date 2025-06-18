@@ -396,23 +396,23 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-DyCgjwPw.mjs')
+    component: () => import('./About-SH_7fMw9.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-FresH4PG.mjs')
+    component: () => import('./index-Bpx1B3rv.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-o1_woNqZ.mjs')
+    component: () => import('./glt-CI2Frmq_.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-Bjo4ht9H.mjs')
+    component: () => import('./index-58K5ye84.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;

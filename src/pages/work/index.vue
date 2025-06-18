@@ -1,5 +1,6 @@
 <script setup>
 useHead({
+    titleTemplate: '%s | Code Artisan',
     title: 'Featured Work',
     meta: [
         { name: 'description', content: "Expore my featured work and learn more about the brands that I have empowered." },
@@ -352,7 +353,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary transition duration-700 relative overflow-clip"
+    <div class="relative transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary overflow-clip"
         ref="workPage">
 
         <div class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9  pb-18 lg:pb-20"
@@ -364,7 +365,7 @@ onMounted(async () => {
         <div
             class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start lg:pb-60">
             <Work v-show="mainStore.loaded" />
-            <div class="work-grid flex flex-wrap gap-6 w-full lg:w-3/4" ref="workGrid" v-show="mainStore.loaded">
+            <div class="flex flex-wrap w-full gap-6 work-grid lg:w-3/4" ref="workGrid" v-show="mainStore.loaded">
                 <div v-if="!store.gridResults"
                     class="text-3xl italic transition-all duration-700 work-grid--no-results">
                     No matching items found.
@@ -372,7 +373,7 @@ onMounted(async () => {
                 <div v-for="(item, index) in store.filteredWork" :key="index"
                     class="work-grid--item cursor-pointer group w-full relative md:w-[48%] lg:w-full xl:w-[48%]"
                     :class="item.textColor" @click="openModal(item)" @mouseenter="startHover($event)">
-                    <div class="media relative rounded-xl mb-2 overflow-clip flex">
+                    <div class="relative flex mb-2 media rounded-xl overflow-clip">
                         <img :src="item.image"
                             class=" w-full h-auto group-hover:-translate-x-[34%] transition-all duration-700 relative z-10" />
                         <div class="z-0 w-[35%] transition-all duriation-900 absolute right-0 top-0">
@@ -383,7 +384,7 @@ onMounted(async () => {
                     </div>
 
                     <h3
-                        class="font-semibold text-lg text-primary dark:text-background inverted:text-background transition duration-700 group-hover:text-current mb-4 w-5/6">
+                        class="w-5/6 mb-4 text-lg font-semibold transition duration-700 text-primary dark:text-background inverted:text-background group-hover:text-current">
                         {{ item.title }}</h3>
                 </div>
             </div>
@@ -394,7 +395,7 @@ onMounted(async () => {
 
     </div>
     <div ref="modalWindow" v-if="modalStore.modalItem"
-        class="fixed lg:inset-0 z-50 lg:px-6 bg-black/50 backdrop-blur top-0 h-dvh w-full overflow-y-auto overflow-x-clip lg:py-8"
+        class="fixed top-0 z-50 w-full overflow-y-auto lg:inset-0 lg:px-6 bg-black/50 backdrop-blur h-dvh overflow-x-clip lg:py-8"
         @click.self="closeModal">
         <div
             class="modal-copy bg-primary text-black p-12 lg:p-18 lg:rounded-[3rem] lg:max-w-2xl lg:max-w-5xl w-full relative mx-auto md:mt-0 lg:mt-5 lg:mb-20 is-active is-visible">
@@ -408,9 +409,9 @@ onMounted(async () => {
                     class="w-10 h-[4px] bg-current block -rotate-45 rounded-[3rem] absolute left-4 group-hover:rotate-135 transition-all duration-700 shadow-md shadow-primary"></span>
             </button>
 
-            <div class="relative rounded-xl flex flex-col justify-center items-center z-10"
+            <div class="relative z-10 flex flex-col items-center justify-center rounded-xl"
                 :class="modalStore.modalItem.textColor">
-                <div class="flex flex-col md:flex-row justify-center items-start gap-8">
+                <div class="flex flex-col items-start justify-center gap-8 md:flex-row">
                     <img :src="modalStore.modalItem.image"
                         class="max-md:-mx-12 max-md:-mt-12 max-md:pb-6 max-md:min-w-dvw object-cover md:rounded-[3rem] md:w-[73.5%] transition-all duriation-900" />
                     <div class="rounded-xl w-[26.5%] transition-all duriation-900 hidden md:block overflow-clip">
@@ -418,23 +419,23 @@ onMounted(async () => {
                             muted loop></video>
                     </div>
                 </div>
-                <div class="flex flex-col justify-end py-6 md:p-6 transition-all duriation-700 w-full"
+                <div class="flex flex-col justify-end w-full py-6 transition-all md:p-6 duriation-700"
                     @mouseover="isHovered = true" @mouseleave="isHovered = false">
-                    <h3 :class="modalStore.modalItem.textColor" class="text-2xl font-bold mb-2 placeholder-line"
+                    <h3 :class="modalStore.modalItem.textColor" class="mb-2 text-2xl font-bold placeholder-line"
                         data-splitting="words">{{ modalStore.modalItem.title
                         }}
                     </h3>
-                    <div class="flex flex-col md:flex-row md:items-stretch justify-between mb-4">
+                    <div class="flex flex-col justify-between mb-4 md:flex-row md:items-stretch">
                         <div class="flex flex-col justify-between pr-8 lg:pr-18">
                             <p :class="modalStore.modalItem.textColor" class="text-base placeholder-line"
                                 data-splitting="words" v-html="modalStore.modalItem.text"></p>
 
-                            <div class="specialties-animate mt-4 lg:w-90 xl:w-100"
+                            <div class="mt-4 specialties-animate lg:w-90 xl:w-100"
                                 v-if="modalStore.modalItem.specialties">
-                                <h4 class="mb-2 mt-8">Specialties</h4>
-                                <ul class="flex gap-2 items-start flex-wrap">
+                                <h4 class="mt-8 mb-2">Specialties</h4>
+                                <ul class="flex flex-wrap items-start gap-2">
                                     <li v-for="(specialty, index) in modalStore.modalItem.specialties" :key="index"
-                                        class="subtle-slide-in bg-current px-2 py-1 text-nowrap rounded-xl text-xs inline"
+                                        class="inline px-2 py-1 text-xs bg-current subtle-slide-in text-nowrap rounded-xl"
                                         :style="'--theme-main-animation-delay:' + ((index * 0.3) + 0.8) + 's'">
                                         <span class="text-primary">{{ specialty }}</span>
                                     </li>
@@ -444,20 +445,20 @@ onMounted(async () => {
 
 
 
-                        <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col mt-6 md:mt-0">
+                        <div class="flex flex-col flex-wrap gap-2 mt-6 group/ctas max-w-75 md:mt-0">
                             <div v-for="(button, btnIndex) in modalStore.modalItem.buttons" :key="btnIndex"
-                                class="flex items-center h-14 order-2 md:order-1">
+                                class="flex items-center order-2 h-14 md:order-1">
                                 <a v-if="button.github" :class="modalStore.modalItem.textColor"
-                                    class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer hover:bg-current hover:rotate-270 transition group/git rounded-full subtle-slide-in mr-4"
+                                    class="mr-4 transition rounded-full cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 hover:bg-current hover:rotate-270 group/git subtle-slide-in"
                                     style="--theme-main-animation-delay:0.6s" target="_blank"
                                     :href="modalStore.modalItem.github">
-                                    <svg class="dark:group-hover/git:text-primary group-hover/git:rotate-90 transition"
+                                    <svg class="transition dark:group-hover/git:text-primary group-hover/git:rotate-90"
                                         enable-background="new 0 0 32 32" height="44px" id="Layer_1" version="1.0"
                                         viewBox="0 0 32 32" width="44px" xml:space="preserve"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <path clip-rule="evenodd"
                                             d="M16.003,0C7.17,0,0.008,7.162,0.008,15.997  c0,7.067,4.582,13.063,10.94,15.179c0.8,0.146,1.052-0.328,1.052-0.752c0-0.38,0.008-1.442,0-2.777  c-4.449,0.967-5.371-2.107-5.371-2.107c-0.727-1.848-1.775-2.34-1.775-2.34c-1.452-0.992,0.109-0.973,0.109-0.973  c1.605,0.113,2.451,1.649,2.451,1.649c1.427,2.443,3.743,1.737,4.654,1.329c0.146-1.034,0.56-1.739,1.017-2.139  c-3.552-0.404-7.286-1.776-7.286-7.906c0-1.747,0.623-3.174,1.646-4.292C7.28,10.464,6.73,8.837,7.602,6.634  c0,0,1.343-0.43,4.398,1.641c1.276-0.355,2.645-0.532,4.005-0.538c1.359,0.006,2.727,0.183,4.005,0.538  c3.055-2.07,4.396-1.641,4.396-1.641c0.872,2.203,0.323,3.83,0.159,4.234c1.023,1.118,1.644,2.545,1.644,4.292  c0,6.146-3.74,7.498-7.304,7.893C19.479,23.548,20,24.508,20,26c0,2,0,3.902,0,4.428c0,0.428,0.258,0.901,1.07,0.746  C27.422,29.055,32,23.062,32,15.997C32,7.162,24.838,0,16.003,0z"
-                                            class="group-hover/git:stroke-current transition fill-current group-hover/git:fill-background"
+                                            class="transition fill-current group-hover/git:stroke-current group-hover/git:fill-background"
                                             fill-rule="evenodd" />
                                         <g />
                                         <g />
@@ -468,13 +469,13 @@ onMounted(async () => {
                                     </svg>
                                 </a>
                                 <a target="_blank" :href="button.url"
-                                    class="group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 cursor-pointer relative flex flex-wrap items-center transition group/cta overflow-hidden w-60 text-center subtle-slide-in"
+                                    class="relative flex flex-wrap items-center overflow-hidden text-center transition cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 group/cta w-60 subtle-slide-in"
                                     style="--theme-main-animation-delay:0.7s" :ref="el => {
                                         if (!buttonRefs[index]) buttonRefs[index] = [];
                                         buttonRefs[index][btnIndex] = el;
                                     }" @mouseenter="hoverIn(index, btnIndex)" @mouseleave="hoverOut(index, btnIndex)">
                                     <span
-                                        class="inline-block font-semibold px-4 py-2 border-current border-2 rounded-full transition-all relative z-10 bg-inherit w-full text-nowrap"
+                                        class="relative z-10 inline-block w-full px-4 py-2 font-semibold transition-all border-2 border-current rounded-full bg-inherit text-nowrap"
                                         :ref="el => {
                                             if (!labelRefs[index]) labelRefs[index] = [];
                                             labelRefs[index][btnIndex] = el;
@@ -482,7 +483,7 @@ onMounted(async () => {
                                         {{ button.text }}
                                     </span>
                                     <span
-                                        class="absolute right-0 top-0 w-0 h-full opacity-0 transition-all z-0 origin-left block overflow-clip"
+                                        class="absolute top-0 right-0 z-0 block w-0 h-full transition-all origin-left opacity-0 overflow-clip"
                                         :ref="el => {
                                             if (!blobRefs[index]) blobRefs[index] = [];
                                             blobRefs[index][btnIndex] = el;
@@ -491,20 +492,20 @@ onMounted(async () => {
                                             if (!blobInnerRefs[index]) blobInnerRefs[index] = [];
                                             blobInnerRefs[index][btnIndex] = el;
                                         }"
-                                            class="flex items-center justify-center rounded-r-full bg-current h-full transition-all z-0 origin-left block w-10">
-                                            <svg class="arrow w-24 h-24 fill-current" viewBox="0 0 24 24">
+                                            class="z-0 flex items-center justify-center block w-10 h-full transition-all origin-left bg-current rounded-r-full">
+                                            <svg class="w-24 h-24 fill-current arrow" viewBox="0 0 24 24">
                                                 <path d="M8 5l8 7-8 7z" />
                                             </svg>
                                         </span>
                                     </span>
                                 </a>
                             </div>
-                            <div class="max-w-75 pl-2 my-6 md:mb-0 subtle-slide-in order-1 md:order-2"
+                            <div class="order-1 pl-2 my-6 max-w-75 md:mb-0 subtle-slide-in md:order-2"
                                 style="--theme-main-animation-delay:0.8s" v-if="modalStore.modalItem.tech">
                                 <h4 class="mb-1">Tech Stack</h4>
-                                <ul class="flex list-disc gap-2 items-start flex-wrap ml-3">
+                                <ul class="flex flex-wrap items-start gap-2 ml-3 list-disc">
                                     <li v-for="(t, i) in modalStore.modalItem.tech" :key="i"
-                                        class="text-sm ps-0 pl-0 pr-3 placeholder-line" data-splitting="words">
+                                        class="pl-0 pr-3 text-sm ps-0 placeholder-line" data-splitting="words">
                                         <span class="-ml-1">{{ t }}</span>
                                     </li>
                                 </ul>

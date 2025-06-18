@@ -1,5 +1,6 @@
 <script setup lang="ts">
 useHead({
+  titleTemplate: '%s | Code Artisan',
   title: 'About',
   meta: [
     {
