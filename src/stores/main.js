@@ -45,6 +45,7 @@ export const useMainStore = defineStore('main', {
         setupStateManagement() {
             const storedUseMode = localStorage.getItem('useLightMode');
             const storedHideBooking = localStorage.getItem('showBooking')
+            const storedReducedMotion = localStorage.getItem('reduceMotion');
             this.useMode = storedUseMode === 'true';
             const stored = localStorage.getItem('theme');
             if (localStorage.getItem('visited') === null) {
@@ -59,11 +60,25 @@ export const useMainStore = defineStore('main', {
             if (!this.useMode) {
                 this.darkMode = 'clear';
                 document.body.classList.remove('dark');
-                return;
             }
             this.darkMode = stored === 'dark' ? 'dark' : 'light';
             document.body.classList.toggle('dark', this.darkMode === 'dark');
+            if (storedReducedMotion !== null) {
+                this.reduceMotion = storedReducedMotion === 'true';
+            } else {
+                const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+                this.reduceMotion = mql.matches;
+            
+                mql.addEventListener('change', (e) => {
+                    this.reduceMotion = e.matches;
+                    localStorage.setItem('reduceMotion', String(this.reduceMotion));
+                });
+            }
 
+            console.log('this.reduceMotion: '+this.reduceMotion)
+
+            console.log('storedReducedMotion: '+ storedReducedMotion)
+            document.body.classList.toggle('motionless', this.reduceMotion);
 
         },
         hideBooking() {
@@ -88,30 +103,15 @@ export const useMainStore = defineStore('main', {
             this.useMode = !this.useMode
             localStorage.setItem('useLightMode', this.useMode);
         },
-        toggleReduceMotion(value) {
-            console.log(value)
-            this.reduceMotion = value;
-            localStorage.setItem('reduceMotion', this.reduceMotion);
-            document.body.classList.toggle('motionless', value);
-        },
-        initReduceMotion() {
-            const stored = localStorage.getItem('reduceMotion');
-            const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
-            if (stored) {
-                this.reduceMotion = stored;
-                return;
-            }
-            this.reduceMotion = mql.matches
-            mql.addEventListener('change', (e) => {
-                this.reduceMotion = e.matches
-            })
-
+        toggleReduceMotion() {
+            this.reduceMotion = !this.reduceMotion;
+            localStorage.setItem('reduceMotion', String(this.reduceMotion));
             document.body.classList.toggle('motionless', this.reduceMotion);
         },
         openNav() { this.navOpen = true },
         closeNav() { this.navOpen = false },
         toggleFold(force = false, clear = null) {
-            if (this.useMode) return;
+            if (this.useMode || this.reduceMotion) return;
             if (clear) {
                 this.fold = false;
                 document.body.classList.remove('dark');

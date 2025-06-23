@@ -21,7 +21,7 @@
                                 {{
                                     item.client }}</h3>
                             <h4
-                                class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex **:**:inline-flex justify-center md:justify-start">
+                                class="text-primary dark:text-background text-2xl font-bold h3 mb-0 subtle-slide-in flex motionless:**:**:inline motionless:**:**:visible **:**:inline-flex justify-center md:justify-start">
                                 {{
                                     item.projectTitle
                                 }}
@@ -75,6 +75,8 @@ const handleClick = () => {
     }, 300)
 }
 const onHoverIn = () => {
+    if (!chars.length || store.reducedMotion) return null
+    if(!store.reducedMotion){
     const textEntry = workSection.value.querySelector('.work-item-entry')
     const textElms = workSection.value.querySelectorAll('.work-item-entry h3, .work-item-entry h4')
     const colorCLass = props.item.textColor
@@ -102,11 +104,11 @@ const onHoverIn = () => {
         )
 
     }
-    )
+    )}
 }
 const onHoverOut = () => {
     const colorCLass = props.item.textColor
-    if (!chars.length) return null
+    if (!chars.length || store.reducedMotion) return null
 
     gsap.timeline().fromTo(
         chars,

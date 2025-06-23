@@ -10,8 +10,6 @@ const store = useMainStore()
 
 onMounted(async () => {
   await nextTick()
-  store.initReduceMotion()
-  
   store.setupStateManagement();
   store.loaded = true
 })

@@ -70,6 +70,7 @@ interface _GlobalComponents {
     'IconsIconMap': typeof import("../src/components/icons/IconMap.vue")['default']
     'IconsMixer': typeof import("../src/components/icons/Mixer.vue")['default']
     'IconsMotion': typeof import("../src/components/icons/Motion.vue")['default']
+    'IconsPlay': typeof import("../src/components/icons/Play.vue")['default']
     'IconsProblemSolving': typeof import("../src/components/icons/ProblemSolving.vue")['default']
     'IconsSyntax': typeof import("../src/components/icons/Syntax.vue")['default']
     'IconsUX': typeof import("../src/components/icons/UX.vue")['default']
@@ -164,6 +165,7 @@ interface _GlobalComponents {
     'LazyIconsIconMap': LazyComponent<typeof import("../src/components/icons/IconMap.vue")['default']>
     'LazyIconsMixer': LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
     'LazyIconsMotion': LazyComponent<typeof import("../src/components/icons/Motion.vue")['default']>
+    'LazyIconsPlay': LazyComponent<typeof import("../src/components/icons/Play.vue")['default']>
     'LazyIconsProblemSolving': LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
     'LazyIconsSyntax': LazyComponent<typeof import("../src/components/icons/Syntax.vue")['default']>
     'LazyIconsUX': LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>
@@ -264,6 +266,7 @@ export const IconsHeart: typeof import("../src/components/icons/Heart.vue")['def
 export const IconsIconMap: typeof import("../src/components/icons/IconMap.vue")['default']
 export const IconsMixer: typeof import("../src/components/icons/Mixer.vue")['default']
 export const IconsMotion: typeof import("../src/components/icons/Motion.vue")['default']
+export const IconsPlay: typeof import("../src/components/icons/Play.vue")['default']
 export const IconsProblemSolving: typeof import("../src/components/icons/ProblemSolving.vue")['default']
 export const IconsSyntax: typeof import("../src/components/icons/Syntax.vue")['default']
 export const IconsUX: typeof import("../src/components/icons/UX.vue")['default']
@@ -358,6 +361,7 @@ export const LazyIconsHeart: LazyComponent<typeof import("../src/components/icon
 export const LazyIconsIconMap: LazyComponent<typeof import("../src/components/icons/IconMap.vue")['default']>
 export const LazyIconsMixer: LazyComponent<typeof import("../src/components/icons/Mixer.vue")['default']>
 export const LazyIconsMotion: LazyComponent<typeof import("../src/components/icons/Motion.vue")['default']>
+export const LazyIconsPlay: LazyComponent<typeof import("../src/components/icons/Play.vue")['default']>
 export const LazyIconsProblemSolving: LazyComponent<typeof import("../src/components/icons/ProblemSolving.vue")['default']>
 export const LazyIconsSyntax: LazyComponent<typeof import("../src/components/icons/Syntax.vue")['default']>
 export const LazyIconsUX: LazyComponent<typeof import("../src/components/icons/UX.vue")['default']>

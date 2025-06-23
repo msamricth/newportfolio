@@ -4,7 +4,7 @@ import PlaceholderJS from '@/utils/placeholder';
 
 gsap.registerPlugin(DrawSVGPlugin);
 
-export function buildVideoTL(container) {
+export function buildVideoTL(container, reducedMotion = false) {
     const scope = container
     if (!container) return;
     const tl = gsap.timeline();
@@ -55,11 +55,11 @@ export function buildVideoTL(container) {
             "videoStart+=1"
         )
 
-        tl.to(videoScreen, {
-            y: 60,
-            duration: 0.4,
-            ease: "back.inOut(0.7)"
-        }, "videoStart+=1")
+    tl.to(videoScreen, {
+        y: 60,
+        duration: 0.4,
+        ease: "back.inOut(0.7)"
+    }, "videoStart+=1")
 
     tl.call(() => {
         impactTL.play(0)
@@ -149,7 +149,7 @@ export function buildVideoTL(container) {
             "videoStart+=5.8"
         )
         .call(() => {
-            impactTL.reverse()
+            if (!reducedMotion) impactTL.reverse()
         }, null, "videoStart+=6.5")
         .to(
             "#video-big",
@@ -199,21 +199,25 @@ export function buildVideoTL(container) {
             duration: 0.5,
             ease: "power3.out"
         }, "buttonAnim+=0.2")
-        
+
         .to(progressCircle, { autoAlpha: 1, duration: 0.8 }, 'buttonAnim')
         .to(sliderArrow, { scale: 1.2, duration: 0.6, ease: 'elastic.out(1)' }, 'buttonAnim+=0.8')
-        
 
-        tl.to(progressCircle, {
-            drawSVG: "100%",
-            duration: 1.5,
-            ease: 'none'
-          }, 'buttonAnim+=0.9')
+
+    tl.to(progressCircle, {
+        drawSVG: "100%",
+        duration: 1.5,
+        ease: 'none'
+    }, 'buttonAnim+=0.9')
 
         .to(sliderArrow.querySelectorAll('svg'),
             { attr: { color: "#A66EFF" }, duration: 0.8, ease: "power1.out" }, "buttonAnim+=1")
 
     tl.addLabel("videoLeave", "buttonAnim+=2")
+
+        .call(() => {
+            if (reducedMotion) impactTL.reverse()
+        }, null, "videoLeave")
         .to(
             ["#video-big", "#video-play path"],
             { x: -40, repeat: 2, yoyo: true, duration: 0.8, },

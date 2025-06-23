@@ -1,8 +1,8 @@
 <template>
     <div
-        class="ux-screens gap-4 md:gap-6 lg:gap-14 items-center md:items-end xl:items-center flex h-full justify-center absolute top-0 opacity-0 w-full">
+        class="absolute top-0 flex items-center justify-center w-full h-full gap-4 opacity-0 ux-screens md:gap-6 lg:gap-14 md:items-end xl:items-center overflow-y-clip">
         <svg width="254" height="424" viewBox="0 0 254 424" fill="none" xmlns="http://www.w3.org/2000/svg"
-            class="background-screens hidden md:block min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36 transition-all duration-700">
+            class="hidden transition-all duration-700 background-screens md:block min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36">
             <path
                 d="M242.999 1.5C248.246 1.5 252.499 5.75395 252.499 11.001L252.465 412.996L252.452 413.484C252.206 418.342 248.311 422.236 243.454 422.482L242.965 422.495L11.0234 422.5C5.76602 422.5 1.5084 418.23 1.52344 412.973L2.6875 10.9727L2.70117 10.4844C2.96925 5.47579 7.11531 1.50007 12.1875 1.5H242.999Z"
                 stroke="#A66EFF" stroke-width="3" stroke-linecap="round" class="line" />
@@ -34,7 +34,7 @@
         </svg>
 
         <svg width="254" height="424" viewBox="0 0 254 424" fill="none" xmlns="http://www.w3.org/2000/svg"
-            class="background-screens min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36 transition-all duration-700 mr-3">
+            class="mr-3 transition-all duration-700 background-screens min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36">
             <path
                 d="M242.999 1.5C248.246 1.5 252.499 5.75395 252.499 11.001L252.465 412.996L252.452 413.484C252.206 418.342 248.311 422.236 243.454 422.482L242.965 422.495L11.0234 422.5C5.76601 422.5 1.5084 418.23 1.52344 412.973L2.6875 10.9727L2.70117 10.4844C2.96925 5.47579 7.11531 1.50007 12.1875 1.5H242.999Z"
                 stroke="#A66EFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="line" />
@@ -176,7 +176,7 @@
 
 
         <svg width="254" height="424" viewBox="0 0 254 424" fill="none" xmlns="http://www.w3.org/2000/svg"
-            class="background-screens  min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36 transition-all duration-700 ">
+            class="transition-all duration-700 background-screens min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36 ">
             <path
                 d="M242.999 1.5C248.246 1.5 252.499 5.75395 252.499 11.001L252.465 412.996L252.452 413.484C252.206 418.342 248.311 422.236 243.454 422.482L242.965 422.495L11.0234 422.5C5.76602 422.5 1.5084 418.23 1.52344 412.973L2.6875 10.9727L2.70117 10.4844C2.96925 5.47579 7.11531 1.50007 12.1875 1.5H242.999Z"
                 stroke="#A66EFF" stroke-width="3" stroke-linecap="round" class="line" />
@@ -232,7 +232,7 @@
         </svg>
 
         <svg width="254" height="424" viewBox="0 0 254 424" fill="none" xmlns="http://www.w3.org/2000/svg"
-            class="background-screens hidden md:block min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36 transition-all duration-700">
+            class="hidden transition-all duration-700 background-screens md:block min-w-44 w-44 md:h-auto md:min-w-34 2xl:w-36">
             <path
                 d="M242.999 1.5C248.246 1.5 252.499 5.75395 252.499 11.001L252.465 412.996L252.452 413.484C252.206 418.342 248.311 422.236 243.454 422.482L242.965 422.495L11.0234 422.5C5.76602 422.5 1.5084 418.23 1.52344 412.973L2.6875 10.9727L2.70117 10.4844C2.96925 5.47579 7.11531 1.50007 12.1875 1.5H242.999Z"
                 stroke="#A66EFF" stroke-width="3" stroke-linecap="round" class="line" />
