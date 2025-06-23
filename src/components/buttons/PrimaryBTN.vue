@@ -152,27 +152,25 @@ const handleHoverIn = () => {
     timeline.play()
     if (words.length) {
         gsap.killTweensOf(words)
-        gsap.timeline().fromTo(
-            words,
-            {
-                x: 0,
-                rotate: 0
-                //    y: 0,
-            },
-            {
-
+        gsap.timeline({defaults:{duration:0.6}}).to(words, {
               //  x: () => gsap.utils.random(0, 6),
                 rotate: () => gsap.utils.random(-3, 3),
                 //   y: () => gsap.utils.random(-4, 4),
                 ease: 'elastic.out(0.9)',
-                duration: 0.1,
+                duration: 0.06,
                 stagger: {
                     amount: 0.025,
                     from: 'random',
                 },
             },"+=0.2")
             .to(words, {
-                clearProps: "all"
+                rotate: 0,
+                ease: 'elastic.out(0.9)',
+                duration: 0.06,
+                stagger: {
+                    amount: 0.025,
+                    from: 'random',
+                },
             })
     }
 }
