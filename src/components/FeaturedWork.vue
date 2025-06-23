@@ -6,7 +6,10 @@
                     :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" />
                 <div class="flex flex-col flex-wrap items-center gap-2 mx-auto opacity-0 group/ctas max-w-75 md:items-end md:max-w-4xl -translate-x-100"
                     ref="button">
-                    <MainButton href="/work/" label="View all work" class="hover:text-accent" :delay="'0.7s'" />
+        
+                    <PrimaryBTN href="/work/" 
+                        class="btn text-primary dark:text-background inverted:text-background hover:text-accent"
+                        label="View all work" :onClick="()=>navigateTo('/work')"  />
                 </div>
             </div>
 
@@ -21,10 +24,11 @@ import { ref, onMounted, computed, nextTick, watch } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@splidejs/vue-splide/css';
+
 import { useMainStore } from '@/stores/main.js'
 import { useModalStore } from '@/stores/modal.js'
 import { work } from '@/data/work.js';
-import MainButton from '@/components/buttons/MainButton.vue'
+import PrimaryBTN from '@/components/buttons/PrimaryBTN.vue'
 import WorkItem from '@/components/contexts/WorkItem.vue';
 const store = useMainStore()
 const modalStore = useModalStore()

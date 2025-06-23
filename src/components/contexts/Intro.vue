@@ -19,13 +19,11 @@
                         <p class="text-secondary text-xl leading-[1.8] mb-6 lg:mb-14" data-splitting="words">I'm a
                             full-stack
                             developer with a passion for clean code, bold design, and building things that actually
-                            work—both on
-                            screen
-                            and in the dirt.🚴‍♀️ With deep experience in WordPress, Vue.js, and the occasional Tailwind
-                            bender, I
-                            specialize in crafting digital systems that are fast, accessible, and built to last.</p>
+                            work both on
+                            screen. With deep experience in WordPress, Vue.js, and the occasional Tailwind
+                            bender, I specialize in crafting digital systems that are fast, accessible, and built to last.</p>
                     </div>
-                    <MainButton href="/about"
+                    <PrimaryBTN href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"
                         label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" />
                 </div>
@@ -46,6 +44,7 @@ const { $gsap: gsap } = useNuxtApp()
 import { useMainStore } from '../../stores/main.js';
 import PlaceholderJS from './../../utils/placeholder.js';
 import MainButton from './../buttons/MainButton.vue'
+import PrimaryBTN from '../buttons/PrimaryBTN.vue';
 import { navigateTo } from '#imports';
 import Artisan from './Artisan.vue';
 const store = useMainStore()

@@ -9,7 +9,7 @@ import defu$1, { defu } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/n
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-router/dist/vue-router.node.mjs';
 import { toRouteMatcher, createRouter as createRouter$1 } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/radix3/dist/index.mjs';
 import { parseQuery, hasProtocol, isScriptProtocol, joinURL, withQuery, withTrailingSlash, withoutTrailingSlash } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
-import { ssrRenderAttrs, ssrRenderComponent, ssrRenderClass, ssrInterpolate, ssrRenderStyle, ssrRenderAttr, ssrIncludeBooleanAttr, ssrRenderSuspense, ssrRenderVNode } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
+import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderClass, ssrRenderStyle, ssrRenderAttr, ssrIncludeBooleanAttr, ssrRenderSuspense, ssrRenderVNode } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
 import gsap from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/gsap/dist/gsap.js';
 import { u as useHead$1, a as useSeoMeta$1, h as headSymbol } from '../_/renderer.mjs';
 import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/destr/dist/index.mjs';
@@ -440,18 +440,18 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Cponeb56.mjs')
+    component: () => import('./index-Cyg0Jya4.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-C1n9mTUK.mjs')
+    component: () => import('./glt-BJAa02Sj.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-BtLp1u2c.mjs')
+    component: () => import('./index-CJS5_btM.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1437,7 +1437,7 @@ const useMainStore = defineStore("main", {
     }
   }
 });
-const _sfc_main$d = {
+const _sfc_main$e = {
   __name: "App",
   __ssrInlineRender: true,
   setup(__props) {
@@ -1449,13 +1449,13 @@ const _sfc_main$d = {
     };
   }
 };
-const _sfc_setup$d = _sfc_main$d.setup;
-_sfc_main$d.setup = (props, ctx) => {
+const _sfc_setup$e = _sfc_main$e.setup;
+_sfc_main$e.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("App.vue");
-  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
-const _sfc_main$c = {
+const _sfc_main$d = {
   __name: "Tooltips",
   __ssrInlineRender: true,
   props: {
@@ -1467,13 +1467,13 @@ const _sfc_main$c = {
     };
   }
 };
-const _sfc_setup$c = _sfc_main$c.setup;
-_sfc_main$c.setup = (props, ctx) => {
+const _sfc_setup$d = _sfc_main$d.setup;
+_sfc_main$d.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/buttons/Tooltips.vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
-const _sfc_main$b = {
+const _sfc_main$c = {
   __name: "Github",
   __ssrInlineRender: true,
   props: {
@@ -1491,7 +1491,7 @@ const _sfc_main$b = {
         target: "_blank",
         href: __props.url
       }, _attrs))}><svg fill="none" height="56" stroke-width="1.5" viewBox="0 0 24 24" width="56" xmlns="http://www.w3.org/2000/svg" class="group-hover/secondaryNav:opacity-80 absolute top-0 left-0 w-full h-full z-0 transition-all duration-700 group-hover:scale-[1.25]"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.3333 19V17.137C14.3583 16.8275 14.3154 16.5163 14.2073 16.2242C14.0993 15.9321 13.9286 15.6657 13.7067 15.4428C15.8 15.2156 18 14.4431 18 10.8989C17.9998 9.99256 17.6418 9.12101 17 8.46461C17.3039 7.67171 17.2824 6.79528 16.94 6.01739C16.94 6.01739 16.1533 5.7902 14.3333 6.97811C12.8053 6.57488 11.1947 6.57488 9.66666 6.97811C7.84666 5.7902 7.05999 6.01739 7.05999 6.01739C6.71757 6.79528 6.69609 7.67171 6.99999 8.46461C6.35341 9.12588 5.99501 10.0053 5.99999 10.9183C5.99999 14.4366 8.19999 15.2091 10.2933 15.4622C10.074 15.6829 9.90483 15.9461 9.79686 16.2347C9.68889 16.5232 9.64453 16.8306 9.66666 17.137V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.66667 17.7018C7.66667 18.3335 6 17.7018 5 15.7544" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-700 group-hover:scale-[1.25]"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.3333 19V17.137C14.3583 16.8275 14.3154 16.5163 14.2073 16.2242C14.0993 15.9321 13.9286 15.6657 13.7067 15.4428C15.8 15.2156 18 14.4431 18 10.8989C17.9998 9.99256 17.6418 9.12101 17 8.46461C17.3039 7.67171 17.2824 6.79528 16.94 6.01739C16.94 6.01739 16.1533 5.7902 14.3333 6.97811C12.8053 6.57488 11.1947 6.57488 9.66666 6.97811C7.84666 5.7902 7.05999 6.01739 7.05999 6.01739C6.71757 6.79528 6.69609 7.67171 6.99999 8.46461C6.35341 9.12588 5.99501 10.0053 5.99999 10.9183C5.99999 14.4366 8.19999 15.2091 10.2933 15.4622C10.074 15.6829 9.90483 15.9461 9.79686 16.2347C9.68889 16.5232 9.64453 16.8306 9.66666 17.137V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.66667 17.7018C7.66667 18.3335 6 17.7018 5 15.7544" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg>`);
-      _push(ssrRenderComponent(_sfc_main$c, {
+      _push(ssrRenderComponent(_sfc_main$d, {
         class: "mt-11",
         message: "View my GitHub account"
       }, null, _parent));
@@ -1499,13 +1499,13 @@ const _sfc_main$b = {
     };
   }
 };
-const _sfc_setup$b = _sfc_main$b.setup;
-_sfc_main$b.setup = (props, ctx) => {
+const _sfc_setup$c = _sfc_main$c.setup;
+_sfc_main$c.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/buttons/Github.vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
-const _sfc_main$a = {
+const _sfc_main$b = {
   __name: "LinkedIn",
   __ssrInlineRender: true,
   props: {
@@ -1527,7 +1527,7 @@ const _sfc_main$a = {
      a10.4564,10.4564 0 1,1 20.9128,0" stroke="currentColor" fill="none"></path></svg><svg class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple group-hover:scale-[1.25] rounded-[6rem] transition-all duration-700" stroke-width="1.5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.2792 8.73516C16.3984 8.73516 17.4717 9.17973 18.263 9.97108C19.0544 10.7624 19.4989 11.8357 19.4989 12.9549V17.8778H16.6858V12.9549C16.6858 12.5818 16.5376 12.224 16.2738 11.9603C16.0101 11.6965 15.6523 11.5483 15.2792 11.5483C14.9062 11.5483 14.5484 11.6965 14.2847 11.9603C14.0209 12.224 13.8727 12.5818 13.8727 12.9549V17.8778H11.0595V12.9549C11.0595 11.8357 11.5041 10.7624 12.2955 9.97108C13.0868 9.17973 14.1601 8.73516 15.2792 8.73516Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.43329 9.43844H8.24642V17.8778H5.43329V9.43844Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.83985 7.32859C7.21289 7.32859 7.57066 7.1804 7.83444 6.91662C8.09822 6.65284 8.24642 6.29507 8.24642 5.92203C8.24642 5.54898 8.09822 5.19122 7.83444 4.92744C7.57066 4.66365 7.21289 4.51546 6.83985 4.51546C6.46681 4.51546 6.10904 4.66365 5.84526 4.92744C5.58148 5.19122 5.43329 5.54898 5.43329 5.92203C5.43329 6.29507 5.58148 6.65284 5.84526 6.91662C6.10904 7.1804 6.46681 7.32859 6.83985 7.32859Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22.4447,11.9883
      a10.4564,10.4564 0 1,1 -20.9128,0
      a10.4564,10.4564 0 1,1 20.9128,0" stroke="currentColor" fill="none"></path></svg>`);
-      _push(ssrRenderComponent(_sfc_main$c, {
+      _push(ssrRenderComponent(_sfc_main$d, {
         class: "mt-11",
         message: "View my LinkIn account"
       }, null, _parent));
@@ -1535,25 +1535,25 @@ const _sfc_main$a = {
     };
   }
 };
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/buttons/LinkedIn.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const _sfc_main$9 = {
+const _sfc_main$a = {
   __name: "Icons",
   __ssrInlineRender: true,
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[-->`);
-      _push(ssrRenderComponent(_sfc_main$b, {
+      _push(ssrRenderComponent(_sfc_main$c, {
         class: "animate subtle-slide-in",
         aria: "Emm's Github account",
         style: { "--theme-main-animation-delay": "0.5s" },
         url: "https://github.com/msamricth"
       }, null, _parent));
-      _push(ssrRenderComponent(_sfc_main$a, {
+      _push(ssrRenderComponent(_sfc_main$b, {
         class: "animate subtle-slide-in",
         aria: "Emm's Linkedin account",
         style: { "--theme-main-animation-delay": "0.6s" },
@@ -1563,13 +1563,13 @@ const _sfc_main$9 = {
     };
   }
 };
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/Icons.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
-const _sfc_main$8 = {
+const _sfc_main$9 = {
   __name: "Mode",
   __ssrInlineRender: true,
   props: {
@@ -1589,7 +1589,7 @@ const _sfc_main$8 = {
         for: __props.footer ? "mode-footer" : "mode"
       }, _attrs))}><button style="${ssrRenderStyle({ "--theme-main-animation-delay": "0.1s" })}" class="${ssrRenderClass([{ "scale-140": !unref(store).useMode }, "text-xl font-medium animate subtle-slide-in block relative cursor-pointer group-icon transition-all group"])}"><svg width="1.6rem" class="${ssrRenderClass([moonVisible.value ? "opacity-100" : "opacity-0 duration-0", "group-hover:text-accent transition-all"])}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title></title><path d="M20.21,15.32A8.56,8.56,0,1,1,11.29,3.5a.5.5,0,0,1,.51.28.49.49,0,0,1-.09.57A6.46,6.46,0,0,0,9.8,9a6.57,6.57,0,0,0,9.71,5.72.52.52,0,0,1,.58.07A.52.52,0,0,1,20.21,15.32Z" fill="currentColor"></path></svg><svg width="1.6rem" class="${ssrRenderClass([sunVisible.value ? "opacity-100" : "opacity-0 duration-0", "group-hover:text-accent group-hover:rotate-450 transition absolute top-0"])}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title></title><circle cx="12" cy="12" fill="currentColor" r="5"></circle><path d="M21,13H20a1,1,0,0,1,0-2h1a1,1,0,0,1,0,2Z" fill="currentColor"></path><path d="M4,13H3a1,1,0,0,1,0-2H4a1,1,0,0,1,0,2Z" fill="currentColor"></path><path d="M17.66,7.34A1,1,0,0,1,17,7.05a1,1,0,0,1,0-1.41l.71-.71a1,1,0,1,1,1.41,1.41l-.71.71A1,1,0,0,1,17.66,7.34Z" fill="currentColor"></path><path d="M5.64,19.36a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.41L5.64,17a1,1,0,0,1,1.41,1.41l-.71.71A1,1,0,0,1,5.64,19.36Z" fill="currentColor"></path><path d="M12,5a1,1,0,0,1-1-1V3a1,1,0,0,1,2,0V4A1,1,0,0,1,12,5Z" fill="currentColor"></path><path d="M12,22a1,1,0,0,1-1-1V20a1,1,0,0,1,2,0v1A1,1,0,0,1,12,22Z" fill="currentColor"></path><path d="M6.34,7.34a1,1,0,0,1-.7-.29l-.71-.71A1,1,0,0,1,6.34,4.93l.71.71a1,1,0,0,1,0,1.41A1,1,0,0,1,6.34,7.34Z" fill="currentColor"></path><path d="M18.36,19.36a1,1,0,0,1-.7-.29L17,18.36A1,1,0,0,1,18.36,17l.71.71a1,1,0,0,1,0,1.41A1,1,0,0,1,18.36,19.36Z" fill="currentColor"></path></svg>`);
       if (!unref(store).useMode) {
-        _push(ssrRenderComponent(_sfc_main$c, {
+        _push(ssrRenderComponent(_sfc_main$d, {
           message: "Change light/dark mode",
           class: "scale-70"
         }, null, _parent));
@@ -1603,7 +1603,7 @@ const _sfc_main$8 = {
         _push(`<!---->`);
       }
       if (unref(store).useMode) {
-        _push(ssrRenderComponent(_sfc_main$c, {
+        _push(ssrRenderComponent(_sfc_main$d, {
           message: `Change ${unref(store).darkMode} mode`,
           class: "mt-10"
         }, null, _parent));
@@ -1614,11 +1614,11 @@ const _sfc_main$8 = {
     };
   }
 };
-const _sfc_setup$8 = _sfc_main$8.setup;
-_sfc_main$8.setup = (props, ctx) => {
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/Mode.vue");
-  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -1627,7 +1627,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$7 = {
+const _sfc_main$8 = {
   __name: "Hamburger",
   __ssrInlineRender: true,
   props: {
@@ -1646,7 +1646,7 @@ const _sfc_main$7 = {
           "aria-label": "Go to menu",
           style: { "--theme-main-animation-delay": "0.7s" }
         }, _attrs))} data-v-ad68b8a7><div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700 md:group-hover:text-accent" data-v-ad68b8a7><div class="hamburger-inner text-current **:transition-all **:duration-700" data-v-ad68b8a7></div></div>`);
-        _push(ssrRenderComponent(_sfc_main$c, {
+        _push(ssrRenderComponent(_sfc_main$d, {
           class: "mt-20 text-white",
           message: "Scroll to navigation"
         }, null, _parent));
@@ -1657,14 +1657,14 @@ const _sfc_main$7 = {
     };
   }
 };
-const _sfc_setup$7 = _sfc_main$7.setup;
-_sfc_main$7.setup = (props, ctx) => {
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/Hamburger.vue");
-  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
-const Hamburger = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-ad68b8a7"]]);
-const _sfc_main$6 = {
+const Hamburger = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-ad68b8a7"]]);
+const _sfc_main$7 = {
   __name: "InnerSecondaryNav",
   __ssrInlineRender: true,
   props: {
@@ -1682,7 +1682,7 @@ const _sfc_main$6 = {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(`<svg class="absolute inset-0 stroke-current group-hover:scale-[1.25] transition-all duration-700" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-9ec407c2${_scopeId}><polyline points="112 352 48 288 112 224" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-9ec407c2${_scopeId}></polyline><path d="M64,288H358c58.76,0,106-49.33,106-108V160" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-9ec407c2${_scopeId}></path></svg><svg class="absolute inset-0 stroke-current text-accent transition-all duration-700 ease-in-out stroke-animate group-hover:scale-[1.28]" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-9ec407c2${_scopeId}><polyline points="112 352 48 288 112 224" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-9ec407c2${_scopeId}></polyline><path d="M64,288H358c58.76,0,106-49.33,106-108V160" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-9ec407c2${_scopeId}></path></svg>`);
-            _push2(ssrRenderComponent(_sfc_main$c, {
+            _push2(ssrRenderComponent(_sfc_main$d, {
               class: "mt-10",
               message: "Return Home"
             }, null, _parent2, _scopeId));
@@ -1726,7 +1726,7 @@ const _sfc_main$6 = {
                   "stroke-width": "32"
                 })
               ])),
-              createVNode(_sfc_main$c, {
+              createVNode(_sfc_main$d, {
                 class: "mt-10",
                 message: "Return Home"
               })
@@ -1735,22 +1735,22 @@ const _sfc_main$6 = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(_sfc_main$8, null, null, _parent));
       _push(ssrRenderComponent(_sfc_main$9, null, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$a, null, null, _parent));
       _push(ssrRenderComponent(Hamburger, null, null, _parent));
       _push(`</div>`);
     };
   }
 };
-const _sfc_setup$6 = _sfc_main$6.setup;
-_sfc_main$6.setup = (props, ctx) => {
+const _sfc_setup$7 = _sfc_main$7.setup;
+_sfc_main$7.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/InnerSecondaryNav.vue");
-  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
+  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
-const InnerSecondaryNav = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-9ec407c2"]]);
+const InnerSecondaryNav = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-9ec407c2"]]);
 let Splitting = () => [];
-const _sfc_main$5 = {
+const _sfc_main$6 = {
   __name: "InnerNav",
   __ssrInlineRender: true,
   props: {
@@ -1953,19 +1953,55 @@ const _sfc_main$5 = {
     };
   }
 };
+const _sfc_setup$6 = _sfc_main$6.setup;
+_sfc_main$6.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/InnerNav.vue");
+  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
+};
+const InnerNav = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-a3543719"]]);
+const _sfc_main$5 = {
+  __name: "PrimaryBTN",
+  __ssrInlineRender: true,
+  props: {
+    href: String,
+    label: String,
+    target: String,
+    delay: {
+      type: String,
+      default: "0.7s"
+    },
+    onClick: Function
+  },
+  setup(__props) {
+    const buttonEl = ref(null);
+    ref(null);
+    ref(null);
+    ref(null);
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<a${ssrRenderAttrs(mergeProps({
+        href: __props.href,
+        ref_key: "buttonEl",
+        ref: buttonEl,
+        role: "button",
+        class: "relative flex flex-col items-center justify-center overflow-visible font-black transition-colors cursor-pointer w-65 h-21 group/cta active:text-electric-purple",
+        "aria-label": __props.label
+      }, _attrs))}><span class="flex gap-0.5 w-55 justify-center relative z-20" id="label">${ssrInterpolate(__props.label)}</span><svg viewBox="0 0 326 82" class="absolute w-full overflow-visible"><path id="mainPath" fill="none" stroke="currentColor" stroke-width="4" d="M0 41C0 18.3563 18.3563 0 41 0H285C307.644 0 326 18.3563 326 41C326 63.6437 307.644 82 285 82H41C18.3563 82 0 63.6437 0 41Z"></path><g class="absolute right-0 z-10 overflow-hidden w-18"><path id="tailPath" class="opacity-0 fill-current" d="M0 41C0 18.3563 18.3563 0 41 0H285C307.644 0 326 18.3563 326 41C326 63.6437 307.644 82 285 82H41C18.3563 82 0 63.6437 0 41Z"></path></g></svg></a>`);
+    };
+  }
+};
 const _sfc_setup$5 = _sfc_main$5.setup;
 _sfc_main$5.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/InnerNav.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/buttons/PrimaryBTN.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const InnerNav = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-a3543719"]]);
 const _sfc_main$4 = {
   __name: "Contact",
   __ssrInlineRender: true,
   setup(__props) {
     useMainStore();
-    ref(null);
+    const formButton = ref(null);
     const container = ref(null);
     ref(null);
     ref(null);
@@ -1974,7 +2010,7 @@ const _sfc_main$4 = {
     const nameError = ref(null);
     const emailError = ref(null);
     const messageError = ref(null);
-    ref(null);
+    const formRef = ref(null);
     const formDataValues = reactive({
       name: "",
       email: "",
@@ -1983,6 +2019,39 @@ const _sfc_main$4 = {
     });
     const submitted = ref(false);
     const error = ref("");
+    async function submitForm() {
+      if (!formDataValues.name || !formDataValues.email || !formDataValues.message) {
+        nameError.value = computed(() => !formDataValues.name);
+        emailError.value = computed(() => !formDataValues.email);
+        messageError.value = computed(() => !formDataValues.message);
+        error.value = "*Please fill in all required fields.";
+        return;
+      }
+      if (formDataValues.hpField) {
+        error.value = "No Robots!";
+        console.warn("Bot detected.");
+        return;
+      }
+      const formData = new FormData(formRef.value);
+      try {
+        const response = await fetch("https://usebasin.com/f/53cc1ac22741", {
+          method: "POST",
+          headers: {
+            Accept: "application/json"
+          },
+          body: formData
+        });
+        if (response.status === 200) {
+          submitted.value = true;
+        } else {
+          error.value = "There was an error submitting the form. Please try again.";
+          console.error("Form submission failed with status:", response.status);
+        }
+      } catch (err) {
+        error.value = "An unexpected error occurred.";
+        console.error("Error submitting form:", err);
+      }
+    }
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<section${ssrRenderAttrs(mergeProps({
         ref_key: "container",
@@ -1991,19 +2060,29 @@ const _sfc_main$4 = {
         id: "sayHello",
         tabindex: "0",
         class: "relative items-center w-full min-h-screen mx-auto mb-2 form-wrapper text-primary dark:text-accent inverted:text-electric-purple mt-25 md:mt-28"
-      }, _attrs))} data-v-c9c4ad23><div class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16" data-v-c9c4ad23><h3 data-splitting="words" id="formHeader" class="${ssrRenderClass([submitted.value ? "blur-sm" : "", "mb-6 text-4xl font-black text-center uppercase transition-all lg:mb-12 form-header placeholder-line"])}" data-v-c9c4ad23>Lets get in touch!</h3>`);
+      }, _attrs))} data-v-ee8e4adf><div class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16" data-v-ee8e4adf><h3 data-splitting="words" id="formHeader" class="${ssrRenderClass([submitted.value ? "blur-sm" : "", "mb-6 text-4xl font-black text-center uppercase transition-all lg:mb-12 form-header placeholder-line"])}" data-v-ee8e4adf>Lets get in touch!</h3>`);
       if (submitted.value) {
-        _push(`<div class="absolute z-30 pt-16 text-center fade-up" id="thanks" data-v-c9c4ad23><h4 class="mb-2 text-3xl font-bold text-yellow" data-v-c9c4ad23>Message sent!</h4><p class="text-white" data-v-c9c4ad23>We&#39;ll be in touch, thanks! </p></div>`);
+        _push(`<div class="absolute z-30 pt-16 text-center fade-up" id="thanks" data-v-ee8e4adf><h4 class="mb-2 text-3xl font-bold text-yellow" data-v-ee8e4adf>Message sent!</h4><p class="text-white" data-v-ee8e4adf>We&#39;ll be in touch, thanks! </p></div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<form novalidate class="${ssrRenderClass([submitted.value ? "blur-md opacity-25" : "", "flex flex-col block w-full gap-6 px-2 transition-all text-primary dark:text-accent inverted:text-electric-purple"])}" data-v-c9c4ad23>`);
+      _push(`<form novalidate class="${ssrRenderClass([submitted.value ? "blur-md opacity-25" : "", "flex flex-col w-full gap-6 px-2 transition-all text-electric-purple dark:text-accent inverted:text-electric-purple"])}" data-v-ee8e4adf>`);
       if (error.value) {
-        _push(`<div class="mb-2 text-sm text-electric-purple" data-v-c9c4ad23>${ssrInterpolate(error.value)}</div>`);
+        _push(`<div class="mb-2 text-sm text-electric-purple" data-v-ee8e4adf>${ssrInterpolate(error.value)}</div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="flex flex-wrap w-full" data-v-c9c4ad23><div class="relative w-1/2 pr-4" data-v-c9c4ad23><label class="sr-only focus:not-sr-only" tabindex="0" for="name" data-v-c9c4ad23> Name </label><input type="text" placeholder="Name" id="name" name="name"${ssrRenderAttr("value", formDataValues.name)} class="${ssrRenderClass([{ "border-b border-yellow": nameError.value }, "w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-primary dark:text-accent inverted:text-electric-purple placeholder:text-primary/60 focus:placeholder:text-primary dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-c9c4ad23></div><div class="w-1/2" data-v-c9c4ad23><label for="email" class="sr-only focus:not-sr-only" tabindex="0" data-v-c9c4ad23> Email </label><input type="email" id="email" placeholder="Email" name="email"${ssrRenderAttr("value", formDataValues.email)} required class="${ssrRenderClass([{ "border-b border-yellow": emailError.value }, "w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-primary dark:text-accent inverted:text-electric-purple placeholder:text-primary/60 focus:placeholder:text-primary dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-c9c4ad23></div></div><label for="message" class="sr-only focus:not-sr-only" tabindex="0" data-v-c9c4ad23> Type your message </label><textarea class="${ssrRenderClass([{ "border-b border-yellow": messageError.value }, "placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6 text-primary dark:text-accent inverted:text-electric-purple"])}" id="message" name="message" placeholder="Your message" required data-v-c9c4ad23>${ssrInterpolate(formDataValues.message)}</textarea><div class="hidden" data-v-c9c4ad23><input type="text" id="hpField" name="hpField"${ssrRenderAttr("value", formDataValues.hpField)} tabindex="-1" autocomplete="off" data-v-c9c4ad23></div><div data-v-c9c4ad23><button type="submit" class="relative flex items-center ml-auto overflow-hidden text-center transition-all submit w-60 group/cta" data-v-c9c4ad23><span class="relative z-10 inline-block w-full px-4 py-2 font-semibold border-2 border-current rounded-full transition-all-all bg-inherit whitespace-nowrap" data-v-c9c4ad23> Submit </span><span class="absolute top-0 right-0 z-0 block w-0 h-full origin-left opacity-0 transition-all-all overflow-clip" data-v-c9c4ad23><span class="z-0 flex items-center justify-center block w-10 h-full origin-left bg-current rounded-r-full transition-all-all" data-v-c9c4ad23><svg class="w-24 h-24 fill-current arrow" viewBox="0 0 24 24" data-v-c9c4ad23><path d="M8 5l8 7-8 7z" data-v-c9c4ad23></path></svg></span></span></button></div></form></div></section>`);
+      _push(`<div class="flex flex-wrap w-full" data-v-ee8e4adf><div class="relative w-1/2 pr-4" data-v-ee8e4adf><label class="sr-only focus:not-sr-only" tabindex="0" for="name" data-v-ee8e4adf> Name </label><input type="text" placeholder="Name" id="name" name="name"${ssrRenderAttr("value", formDataValues.name)} class="${ssrRenderClass([{ "border-b border-yellow": nameError.value }, "w-full outline-0 h-12 pb-2 p border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-ee8e4adf></div><div class="w-1/2" data-v-ee8e4adf><label for="email" class="sr-only focus:not-sr-only" tabindex="0" data-v-ee8e4adf> Email </label><input type="email" id="email" placeholder="Email" name="email"${ssrRenderAttr("value", formDataValues.email)} required class="${ssrRenderClass([{ "border-b border-yellow": emailError.value }, "w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-ee8e4adf></div></div><label for="message" class="sr-only focus:not-sr-only" tabindex="0" data-v-ee8e4adf> Type your message </label><textarea class="${ssrRenderClass([{ "border-b border-yellow": messageError.value }, "placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6 text-electric-purple dark:text-accent inverted:text-electric-purple"])}" id="message" name="message" placeholder="Your message" required data-v-ee8e4adf>${ssrInterpolate(formDataValues.message)}</textarea><div class="hidden" data-v-ee8e4adf><input type="text" id="hpField" name="hpField"${ssrRenderAttr("value", formDataValues.hpField)} tabindex="-1" autocomplete="off" data-v-ee8e4adf></div><div data-v-ee8e4adf>`);
+      _push(ssrRenderComponent(_sfc_main$5, {
+        type: "submit",
+        class: "btn text-electric-purple dark:text-accent subtle-slide-in submit ms-auto",
+        label: "Submit",
+        onClick: () => submitForm(),
+        delay: "0.7s",
+        ref_key: "formButton",
+        ref: formButton
+      }, null, _parent));
+      _push(`</div></form></div></section>`);
     };
   }
 };
@@ -2013,7 +2092,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/Contact.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const Contact = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-c9c4ad23"]]);
+const Contact = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-ee8e4adf"]]);
 const _sfc_main$3 = {
   __name: "SecondaryNav",
   __ssrInlineRender: true,
@@ -2023,8 +2102,8 @@ const _sfc_main$3 = {
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(mergeProps({ class: "secondary-nav group/secondaryNav max-w-1440 px-0 md:px-12 flex justify-end items-center relative gap-8 md:gap-6 z-200" }, _attrs))} data-v-b86ce407>`);
-      _push(ssrRenderComponent(_sfc_main$8, { footer: __props.footer }, null, _parent));
-      _push(ssrRenderComponent(_sfc_main$9, null, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$9, { footer: __props.footer }, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$a, null, null, _parent));
       _push(ssrRenderComponent(Hamburger, { footer: __props.footer }, null, _parent));
       _push(`</div>`);
     };
@@ -2142,7 +2221,7 @@ const _sfc_main = {
           } else if (unref(SingleRenderer)) {
             ssrRenderVNode(_push, createVNode(resolveDynamicComponent(unref(SingleRenderer)), null, null), _parent);
           } else {
-            _push(ssrRenderComponent(unref(_sfc_main$d), null, null, _parent));
+            _push(ssrRenderComponent(unref(_sfc_main$e), null, null, _parent));
           }
         },
         _: 1
@@ -2177,5 +2256,5 @@ let entry;
 }
 const entry$1 = (ssrContext) => entry(ssrContext);
 
-export { Contact as C, InnerSecondaryNav as I, Splitting as S, _export_sfc as _, useNuxtApp as a, useHead as b, InnerNav as c, _sfc_main$2 as d, entry$1 as default, __nuxt_component_0$1 as e, SecondaryNav as f, _sfc_main$b as g, useSeoMeta as h, navigateTo as n, useMainStore as u };
+export { Contact as C, InnerSecondaryNav as I, Splitting as S, _export_sfc as _, useNuxtApp as a, useHead as b, InnerNav as c, _sfc_main$2 as d, entry$1 as default, __nuxt_component_0$1 as e, SecondaryNav as f, _sfc_main$5 as g, _sfc_main$c as h, useSeoMeta as i, navigateTo as n, useMainStore as u };
 //# sourceMappingURL=server.mjs.map
