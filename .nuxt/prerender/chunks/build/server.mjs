@@ -446,11 +446,7 @@ const _routes = [
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-<<<<<<< HEAD
-    component: () => import('./glt-CmzAU0Vh.mjs')
-=======
-    component: () => import('./glt-BIr3XHnG.mjs')
->>>>>>> 33819c2039ce9a0becc820c9f2d00c748d6349b7
+    component: () => import('./glt-C1n9mTUK.mjs')
   },
   {
     name: "work",
