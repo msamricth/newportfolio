@@ -3,7 +3,7 @@
         role="button"
         class="relative flex flex-col items-center justify-center overflow-visible font-black transition-colors duration-700 cursor-pointer w-65 h-21 group/cta"
         :aria-label="label">
-        <span class="flex gap-0.5 w-55 justify-center relative z-20 **:transition-all **:duration-100" id="label"
+        <span class="flex gap-0.5 w-55 justify-center relative z-20" id="label"
             ref="labelEl">{{ label
             }}</span>
         <svg viewBox="0 0 326 82" class="absolute w-full overflow-visible">
@@ -161,32 +161,19 @@ const handleHoverIn = () => {
             },
             {
 
-                x: () => gsap.utils.random(-3, 3),
-                rotate: () => gsap.utils.random(-10, 10),
+              //  x: () => gsap.utils.random(0, 6),
+                rotate: () => gsap.utils.random(-3, 3),
                 //   y: () => gsap.utils.random(-4, 4),
                 ease: 'elastic.out(0.9)',
-                duration: 0.2,
+                duration: 0.1,
                 stagger: {
-                    amount: 0.05,
+                    amount: 0.025,
                     from: 'random',
                 },
-            }, 0.2)
-            .to(
-                words,
-                {
-                    x: 0,
-                    rotate: 0,
-                    //         y: 0,
-                    ease: 'power3.out',
-                    duration: 0.1,
-                    stagger: {
-                        amount: 0.05,
-                        from: 'random',
-                    },
-                }, 0.5)
+            },"+=0.2")
             .to(words, {
                 clearProps: "all"
-            }, 0.6)
+            })
     }
 }
 
@@ -197,6 +184,7 @@ const handleHoverOut = () => {
     timeline.reverse()
     if (words.length) {
         gsap.killTweensOf(words)
+        gsap.to(words, { clearProps: "all" })
     }
 }
 
@@ -222,8 +210,8 @@ const handleClick = () => {
             },
             {
 
-                x: () => gsap.utils.random(-8, 8),
-                rotate: () => gsap.utils.random(-10, 10),
+                x: () => gsap.utils.random(-4, 4),
+                rotate: () => gsap.utils.random(-4, 4),
                 y: () => gsap.utils.random(-4, 4),
                 ease: 'elastic.out(0.9)',
                 duration: 0.2,
