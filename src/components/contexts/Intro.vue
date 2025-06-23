@@ -19,11 +19,9 @@
                         <p class="text-secondary text-xl leading-[1.8] mb-6 lg:mb-14" data-splitting="words">I'm a
                             full-stack
                             developer with a passion for clean code, bold design, and building things that actually
-                            work—both on
-                            screen
-                            and in the dirt.🚴‍♀️ With deep experience in WordPress, Vue.js, and the occasional Tailwind
-                            bender, I
-                            specialize in crafting digital systems that are fast, accessible, and built to last.</p>
+                            work both on
+                            screen. With deep experience in WordPress, Vue.js, and the occasional Tailwind
+                            bender, I specialize in crafting digital systems that are fast, accessible, and built to last.</p>
                     </div>
                     <PrimaryBTN href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"

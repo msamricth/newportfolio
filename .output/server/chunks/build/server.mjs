@@ -429,7 +429,7 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Z5JnIhrT.mjs')
+    component: () => import('./index-Cyg0Jya4.mjs')
   },
   {
     name: "work-glt",
@@ -1930,7 +1930,7 @@ const _sfc_main$5 = {
         ref_key: "buttonEl",
         ref: buttonEl,
         role: "button",
-        class: "relative flex flex-col items-center justify-center overflow-visible font-black transition-colors duration-700 cursor-pointer w-65 h-21 group/cta",
+        class: "relative flex flex-col items-center justify-center overflow-visible font-black transition-colors cursor-pointer w-65 h-21 group/cta active:text-electric-purple",
         "aria-label": __props.label
       }, _attrs))}><span class="flex gap-0.5 w-55 justify-center relative z-20" id="label">${ssrInterpolate(__props.label)}</span><svg viewBox="0 0 326 82" class="absolute w-full overflow-visible"><path id="mainPath" fill="none" stroke="currentColor" stroke-width="4" d="M0 41C0 18.3563 18.3563 0 41 0H285C307.644 0 326 18.3563 326 41C326 63.6437 307.644 82 285 82H41C18.3563 82 0 63.6437 0 41Z"></path><g class="absolute right-0 z-10 overflow-hidden w-18"><path id="tailPath" class="opacity-0 fill-current" d="M0 41C0 18.3563 18.3563 0 41 0H285C307.644 0 326 18.3563 326 41C326 63.6437 307.644 82 285 82H41C18.3563 82 0 63.6437 0 41Z"></path></g></svg></a>`);
     };

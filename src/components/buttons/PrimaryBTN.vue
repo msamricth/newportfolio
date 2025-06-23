@@ -1,10 +1,9 @@
 <template>
     <a :href="href" ref="buttonEl" @mouseenter="handleHoverIn" @mouseleave="handleHoverOut" @click.prevent="handleClick"
         role="button"
-        class="relative flex flex-col items-center justify-center overflow-visible font-black transition-colors duration-700 cursor-pointer w-65 h-21 group/cta"
-        :aria-label="label">
-        <span class="flex gap-0.5 w-55 justify-center relative z-20" id="label"
-            ref="labelEl">{{ label
+        class="relative flex flex-col items-center justify-center overflow-visible font-black transition-colors cursor-pointer w-65 h-21 group/cta active:text-electric-purple"
+        :aria-label="label" >
+        <span class="flex gap-0.5 w-55 justify-center relative z-20" id="label" ref="labelEl">{{ label
             }}</span>
         <svg viewBox="0 0 326 82" class="absolute w-full overflow-visible">
             <path id="mainPath" ref="mainPath" fill="none" stroke="currentColor" stroke-width="4"
@@ -15,7 +14,6 @@
             </g>
         </svg>
     </a>
-
 </template>
 
 <script setup>
@@ -23,8 +21,6 @@ import { ref, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin'
 import Splitting from '@/utils/splitting'
-
-
 const props = defineProps({
     href: String,
     label: String,
@@ -35,7 +31,6 @@ const props = defineProps({
     },
     onClick: Function,
 })
-
 const buttonEl = ref(null)
 const labelEl = ref(null)
 const mainPath = ref(null)
@@ -58,16 +53,12 @@ const tailShapes = [
     "M249.654 1.5L321.002 41.7647L249.653 80.5L249.654 1.5Z"
 ];
 const activeMainShapes = [
-    //  "M0 41C0 18.3563 17.7305 0 39.6023 0H113.565C129.751 0 237.5 0 237.5 0V82C237.5 82 129.914 82 114.02 82H39.6023C17.7305 82 0 63.6437 0 41Z",
     "M0 41.713C0 19.0693 17.7305 0.712997 39.6023 0.712997C61.474 0.712997 62.29 5.25287 77 5.21316C91.3873 5.17432 99.1307 0.712997 113.565 0.712997C128 0.712997 156.18 8.01617 186 7.21326C212.323 6.5045 235.156 -2.56907 237.5 0.712997C242.5 7.71312 243.5 76.713 237.5 82.713C231.5 88.713 201.424 75.713 168 75.713C143.854 75.713 128 83.213 114.02 82.713C100.04 82.213 91.7134 75.7401 77 75.713C62.1417 75.6856 61.474 82.713 39.6023 82.713C17.7305 82.713 0 64.3567 0 41.713Z",
     "M0 42.6293C0 19.9857 17.7305 1.62933 39.6023 1.62933C61.474 1.62933 60.5 6.62951 77 1.62933C90.769 -2.54325 100.565 5.12951 115 5.12951C129.435 5.12951 157.18 2.43227 187 1.62936C213.323 0.920597 235.156 -1.65274 237.5 1.62933C242.5 8.62946 243.5 77.6294 237.5 83.6293C231.5 89.6293 203.424 83.6293 170 83.6293C145.854 83.6293 130.48 82.6293 116.5 82.1293C102.52 81.6293 91.0523 87.9903 77 83.6293C62.5 79.1295 61.474 83.6293 39.6023 83.6293C17.7305 83.6293 0 65.273 0 42.6293Z",
-    //  "M0 41C0 18.3563 17.7305 0 39.6023 0H113.565C129.751 0 237.5 0 237.5 0V82C237.5 82 129.914 82 114.02 82H39.6023C17.7305 82 0 63.6437 0 41Z"
 ];
 const activeTailShapes = [
-    //  "M249.654 1.5L321.002 41.7647L249.653 80.5L249.654 1.5Z",
     "M249.654 2.213C252.5 0.712988 321.002 39.2421 321.002 42.4777C321.002 45.7133 254.807 83.2127 249.653 81.213C244.5 79.2133 246.807 3.71301 249.654 2.213Z",
     "M249.654 3.12933C270.5 17 321 32 321.002 43.394C321.004 54.788 279 63 249.653 82.1293C253 64.5 247 5.99999 249.654 3.12933Z",
-    // "M249.654 1.5L321.002 41.7647L249.653 80.5L249.654 1.5Z"
 ];
 
 let timeline = ''
@@ -82,35 +73,27 @@ onMounted(async () => {
     const results = Splitting({ target: labelEl.value, by: 'words' });
     const res = results.find(r => r.el === labelEl.value);
     words = res.words;
-    if (words.length) {
-        //  timeline.set(words, { x: 0, y: 0 })
-        //activeTL.set(words, { x: 0, y: 0 })
-    }
     mainShapes.forEach((mainD, i) => {
         let ease = "power1.out"
         let stag = i * 0.2
-
         if (i === 1) {
             timeline.to(labelEl.value, {
                 paddingRight: "4rem",
                 duration: 0.2,
                 ease: "back.inOut(0.7)",
             }, 0.2)
-        }
 
+        }
         if (i === 3) {
             timeline.to(tailPath.value, { autoAlpha: 1, duration: 0 }, 0.48)
         }
-
         if (i === 4) stag = 0.64
         if (i === 5) stag = 1
-
         timeline.to(mainPath.value, {
             morphSVG: { shape: mainD, shapeIndex: 0 },
             duration: 0.2,
             ease,
         }, stag)
-
         if (tailShapes[i]) {
             timeline.to(tailPath.value, {
                 morphSVG: { shape: tailShapes[i], shapeIndex: 0 },
@@ -118,7 +101,6 @@ onMounted(async () => {
                 ease,
             }, stag)
         }
-
         if (i === mainShapes.length - 1) {
             timeline.addLabel("buttonEnd", "<")
         }
@@ -127,7 +109,6 @@ onMounted(async () => {
 
     activeMainShapes.forEach((mainD, i) => {
         const stag = i * 0.06
-
         activeTL.to(mainPath.value, {
             morphSVG: { shape: mainD, shapeIndex: 0 },
             duration: 0.06,
@@ -152,26 +133,34 @@ const handleHoverIn = () => {
     timeline.play()
     if (words.length) {
         gsap.killTweensOf(words)
-        gsap.timeline({defaults:{duration:0.6}}).to(words, {
-              //  x: () => gsap.utils.random(0, 6),
-                rotate: () => gsap.utils.random(-3, 3),
-                //   y: () => gsap.utils.random(-4, 4),
-                ease: 'elastic.out(0.9)',
-                duration: 0.06,
+        gsap.timeline({ defaults: { duration: 0.6 } }).fromTo(words, {
+            x: 0
+        }, {
+            x: -8,
+            duration: 0.12,
+            stagger: 0.05,
+            ease: "power1.out",
+
+        }, 0.2)
+            .fromTo(labelEl.value, { letterSpacing: 0 }, {
+                letterSpacing: -1, duration: 0.15, ease: "none", autoRound: false,
                 stagger: {
-                    amount: 0.025,
+                    amount: 0.05,
                     from: 'random',
-                },
-            },"+=0.2")
+                }
+            }, 0.26)
             .to(words, {
-                rotate: 0,
-                ease: 'elastic.out(0.9)',
-                duration: 0.06,
+                x: 0,
+                duration: 0.2,
+                stagger: 0.05,
+            }, 0.43)
+            .to(labelEl.value, {
+                letterSpacing: 0, duration: 0.2, ease: "none", autoRound: false,
                 stagger: {
                     amount: 0.025,
                     from: 'random',
-                },
-            })
+                }
+            }, "-=0.2")
     }
 }
 
@@ -207,14 +196,13 @@ const handleClick = () => {
                 y: 0,
             },
             {
-
                 x: () => gsap.utils.random(-4, 4),
                 rotate: () => gsap.utils.random(-4, 4),
                 y: () => gsap.utils.random(-4, 4),
                 ease: 'elastic.out(0.9)',
-                duration: 0.2,
+                duration: 0.05,
                 stagger: {
-                    amount: 0.05,
+                    amount: 0.015,
                     from: 'random',
                 },
             }, 0)
@@ -230,10 +218,10 @@ const handleClick = () => {
                         amount: 0.05,
                         from: 'random',
                     },
-                }, 0.2)
+                }, 0.05)
             .to(words, {
                 clearProps: "all"
-            }, 0.3)
+            }, 0.06)
     }
     let startTime;
     const delayDuration = 500;
@@ -244,7 +232,6 @@ const handleClick = () => {
         const elapsedTime = currentTime - startTime;
 
         if (elapsedTime >= delayDuration) {
-            //console.log('recorded click state')
             if (props.onClick) {
                 props.onClick()
             } else {
