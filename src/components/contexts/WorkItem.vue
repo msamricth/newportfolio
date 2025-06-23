@@ -1,5 +1,5 @@
 <template>
-    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh lg:min-h-[50dvh] mb-20 md:mb-12 lg:mb-20 xl:mb-28"
+    <div class="transition-all duration-500 group opacity-0 translate-y-10 work-item md:min-h-dvh lg:min-h-[50dvh]"
         ref="workSection">
         <div class="relative flex flex-col items-center justify-center mx-auto rounded-xl md:max-w-4xl"
             @mouseenter="onHoverIn" @mouseleave="onHoverOut" :class="item.hoverColor">

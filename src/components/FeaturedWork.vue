@@ -3,7 +3,7 @@
         <div class="relative pb-8 group lg:pb-24 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto px-8 lg:px-12">
             <div class="relative">
                 <WorkItem v-for="(w, index) in shuffledWork" :key="index" :item="w"
-                    :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" />
+                    :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" class="mb-20 md:mb-12 lg:mb-20 xl:mb-28 nth-of-type-4:mb-12" />
                 <div class="flex flex-col flex-wrap items-center gap-2 mx-auto opacity-0 group/ctas max-w-75 md:items-end md:max-w-4xl -translate-x-100"
                     ref="button">
 
