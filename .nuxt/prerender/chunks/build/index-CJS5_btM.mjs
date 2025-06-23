@@ -1,6 +1,6 @@
 import { ref, unref, computed, mergeProps, useSSRContext } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
 import { ssrRenderComponent, ssrRenderStyle, ssrRenderList, ssrRenderClass, ssrRenderAttr, ssrInterpolate, ssrRenderAttrs } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
-import { b as useHead, u as useMainStore, I as InnerSecondaryNav, c as InnerNav, C as Contact, d as _sfc_main$2$1 } from './server.mjs';
+import { b as useHead, u as useMainStore, I as InnerSecondaryNav, c as InnerNav, C as Contact, d as _sfc_main$2$1, g as _sfc_main$5 } from './server.mjs';
 import { defineStore } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
 import { u as useModalStore, w as work } from './work-eSm_XacQ.mjs';
 import { _ as _sfc_main$2 } from './Preloader-DLOGK4Oi.mjs';
@@ -157,7 +157,7 @@ const _sfc_main = {
     const mainStore = useMainStore();
     ref([]);
     ref([false]);
-    ref([]);
+    const buttonRefs = ref([]);
     ref([]);
     ref([]);
     ref([]);
@@ -214,13 +214,24 @@ const _sfc_main = {
         }
         _push(`</div><div class="flex flex-col flex-wrap gap-2 mt-6 group/ctas max-w-75 md:mt-0"><!--[-->`);
         ssrRenderList(unref(modalStore).modalItem.buttons, (button, btnIndex) => {
-          _push(`<div class="flex items-center order-2 h-14 md:order-1">`);
+          _push(`<div class="flex items-center order-2 py-2 h-18 md:order-1">`);
           if (button.github) {
             _push(`<a class="${ssrRenderClass([unref(modalStore).modalItem.textColor, "mr-4 transition rounded-full cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 hover:bg-current hover:rotate-270 group/git subtle-slide-in"])}" style="${ssrRenderStyle({ "--theme-main-animation-delay": "0.6s" })}" target="_blank"${ssrRenderAttr("href", unref(modalStore).modalItem.github)}><svg class="transition dark:group-hover/git:text-primary group-hover/git:rotate-90" enable-background="new 0 0 32 32" height="44px" id="Layer_1" version="1.0" viewBox="0 0 32 32" width="44px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path clip-rule="evenodd" d="M16.003,0C7.17,0,0.008,7.162,0.008,15.997  c0,7.067,4.582,13.063,10.94,15.179c0.8,0.146,1.052-0.328,1.052-0.752c0-0.38,0.008-1.442,0-2.777  c-4.449,0.967-5.371-2.107-5.371-2.107c-0.727-1.848-1.775-2.34-1.775-2.34c-1.452-0.992,0.109-0.973,0.109-0.973  c1.605,0.113,2.451,1.649,2.451,1.649c1.427,2.443,3.743,1.737,4.654,1.329c0.146-1.034,0.56-1.739,1.017-2.139  c-3.552-0.404-7.286-1.776-7.286-7.906c0-1.747,0.623-3.174,1.646-4.292C7.28,10.464,6.73,8.837,7.602,6.634  c0,0,1.343-0.43,4.398,1.641c1.276-0.355,2.645-0.532,4.005-0.538c1.359,0.006,2.727,0.183,4.005,0.538  c3.055-2.07,4.396-1.641,4.396-1.641c0.872,2.203,0.323,3.83,0.159,4.234c1.023,1.118,1.644,2.545,1.644,4.292  c0,6.146-3.74,7.498-7.304,7.893C19.479,23.548,20,24.508,20,26c0,2,0,3.902,0,4.428c0,0.428,0.258,0.901,1.07,0.746  C27.422,29.055,32,23.062,32,15.997C32,7.162,24.838,0,16.003,0z" class="transition fill-current group-hover/git:stroke-current group-hover/git:fill-background" fill-rule="evenodd"></path><g></g><g></g><g></g><g></g><g></g><g></g></svg></a>`);
           } else {
             _push(`<!---->`);
           }
-          _push(`<a target="_blank"${ssrRenderAttr("href", button.url)} class="relative flex flex-wrap items-center overflow-hidden text-center transition cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 group/cta w-60 subtle-slide-in" style="${ssrRenderStyle({ "--theme-main-animation-delay": "0.7s" })}"><span class="relative z-10 inline-block w-full px-4 py-2 font-semibold transition-all border-2 border-current rounded-full bg-inherit text-nowrap">${ssrInterpolate(button.text)}</span><span class="absolute top-0 right-0 z-0 block w-0 h-full transition-all origin-left opacity-0 overflow-clip"><span class="z-0 flex items-center justify-center block w-10 h-full transition-all origin-left bg-current rounded-r-full"><svg class="w-24 h-24 fill-current arrow" viewBox="0 0 24 24"><path d="M8 5l8 7-8 7z"></path></svg></span></span></a></div>`);
+          _push(ssrRenderComponent(_sfc_main$5, {
+            href: button.url,
+            class: "relative flex flex-wrap items-center overflow-hidden text-center transition cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 group/cta w-60 subtle-slide-in",
+            style: { "--theme-main-animation-delay": "0.7s" },
+            ref_for: true,
+            ref: (el) => {
+              if (!buttonRefs.value[_ctx.index]) buttonRefs.value[_ctx.index] = [];
+              buttonRefs.value[_ctx.index][btnIndex] = el;
+            },
+            label: button.text
+          }, null, _parent));
+          _push(`</div>`);
         });
         _push(`<!--]-->`);
         if (unref(modalStore).modalItem.tech) {
@@ -248,4 +259,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index-BtLp1u2c.mjs.map
+//# sourceMappingURL=index-CJS5_btM.mjs.map

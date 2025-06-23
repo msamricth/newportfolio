@@ -12,7 +12,7 @@
                 <p class="text-white">We'll be in touch, thanks!
                 </p>
             </div>
-            <form ref="formRef" @submit.prevent="submitForm" class="flex flex-col block w-full gap-6 px-2 transition-all text-primary dark:text-accent inverted:text-electric-purple"
+            <form ref="formRef" class="flex flex-col w-full gap-6 px-2 transition-all text-electric-purple dark:text-accent inverted:text-electric-purple"
                 novalidate :class="submitted ? 'blur-md opacity-25' : ''">
                 <div v-if="error" class="mb-2 text-sm text-electric-purple">
                     {{ error }}
@@ -24,7 +24,7 @@
                         </label>
                         <input type="text" placeholder="Name" id="name" name="name" v-model="formDataValues.name"
                             :class="{ 'border-b border-yellow': nameError }"
-                            class="w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-primary dark:text-accent inverted:text-electric-purple placeholder:text-primary/60 focus:placeholder:text-primary dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
+                            class="w-full outline-0 h-12 pb-2 p border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
                     </div>
 
                     <div class="w-1/2">
@@ -33,7 +33,7 @@
                         </label>
                         <input type="email" id="email" placeholder="Email" name="email" v-model="formDataValues.email"
                             required :class="{ 'border-b border-yellow': emailError }"
-                            class="w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-primary dark:text-accent inverted:text-electric-purple placeholder:text-primary/60 focus:placeholder:text-primary dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
+                            class="w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
                     </div>
 
                 </div>
@@ -42,7 +42,7 @@
                             Type your message
                         </label>
                 <textarea
-                    class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6 text-primary dark:text-accent inverted:text-electric-purple"
+                    class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6 text-electric-purple dark:text-accent inverted:text-electric-purple"
                     :class="{ 'border-b border-yellow': messageError }" id="message" name="message"
                     placeholder="Your message" required v-model="formDataValues.message"></textarea>
 
@@ -55,27 +55,10 @@
 
                 <!-- Submit Button -->
                 <div>
+                    <PrimaryBTN type="submit"
+                        class="btn text-electric-purple dark:text-accent subtle-slide-in submit ms-auto"
+                        label="Submit" :onClick="() => submitForm()" :delay="'0.7s'" ref="formButton" />
 
-
-                    <button type="submit"
-                        class="relative flex items-center ml-auto overflow-hidden text-center transition-all submit w-60 group/cta"
-                        ref="formButton" @mouseenter="formHoverIn" @mouseleave="formHoverOut">
-                        <span
-                            class="relative z-10 inline-block w-full px-4 py-2 font-semibold border-2 border-current rounded-full transition-all-all bg-inherit whitespace-nowrap"
-                            ref="formLabel">
-                            Submit
-                        </span>
-                        <span
-                            class="absolute top-0 right-0 z-0 block w-0 h-full origin-left opacity-0 transition-all-all overflow-clip"
-                            ref="formBlob">
-                            <span ref="formBlobInner"
-                                class="z-0 flex items-center justify-center block w-10 h-full origin-left bg-current rounded-r-full transition-all-all">
-                                <svg class="w-24 h-24 fill-current arrow" viewBox="0 0 24 24">
-                                    <path d="M8 5l8 7-8 7z" />
-                                </svg>
-                            </span>
-                        </span>
-                    </button>
 
                 </div>
             </form>
@@ -89,6 +72,7 @@ import { gsap } from "gsap";
 import PlaceholderJS from './../utils/placeholder.js';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMainStore } from '../stores/main.js'
+import PrimaryBTN from "./buttons/PrimaryBTN.vue";
 const store = useMainStore()
 const formButton = ref(null)
 const container = ref(null)
@@ -99,37 +83,7 @@ const formHeader = ref(null)
 
 let formTL
 
-const formHoverIn = () => {
-    if (!formTL) {
-        formTL = gsap.timeline({ paused: true })
 
-        formTL.set(formBlob.value, { opacity: 0, width: 0 })
-        formTL.set(formBlobInner.value, { x: '-2.5rem' })
-
-        formTL.to(formBlob.value, { opacity: 1, duration: 0.2 }, 0)
-        formTL.to(formLabel.value, { paddingRight: '2rem', duration: 0.2 }, 0)
-        formTL.fromTo(formBlobInner.value, { x: '-2.5rem' }, { x: 0, duration: 0.2, ease: 'power2.out' }, 0.1)
-        formTL.fromTo(formBlob.value, { width: 0 }, { width: '2.5rem', duration: 0.2, ease: 'power2.out' }, 0.1)
-        formTL.to(formLabel.value, {
-            borderTopRightRadius: '0.5rem',
-            borderBottomRightRadius: '0.5rem',
-            width: '80%',
-            duration: 0.2,
-            ease: 'power2.out'
-        }, 0.25)
-        formTL.to(formBlobInner.value, {
-            backgroundColor: 'transparent',
-            duration: 0.2,
-            ease: 'power3.out'
-        }, 0.5)
-    }
-
-    formTL.play()
-}
-
-const formHoverOut = () => {
-    formTL?.reverse()
-}
 
 function expandTextAreaPattern() {
 

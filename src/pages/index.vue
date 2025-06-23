@@ -18,7 +18,6 @@ import LogoGarden from '@/components/LogoGarden.vue'
 import FeaturedWork from '@/components/FeaturedWork.vue'
 import Contact from '@/components/Contact.vue';
 import Footer from '@/components/Footer.vue';
-import ReturningUser from '../components/contexts/ReturningUser.vue';
 import { useMainStore } from '@/stores/main';
 const work = ['glt','supply', 'dr-martens', 'dat'];
 const store = useMainStore()
@@ -37,6 +36,7 @@ const store = useMainStore()
     <FeaturedWork v-if="store.loaded" :featuredItems="work" />
     <Contact v-if="store.loaded" />
    <!-- <ReturningUser  v-if="store.ready && store.returning && store.showBooking"/>-->
+
     <Footer></Footer>
   </div>
 </template>

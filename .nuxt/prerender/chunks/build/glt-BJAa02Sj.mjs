@@ -1,8 +1,7 @@
 import { defineComponent, mergeProps, unref, ref, createVNode, resolveDynamicComponent, computed, useSSRContext } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderVNode, ssrInterpolate, ssrRenderAttr, ssrRenderClass, ssrRenderStyle, ssrRenderList } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
-import { h as useSeoMeta, u as useMainStore, I as InnerSecondaryNav, c as InnerNav, _ as _export_sfc, C as Contact, d as _sfc_main$2$1, g as _sfc_main$b$1 } from './server.mjs';
+import { i as useSeoMeta, u as useMainStore, I as InnerSecondaryNav, c as InnerNav, _ as _export_sfc, C as Contact, d as _sfc_main$2$1, h as _sfc_main$c$1, g as _sfc_main$5$1 } from './server.mjs';
 import { _ as _sfc_main$e, L as Links } from './Wordpress-Cvy7JlZE.mjs';
-import { M as MainButton } from './MainButton-ias2h7Y7.mjs';
 import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ofetch/dist/node.mjs';
 import '../_/nitro.mjs';
 import 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
@@ -104,7 +103,7 @@ const _sfc_main$c = {
         ref: overview,
         class: "overview flex-wrap max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 xl:px-26 mx-auto intro flex md:flex-row relative md:pb-16 justify-center"
       }, _attrs))}><div class="flex flex-col md:w-1/3 lg:w-1/4 py-6 side"><div class="w-full flex justify-between relative"><h4 class="text-2xl font-black w-full placeholder-line h3" data-splitting="words">Overview</h4>`);
-      _push(ssrRenderComponent(_sfc_main$b$1, {
+      _push(ssrRenderComponent(_sfc_main$c$1, {
         url: "https://github.com/msamricth/greenleadershiptrust",
         aria: "Green Leadership Trust's Github",
         class: "w-10 relative overview-git",
@@ -281,7 +280,7 @@ const _sfc_main$8 = {
         } else {
           _push(`<!---->`);
         }
-        _push(ssrRenderComponent(_sfc_main$b$1, {
+        _push(ssrRenderComponent(_sfc_main$c$1, {
           url: __props.repoUrl || defaultGistPage.value,
           aria: __props.Caption,
           class: "w-10 relative"
@@ -872,28 +871,28 @@ const _sfc_main$4 = {
         ref_key: "elm",
         ref: elm,
         class: "flex flex-col md:flex-row items-center lg:pr-24 justify-center py-14 md:py-0 lg:mt-40 md:min-h-[350vh] lg:min-h-[300vh] xl:min-h-[350vh] md:items-start relative w-full lg:py-20 lg:mb-40"
-      }, _attrs))}><div class="md:absolute w-full max-w-xl overflow-hidden md:w-1/2 md:h-dvh left-0 tl flex flex-col gap-12 order-2 md:order-1 lg:justify-center lg:max-w-1/2 lg:h-screen"><!--[-->`);
+      }, _attrs))}><div class="left-0 flex flex-col order-2 w-full max-w-xl gap-12 overflow-hidden md:absolute md:w-1/2 md:h-dvh tl md:order-1 lg:justify-center lg:max-w-1/2 lg:h-screen"><!--[-->`);
       ssrRenderList(__props.Images, (img, i) => {
         _push(`<img${ssrRenderAttr("src", img)} class="${ssrRenderClass(["results-image-" + i, "md:absolute top-0 left-0 w-full object-contain md:object-cover opacity-0 blur-xl h-full md:rounded-r-[3rem] tl md:h-[120vh]"])}">`);
       });
-      _push(`<!--]--></div><div class="w-full md:w-9/20 lg:max-w-2xl mb-12 text-container px-8 lg:px-12 pt-18 order-1 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:mx-auto"><h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">${ssrInterpolate(__props.heading)}</h4>`);
+      _push(`<!--]--></div><div class="order-1 w-full px-8 mb-12 md:w-9/20 lg:max-w-2xl text-container lg:px-12 pt-18 md:order-2 lg:min-h-dvh lg:flex lg:flex-col lg:justify-center lg:mx-auto"><h4 class="mb-3 text-2xl font-black placeholder-line" data-splitting="words">${ssrInterpolate(__props.heading)}</h4>`);
       if (__props.paragraph) {
-        _push(`<p class="text-xl mb-6 placeholder-line" data-splitting="words">${ssrInterpolate(__props.paragraph)}</p>`);
+        _push(`<p class="mb-6 text-xl placeholder-line" data-splitting="words">${ssrInterpolate(__props.paragraph)}</p>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<ul class="list-disc pl-6 space-y-1 lg:space-y-3"><!--[-->`);
+      _push(`<ul class="pl-6 mb-6 space-y-1 list-disc lg:space-y-3"><!--[-->`);
       ssrRenderList(__props.items, (item, i) => {
         _push(`<li class="text-sm lg:text-lg font-medium opacity-0 **:inline-flex **:flex-wrap" data-item data-splitting="words">${ssrInterpolate(item)}</li>`);
       });
       _push(`<!--]--></ul>`);
       if (__props.tags && __props.tags.length) {
-        _push(`<h5 class="text-xl my-6 placeholder-line" data-splitting="words">${ssrInterpolate(_ctx.tagIntro)}</h5>`);
+        _push(`<h5 class="my-6 text-xl placeholder-line" data-splitting="words">${ssrInterpolate(_ctx.tagIntro)}</h5>`);
       } else {
         _push(`<!---->`);
       }
       if (__props.tags && __props.tags.length) {
-        _push(`<ul class="flex gap-1 items-start flex-wrap"><!--[-->`);
+        _push(`<ul class="flex flex-wrap items-start gap-1"><!--[-->`);
         ssrRenderList(__props.tags, (tag, i) => {
           _push(`<li class="bg-primary rounded-[6rem] dark:bg-background inverted:bg-background py-2 px-3 inline w-content text-background dark:text-primary inverted:text-primary text-xs tags opacity-0">${ssrInterpolate(tag)}</li>`);
         });
@@ -902,11 +901,10 @@ const _sfc_main$4 = {
         _push(`<!---->`);
       }
       if (__props.buttonLabel && __props.buttonHref) {
-        _push(ssrRenderComponent(MainButton, {
-          onClick: () => _ctx.ctaClick(__props.buttonHref),
-          href: __props.buttonHref,
-          label: __props.buttonLabel,
-          class: "max-md:text-md min-w-[270px] md:min-w-[306px] text-electric-purple dark:text-accent mt-6 lg:mt-14 btn lg:mb-35"
+        _push(ssrRenderComponent(_sfc_main$5$1, {
+          class: "text-electric-purple dark:text-accent btn lg:mb-35",
+          label: "GLT's Website",
+          href: "https://greenleadershiptrust.org/"
         }, null, _parent));
       } else {
         _push(`<!---->`);
@@ -1071,7 +1069,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     const introData = data.intro;
     useMainStore();
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary" }, _attrs))}><div class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-24 pb-18 lg:pb-20">`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary overflow-x-clip" }, _attrs))}><div class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-24 pb-18 lg:pb-20">`);
       _push(ssrRenderComponent(InnerSecondaryNav, null, null, _parent));
       _push(`</div>`);
       _push(ssrRenderComponent(InnerNav, {
@@ -1150,4 +1148,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=glt-BIr3XHnG.mjs.map
+//# sourceMappingURL=glt-BJAa02Sj.mjs.map

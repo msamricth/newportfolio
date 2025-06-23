@@ -19,7 +19,7 @@ useHead({
         }
     ]
 })
-import { ref, computed, onMounted, watch, nextTick } from 'vue';
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import InnerSecondaryNav from '../../components/navigation/InnerSecondaryNav.vue'
 import InnerNav from '../../components/navigation/InnerNav.vue';
 import Contact from '../../components/Contact.vue';
@@ -33,6 +33,8 @@ import { useMainStore } from '../../stores/main.js';
 import videoHandler from '../../utils/videoHandler.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PlaceholderJS from '../../utils/placeholder.js'
+import PrimaryBTN from '../../components/buttons/PrimaryBTN.vue';
+
 const store = useWorkStore();
 import gsap from 'gsap';
 import { onBeforeRouteLeave } from 'vue-router';
@@ -496,7 +498,7 @@ stroke-dashoffset: 0;
 
                         <div class="flex flex-col flex-wrap gap-2 mt-6 group/ctas max-w-75 md:mt-0">
                             <div v-for="(button, btnIndex) in modalStore.modalItem.buttons" :key="btnIndex"
-                                class="flex items-center order-2 h-14 md:order-1">
+                                class="flex items-center order-2 py-2 h-18 md:order-1">
                                 <a v-if="button.github" :class="modalStore.modalItem.textColor"
                                     class="mr-4 transition rounded-full cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 hover:bg-current hover:rotate-270 group/git subtle-slide-in"
                                     style="--theme-main-animation-delay:0.6s" target="_blank"
@@ -517,37 +519,13 @@ stroke-dashoffset: 0;
                                         <g />
                                     </svg>
                                 </a>
-                                <a target="_blank" :href="button.url"
-                                    class="relative flex flex-wrap items-center overflow-hidden text-center transition cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 group/cta w-60 subtle-slide-in"
+                                  <PrimaryBTN :href="button.url"
+                        class="relative flex flex-wrap items-center overflow-hidden text-center transition cursor-pointer group-hover/ctas:opacity-40 group-hover/ctas:hover:opacity-100 group/cta w-60 subtle-slide-in"
                                     style="--theme-main-animation-delay:0.7s" :ref="el => {
                                         if (!buttonRefs[index]) buttonRefs[index] = [];
                                         buttonRefs[index][btnIndex] = el;
-                                    }" @mouseenter="hoverIn(index, btnIndex)" @mouseleave="hoverOut(index, btnIndex)">
-                                    <span
-                                        class="relative z-10 inline-block w-full px-4 py-2 font-semibold transition-all border-2 border-current rounded-full bg-inherit text-nowrap"
-                                        :ref="el => {
-                                            if (!labelRefs[index]) labelRefs[index] = [];
-                                            labelRefs[index][btnIndex] = el;
-                                        }">
-                                        {{ button.text }}
-                                    </span>
-                                    <span
-                                        class="absolute top-0 right-0 z-0 block w-0 h-full transition-all origin-left opacity-0 overflow-clip"
-                                        :ref="el => {
-                                            if (!blobRefs[index]) blobRefs[index] = [];
-                                            blobRefs[index][btnIndex] = el;
-                                        }">
-                                        <span :ref="el => {
-                                            if (!blobInnerRefs[index]) blobInnerRefs[index] = [];
-                                            blobInnerRefs[index][btnIndex] = el;
-                                        }"
-                                            class="z-0 flex items-center justify-center block w-10 h-full transition-all origin-left bg-current rounded-r-full">
-                                            <svg class="w-24 h-24 fill-current arrow" viewBox="0 0 24 24">
-                                                <path d="M8 5l8 7-8 7z" />
-                                            </svg>
-                                        </span>
-                                    </span>
-                                </a>
+                                    }"
+                        :label="button.text"  />
                             </div>
                             <div class="order-1 pl-2 my-6 max-w-75 md:mb-0 subtle-slide-in md:order-2"
                                 style="--theme-main-animation-delay:0.8s" v-if="modalStore.modalItem.tech">

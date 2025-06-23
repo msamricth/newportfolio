@@ -3,6 +3,7 @@
 /// <reference types="@nuxtjs/sitemap" />
 /// <reference types="@nuxt/devtools" />
 /// <reference types="@nuxt/telemetry" />
+/// <reference types="@nuxtjs/sitemap" />
 /// <reference path="types/builder-env.d.ts" />
 /// <reference types="nuxt" />
 /// <reference path="types/app-defaults.d.ts" />
