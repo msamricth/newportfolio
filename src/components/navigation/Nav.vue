@@ -1,37 +1,39 @@
 <template>
-    <div ref="sentinal"></div>
-    <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu" id="nav"
-        :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
-        <div
-            class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
-            <h2 ref="navBrand"
-                class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
-                :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
-                <a aria-label="Return Home" href="/" class="text-nowrap subtle-slide-in font-black block opacity-0"
-                    :class="{ 'animate': mainStore.loaded }" @mouseenter="onBrandHoverIn">
-                    hi, i’m Emm.</a>
-            </h2>
-            <nav ref="nav"
-                class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
-                :class="isSticky ? [''] : ['opacity-0']">
-                <NuxtLink
-                    class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/about" aria-label="Find out more about me!">
-                    <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
-                </NuxtLink>
-                <NuxtLink
-                    class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
-                    to="/work/" aria-label="View my featured work!">
-                    <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
-                </NuxtLink>
-                <a href="#sayHello"
-                    class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
-                    @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
-                    <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
-                </a>
-            </nav>
-        </div>
-    </header>
+    <div class="nav-wrapper">
+        <div ref="sentinal"></div>
+        <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu" id="nav"
+            :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
+            <div
+                class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
+                <h2 ref="navBrand"
+                    class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
+                    :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
+                    <a aria-label="Return Home" href="/" class="text-nowrap subtle-slide-in font-black block opacity-0"
+                        :class="{ 'animate': mainStore.loaded }" @mouseenter="onBrandHoverIn">
+                        hi, i’m Emm.</a>
+                </h2>
+                <nav ref="nav"
+                    class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
+                    :class="isSticky ? [''] : ['opacity-0']">
+                    <NuxtLink
+                        class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        to="/about" aria-label="Find out more about me!">
+                        <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
+                    </NuxtLink>
+                    <NuxtLink
+                        class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        to="/work/" aria-label="View my featured work!">
+                        <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
+                    </NuxtLink>
+                    <a href="#sayHello"
+                        class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
+                        @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
+                        <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
+                    </a>
+                </nav>
+            </div>
+        </header>
+    </div>
 </template>
 
 <script setup>

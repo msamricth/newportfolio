@@ -12,7 +12,9 @@ export const useMainStore = defineStore('main', {
         navOpen: false,
         reduceMotion: false,
         loaded: false,
-        ready:false
+        ready: false,
+        returning: false,
+        showBooking: true
     }),
 
     getters: {
@@ -40,20 +42,35 @@ export const useMainStore = defineStore('main', {
         toggleSliderArrowSticky() {
             this.sliderArrowSticky = !this.sliderArrowSticky
         },
-        setupDarkMode() {
+        setupStateManagement() {
             const storedUseMode = localStorage.getItem('useLightMode');
+            const storedHideBooking = localStorage.getItem('showBooking')
             this.useMode = storedUseMode === 'true';
-        
             const stored = localStorage.getItem('theme');
-        
+            if (localStorage.getItem('visited') === null) {
+                localStorage.setItem('visited', 'true');
+            } else {
+                this.returning = true
+            }
+            if (storedHideBooking) {
+                this.showBooking = false
+                this.returning = false
+            }
             if (!this.useMode) {
                 this.darkMode = 'clear';
                 document.body.classList.remove('dark');
                 return;
             }
-        
             this.darkMode = stored === 'dark' ? 'dark' : 'light';
             document.body.classList.toggle('dark', this.darkMode === 'dark');
+
+
+        },
+        hideBooking() {
+            localStorage.setItem('showBooking', 'false');
+            setTimeout(() => {
+                this.showBooking = false
+            }, 800)
         },
         toggleTheme(value) {
             if (!this.useMode) {
@@ -62,7 +79,7 @@ export const useMainStore = defineStore('main', {
                 localStorage.setItem('theme', 'clear');
                 return;
             }
-        
+
             this.darkMode = value ? 'dark' : 'light';
             localStorage.setItem('theme', this.darkMode);
             document.body.classList.toggle('dark', value);
@@ -71,7 +88,7 @@ export const useMainStore = defineStore('main', {
             this.useMode = !this.useMode
             localStorage.setItem('useLightMode', this.useMode);
         },
-        toggleReduceMotion(value){
+        toggleReduceMotion(value) {
             console.log(value)
             this.reduceMotion = value;
             localStorage.setItem('reduceMotion', this.reduceMotion);
@@ -80,7 +97,7 @@ export const useMainStore = defineStore('main', {
         initReduceMotion() {
             const stored = localStorage.getItem('reduceMotion');
             const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
-            if(stored){
+            if (stored) {
                 this.reduceMotion = stored;
                 return;
             }
@@ -88,29 +105,29 @@ export const useMainStore = defineStore('main', {
             mql.addEventListener('change', (e) => {
                 this.reduceMotion = e.matches
             })
-            
+
             document.body.classList.toggle('motionless', this.reduceMotion);
         },
         openNav() { this.navOpen = true },
         closeNav() { this.navOpen = false },
-        toggleFold(force = false, clear=null) {
+        toggleFold(force = false, clear = null) {
             if (this.useMode) return;
-                if (clear) {
-                    this.fold = false;
-                    document.body.classList.remove('dark');
-                    return;
-                }
-                if (force) {
-                    this.fold = true;
-                    document.body.classList.add('dark');
-                    return;
-                }
-                this.fold = !this.fold;
-                if (this.fold) {
-                    document.body.classList.add('dark');
-                } else {
-                    document.body.classList.remove('dark');
-                }
+            if (clear) {
+                this.fold = false;
+                document.body.classList.remove('dark');
+                return;
+            }
+            if (force) {
+                this.fold = true;
+                document.body.classList.add('dark');
+                return;
+            }
+            this.fold = !this.fold;
+            if (this.fold) {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
         }
     },
 });

@@ -12,9 +12,8 @@ onMounted(async () => {
   await nextTick()
   store.initReduceMotion()
   
-  store.setupDarkMode();
+  store.setupStateManagement();
   store.loaded = true
-  setTimeout(() => store.ready = true, 400)
 })
 
 </script>

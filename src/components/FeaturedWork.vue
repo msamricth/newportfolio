@@ -1,13 +1,12 @@
 <template>
-    <section ref="workSection" class="pt-20" id="work">
-        <div class="relative group overflow-x-clip pb-8 lg:pb-24">
+    <section ref="workSection" class="pt-20 overflow-x-clip" id="work">
+        <div class="relative pb-8 group lg:pb-24 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto px-8 lg:px-12">
             <div class="relative">
                 <WorkItem v-for="(w, index) in shuffledWork" :key="index" :item="w"
-                    :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" />
-                <div class="flex gap-2 group/ctas flex-wrap max-w-75 flex-col items-center md:items-end md:max-w-4xl mx-auto opacity-0 -translate-x-100" ref="button">
-
-                    <MainButton href="/work/" label="View all work" class="hover:text-accent" :delay="'0.7s'"
-                         />
+                    :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" />
+                <div class="flex flex-col flex-wrap items-center gap-2 mx-auto opacity-0 group/ctas max-w-75 md:items-end md:max-w-4xl -translate-x-100"
+                    ref="button">
+                    <MainButton href="/work/" label="View all work" class="hover:text-accent" :delay="'0.7s'" />
                 </div>
             </div>
 
@@ -36,7 +35,13 @@ const shuffledWork = ref([])
 
 
 
-
+const itemHref = (item) => {
+    if (item.caseStudy) {
+        return '/work/' + item.slug;
+    } else {
+        return '/work/'
+    }
+}
 
 const props = defineProps({
     featuredItems: Array,
@@ -57,15 +62,15 @@ const openWork = (item) => {
 watch(() => shuffledWork.value, async () => {
     await nextTick();
     gsap.timeline({
-                scrollTrigger: {
-                    trigger: button.value,
-                    start: 'top 70%',
-                    toggleActions: 'play none none reverse',
-                    once: false,
-                },
-            })
+        scrollTrigger: {
+            trigger: button.value,
+            start: 'top top',
+            toggleActions: 'play none none none',
+            once: false,
+        },
+    })
         .to(button.value, {
-             x: 0,
+            x: 0,
             autoAlpha: 1,
             duration: 0.6,
             ease: 'elastic.out(0.4)'
@@ -81,12 +86,14 @@ onMounted(async () => {
 
     ScrollTrigger.create({
         trigger: workSectionEl,
-        start: 'top 20%',
+        start: 'top 10%',
         end: 'bottom bottom',
         onEnter: () => {
             store.toggleFold(true)
             loaded.value = true;
-        }
+        },
+        onLeaveBack:()=>
+        store.toggleFold(false, true)
     });
 
 

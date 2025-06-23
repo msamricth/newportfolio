@@ -1,5 +1,6 @@
 const interopDefault = r => r.default || r || [];
 const styles = {
+<<<<<<< HEAD
   "../node_modules/nuxt/dist/app/entry.js": () => import('./entry-styles.Cytim9H2.mjs').then(interopDefault),
   "../node_modules/nuxt/dist/app/components/error-404.vue": () => import('./error-404-styles.CU5msRiA.mjs').then(interopDefault),
   "../node_modules/nuxt/dist/app/components/error-500.vue": () => import('./error-500-styles.QiudP5Ka.mjs').then(interopDefault),
@@ -16,15 +17,40 @@ const styles = {
   "components/Contact.vue?vue&type=style&index=0&scoped=d9fd3423&lang.css": () => import('./Contact-styles.OuOouSNQ.mjs').then(interopDefault),
   "components/navigation/InnerSecondaryNav.vue?vue&type=style&index=0&scoped=b88211d7&lang.css": () => import('./InnerSecondaryNav-styles.f8kpCAuT.mjs').then(interopDefault),
   "components/navigation/SecondaryNav.vue": () => import('./SecondaryNav-styles.DnZr1H0h.mjs').then(interopDefault),
+=======
+  "../node_modules/nuxt/dist/app/entry.js": () => import('./entry-styles.DOEkXI4R.mjs').then(interopDefault),
+  "pages/About.vue": () => import('./About-styles.B1LotiNk.mjs').then(interopDefault),
+  "components/navigation/Nav.vue": () => import('./Nav-styles.DchR9n4W.mjs').then(interopDefault),
+  "pages/About.vue?vue&type=style&index=0&scoped=1fa66a23&lang.css": () => import('./About-styles.CPg4PHPb.mjs').then(interopDefault),
+  "components/Contact.vue": () => import('./Contact-styles.D3bRuag7.mjs').then(interopDefault),
+  "components/navigation/InnerSecondaryNav.vue": () => import('./InnerSecondaryNav-styles.DHuCw6Gr.mjs').then(interopDefault),
+  "components/navigation/InnerNav.vue": () => import('./InnerNav-styles.Bm0l3YrK.mjs').then(interopDefault),
+  "components/navigation/InnerSecondaryNav.vue?vue&type=style&index=0&scoped=9ec407c2&lang.css": () => import('./InnerSecondaryNav-styles.Cb-rbSKM.mjs').then(interopDefault),
+  "components/Contact.vue?vue&type=style&index=0&scoped=c9c4ad23&lang.css": () => import('./Contact-styles.CgdH-uuM.mjs').then(interopDefault),
+  "components/contexts/hero/SceneLoader.vue": () => import('./SceneLoader-styles.toGSbGkW.mjs').then(interopDefault),
+  "components/navigation/SecondaryNav.vue": () => import('./SecondaryNav-styles.CHyCipxC.mjs').then(interopDefault),
+>>>>>>> 33819c2039ce9a0becc820c9f2d00c748d6349b7
   "components/contexts/hero/SceneTetris.vue": () => import('./SceneTetris-styles.B0pcrcFZ.mjs').then(interopDefault),
   "components/contexts/hero/SceneLoader.vue?vue&type=style&index=0&scoped=277426d2&lang.css": () => import('./SceneLoader-styles.To3UL7jI.mjs').then(interopDefault),
   "components/contexts/hero/SceneUX.vue": () => import('./SceneUX-styles.DwHAjgJL.mjs').then(interopDefault),
+<<<<<<< HEAD
   "components/buttons/MainButton.vue": () => import('./MainButton-styles.Cff04G2G.mjs').then(interopDefault),
   "components/navigation/SecondaryNav.vue?vue&type=style&index=0&scoped=e82f1e98&lang.css": () => import('./SecondaryNav-styles.D7epdGbx.mjs').then(interopDefault),
+=======
+  "components/buttons/MainButton.vue": () => import('./MainButton-styles.B9SMCUTB.mjs').then(interopDefault),
+  "components/contexts/WorkItem.vue": () => import('./WorkItem-styles.DD3ZH2G3.mjs').then(interopDefault),
+  "components/navigation/Hamburger.vue": () => import('./Hamburger-styles.DCTeTSOn.mjs').then(interopDefault),
+  "components/contexts/Lyric.vue": () => import('./Lyric-styles.Ci8itkMq.mjs').then(interopDefault),
+  "components/navigation/Nav.vue?vue&type=style&index=0&scoped=781871b5&lang.css": () => import('./Nav-styles.BMsN3_aV.mjs').then(interopDefault),
+  "components/navigation/InnerNav.vue?vue&type=style&index=0&scoped=a3543719&lang.css": () => import('./InnerNav-styles.iXbRzp2H.mjs').then(interopDefault),
+  "components/contexts/hero/SceneLoader.vue?vue&type=style&index=0&scoped=277426d2&lang.css": () => import('./SceneLoader-styles.To3UL7jI.mjs').then(interopDefault),
+  "components/navigation/SecondaryNav.vue?vue&type=style&index=0&scoped=b86ce407&lang.css": () => import('./SecondaryNav-styles.B0leTdlU.mjs').then(interopDefault),
+>>>>>>> 33819c2039ce9a0becc820c9f2d00c748d6349b7
   "components/contexts/hero/SceneTetris.vue?vue&type=style&index=0&scoped=1061e326&lang.css": () => import('./SceneTetris-styles.eEjdOGUx.mjs').then(interopDefault),
   "components/navigation/InnerNav.vue?vue&type=style&index=0&scoped=b445ff04&lang.css": () => import('./InnerNav-styles.EJb4LEqD.mjs').then(interopDefault),
   "components/contexts/WorkItem.vue": () => import('./WorkItem-styles.Dau6IsDN.mjs').then(interopDefault),
   "components/contexts/hero/SceneUX.vue?vue&type=style&index=0&scoped=152fc8be&lang.css": () => import('./SceneUX-styles.CONJ3xyT.mjs').then(interopDefault),
+<<<<<<< HEAD
   "components/buttons/MainButton.vue?vue&type=style&index=0&scoped=2d997889&lang.css": () => import('./MainButton-styles.DYBfsZqY.mjs').then(interopDefault),
   "components/contexts/WorkItem.vue?vue&type=style&index=0&scoped=08d776ed&lang.css": () => import('./WorkItem-styles.CVbVnWfg.mjs').then(interopDefault),
   "components/navigation/Hamburger.vue": () => import('./Hamburger-styles.kdiGOZTu.mjs').then(interopDefault),
@@ -32,6 +58,13 @@ const styles = {
   "components/contexts/Lyric.vue": () => import('./Lyric-styles.Ci8itkMq.mjs').then(interopDefault),
   "components/contexts/Gist.vue": () => import('./Gist-styles.v6kwXFrf.mjs').then(interopDefault),
   "components/contexts/Lyric.vue?vue&type=style&index=0&scoped=6fbcb141&lang.css": () => import('./Lyric-styles.BFh6gyLt.mjs').then(interopDefault),
+=======
+  "components/contexts/WorkItem.vue?vue&type=style&index=0&scoped=16915099&lang.css": () => import('./WorkItem-styles.BwoRSjFl.mjs').then(interopDefault),
+  "components/buttons/MainButton.vue?vue&type=style&index=0&scoped=a706f20d&lang.css": () => import('./MainButton-styles.t_eFt800.mjs').then(interopDefault),
+  "components/navigation/Hamburger.vue?vue&type=style&index=0&scoped=ad68b8a7&lang.css": () => import('./Hamburger-styles.C95U_BHr.mjs').then(interopDefault),
+  "components/contexts/Lyric.vue?vue&type=style&index=0&scoped=6fbcb141&lang.css": () => import('./Lyric-styles.BFh6gyLt.mjs').then(interopDefault),
+  "components/contexts/Gist.vue": () => import('./Gist-styles.v6kwXFrf.mjs').then(interopDefault),
+>>>>>>> 33819c2039ce9a0becc820c9f2d00c748d6349b7
   "components/contexts/Gist.vue?vue&type=style&index=0&scoped=5423065b&lang.css": () => import('./Gist-styles.CdqDNhkr.mjs').then(interopDefault),
   "components/icons/Fire.vue": () => import('./Fire-styles.rB-4PJDN.mjs').then(interopDefault),
   "components/contexts/Testimonial.vue": () => import('./Testimonial-styles.CtxFwIlv.mjs').then(interopDefault),
