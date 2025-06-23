@@ -19,7 +19,7 @@ export function buildTetrisTL(container) {
             duration: 0.6,
             ease: 'power1.out'
 
-        })
+        },"-=0.6")
         tetrisTL.fromTo(
             "#tetris-line path",
             {
@@ -149,8 +149,6 @@ export function buildTetrisTL(container) {
         );
         //end tetris
     }
-
-
     tl.set("#tetris-stack", {
         y: "-200px",
     })
@@ -189,7 +187,7 @@ export function buildTetrisTL(container) {
                 duration: 0.8,
                 ease: 'elastic.out(0.9)'
             },
-            `Enter+=${i * 0.25}`
+            `Enter+=${(i * 0.25) + 0.6}`
         );
     });
     tl.to(['#bridges', '#design'], {

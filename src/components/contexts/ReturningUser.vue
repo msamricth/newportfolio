@@ -65,11 +65,11 @@ onMounted(async () => {
 
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-
-        onUnmounted(() => {
-            window.removeEventListener('scroll', handleScroll);
-        });
-
+        if (store.ready) {
+            onUnmounted(() => {
+                window.removeEventListener('scroll', handleScroll);
+            });
+        }
         gsap.to(bookingAlert.value, {
             scrollTrigger: {
                 trigger: bookingAlertContainer.value, // Or a specific element

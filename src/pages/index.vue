@@ -28,15 +28,15 @@ const store = useMainStore()
 <template>
   <div
     class="relative transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary overflow-x-clip">
-    <div class="overflow-clip">
+    <div class="">
       <HomeHero />
       <Nav v-show="store.loaded"></Nav>
     </div>
     <About />
     <LogoGarden v-if="store.loaded" />
     <FeaturedWork v-if="store.loaded" :featuredItems="work" />
-    <Contact v-if="store.loaded" v-show="!store.showBooking" />
-    <ReturningUser  v-if="store.ready && store.returning && store.showBooking"/>
+    <Contact v-if="store.loaded" />
+   <!-- <ReturningUser  v-if="store.ready && store.returning && store.showBooking"/>-->
     <Footer></Footer>
   </div>
 </template>
