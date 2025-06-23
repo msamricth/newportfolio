@@ -24,6 +24,7 @@ interface _GlobalComponents {
     'ButtonsGithub': typeof import("../src/components/buttons/Github.vue")['default']
     'ButtonsLinkedIn': typeof import("../src/components/buttons/LinkedIn.vue")['default']
     'ButtonsMainButton': typeof import("../src/components/buttons/MainButton.vue")['default']
+    'ButtonsPrimaryBTN': typeof import("../src/components/buttons/PrimaryBTN.vue")['default']
     'ButtonsTooltips': typeof import("../src/components/buttons/Tooltips.vue")['default']
     'CarouselsFeaturedWork': typeof import("../src/components/carousels/FeaturedWork.vue")['default']
     'CarouselsTestimonials': typeof import("../src/components/carousels/Testimonials.vue")['default']
@@ -117,6 +118,7 @@ interface _GlobalComponents {
     'LazyButtonsGithub': LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
     'LazyButtonsLinkedIn': LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
     'LazyButtonsMainButton': LazyComponent<typeof import("../src/components/buttons/MainButton.vue")['default']>
+    'LazyButtonsPrimaryBTN': LazyComponent<typeof import("../src/components/buttons/PrimaryBTN.vue")['default']>
     'LazyButtonsTooltips': LazyComponent<typeof import("../src/components/buttons/Tooltips.vue")['default']>
     'LazyCarouselsFeaturedWork': LazyComponent<typeof import("../src/components/carousels/FeaturedWork.vue")['default']>
     'LazyCarouselsTestimonials': LazyComponent<typeof import("../src/components/carousels/Testimonials.vue")['default']>
@@ -216,6 +218,7 @@ export const ButtonsClose: typeof import("../src/components/buttons/Close.vue")[
 export const ButtonsGithub: typeof import("../src/components/buttons/Github.vue")['default']
 export const ButtonsLinkedIn: typeof import("../src/components/buttons/LinkedIn.vue")['default']
 export const ButtonsMainButton: typeof import("../src/components/buttons/MainButton.vue")['default']
+export const ButtonsPrimaryBTN: typeof import("../src/components/buttons/PrimaryBTN.vue")['default']
 export const ButtonsTooltips: typeof import("../src/components/buttons/Tooltips.vue")['default']
 export const CarouselsFeaturedWork: typeof import("../src/components/carousels/FeaturedWork.vue")['default']
 export const CarouselsTestimonials: typeof import("../src/components/carousels/Testimonials.vue")['default']
@@ -309,6 +312,7 @@ export const LazyButtonsClose: LazyComponent<typeof import("../src/components/bu
 export const LazyButtonsGithub: LazyComponent<typeof import("../src/components/buttons/Github.vue")['default']>
 export const LazyButtonsLinkedIn: LazyComponent<typeof import("../src/components/buttons/LinkedIn.vue")['default']>
 export const LazyButtonsMainButton: LazyComponent<typeof import("../src/components/buttons/MainButton.vue")['default']>
+export const LazyButtonsPrimaryBTN: LazyComponent<typeof import("../src/components/buttons/PrimaryBTN.vue")['default']>
 export const LazyButtonsTooltips: LazyComponent<typeof import("../src/components/buttons/Tooltips.vue")['default']>
 export const LazyCarouselsFeaturedWork: LazyComponent<typeof import("../src/components/carousels/FeaturedWork.vue")['default']>
 export const LazyCarouselsTestimonials: LazyComponent<typeof import("../src/components/carousels/Testimonials.vue")['default']>

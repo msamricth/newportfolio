@@ -25,7 +25,7 @@
                             bender, I
                             specialize in crafting digital systems that are fast, accessible, and built to last.</p>
                     </div>
-                    <MainButton href="/about"
+                    <PrimaryBTN href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"
                         label="What drives me" :onClick="() => openAbout()" :delay="'0.7s'" />
                 </div>
@@ -46,6 +46,7 @@ const { $gsap: gsap } = useNuxtApp()
 import { useMainStore } from '../../stores/main.js';
 import PlaceholderJS from './../../utils/placeholder.js';
 import MainButton from './../buttons/MainButton.vue'
+import PrimaryBTN from '../buttons/PrimaryBTN.vue';
 import { navigateTo } from '#imports';
 import Artisan from './Artisan.vue';
 const store = useMainStore()
