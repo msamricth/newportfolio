@@ -17,14 +17,10 @@ import { useMainStore } from '../stores/main.js'
 const shuffledLogos = ref([])
 const store = useMainStore()
 const garden = ref(null)
+let tl
 onMounted(async () => {
   shuffledLogos.value = [...logos].sort(() => Math.random() - 0.5)
   await nextTick()
-  if (!garden.value) return
-  const logoEls = garden.value.querySelectorAll('.logo-garden img')
-
-
-
 })
 watch(
   () => store.loaded,
@@ -32,6 +28,10 @@ watch(
     if (!loaded) return
     if (!store.reduceMotion) {
       await logoAnims()
+    } else {
+      if(!garden.value) return
+      const logoEls = garden.value.querySelectorAll('img')
+      logoEls.forEach(logo => lazyLoad(logo))
     }
   },
   { immediate: true }
@@ -39,35 +39,44 @@ watch(
 watch(
   () => store.reduceMotion,
   async (reduceMotion) => {
-    if (!reduceMotion) return
-
-    if (!store.reduceMotion)  await logoAnims()
+    await nextTick()
     if (store.reduceMotion) {
-      if(!garden.value) return
-      const logoEls = garden.value.querySelectorAll('.logo-garden img')
-      gsap.fromTo(
-        logoEls,
-        {
-          clearProps:'all'
-        })
+      if (!garden.value) return
+      const logoEls = garden.value.querySelectorAll('img')
+      tl?.kill()
+      logoEls.forEach(logo => {
+        logo.removeAttribute = "style"
+      });
+    } else {
+      await logoAnims()
     }
   },
   { immediate: true }
 )
+function lazyLoad(imgElm) {
+  if (imgElm && imgElm.dataset.src) {
+    imgElm.src = img.dataset.src
+    imgElm.removeAttribute('data-src')
+  }
 
+}
 async function logoAnims() {
   await nextTick()
   if (!garden.value) return
   const logoEls = garden.value.querySelectorAll('.logo-garden img')
-  gsap.fromTo(
+  tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.logo-garden',
+      start: 'top 80%',
+      toggleActions: 'play none none none',
+    },
+  })
+  tl.fromTo(
     logoEls,
     {
       autoAlpha: 0, y: 40,
       onStart: () => {
-        if (logoEls && logoEls.dataset.src) {
-          logoEls.src = img.dataset.src
-          logoEls.removeAttribute('data-src')
-        }
+        lazyLoad(logoEls)
       },
     },
     {
@@ -76,11 +85,6 @@ async function logoAnims() {
       stagger: 0.1,
       duration: 0.6,
       ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '.logo-garden',
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
     }
   )
 }

@@ -124,7 +124,24 @@ export default class textAnim {
   seek(position: number | string): void {
     this.timeline?.seek(position)
   }
+  kill(): void {
+    this.timeline?.kill()
+    this.timeline = null
 
+    const el = this.el
+    if (!el || typeof el.querySelector !== 'function') return
+
+    const h = el.querySelector('h4.placeholder-line')
+    const h5 = el.querySelector('h5.placeholder-line')
+    const p = el.querySelector('p.placeholder-line')
+    const btn = el.querySelector('.btn')
+    const items = el.querySelectorAll('.list-disc li')
+    const tagEls = el.querySelectorAll('.tags')
+
+    gsap.set([h, h5, p, btn], { clearProps: 'all' })
+    items.forEach((li) => gsap.set(li, { clearProps: 'all' }))
+    tagEls.forEach((tag) => gsap.set(tag, { clearProps: 'all' }))
+  }
   getTimeline(): Timeline | null {
     return this.timeline
   }

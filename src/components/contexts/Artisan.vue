@@ -6,8 +6,7 @@
             <h3 class="text-2xl font-semibold leading-snug font-heading lg:text-3xl placeholder-line"
                 data-splitting="words">
                 Code artisan forging WordPress & Vue.js experiences by day,
-                crafting dirt jumps & trails for bikes by night—
-                UX zeal meets mud-and-grit creativity.
+                crafting dirt jumps & trails for bikes by night. UX zeal meets mud & grit creativity.
             </h3>
             <div class="swing-in-left-fwd h-[4px] bg-border dark:bg-background inverted:bg-background inverted:dark:bg-border transition duriation-900 mt-4 delay-700 motionless:opacity-100"
                 :class="isArtisan ? ['animate'] : ['opacity-0']"></div>
@@ -48,7 +47,8 @@ async function artisanAnim() {
     const artisanEl = artisan.value;
     const artisanElHeadline = artisanEl.querySelector('h3');
     const artisanElHeadlineAnim = new PlaceholderJS(artisanElHeadline, { manual: true });
-    artisanElHeadlineAnim.getTimeline().progress(1).reverse();
+     //artisanElHeadlineAnim.update()
+    //artisanElHeadlineAnim.getTimeline().progress(1).reverse();
     const ST = ScrollTrigger.create({
         trigger: artisanEl,
         start: 'top 85%',
@@ -76,9 +76,9 @@ watch(
 watch(
     () => store.reduceMotion,
     async (reduceMotion) => {
-        if (!reduceMotion) return
-        console.log('')
+        await nextTick()
         await artisanAnim()
+        if (!reduceMotion) return
         if (store.reduceMotion) scrolltriggers.forEach(trigger => trigger?.kill())
     },
     { immediate: true }

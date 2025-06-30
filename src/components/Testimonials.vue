@@ -12,39 +12,27 @@
             <div v-for="(t, index) in loop" :key="index"
                 class="relative flex flex-col items-start justify-between mb-8 testimonial-row w-fit group testimonal-card">
                 <div class="flex-grow **:transition-all py-6">
-                    <p class="text-lg font-semibold opacity-0 text-primary dark:text-background placeholder-line" data-splitting="words">{{ t.name }}</p>
+                    <p class="text-lg font-semibold opacity-0 text-primary dark:text-background placeholder-line"
+                        data-splitting="words">{{ t.name }}</p>
                     <p class="mb-3 text-xs text-gray-500 opacity-0 placeholder-line" data-splitting="words">{{ t.title
                     }}</p>
                     <p v-for="(p, index) in getExcerptParagraphs(t.bodyPlain)" :key="index"
-                        class="mb-6 text-sm opacity-0 text-primary dark:text-background placeholder-line last:mb-0" data-splitting="words">
+                        class="mb-6 text-sm opacity-0 text-primary dark:text-background placeholder-line last:mb-0"
+                        data-splitting="words">
                         {{ p }}
                     </p>
                 </div>
-                <Links href="#" text="Read More" :noEntry="true" :onClick="() => openModal(t)"
-                    class="mb-6 text-sm md:mb-0" />
+                <Links href="#" text="Read More" :onClick="() => openModal(t)" class="mb-6 text-sm lg:mb-0" />
                 <div
                     class="lg:absolute lg:-right-7 lg:top-15 card-border swing-in-responsive w-full  origin-center h-[3px] lg:w-[3px] lg:h-[75%] bg-current/20 transition duriation-900 animate group-last:hidden">
                 </div>
             </div>
         </div>
+        <Modal :isOpen="!!modalOpen" @close="closeModal" contentClass="bg-gray-800 text-white">
+            <Testimonial :name="selectedTestimonial.name" :title="selectedTestimonial.title"
+                :quote="selectedTestimonial.body" :active="true" class="modal-contant" />
+        </Modal>
 
-        <div v-if="selectedTestimonial" ref="modalContainer"
-            class="fixed inset-0 top-0 z-50 py-5 overflow-y-auto opacity-0 bg-primary/60 backdrop-blur lg:p-5 lg:pb-15 overflow-x-clip"
-            @click.self="closeModal">
-            <div
-                class="bg-white dark:bg-gray-800 rounded-lg  lg:rounded-[3rem] lg:max-w-5xl xl:max-w-7xl w-full mx-auto p-6 lg:p-12 relative mt-10 modal-window origin-top">
-                <button
-                    class="absolute top-1 z-20 right-1 text-3xl cursor-pointer transition duration-700 text-current hover:text-accent rounded-[3rem] px-6 py-3 hover:scale-[1.08] group size-18 flex flex-col justify-center items-center hover:rotate-270 modal-contant"
-                    @click="closeModal" aria-label="Close modal">
-                    <span
-                        class="w-10 h-[4px] bg-current block rotate-45 rounded-[3rem] absolute left-4 group-hover:-rotate-135 transition-all duration-700"></span>
-                    <span
-                        class="w-10 h-[4px] bg-current block -rotate-45 rounded-[3rem] absolute left-4 group-hover:rotate-135 transition-all duration-700"></span>
-                </button>
-                <Testimonial :name="selectedTestimonial.name" :title="selectedTestimonial.title"
-                    :quote="selectedTestimonial.body" active="true" class="modal-contant" />
-            </div>
-        </div>
     </section>
 </template>
 
@@ -52,11 +40,13 @@
 import { ref, onMounted, nextTick, watch } from 'vue'
 import PlaceholderJS from '@/utils/placeholder.js'
 import { testimonials } from '@/data/testimonials.js'
-import Testimonial from './contexts/Testimonial.vue'
+import Testimonial from '@/components/contexts/Testimonial.vue'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import Modal from '@/components/contexts/Modal.vue'
 import { useNuxtApp } from '#app'
 import { useMainStore } from '@/stores/main.js'
-import Links from './Links.vue'
+import Links from '@/components/Links.vue'
+import { AnimationFrame } from '@/utils/AnimationFrame'
 
 const modalContainer = ref(null)
 const { $gsap: gsap } = useNuxtApp()
@@ -66,6 +56,10 @@ const loop = ref([])
 const selectedTestimonial = ref(null)
 const excerptLength = 700
 const store = useMainStore()
+const modalOpen = ref(false)
+
+const sectionTriggers = []
+const sectionTimelines = []
 
 function getExcerpt(text) {
     return text.slice(0, excerptLength) + '...'
@@ -79,11 +73,9 @@ function getExcerptParagraphs(paragraphs) {
         if (remaining <= 0) break
 
         if (p.length <= remaining) {
-            // take the entire paragraph
             out.push(p)
             remaining -= p.length
         } else {
-            // this paragraph would exceed the limit, so slice it
             out.push(p.slice(0, remaining) + "…")
             remaining = 0
             break
@@ -93,45 +85,46 @@ function getExcerptParagraphs(paragraphs) {
     return out
 }
 function openModal(testimonial) {
+    modalOpen.value = true
     selectedTestimonial.value = testimonial
-    document.body.style.overflow = 'hidden'
-
-    nextTick(() => {
-        const elm = modalContainer.value
-        if (!elm && store.reduceMotion) return
-        const el = elm.querySelector('.modal-window')
-        const elC = elm.querySelector('.modal-contant')
-        //gsap.set(el, { transformOrigin: '50% 0%', scaleY: 0.3, scaleX: 1.2, skewX: -12, skewY: 8 })
-        const tl = gsap.timeline()
-        tl.fromTo(elm, {
-            autoAlpha: 0,
-            filter: 'blur(40px)'
-        }, {
-            autoAlpha: 1,
-            filter: 'none',
-            duration: 0.4,
-            ease: 'power1.out'
+    // document.body.style.overflow = 'hidden'
+    /*
+        nextTick(() => {
+            const elm = modalContainer.value
+            if (!elm && store.reduceMotion) return
+            const el = elm.querySelector('.modal-window')
+            const elC = elm.querySelector('.modal-contant')
+            const tl = gsap.timeline()
+            tl.fromTo(elm, {
+                autoAlpha: 0,
+                filter: 'blur(40px)'
+            }, {
+                autoAlpha: 1,
+                filter: 'none',
+                duration: 0.4,
+                ease: 'power1.out'
+            })
+            tl.fromTo(el, {
+                scale: 0,
+            }, {
+                scale: 1,
+                duration: 0.6,
+                ease: 'elastic.out(0.9)'
+            }, '-=0.2')
+            tl.fromTo(elC, {
+                filter: 'blur(40px)',
+            }, {
+                filter: 'none',
+                duration: 0.6,
+                ease: 'power1.inOut'
+            }, '-=0.3')
         })
-        tl.fromTo(el, {
-            scale: 0,
-        }, {
-            scale: 1,
-            duration: 0.6,
-            ease: 'elastic.out(0.9)'
-        }, '-=0.2')
-        tl.fromTo(elC, {
-            filter: 'blur(40px)',
-        }, {
-            filter: 'none',
-            duration: 0.6,
-            ease: 'power1.inOut'
-        }, '-=0.3')
-
-    })
+        */
 }
-
 function closeModal() {
     const elm = modalContainer.value
+    modalOpen.value = false
+    /*
     if (elm && !store.reduceMotion) {
         const el = elm.querySelector('.modal-window')
         const elC = elm.querySelector('.modal-contant')
@@ -169,62 +162,94 @@ function closeModal() {
         }, '-=0.6')
         return
     }
+        */
     selectedTestimonial.value = null
-    document.body.style.overflow = ''
+    //document.body.style.overflow = ''
+}
+
+async function initTestimonialAnimations() {
+    if (!testimonialSection.value || store.reduceMotion) return
+
+    const cards = testimonialSection.value.querySelectorAll('.testimonal-card')
+    if (!cards.length) return
+
+    cards.forEach(card => {
+        const phEls = card.querySelectorAll('.placeholder-line')
+        const phInstances = Array.from(phEls).map((el) => new PlaceholderJS(el, { manual: true, speed: 0.5 }))
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                end: 'bottom 60%',
+                onEnter: () => {
+                    store.toggleFold(true)
+                    phInstances.forEach((pH, i) => {
+                        AnimationFrame(()=>{pH.play()}, i * 150)
+                    })
+                },
+                onEnterBack: () => {
+                    store.toggleFold(false, true)
+                    phInstances.forEach((pH, i) => {
+                        AnimationFrame(()=>{pH.play()}, i * 150)
+                    })
+                },
+                onLeaveBack: () => {
+                    phInstances.forEach((pH, i) => {
+                        if (pH.getTimeline()) {
+                            AnimationFrame(()=>{pH.getTimeline().reverse()}, i * 150)
+                        } else {
+                            pH.update()
+                        }
+                    })
+                }
+            }
+        })
+            .fromTo(
+                card,
+                { y: 40, autoAlpha: 0 },
+                {
+                    y: 0,
+                    autoAlpha: 1,
+                    duration: 0.4,
+                    ease: 'power1.out',
+
+                }
+            )
+
+        sectionTimelines.push(tl)
+        sectionTriggers.push(ScrollTrigger.getById(card) || ScrollTrigger.getAll().slice(-1)[0])
+    })
 }
 
 onMounted(async () => {
-  // 1) populate and wait a tick so that `.testimonal-card` exists
-  loop.value = testimonials.map(t => ({ ...t })).sort(() => Math.random() - 0.5)
-  await nextTick()
-
-  const testimonialSectionEl = testimonialSection.value
-  const cards = testimonialSectionEl.querySelectorAll('.testimonal-card')
-  if (!cards.length) return
-
-  cards.forEach(card => {
-    const phEls = card.querySelectorAll('.placeholder-line')
-  const phInstances = Array.from(phEls).map((el) => new PlaceholderJS(el, { manual: true, speed: 0.5 }))
-    gsap.fromTo(
-      card,
-      { y: 40, autoAlpha: 0 },
-      {
-        y: 0,
-        autoAlpha: 1,
-        duration: 0.4,
-        ease: 'power1.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 80%',
-          end: 'bottom 60%',
-          onEnter: () => {
-          store.toggleFold(true)
-            // Staggered pH.play() calls
-            phInstances.forEach((pH, i) => {
-              setTimeout(() => pH.play(), i * 150)
-            })
-          },
-          onEnterBack: () => {
-            store.toggleFold(false, true)
-            phInstances.forEach((pH, i) => {
-              setTimeout(() => pH.play(), i * 150)
-            })
-          },
-          onLeaveBack: () => {
-           // store.toggleFold(false, true)
-            phInstances.forEach((pH, i) => {
-              setTimeout(() => pH.getTimeline().reverse(), i * 150)
-            })
-          }
-        }
-      }
-    )
-  })
-
-  //  since each card’s own timeline will reverse its placeholders for you.)
+    loop.value = testimonials.map(t => ({ ...t })).sort(() => Math.random() - 0.5)
+    await nextTick()
+    // await initTestimonialAnimations()
 })
 
+watch(() => store.ready, async (ready) => {
+    if (!ready || store.reduceMotion) return
+    await nextTick()
+    await initTestimonialAnimations()
+}, { immediate: true })
 
+watch(() => store.reduceMotion, async (rm) => {
+    await nextTick()
+    if (!rm) {
+        await initTestimonialAnimations()
+    } else {
+        sectionTriggers.forEach(t => t?.kill())
+        sectionTimelines.forEach(tl => tl?.kill())
+        sectionTriggers.length = 0
+        sectionTimelines.length = 0
+
+        // Clear gsap styles
+        testimonialSection.value?.querySelectorAll('.testimonal-card')?.forEach(el => {
+            gsap.set(el, { clearProps: 'all' })
+        })
+    }
+}, { immediate: true })
 </script>
 
 <style scoped></style>

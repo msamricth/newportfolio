@@ -1,10 +1,10 @@
 <template>
-    <div class="absolute top-0 h-dvh w-full flex flex-col justify-center items-center pointer-events-none left-0"
-         v-show="!store.ready" :class="store.loaded ? 'disapear-up opacity-0' : 'appear-up'">
+    <div class="absolute top-0 left-0 flex flex-col items-center justify-center w-full pointer-events-none min-h-dvh"
+         v-show="!store.ready" :class="store.loaded ? 'disapear opacity-0' : ''">
         <svg width="300" height="217" viewBox="0 0 1061 770" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="relative w-1/2 max-w-100">
             <g clip-path="url(#clip0_7_2)">
-                <g class="origin-center animate-spin opacity-25">
+                <g class="origin-center opacity-25 animate-spin">
                     <g clip-path="url(#paint0_angular_7_2_clip_path)" data-figma-skip-parse="true">
                         <g transform="matrix(0 0.361 -0.361 0 531 384)">
                             <foreignObject x="-1138.5" y="-1138.5" width="2277.01" height="2277.01">
@@ -29,7 +29,7 @@
                     <path d="M531 745V720C345.432 720 195 569.568 195 384H170H145C145 597.182 317.818 770 531 770V745Z"
                         data-figma-gradient-fill="{&#34;type&#34;:&#34;GRADIENT_ANGULAR&#34;,&#34;stops&#34;:[{&#34;color&#34;:{&#34;r&#34;:1.0,&#34;g&#34;:0.53725492954254150,&#34;b&#34;:0.58431375026702881,&#34;a&#34;:1.0},&#34;position&#34;:0.91756075620651245}],&#34;stopsVar&#34;:[{&#34;color&#34;:{&#34;r&#34;:1.0,&#34;g&#34;:0.53725492954254150,&#34;b&#34;:0.58431375026702881,&#34;a&#34;:1.0},&#34;position&#34;:0.91756075620651245}],&#34;transform&#34;:{&#34;m00&#34;:4.4209753045920674e-14,&#34;m01&#34;:-722.0,&#34;m02&#34;:892.0,&#34;m10&#34;:722.0,&#34;m11&#34;:4.4209753045920674e-14,&#34;m12&#34;:22.999948501586914},&#34;opacity&#34;:1.0,&#34;blendMode&#34;:&#34;NORMAL&#34;,&#34;visible&#34;:true}" />
                 </g>
-                <g class="jello-horizontal relative object-contain object-center origin-center">
+                <g class="relative object-contain object-center origin-center jello-horizontal">
                     <mask id="mask0_7_2" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="351" y="229"
                         width="361" height="310">
                         <path d="M351 229H711.561V539H351V229Z" fill="white" />

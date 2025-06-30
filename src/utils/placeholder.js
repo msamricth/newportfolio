@@ -33,22 +33,23 @@ export default class PlaceholderJS {
 
     _watchReduceMotion() {
         if (!this.refs?.reduceMotion) return;
-      
+
         this._unwatchReduce = watch(
-          this.refs.reduceMotion,
-          (newVal, oldVal) => {
-            if (newVal !== oldVal) {
-           //   console.log(newVal)
-           //   console.log(this.refs.reduceMotion)
-            }
-          },
-          { immediate: false }
+            this.refs.reduceMotion,
+            (newVal, oldVal) => {
+                if (newVal !== oldVal) {
+                    this.update()
+                    //   console.log(newVal)
+                    //   console.log(this.refs.reduceMotion)
+                }
+            },
+            { immediate: false }
         );
-      }
+    }
     _split(force = false) {
-        
-       // console.log('_split '+ this.store?.reduceMotion)
-       if (this.store?.reduceMotion === true && !force) return;
+
+        // console.log('_split '+ this.store?.reduceMotion)
+        if (this.store?.reduceMotion === true && !force) return;
 
         if (this.el.classList.contains('splitted') && !force) {
             this.words = this.el.querySelectorAll('.word');
@@ -58,14 +59,14 @@ export default class PlaceholderJS {
         const results = Splitting({ target: this.el, by: 'words' });
         const res = results.find(r => r.el === this.el);
         this.words = res.words;
-     //   console.log('_split this.words '+ this.words)
+        //   console.log('_split this.words '+ this.words)
         this.el.classList.add('splitted');
     }
 
-    _injectPlaceholders(force=false) {
+    _injectPlaceholders(force = false) {
 
-        
-       // console.log('_injectPlaceholders '+ this.store?.reduceMotion)
+
+        // console.log('_injectPlaceholders '+ this.store?.reduceMotion)
         if (this.store?.reduceMotion === true) return;
         if (this.el.classList.contains('placeholder-added') && !force) {
             const words = this.words ?? Array.from(this.el.querySelectorAll('.word'));
@@ -80,8 +81,8 @@ export default class PlaceholderJS {
             word.appendChild(ph);
             return ph;
         });
-        
-      //  console.log('_injectPlaceholders this.placeholders'+ this.placeholders)
+
+        //  console.log('_injectPlaceholders this.placeholders'+ this.placeholders)
         this.el.classList.add('placeholder-added')
     }
 
@@ -145,28 +146,33 @@ export default class PlaceholderJS {
     update() {
         if (this.timeline) this.timeline.kill();
         this.timeline = null;
-      //  console.log('update '+ this.store?.reduceMotion)
+        //  console.log('update '+ this.store?.reduceMotion)
         if (this.store?.reduceMotion === true) {
             this.placeholders?.forEach(ph => ph?.remove?.());
             this.placeholders = [];
             this.words?.forEach(w => w.removeAttribute?.('style'));
             this.el.removeAttribute?.('style');
-            this.el.classList.remove('placeholder-added'); 
+            this.el.classList.remove('placeholder-added');
             return;
-          }
+        }
         this._split(true);
         this._injectPlaceholders(true);
         this._buildTimeline();
     }
     getTimeline() {
+        if (!this.timeline) { this.update(); return }
         return this.timeline;
     }
 
     play() {
-        this.timeline.play();
+        if (!this.timeline) {
+            this.update();
+            return
+        }
+        this.timeline?.play();
     }
 
     reverse() {
-        this.timeline.reverse();
+        this.timeline?.reverse();
     }
 }

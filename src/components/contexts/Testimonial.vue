@@ -1,43 +1,41 @@
 <template>
-  <div
-    class="mx-auto transition-all duration-700" ref="testimonial">
+  <div class="mx-auto transition-all duration-700" ref="testimonial">
     <div class="flex items-center gap-4 mb-4">
       <div>
-        <h3 class="text-lg xl:text-xl 2xl:text-2xl font-semibold text-primary dark:text-background transition-all duration-700 placeholder-line"
+        <h3
+          class="text-lg font-semibold transition-all duration-700 xl:text-xl 2xl:text-2xl text-background placeholder-line"
           data-splitting="words">
           {{ name }}
         </h3>
-        <p class="text-sm xl:-text-lg 2xl:text-base text-gray-600 dark:text-background/60 transition-all duration-700 placeholder-line"
+        <p class="text-sm transition-all duration-700 xl:-text-lg 2xl:text-base text-background/60 placeholder-line"
           data-splitting="words">
           {{ title }}
         </p>
       </div>
     </div>
-    <div class="flex items-stretch relative h-full mb-4 gap-6">
-      <div
-        class="w-3 bg-primary dark:bg-background transition-all duration-700 bq-border min-h-full swing-in-top-bck">
+    <div class="relative flex items-stretch h-full gap-6 mb-4">
+      <div class="w-3 min-h-full transition-all duration-700 bg-background bq-border swing-in-top-bck motionless:opacity-100" :class="{'animate': store.reduceMotion}">
       </div>
 
       <blockquote
-        class="text-xs md:text-base xl:text-lg 2xl:text-xl leading-relaxed transition-all duration-700 placeholder-line italic font-heading font-normal tracking-wide"
-        data-splitting="words" v-html="quote"></blockquote>
+        class="text-xs italic font-thin leading-relaxed tracking-wide transition-all duration-700 md:text-base xl:text-lg 2xl:text-xl"
+        v-html="quote"></blockquote>
     </div>
 
-    <a href="https://www.linkedin.com/in/emmtalarico/details/recommendations/?detailScreenTabIndex=0" target="_blank"
-      rel="noopener noreferrer"
-      class="animated-link group transition duration-700 overflow-hidden inline-block text-primary dark:text-background hover:scale-[1.08] text-sm xl:text-base 2xl:text-lg dark:group-hover:text-electric-purple group-hover:text-accent"
-      ref="linkEl" @mouseenter="onHoverIn" @mouseleave="onHoverOut">
-      View on LinkedIn →
-    </a>
+    <Links text="View on LinkedIn →" href="https://www.linkedin.com/in/emmtalarico" target="_blank"
+      class="mb-6 text-sm lg:mb-0" />
+
   </div>
 </template>
 
 <script setup>
 import { ref, watch, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
-import Splitting from './../../utils/splitting'
-import PlaceholderJS from './../../utils/placeholder.js'
-
+import Links from '@/components/Links.vue'
+import Splitting from '@/utils/splitting'
+import PlaceholderJS from '@/utils/placeholder.js'
+import { useMainStore } from '@/stores/main.js'
+const store = useMainStore()
 const props = defineProps({
   name: String,
   title: String,
@@ -54,7 +52,7 @@ let titlePlaceholder = null
 let bqBorder = null
 let chars = []
 
-const animateAll = () => {
+const animateAll = async () => {
   const el = testimonial.value
   if (!el) return
 
@@ -62,7 +60,7 @@ const animateAll = () => {
 
   const h4 = el.querySelector('h3.placeholder-line')
   if (h4) {
-    headingPlaceholder = new PlaceholderJS(h4, { manual: true, speed: 6 })
+    headingPlaceholder = new PlaceholderJS(h4, { manual: true, speed: 1 })
 
     headingPlaceholder.getTimeline()?.progress(1).reverse()
     masterTL.add(() => { if (props.active) headingPlaceholder.play() }, 0)
@@ -70,7 +68,7 @@ const animateAll = () => {
 
   const p = el.querySelector('p.placeholder-line')
   if (p) {
-    titlePlaceholder = new PlaceholderJS(p, { manual: true, speed: 6 })
+    titlePlaceholder = new PlaceholderJS(p, { manual: true, speed: 1 })
     titlePlaceholder.getTimeline()?.progress(1).reverse()
     masterTL.add(() => { if (props.active) titlePlaceholder.play() }, '+=0.2')
   }
@@ -78,12 +76,10 @@ const animateAll = () => {
   const paragraphs = el.querySelectorAll('blockquote p') || []
   bqBorder = el.querySelector('.bq-border')
   paragraphs.forEach((pEl, i) => {
-    masterTL.fromTo(
-      pEl,
-      { y: 40, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, ease: 'power3.out', duration: 0.2 },
-      `+=${i === 0 ? 0.3 : 0.1}`
-    )
+    masterTL.call(() => {
+      const bqAnim = new PlaceholderJS(pEl, { manual: true, speed: 0.2 })
+      bqAnim.play()
+    }, null, `+=${i === 0 ? 0.3 : 0.1}`)
   })
   if (bqBorder) {
     masterTL.add(() => {
@@ -115,12 +111,13 @@ const animateAll = () => {
 
 onMounted(async () => {
   await nextTick()
-  animateAll()
+  if (!store.loaded || store.reduceMotion) return
+  await animateAll()
   if (props.active) masterTL?.play()
 })
 
 watch(() => props.active, (isActive) => {
-  if (!masterTL) return
+  if (!masterTL || store.reduceMotion) return
 
   if (isActive) {
     masterTL.timeScale(1).play()
@@ -131,7 +128,6 @@ watch(() => props.active, (isActive) => {
     masterTL.timeScale(2).reverse()
     headingPlaceholder.getTimeline()?.progress(1).reverse()
     titlePlaceholder.getTimeline()?.progress(1).reverse()
-
   }
 })
 
@@ -147,7 +143,7 @@ const onHoverIn = () => {
     {
       x: 0,
       y: 0,
-      className: 'char dark:group-hover:text-electric-purple group-hover:text-accent',
+      className: 'char group-active:text-electric-purple group-hover:text-accent',
       ease: 'power3.out',
       duration: 0.5,
       stagger: { amount: 0.3, from: 'random' },
@@ -162,7 +158,7 @@ const onHoverOut = () => {
     {
       x: () => gsap.utils.random(-50, 50),
       y: () => gsap.utils.random(-40, 0),
-      className: 'char dark:group-hover:text-electric-purple group-hover:text-accent',
+      className: 'char group-active:text-electric-purple group-hover:text-accent',
     },
     {
       x: 0,

@@ -13,7 +13,7 @@ useHead({
 })
 import Nav from '@/components/navigation/Nav.vue';
 import HomeHero from '@/components/contexts/HomeHero.vue';
-import About from '@/components/contexts/Intro.vue'
+import Intro from '@/components/contexts/Intro.vue'
 import LogoGarden from '@/components/LogoGarden.vue'
 import FeaturedWork from '@/components/FeaturedWork.vue'
 import Contact from '@/components/Contact.vue';
@@ -31,7 +31,7 @@ const store = useMainStore()
       <HomeHero />
       <Nav v-show="store.loaded"></Nav>
     </div>
-    <About />
+    <Intro />
     <LogoGarden v-if="store.loaded" />
     <FeaturedWork v-if="store.loaded" :featuredItems="work" />
     <Contact v-if="store.loaded" />

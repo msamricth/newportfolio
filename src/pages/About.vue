@@ -18,15 +18,18 @@ useHead({
 
 })
 
-import Preloader from '../components/Preloader.vue';
-import InnerSecondaryNav from '../components/navigation/InnerSecondaryNav.vue'
-import InnerNav from '../components/navigation/InnerNav.vue';
-import Lyric from '../components/contexts/Lyric.vue';
-import AboutContent from '../components/contexts/About.vue';
-import Testimonials from '../components/Testimonials.vue';
-import Offerings from '../components/contexts/Offerings.vue';
-import Contact from '../components/Contact.vue';
-import Footer from '../components/Footer.vue';
+import Preloader from '@/components/Preloader.vue';
+import InnerSecondaryNav from '@/components/navigation/InnerSecondaryNav.vue'
+import InnerNav from '@/components/navigation/InnerNav.vue';
+import Lyric from '@/components/contexts/Lyric.vue';
+import AboutContent from '@/components/contexts/About.vue';
+import Testimonials from '@/components/Testimonials.vue';
+import Offerings from '@/components/contexts/Offerings.vue';
+import Contact from '@/components/Contact.vue';
+import Footer from '@/components/Footer.vue';
+import { storeToRefs } from 'pinia';
+import { useMainStore } from '@/stores/main';
+const store = useMainStore()
 </script>
 <template>
   <div
@@ -43,7 +46,7 @@ import Footer from '../components/Footer.vue';
     </div>
     <Testimonials />
     <Offerings />
-    <Lyric class="my-20 lg:mt-34" />
+    <Lyric class="my-20 lg:mt-34" v-if="!store.reduceMotion" />
     <Contact />
     <Footer />
   </div>

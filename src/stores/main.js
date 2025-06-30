@@ -48,6 +48,19 @@ export const useMainStore = defineStore('main', {
             const storedReducedMotion = localStorage.getItem('reduceMotion');
             this.useMode = storedUseMode === 'true';
             const stored = localStorage.getItem('theme');
+            if (storedReducedMotion !== null) {
+                this.reduceMotion = storedReducedMotion === 'true';
+            } else {
+                const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+                this.reduceMotion = mql.matches;
+
+                mql.addEventListener('change', (e) => {
+                    this.reduceMotion = e.matches;
+                    localStorage.setItem('reduceMotion', String(this.reduceMotion));
+                });
+            }
+
+
             if (localStorage.getItem('visited') === null) {
                 localStorage.setItem('visited', 'true');
             } else {
@@ -63,21 +76,6 @@ export const useMainStore = defineStore('main', {
             }
             this.darkMode = stored === 'dark' ? 'dark' : 'light';
             document.body.classList.toggle('dark', this.darkMode === 'dark');
-            if (storedReducedMotion !== null) {
-                this.reduceMotion = storedReducedMotion === 'true';
-            } else {
-                const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
-                this.reduceMotion = mql.matches;
-            
-                mql.addEventListener('change', (e) => {
-                    this.reduceMotion = e.matches;
-                    localStorage.setItem('reduceMotion', String(this.reduceMotion));
-                });
-            }
-
-            console.log('this.reduceMotion: '+this.reduceMotion)
-
-            console.log('storedReducedMotion: '+ storedReducedMotion)
             document.body.classList.toggle('motionless', this.reduceMotion);
 
         },
@@ -107,6 +105,8 @@ export const useMainStore = defineStore('main', {
             this.reduceMotion = !this.reduceMotion;
             localStorage.setItem('reduceMotion', String(this.reduceMotion));
             document.body.classList.toggle('motionless', this.reduceMotion);
+            console.log('this.reduceMotion: ' + this.reduceMotion)
+
         },
         openNav() { this.navOpen = true },
         closeNav() { this.navOpen = false },

@@ -1,4 +1,3 @@
-// useMatchMedia.ts
 import { onMounted, onBeforeUnmount, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'

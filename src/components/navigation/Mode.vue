@@ -2,7 +2,7 @@
     <button
         class="motion inline-flex items-start cursor-pointer relative group/reduceMotion max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
  transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in hover:text-accent icon-btn h-8 w-8"
-        :class="!store.reduceMotion ? 'text-sunburn-orange' : ''"
+        :class="!store.reduceMotion && store.loaded ? 'text-sunburn-orange' : ''"
         @click.prevent="store.toggleReduceMotion()">
         <Motion
             class="group-hover/secondaryNav:opacity-80 absolute top-0 left-0 w-full h-full z-0 transition-all group-hover/reduceMotion:scale-[1.25] duration-700 text-current" />

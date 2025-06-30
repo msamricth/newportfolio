@@ -10,7 +10,7 @@ export function buildTetrisTL(container) {
         '#bridges span, #design span'
     );
     //Tetris bro
-    tetrisTL.timeScale(2)
+    tetrisTL.timeScale(3)
     if (tetris) {
 
         tetrisTL.to(tetris, {
@@ -210,7 +210,7 @@ export function buildTetrisTL(container) {
         'Enter+2.5'
     );
 
-    tl.addLabel("introFinishing", "+=4")
+    tl.addLabel("introFinishing", "+=0.4")
 
     tl.to(
         ['#bridges', '#works'], { x: 40, repeat: 2, yoyo: true, duration: 0.8, },

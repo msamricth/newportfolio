@@ -18,7 +18,7 @@
   --color-sunburn-orange: #E5742C;
   --color-toxic-mint: #33D6BB;
 
-
+  --breakpoint-smd: 90rem;
 
   --font-heading: "Baloo 2", cursive;
   --font-main: "Nunito Sans", sans-serif;
@@ -68,13 +68,17 @@
     @apply font-heading;
   }
 
-  h1, .h1,
-  h2, .h2,
-  h3, .h3 {
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3 {
     font-weight: var(--font-weight-black);
   }
 
-  h4, .h4 {
+  h4,
+  .h4 {
     font-weight: 300;
   }
 
@@ -108,6 +112,7 @@
   .divider {
     border-color: var(--color-border);
   }
+
   .placeholder-line .word {
     display: inline-block;
     position: relative;
@@ -115,31 +120,42 @@
     white-space: nowrap;
   }
 
-  
 
-/*I hate !importants - will fix this with something better soon*/
-  .motionless 
-  .placeholder-line .word {
+
+  /*I hate !importants - will fix this with something better soon*/
+  .motionless .placeholder-line .word {
     color: currentColor !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
-  .motionless 
-  .placeholder-line{
+
+  .motionless .placeholder-line {
     opacity: 1 !important;
     visibility: visible !important;
   }
+
   .motionless .placeholder {
     opacity: 0 !important;
   }
-/*end ugly !importants */
+
+  /*end ugly !importants */
 
   .placeholder-line {
     @apply opacity-0 motion-reduce:opacity-1;
   }
+
+  .split-chars {
+    @apply text-start flex **:**:inline-flex justify-center md:justify-start gap-2
+  }
+
+  .split-chars .word {
+    @apply relative inline-block whitespace-nowrap;
+  }
+
   .motionless .placeholder-line {
     opacity: 1;
   }
+
   .placeholder-line .word .placeholder {
     position: absolute;
     top: 8%;
@@ -166,8 +182,6 @@
   }
 
   .headingClass {
-    @apply mb-6 lg:mb-18;
-
     -webkit-transform-origin: 0% 50%;
     transform-origin: 0% 50%;
   }
@@ -249,7 +263,7 @@
 
   @media screen and (min-width:778px) {
     .icon-wipe-overlay path {
-      transition: stroke-dashoffset 0.9s ease-in-out;
+      transition: stroke-dashoffset 0.45s ease-in-out;
     }
   }
 }

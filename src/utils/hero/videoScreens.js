@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import PlaceholderJS from '@/utils/placeholder';
+import { layer1, layer2, layer3, layer4, layer5, layer6, layer7 } from '@/utils/hero/video-movie';
 
 gsap.registerPlugin(DrawSVGPlugin);
 
@@ -8,14 +9,42 @@ export function buildVideoTL(container, reducedMotion = false) {
     const scope = container
     if (!container) return;
     const tl = gsap.timeline();
-
+    tl.timeScale(1.1)
     const videoScreens = scope.querySelector('.video-screens');
     const videoScreen = scope.querySelector('#video-screen');
     const sliderArrow = scope.querySelector('#sliderArrow');
     const progressCircle = scope.querySelector('#progressCircle');
     const impactEl = scope.querySelector('#impact');
-    const impact = new PlaceholderJS(impactEl, { manual: true, speed: 4 });
+    const impact = new PlaceholderJS(impactEl, { manual: true, speed: 1 });
     const impactTL = impact.getTimeline();
+    const movieTl = gsap.timeline({
+        repeat: 3,
+        paused: true,
+        yoyo: true,
+        defaults: {
+            duration: 0.5,
+            ease: "power1.inOut"
+        }
+    });
+    const layers = [layer1, layer2, layer3, layer4, layer5, layer6, layer7];
+    const totalFrames = Math.max(...layers.map((arr) => arr.length));
+
+
+
+    for (let frame = 0; frame < totalFrames; frame++) {
+        layers.forEach((shapes, i) => {
+            const id = `#layer-${i + 1}`;
+            if (shapes[frame]) {
+                movieTl.to(
+                    id,
+                    {
+                        morphSVG: shapes[frame]
+                    },
+                    frame * 0.5
+                );
+            }
+        });
+    }
 
     const length = progressCircle.getTotalLength();
     gsap.set(progressCircle, { drawSVG: "0%" });
@@ -29,8 +58,8 @@ export function buildVideoTL(container, reducedMotion = false) {
         .fromTo(
             "#video-big",
             { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 1.2, ease: "power1.out" },
-            "videoStart+=0.2"
+            { drawSVG: "100%", duration: 0.6, ease: "power1.out" },
+            "videoStart+=0.12"
         )
         .to(
             "#video-play-circle",
@@ -40,7 +69,7 @@ export function buildVideoTL(container, reducedMotion = false) {
         .fromTo(
             "#video-play-circle",
             { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.6, ease: "power1.out" },
+            { drawSVG: "100%", duration: 0.3, ease: "power1.out" },
             "videoStart+=0.8"
         )
         .fromTo(
@@ -49,7 +78,7 @@ export function buildVideoTL(container, reducedMotion = false) {
             {
                 autoAlpha: 1,
                 scale: 1,
-                duration: 0.8,
+                duration: 0.4,
                 ease: "elastic.out(0.9)"
             },
             "videoStart+=1"
@@ -57,13 +86,13 @@ export function buildVideoTL(container, reducedMotion = false) {
 
     tl.to(videoScreen, {
         y: 60,
-        duration: 0.4,
+        duration: 0.3,
         ease: "back.inOut(0.7)"
     }, "videoStart+=1")
 
     tl.call(() => {
         impactTL.play(0)
-    }, null, "videoStart+=1.2")
+    }, null, "videoStart+=1")
         .to(
             "#video-lines path",
             { y: 5, duration: 0.8, ease: "power1.out" },
@@ -138,13 +167,22 @@ export function buildVideoTL(container, reducedMotion = false) {
             },
             "videoStart+=3.9"
         )
+        .to("#video-movie", {
+            autoAlpha: 1,
+            duration: 0.3, ease: "power1.out",
+        },
+            "videoStart+=4.2")
+        .call(() => {
+            movieTl.play(0)
+        }, null,
+            "videoStart+=4.2")
         .to(
-            "#video-big",
+            "#layer-2",
             { attr: { fill: "#E5742C" }, duration: 0.8, ease: "power1.out" },
             "videoStart+=4.6"
         )
         .to(
-            "#video-big",
+            "#layer-1",
             { attr: { fill: "#E2556C" }, duration: 0.8, ease: "power1.out" },
             "videoStart+=5.8"
         )
@@ -156,6 +194,17 @@ export function buildVideoTL(container, reducedMotion = false) {
             { attr: { fill: "#A66EFF" }, duration: 0.8, ease: "power1.out" },
             "videoStart+=6.6"
         )
+
+        .to("#video-movie", {
+            autoAlpha: 0,
+            filter: 'blur(15px)',
+            duration: 0.3, ease: "power1.out",
+        },
+            "videoStart+=6.6")
+        .call(() => {
+            movieTl.kill()
+        }, null,
+            "videoStart+=6.6")
         .to(
             "#video-big",
             {

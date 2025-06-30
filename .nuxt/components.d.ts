@@ -50,9 +50,11 @@ interface _GlobalComponents {
     'ContextsReturningUser': typeof import("../src/components/contexts/ReturningUser.vue")['default']
     'ContextsTestimonial': typeof import("../src/components/contexts/Testimonial.vue")['default']
     'ContextsWorkItem': typeof import("../src/components/contexts/WorkItem.vue")['default']
+    'ContextsWorkModalContent': typeof import("../src/components/contexts/WorkModalContent.vue")['default']
     'ContextsHeroSceneLoader': typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']
     'ContextsHeroSceneTetris': typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']
     'ContextsHeroSceneUX': typeof import("../src/components/contexts/hero/SceneUX.vue")['default']
+    'ContextsHeroSceneUXIcons': typeof import("../src/components/contexts/hero/SceneUXIcons.vue")['default']
     'ContextsHeroSceneVideo': typeof import("../src/components/contexts/hero/SceneVideo.vue")['default']
     'IconsAPI': typeof import("../src/components/icons/API.vue")['default']
     'IconsActionNetwork': typeof import("../src/components/icons/ActionNetwork.vue")['default']
@@ -145,9 +147,11 @@ interface _GlobalComponents {
     'LazyContextsReturningUser': LazyComponent<typeof import("../src/components/contexts/ReturningUser.vue")['default']>
     'LazyContextsTestimonial': LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
     'LazyContextsWorkItem': LazyComponent<typeof import("../src/components/contexts/WorkItem.vue")['default']>
+    'LazyContextsWorkModalContent': LazyComponent<typeof import("../src/components/contexts/WorkModalContent.vue")['default']>
     'LazyContextsHeroSceneLoader': LazyComponent<typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']>
     'LazyContextsHeroSceneTetris': LazyComponent<typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']>
     'LazyContextsHeroSceneUX': LazyComponent<typeof import("../src/components/contexts/hero/SceneUX.vue")['default']>
+    'LazyContextsHeroSceneUXIcons': LazyComponent<typeof import("../src/components/contexts/hero/SceneUXIcons.vue")['default']>
     'LazyContextsHeroSceneVideo': LazyComponent<typeof import("../src/components/contexts/hero/SceneVideo.vue")['default']>
     'LazyIconsAPI': LazyComponent<typeof import("../src/components/icons/API.vue")['default']>
     'LazyIconsActionNetwork': LazyComponent<typeof import("../src/components/icons/ActionNetwork.vue")['default']>
@@ -246,9 +250,11 @@ export const ContextsOfferings: typeof import("../src/components/contexts/Offeri
 export const ContextsReturningUser: typeof import("../src/components/contexts/ReturningUser.vue")['default']
 export const ContextsTestimonial: typeof import("../src/components/contexts/Testimonial.vue")['default']
 export const ContextsWorkItem: typeof import("../src/components/contexts/WorkItem.vue")['default']
+export const ContextsWorkModalContent: typeof import("../src/components/contexts/WorkModalContent.vue")['default']
 export const ContextsHeroSceneLoader: typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']
 export const ContextsHeroSceneTetris: typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']
 export const ContextsHeroSceneUX: typeof import("../src/components/contexts/hero/SceneUX.vue")['default']
+export const ContextsHeroSceneUXIcons: typeof import("../src/components/contexts/hero/SceneUXIcons.vue")['default']
 export const ContextsHeroSceneVideo: typeof import("../src/components/contexts/hero/SceneVideo.vue")['default']
 export const IconsAPI: typeof import("../src/components/icons/API.vue")['default']
 export const IconsActionNetwork: typeof import("../src/components/icons/ActionNetwork.vue")['default']
@@ -341,9 +347,11 @@ export const LazyContextsOfferings: LazyComponent<typeof import("../src/componen
 export const LazyContextsReturningUser: LazyComponent<typeof import("../src/components/contexts/ReturningUser.vue")['default']>
 export const LazyContextsTestimonial: LazyComponent<typeof import("../src/components/contexts/Testimonial.vue")['default']>
 export const LazyContextsWorkItem: LazyComponent<typeof import("../src/components/contexts/WorkItem.vue")['default']>
+export const LazyContextsWorkModalContent: LazyComponent<typeof import("../src/components/contexts/WorkModalContent.vue")['default']>
 export const LazyContextsHeroSceneLoader: LazyComponent<typeof import("../src/components/contexts/hero/SceneLoader.vue")['default']>
 export const LazyContextsHeroSceneTetris: LazyComponent<typeof import("../src/components/contexts/hero/SceneTetris.vue")['default']>
 export const LazyContextsHeroSceneUX: LazyComponent<typeof import("../src/components/contexts/hero/SceneUX.vue")['default']>
+export const LazyContextsHeroSceneUXIcons: LazyComponent<typeof import("../src/components/contexts/hero/SceneUXIcons.vue")['default']>
 export const LazyContextsHeroSceneVideo: LazyComponent<typeof import("../src/components/contexts/hero/SceneVideo.vue")['default']>
 export const LazyIconsAPI: LazyComponent<typeof import("../src/components/icons/API.vue")['default']>
 export const LazyIconsActionNetwork: LazyComponent<typeof import("../src/components/icons/ActionNetwork.vue")['default']>

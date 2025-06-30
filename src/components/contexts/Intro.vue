@@ -21,7 +21,8 @@
                             developer with a passion for clean code, bold design, and building things that actually
                             work both on
                             screen. With deep experience in WordPress, Vue.js, and the occasional Tailwind
-                            bender, I specialize in crafting digital systems that are fast, accessible, and built to last.</p>
+                            bender, I specialize in crafting digital systems that are fast, accessible, and built to
+                            last.</p>
                     </div>
                     <PrimaryBTN href="/about"
                         class="btn text-primary dark:text-background inverted:text-background inverted:dark:text-primary hover:text-accent subtle-slide-in"
@@ -59,8 +60,8 @@ const openAbout = () => {
 const sectionTriggers = []
 const sectionTimelines = []
 const placeholderInstances = []
-function introAnims() {
-    // await nextTick();
+async function introAnims() {
+    await nextTick();
     if (!section.value) return;
 
     const sectionEl = section.value;
@@ -78,8 +79,7 @@ function introAnims() {
     });
     sectionTriggers.push(bqTrigger);
 
-
-    placeholderInstances.push(new PlaceholderJS(introduction, { scrub: true, speed: 2 }));
+    new PlaceholderJS(introduction, { scrub: true, speed: 2 });
 
 
     listItems.forEach((li, i) => {
@@ -98,10 +98,10 @@ function introAnims() {
         });
         sectionTimelines.push(tl);
         sectionTriggers.push(tl.scrollTrigger);
-        placeholderInstances.push(new PlaceholderJS(li, { scrub: true, speed: 3 }));
+        new PlaceholderJS(li, { scrub: true, speed: 3 });
     });
 
-    placeholderInstances.push(new PlaceholderJS(subtitle, { scrub: true, speed: 2, start: 'top 70%' }))
+    new PlaceholderJS(subtitle, { scrub: true, speed: 2, start: 'top 70%' })
 
     if (btn) {
         const btnTL = gsap.timeline({
@@ -119,7 +119,7 @@ function introAnims() {
             duration: 0.3, ease: 'power2.out',
         }, 0);
 
- 
+
 
 
         btnTL.call(() => btn.classList.add('wobble-ver-right'), null, "+=0.2");
@@ -140,9 +140,10 @@ watch(
 watch(
     () => store.reduceMotion,
     async (reduceMotion) => {
+        await nextTick()
+        await introAnims()
+
         if (!reduceMotion) return
-        await nextTick
-        introAnims()
         if (store.reduceMotion) {
             sectionTriggers.forEach(trigger => trigger?.kill());
             sectionTimelines.forEach(tl => tl?.kill());

@@ -1,7 +1,7 @@
 <template>
-    <section ref="container" class="absolute z-40 flex items-center w-full h-dvh md:justify-center animate subtle-slide-in">
-        <div class="absolute flex flex-wrap justify-center hero-icon-wrap max-md:w-full">
-            <div class="relative flex justify-between gap-5 mx-auto md:gap-12" ref="icons">
+    <section ref="container" class="absolute z-40 flex items-center w-full bg-transparent h-dvh md:justify-center animate subtle-slide-in">
+        <div class="absolute flex flex-wrap justify-center bg-transparent hero-icon-wrap max-md:w-full">
+            <div class="relative flex justify-between gap-5 mx-auto bg-transparent md:gap-12" ref="icons">
                 <div class="origin-center decor main-icon">
                     <Mixer class="h-auto transition-all" width="120" height="120"
                         style="--theme-main-animation-delay: 100ms"
@@ -103,7 +103,7 @@ onMounted(async () => {
                     iconsRP.to(iconEl, {
                         y: 50,
                         x: 10,
-                        duration: 0.6,
+                        duration: 0.5,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
 
@@ -112,7 +112,7 @@ onMounted(async () => {
                     iconsRP.to(iconEl, {
                         x: 0,
                         y: -90,
-                        duration: 0.6,
+                        duration: 0.5,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
                     break;
@@ -120,7 +120,7 @@ onMounted(async () => {
                     iconsRP.to(iconEl, {
                         y: 50,
                         x: -10,
-                        duration: 0.6,
+                        duration: 0.5,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
                     break;
@@ -128,20 +128,19 @@ onMounted(async () => {
         });
         heroAnim.call(() => {
             iconsRP.play()
-            store.ready = true
         }, null, 0)
 
-        heroAnim.addLabel('iconsRotate', '+=1')
+        heroAnim.addLabel('iconsRotate', '+=0.5')
         heroAnim.to(iconsContainer, {
             rotation: 360,
-            duration: 2.5,
+            duration: 2,
             repeatDelay: 0,
             ease: 'power1.inOut',
         }, 'iconsRotate')
 
         heroAnim.to(iconsEl, {
             rotation: '-360deg',
-            duration: 2.5,
+            duration: 2,
             ease: 'power1.inOut'
         }, 'iconsRotate')
 
@@ -159,7 +158,7 @@ onMounted(async () => {
                     {
                         x: i => {
                             const t = i / 9
-                            const turns = 3
+                            const turns = 2
                             const θ = 2 * Math.PI * turns * t
                             const b = 40
                             const r = b * θ
@@ -176,10 +175,10 @@ onMounted(async () => {
                         duration: 2,
                         ease: 'power1.out',
                     }, "-=0.9")
-            }, null)
+            }, null,'-=0.3')
             .call(() => {
-                store.toggleFold(true)
-            }, null, "+=0.2")
+              if(!store.reduceMotion)  store.toggleFold(true)
+            }, null, "-=0.2")
         heroAnim.play()
     }
 })
@@ -208,32 +207,17 @@ watch(
                 duration: 0.6,
                 ease: 'power1.inOut'
             }, "+=0.6").to(
-                container.value.querySelectorAll('.decor'),
-                {
-                    x: i => {
-                        const t = i / 9
-                        const turns = 1
-                        const θ = 2 * Math.PI * turns * t
-                        const b = 45
-                        const r = b * θ
-                        return Math.cos(θ) * r
-                    },
-                    y: i => {
-                        const t = i / 9
-                        const turns = 2
-                        const θ = 2 * Math.PI * turns * t
-                        const b = 22.5
-                        const r = b * θ
-                        return Math.sin(θ) * r
-                    },
-                    duration: 2,
-                    ease: 'power1.out',
-                }, "-=0.9")
+                    container.value.querySelectorAll('.decor'),
+                    {
+                        autoAlpha:0,
+                        duration: 0.6,
+                        ease: 'power1.out',
+                    }, "+=0")
         }, null).to(container.value, {
             autoAlpha: 0,
             duration: 0.8,
             ease: 'power1.out'
-        }, "+=1.8")
+        }, "+=1.5")
     }
 )
 </script>
