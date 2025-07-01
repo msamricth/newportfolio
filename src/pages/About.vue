@@ -37,17 +37,17 @@ const store = useMainStore()
     <div
       class="utilities max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto pt-9 lg:pt-12 pb-18 lg:pb-20"
       ref="utilityBar">
-      <InnerSecondaryNav />
+      <InnerSecondaryNav v-if="store.loaded"  />
     </div>
-    <InnerNav title="About" brandLabel="hi, i'm emm." brandURL="/" />
+    <InnerNav title="About" brandLabel="hi, i'm emm." brandURL="/" v-if="store.loaded" />
     <Preloader />
     <div class="flex flex-col gap-6 max-w-full mt-6 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start">
       <AboutContent />
     </div>
     <Testimonials />
-    <Offerings />
-    <Lyric class="my-20 lg:mt-34" v-if="!store.reduceMotion" />
-    <Contact />
+    <Offerings v-if="store.loaded"  />
+    <Lyric class="my-20 lg:mt-34" v-if="!store.reduceMotion && store.loaded" />
+    <Contact v-if="store.loaded"  />
     <Footer />
   </div>
 </template>

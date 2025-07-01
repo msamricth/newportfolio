@@ -1,5 +1,6 @@
 <script setup>
-import gsap from 'gsap'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useMatchMedia } from '@/composables/useMatchMedia'
 import { ref, onMounted, nextTick, watch, computed } from 'vue'
@@ -286,74 +287,74 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div ref="scene" class="overflow-x-clip motion-reduce:hidden w-full header-scenes 2xl:pt-24 relative">
-        <canvas class="absolute top-0 bottom-0 h-full w-full" id="boom"></canvas>
+    <div ref="scene" class="relative w-full overflow-x-clip motion-reduce:hidden header-scenes 2xl:pt-24">
+        <canvas class="absolute top-0 bottom-0 w-full h-full" id="boom"></canvas>
         <div
             class="flex flex-col md:flex-row justify-center lg:justify-between items-start md:gap-6 max-w-full lg:max-w-[1024px] xl:max-w-[1440px] mx-auto lg:px-12 relative pt-22 md:py-0 lg:py-8 overflow-visible h-[85dvh] px-8 xl:items-center xl:max-h-218 2xl:max-h-270">
-            <div class="absolute top-0 h-full w-full flex justify-center items-center pointer-events-none left-0"
+            <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full pointer-events-none"
                 :class="store.loaded ? 'disapear opacity-0' : 'animate subtle-slide-in'">
-                <Heart class="w-1/2 self-start max-w-100 jello-horizontal h-full object-contain object-center" />
+                <Heart class="self-start object-contain object-center w-1/2 h-full max-w-100 jello-horizontal" />
             </div>
             <div ref="textWrapper"
                 class="flex flex-col justify-center gap-6 md:gap-0 lg:px-4 w-full md:max-w-3/5 lg:max-w-3xl relative z-20 font-heading animating lg:gap-6 xl:gap-8 group transition duration-700 h-dvh md:min-h-[70vh] xl:min-h-160 xl:h-160"
                 :class="{ 'opacity-0': !loaded }">
                 <div
-                    class="flex max-md:flex-wrap md:flex-nowrap justify-between md:justify-center gap-6 items-center w-full row-1 row leading-1">
-                    <span id="charA" class="h1 text-6xl lg:text-7xl font-extrabold  bounce-in fold">A</span>
-                    <span id="charHeart" class="h1 text-6xl lg:text-7xl font-extrabold text-center">
+                    class="flex items-center justify-between w-full gap-6 max-md:flex-wrap md:flex-nowrap md:justify-center row-1 row leading-1">
+                    <span id="charA" class="text-6xl font-extrabold h1 lg:text-7xl bounce-in fold">A</span>
+                    <span id="charHeart" class="text-6xl font-extrabold text-center h1 lg:text-7xl">
                         HEART
                     </span>
-                    <div class="flex justify-center items-center h-full heart-container">
+                    <div class="flex items-center justify-center h-full heart-container">
                         <img crossorigin="anonymous"
                             src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1745346872/heart_dfz3gf.svg"
                             alt="Illustration of a heart" id="icon"
-                            class="w-24 self-start max-w-60 jello-horizontal h-full object-contain object-center" />
+                            class="self-start object-contain object-center w-24 h-full max-w-60 jello-horizontal" />
                     </div>
                 </div>
 
                 <div
-                    class="flex max-lg:flex-wrap lg:flex-nowrap justify-center gap-6 lg:gap-24 w-full row-2 row lg:-mt-10">
-                    <span id="charOf" class="text-8xl font-extrabold h1 fold">
+                    class="flex justify-center w-full gap-6 max-lg:flex-wrap lg:flex-nowrap lg:gap-24 row-2 row lg:-mt-10">
+                    <span id="charOf" class="font-extrabold text-8xl h1 fold">
                         OF
                     </span>
-                    <span id="charFire" class="text-8xl font-extrabold h1 fold">
+                    <span id="charFire" class="font-extrabold text-8xl h1 fold">
                         FIRE
                     </span>
                 </div>
 
                 <div class="flex max-md:flex-col md:flex-nowrap justify-center max-md:items-center md:justify-between gap-6 w-full md:w-fit max-w-4xl lg:max-w-2xl mx-auto row-3 row -rotate-5 leading-1.8 md:-mb-2 lg:-mt-4 xl:-mt-8"
                     style="opacity: 0;">
-                    <span class="text-7xl md:text-4xl lg:text-8mxl font-extrabold the h1 row md:text-left">THE</span>
+                    <span class="font-extrabold text-7xl md:text-4xl lg:text-8mxl the h1 row md:text-left">THE</span>
                     <span
-                        class="text-6xl md:text-4xl lg:text-8mxl font-extrabold explosions h1 row max-w-full max-md:break-all pb-6 lg:pb-0"
+                        class="max-w-full pb-6 text-6xl font-extrabold md:text-4xl lg:text-8mxl explosions h1 row max-md:break-all lg:pb-0"
                         id="exp">EXPLOSIONS</span>
                 </div>
 
                 <div class="flex flex-nowrap justify-center group-[.animating]:max-md:flex-col text-center gap-6 w-full row-4 row lg:-mt-4 xl:-mt-8  md:leading-1">
-                    <span class="text-7xl font-extrabold h1" style="opacity: 0;">
+                    <span class="font-extrabold text-7xl h1" style="opacity: 0;">
                         DONT
                     </span>
-                    <span class="text-7xl font-extrabold h1" style="opacity: 0;">
+                    <span class="font-extrabold text-7xl h1" style="opacity: 0;">
                         EVEN
                     </span>
                 </div>
 
                 <div class="flex flex-nowrap group-[.animating]:max-md:flex-col text-center justify-center gap-6 w-full row-5 row  leading-1 lg:-mt-10">
-                    <span class="text-8xl md:text-7xl lg:text-8xl font-extrabold h1" style="opacity: 0;">
+                    <span class="font-extrabold text-8xl md:text-7xl lg:text-8xl h1" style="opacity: 0;">
                         SCARE
                     </span>
-                    <span class="text-8xl md:text-7xl lg:text-8xl font-extrabold h1" style="opacity: 0;">
+                    <span class="font-extrabold text-8xl md:text-7xl lg:text-8xl h1" style="opacity: 0;">
                         ME
                     </span>
                 </div>
-                <div class="absolute bottom-0 opacity-0 -bottom-30 z-0 w-full lg:-bottom-10 xl:bottom-10" id="fire">
+                <div class="absolute bottom-0 z-0 w-full opacity-0 -bottom-30 lg:-bottom-10 xl:bottom-10" id="fire">
                     <Fire />
                 </div>
             </div>
-            <div class="max-w-lg hidden md:flex flex-col relative md:w-1/2 z-10 md:max-w-50 lg:max-w-60  xl:max-w-70 justify-center items-start 2xl:max-w-110 h-full"
+            <div class="relative z-10 flex-col items-start justify-center hidden h-full max-w-lg md:flex md:w-1/2 md:max-w-50 lg:max-w-60 xl:max-w-70 2xl:max-w-110"
                 :class="loaded ? 'animate subtle-slide-in' : 'opacity-0'">
                 <img src="https://res.cloudinary.com/dp1qyhhlo/image/upload/v1748635877/1744399801866_qxlwrk.webp"
-                    alt="Emm as an action figure" class="w-auto object-contain" id="introImage" />
+                    alt="Emm as an action figure" class="object-contain w-auto" id="introImage" />
             </div>
             <div class="mt-4 rounded-[3rem] px-3 py-1 overflow-hidden absolute bottom-0 lg:bottom-11 lg:right-21 z-50 right-16 md:right-18 md:bottom-6 bg-[#1f1f1f]"
                 v-if="loaded" :class="showLyric
@@ -374,7 +375,7 @@ onMounted(async () => {
                         </g>
                     </svg>
                 </button>
-                <iframe class="w-full max-w-md h-20 rounded-lg"
+                <iframe class="w-full h-20 max-w-md rounded-lg"
                     src="https://open.spotify.com/embed/track/3Bp3aq6ftmUhxajD9T9kik?utm_source=generator&theme=0"
                     frameborder="0"
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
@@ -383,8 +384,8 @@ onMounted(async () => {
                 :class="!store.loaded ? 'opacity-0' : 'animate subtle-slide-in'">
 
                 <!-- Lyric + Info Button -->
-                <div class="flex flex-nowrap justify-between items-end w-full">
-                    <span class="text-sm text-gray-500 animate subtle-slide-in flex gap-1">
+                <div class="flex items-end justify-between w-full flex-nowrap">
+                    <span class="flex gap-1 text-sm text-gray-500 animate subtle-slide-in">
                         <svg enable-background="new 0 0 64 64" class="text-current fill-current" height="18px"
                             id="Layer_1" version="1.1" viewBox="0 0 64 64" width="18px" xml:space="preserve"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

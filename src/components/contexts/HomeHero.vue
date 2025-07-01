@@ -8,14 +8,6 @@
 
             <div ref="grid"
                 class="hero-wrapper-scenes group relative justify-center w-full gap-8 lg:gap-14 items-center flex flex-col self-end -mb-24 2xl:mt-18 h-[75dvh]">
-                <button v-if="playing" @click="skipScene"
-                    class="absolute px-4 py-2 text-black bg-white rounded shadow cursor-pointer bottom-4 right-4 hover:bg-gray-100 z-500">
-                    Next Scene →
-                </button>
-                <button v-if="playing" @click="pauseScene"
-                    class="absolute px-4 py-2 text-black bg-white rounded shadow cursor-pointer bottom-4 right-4 hover:bg-gray-100 z-500">
-                    pause
-                </button>
                 <button class="absolute cursor-pointer z-100 animate subtle-slide-in" v-if="store.reduceMotion"
                     @click="PlayScenes" :class="{ 'scale-112 disapear': playPressed }">
                     <Play />
@@ -34,14 +26,11 @@
 import { ref, computed, onMounted, nextTick, defineAsyncComponent, watch } from 'vue'
 import SecondaryNav from '@/components/navigation/SecondaryNav.vue'
 import { useMainStore } from '@/stores/main.js'
-import gsap from 'gsap';
 import SceneLoader from './hero/SceneLoader.vue'
-import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
-import ScrollTrigger from 'gsap/ScrollTrigger'
 import { newPromise } from '@/utils/nextPromise.js';
 import { useNuxtApp } from '#app'
 const store = useMainStore()
-//const { $gsap: gsap } = useNuxtApp()
+const { $gsap: gsap } = useNuxtApp()
 
 const screens = ref(false)
 const preloaderScene = ref(true)
@@ -69,7 +58,6 @@ onMounted(async () => {
     loading.value = true;
     preloaderScene.value = true;
 
-    gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
     master = gsap.timeline({
         paused: true,
@@ -144,41 +132,38 @@ async function PlayScenes() {
 }
 const sceneLabels = ['Tetris', 'UX', 'uxIcons', 'Video']
 
-function skipScene() {
-    if (!master) return
-   const labelEntries = Object.entries(master.labels)
-    .sort((a, b) => a[1] - b[1])
-     const now = master.time()
-  const next = labelEntries.find(([name, t]) => t > now)
-
-  if (next) {
-    const [labelName, labelTime] = next
-  //  master.tweenTo(labelName, { duration: 0.4, ease: 'power1.inOut' })
-    // – or, to jump instantly:
-     master.seek(labelTime)
-  }
-}
-function pauseScene() {
-    if (!master) return
-    master.pause()
-    console.log('scene pause')
-}
 async function buildMasterTimeline() {
     if (!master) return;
 
-    master.addLabel('Tetris');
+    master.addLabel('uxIcons');
+    master.call(async () => {
+        await nextTick();
+        await newPromise();
+        sceneTetrisLoaded.value = false
+        sceneUXIconsLoaded.value = true;
+        screens.value = true;
+
+    }, null, "uxIcons")
+    master.call(async () => {
+        activeScene.value = 0;
+        screens.value = true;
+        const { buildUXTL } = await import('@/utils/hero/uxIcons');
+        const tl3 = buildUXTL(grid.value, store.reduceMotion);
+
+        master.add(tl3, 'uxIcons');
+        playing.value = true;
+    }, null, 'uxIcons+=0.6');
+
+
+    master.addLabel('Tetris', 'uxIcons+=24');
 
     master.call(async () => {
         sceneTetrisLoaded.value = true;
-        activeScene.value = 0;
         await nextTick();
         await newPromise();
-        screens.value = true;
     }, null, 'Tetris');
 
     master.call(async () => {
-        playing.value = true;
-
         if (!sceneTetrisLoaded.value) sceneTetrisLoaded.value = true;
 
         await nextTick();
@@ -202,42 +187,38 @@ async function buildMasterTimeline() {
         master.add(tl1, 'UX');
     }, null, 'UX+=0.2');
 
-    master.addLabel('uxIcons', 'UX+=7.8');
-
-    master.call(() => {
-        sceneUXIconsLoaded.value = true;
-    }, null, 'uxIcons+=0');
-
-    master.call(async () => {
-        await nextTick();
-        await newPromise();
-        const { buildUXTL } = await import('@/utils/hero/uxIcons');
-        const tl3 = buildUXTL(grid.value, store.reduceMotion);
-        master.add(tl3, 'uxIcons');
-    }, null, 'uxIcons+=0.6');
 
 
-    master.addLabel('Video', 'uxIcons+=28');
-
-    master.call(() => {
-        sceneVideoLoaded.value = true;
-    }, null, 'Video+=0');
-
-    master.call(async () => {
-        await nextTick();
-        await newPromise();
-        const { buildVideoTL } = await import('@/utils/hero/videoScreens');
-        const tl2 = buildVideoTL(grid.value, store.reduceMotion);
-        master.add(tl2, 'Video');
-    }, null, 'Video+=0.2');
-
+    /*
+        master.addLabel('Video');
+    
+        master.call(() => {
+            sceneVideoLoaded.value = true;
+        }, null, 'Video+=0');
+    
+        master.call(async () => {
+            await nextTick();
+            await newPromise();
+            const { buildVideoTL } = await import('@/utils/hero/videoScreens');
+            const tl2 = buildVideoTL(grid.value, store.reduceMotion);
+            master.add(tl2, 'Video');
+        }, null, 'Video+=0.2');
+    */
 
 
 
 
     master.call(() => {
+        if (window.scrollY === 0 && !store.reduceMotion) {
+            const scrollAmount = window.innerHeight;
+            window.scrollBy({
+                top: scrollAmount,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
         master.restart(0);
-    }, null, 'Video+=9');
+    }, null, 'UX+=9');
 
 }
 

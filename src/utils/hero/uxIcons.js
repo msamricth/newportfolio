@@ -169,7 +169,7 @@ tl.call(()=>{
         autoAlpha: 0
     });
 
-    gsap.set("#uxIcons-main-card", { y: -200 })
+    gsap.set("#uxIcons-main-card", { y: '-15dvh' })
     gsap.set("#uxIcons", {
         scale: 2.5,
         autoAlpha: 0
@@ -412,7 +412,7 @@ tl.call(()=>{
         filter: "none",
         autoAlpha: 1
     }, {
-        y: -300,
+        y: "-100dvh",
         filter: "blur(5px)",
         autoAlpha: 1,
         ease: 'elastic.out(0.6)',

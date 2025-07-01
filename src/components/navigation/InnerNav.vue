@@ -45,8 +45,9 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
+import ScrollTrigger from 'gsap/ScrollTrigger'
 import Splitting from '@/utils/splitting.js'
 import placeholderJS from '@/utils/placeholder.js'
 
@@ -65,6 +66,13 @@ const stickyObserver = ref(null)
 let navPlaceholder
 const SectionsAboveNav = ref(false);
 let tl;
+
+const props = defineProps({
+    title: { type: String, default: () => 'Something' },
+    brandLabel: { type: String, default: () => "hi, i'm Emm." },
+    brandURL: { type: String, default: () => '/' },
+    topStacked: { type: Boolean, default: () => false }
+})
 
 function handleResize() {
     const headingEl = heading.value
@@ -293,6 +301,7 @@ async function checkAnimation(forceRM = false) {
 }
 onMounted(async () => {
     await nextTick()
+    if(!store.loaded) return
     tl = gsap.timeline({ paused: true })
     isDesktop.value = window.innerWidth >= 620
     SectionsAboveNav.value = props.topStacked
@@ -315,7 +324,7 @@ watch(
     () => store.reduceMotion,
     async (reduceMotion, prev) => {
         await nextTick()
-
+        if(!store.loaded) return
         if (reduceMotion) {
             tl?.kill()
             if (!navBrand.value || !heading.value) return
@@ -330,9 +339,6 @@ watch(
             }
             return
         }
-
-        // REDUCED MOTION WAS TURNED OFF
-        // Reset nav items to hidden state so they animate in properly
         if (!reduceMotion && prev) {
             if (nav.value) {
                 const navItems = nav.value.querySelectorAll('.nav-item')
@@ -351,6 +357,8 @@ watch(
 )
 
 watch([isSticky, isDesktop], async () => {
+        await nextTick()
+        if(!store.loaded) return
     await checkAnimation(store.reduceMotion)
     if (store.reduceMotion) return;
     if (isSticky.value) {
@@ -360,15 +368,11 @@ watch([isSticky, isDesktop], async () => {
     }
 })
 
-const props = defineProps({
-    title: { type: String, default: () => 'Something' },
-    brandLabel: { type: String, default: () => "hi, i'm Emm." },
-    brandURL: { type: String, default: () => '/' },
-    topStacked: { type: Boolean, default: () => false }
-})
 watch(
     () => store.navOpen,
     async (open) => {
+        await nextTick()
+        if(!store.loaded) return
         if (open && navContainer.value) {
             // wait for any open-animation / DOM changes
             await nextTick()
@@ -382,13 +386,14 @@ watch(
         }
     }
 )
-
+/*
 onUnmounted(() => {
     window.removeEventListener('resize', handleResize)
     ScrollTrigger.getAll().forEach(t => t.kill())
     stickyObserver.value?.disconnect()
     isSticky.value = false
 })
+    */
 </script>
 
 <style scoped>

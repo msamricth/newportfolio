@@ -127,6 +127,7 @@
   },
   "include": [
     "./types/nitro-nuxt.d.ts",
+    "../node_modules/@vueuse/nuxt/runtime/server",
     "../node_modules/@pinia/nuxt/runtime/server",
     "../node_modules/nuxt-site-config/dist/module.mjs/runtime/server",
     "../node_modules/@nuxtjs/sitemap/runtime/server",
@@ -141,6 +142,7 @@
   "exclude": [
     "../node_modules",
     "../node_modules/nuxt/node_modules",
+    "../node_modules/@vueuse/nuxt/node_modules",
     "../node_modules/@pinia/nuxt/node_modules",
     "../node_modules/nuxt-site-config/node_modules",
     "../node_modules/@nuxtjs/sitemap/node_modules",

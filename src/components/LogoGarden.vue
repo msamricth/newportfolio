@@ -9,7 +9,8 @@
   </div>
 </template>
 <script setup>
-import gsap from 'gsap'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ref, onMounted, nextTick } from 'vue'
 import { logos } from '../data/logos.js'

@@ -18,7 +18,8 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-import gsap from 'gsap'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
 import { useMainStore } from '@/stores/main'
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin'
 import Splitting from '@/utils/splitting'

@@ -30,7 +30,10 @@
 
 <script setup>
 import { ref, watch, onMounted, nextTick } from 'vue'
-import gsap from 'gsap'
+
+import { useNuxtApp } from '#app'
+
+const { $gsap: gsap } = useNuxtApp()
 import Links from '@/components/Links.vue'
 import Splitting from '@/utils/splitting'
 import PlaceholderJS from '@/utils/placeholder.js'

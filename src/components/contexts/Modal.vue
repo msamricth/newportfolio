@@ -25,7 +25,8 @@
 <script setup>
 
 import { ref, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
-import gsap from 'gsap'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
 import { useMainStore } from '@/stores/main.js'
 import { useModalStore } from '@/stores/modal.js';
 
@@ -90,8 +91,8 @@ function trapFocus() {
         }
     }
 
-    modalContent.value.addEventListener('keydown', keyHandler)
-    return () => modalContent.value.removeEventListener('keydown', keyHandler)
+    modalContent.value?.addEventListener('keydown', keyHandler)
+    return () => modalContent.value?.removeEventListener('keydown', keyHandler)
 }
 
 function focusFirst() {

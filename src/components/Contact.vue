@@ -69,9 +69,11 @@
 
 <script setup>
 import { ref, reactive, computed, onMounted, nextTick } from "vue";
-import { gsap } from "gsap";
+import { useNuxtApp } from '#app'
+
+const { $gsap: gsap } = useNuxtApp()
 import PlaceholderJS from './../utils/placeholder.js';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useMainStore } from '../stores/main.js'
 import PrimaryBTN from "./buttons/PrimaryBTN.vue";
 const store = useMainStore()
@@ -81,6 +83,20 @@ const formLabel = ref(null)
 const formBlob = ref(null)
 const formBlobInner = ref(null)
 const formHeader = ref(null)
+
+const nameError = ref(null);
+const emailError = ref(null);
+const messageError = ref(null);
+const formRef = ref(null);
+const formDataValues = reactive({
+    name: '',
+    email: '',
+    message: '',
+    hpField: ''
+});
+const submitted = ref(false);
+const error = ref('');
+
 
 let tl
 
@@ -172,20 +188,6 @@ watch(
     },
     { immediate: true }
 )
-const nameError = ref(null);
-const emailError = ref(null);
-const messageError = ref(null);
-const formRef = ref(null);
-const formDataValues = reactive({
-    name: '',
-    email: '',
-    message: '',
-    hpField: ''
-});
-const submitted = ref(false);
-const error = ref('');
-
-
 async function submitForm() {
     // Check required fields and update a general error message if needed
     if (!formDataValues.name || !formDataValues.email || !formDataValues.message) {

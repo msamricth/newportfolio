@@ -45,7 +45,8 @@
 
 <script setup>
 import { onMounted, ref, nextTick, watch } from 'vue'
-import gsap from 'gsap'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { offerings } from '../../data/offerings'
 import PlaceholderJS from './../../utils/placeholder.js'
@@ -105,7 +106,6 @@ async function offeringsDesktop() {
         if (!baseIcon || !overlayIcon) return
 
         const overlayPaths = overlayIcon.querySelectorAll('path')
-        console.log(overlayPaths)
         overlayPaths.forEach((path) => {
             const len = path.getTotalLength()
             path.style.strokeDasharray = len

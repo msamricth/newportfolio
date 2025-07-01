@@ -128,10 +128,15 @@ async function introAnims() {
         sectionTriggers.push(btnTL.scrollTrigger);
     }
 }
-
+onMounted(async()=>{
+    await nextTick()
+        if (!store.loaded) return
+        if (!store.reduceMotion) { await introAnims() }
+})
 watch(
-    () => store.loaded,
+    () => store.ready,
     async (loaded) => {
+    await nextTick()
         if (!loaded) return
         if (!store.reduceMotion) { await introAnims() }
     },

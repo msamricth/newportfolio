@@ -1,21 +1,21 @@
 <template>
-    <div class="container absolute top-0 flex flex-col items-center justify-center min-h-full gap-6 opacity-0"
+    <div class="container absolute top-0 flex flex-col items-center justify-center min-h-full gap-6 opacity-0 md:gap-2 smd:gap-6"
         id="ux-icons">
         <div id="roles"
-            class="flex flex-col items-center gap-4 overflow-visible text-3xl font-medium uppercase md:text-4xl font-heading md:h-30 lg:h-50 md:flex-row"
+            class="flex flex-col items-center gap-1 overflow-visible text-3xl font-medium uppercase lg:gap-4 md:text-2xl smd:text-4xl font-heading md:h-20 lg:h-50 md:flex-row"
             data-splitting="words">
             <span class="flex label">I am:</span>
-            <span class="relative flex pb-4 overflow-visible border-b border-dotted select-field h-14 faux-select text-md md:text-lg xl:text-3xl border-border">
-                <ul class="relative z-10 h-full p-0 m-0 list-none options w-60 md:w-100 xl:w-190">
-                    <li class="absolute w-full h-10 opacity-0 split-chars">a Web + App Developer</li>
-                    <li class="absolute w-full h-10 opacity-00 split-chars">a Tailwind Queen</li>
-                    <li class="absolute w-full h-10 opacity-0 split-chars">a expert at WordPress</li>
-                    <li class="absolute w-full h-10 opacity-0 split-chars">great at GSAP</li>
-                    <li class="absolute w-full h-10 opacity-0 split-chars">passionate about animations</li>
-                    <li class="absolute w-full h-10 opacity-0 split-chars">a lover of Vue</li>
-                    <li class="absolute w-full h-10 opacity-0 split-chars">a builder of trails</li>
-                    <li class="absolute w-full h-10 opacity-0 split-chars">designing pixel-perfect layouts</li>
-                    <li class="absolute w-full h-10 opacity-0 split-chars">experienced in print design</li>
+            <span class="relative flex h-8 overflow-visible border-b border-dotted lg:pb-4 select-field lg:h-14 faux-select text-md md:text-lg xl:text-3xl md:ps-2 md:ms-2 border-border">
+                <ul class="relative z-10 h-full p-0 m-0 list-none options w-80 md:w-100 xl:w-190">
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">a Web + App Developer</li>
+                    <li class="absolute w-full h-8 lg:h-10 opacity-00 split-chars">a Tailwind Queen</li>
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">a expert at WordPress</li>
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">great at GSAP</li>
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">passionate about animations</li>
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">a lover of Vue</li>
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">a builder of trails</li>
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">designing pixel-perfect layouts</li>
+                    <li class="absolute w-full h-8 opacity-0 lg:h-10 split-chars">experienced in print design</li>
                     <li class="absolute w-full h-10 opacity-0 split-chars">a brand enthusiast</li>
                 </ul>
     <span class="absolute inset-y-0 right-0 z-20 flex items-center pr-2 text-gray-500 pointer-events-none">

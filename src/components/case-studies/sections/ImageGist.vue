@@ -46,7 +46,7 @@
 
 <script setup>
 import { ref, nextTick, onMounted, watch } from 'vue'
-import { useWindowSize } from '@ /core'
+import { useWindowSize } from '@vueuse/core'
 import { useMainStore } from '@/stores/main'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'

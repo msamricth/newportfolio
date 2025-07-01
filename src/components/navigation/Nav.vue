@@ -1,32 +1,32 @@
 <template>
     <div class="nav-wrapper">
         <div ref="sentinal"></div>
-        <header ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu" id="nav"
+        <header ref="navContainer" class="z-20 w-full py-4 mx-auto will-change-transform transform-gpu" id="nav"
             :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700' : ' absolute '">
             <div
                 class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center justify-between">
                 <h2 ref="navBrand"
-                    class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all duration-700"
+                    class="transition-all duration-700 text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand"
                     :class="isSticky ? ['text-lg', 'lg:text-lg', 'hover:text-electric-purple', 'dark:hover:text-accent'] : ['text-2xl', 'lg:text-4xl']">
-                    <a aria-label="Return Home" href="/" class="text-nowrap subtle-slide-in font-black block opacity-0"
+                    <a aria-label="Return Home" href="/" class="block font-black opacity-0 text-nowrap subtle-slide-in"
                         :class="{ 'animate': mainStore.loaded }" @mouseenter="onBrandHoverIn">
                         hi, i’m Emm.</a>
                 </h2>
                 <nav ref="nav"
-                    class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
+                    class="flex ml-auto space-x-8 text-sm font-semibold font-heading group/nav text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
                     :class="isSticky ? [''] : ['opacity-0']">
                     <NuxtLink
-                        class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip "
                         to="/about" aria-label="Find out more about me!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
                     </NuxtLink>
                     <NuxtLink
-                        class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip "
                         to="/work/" aria-label="View my featured work!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
                     </NuxtLink>
                     <a href="#sayHello"
-                        class="group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
+                        class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip"
                         @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
                     </a>
@@ -279,7 +279,6 @@ watch(
             const targetY =
                 el.getBoundingClientRect().top + startY + buffer
             window.scrollTo({ top: targetY, behavior: 'smooth' })
-            // optionally close the flag so it only runs once
             mainStore.closeNav()
         }
     }

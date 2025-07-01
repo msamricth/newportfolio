@@ -31,27 +31,24 @@ import { useWorkStore } from '@/stores/work.js';
 import { useModalStore } from '@/stores/modal.js';
 import { useMainStore } from '@/stores/main.js';
 import videoHandler from '@/utils/videoHandler.js';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import PlaceholderJS from '@/utils/placeholder.js'
-import PrimaryBTN from '@/components/buttons/PrimaryBTN.vue';
 import Modal from '@/components/contexts/Modal.vue';
 import WorkModalContent from '@/components/contexts/WorkModalContent.vue';
 import { AnimationFrame } from '@/utils/AnimationFrame';
 const store = useWorkStore();
-import gsap from 'gsap';
+import { useNuxtApp } from '#app'
+
+const { $gsap: gsap } = useNuxtApp()
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { onBeforeRouteLeave } from 'vue-router';
 
 const mainStore = useMainStore()
 const workGrid = ref([]);
-const isHovered = ref([false])
-const buttonRefs = ref([])
 const labelRefs = ref([]);
 const hoverTimelines = []
 const blobRefs = ref([])
 const blobInnerRefs = ref([]);
 const modalWindow = ref(null);
 const workPage = ref(null);
-const modalVideo = ref(null);
 const modalStore = useModalStore();
 
 
@@ -113,6 +110,7 @@ const hoverOut = (slideIndex, btnIndex) => {
 };
 
 onBeforeRouteLeave(() => {
+    if(!mainStore.loaded) return
     document.body.style.overflow = '';
 });
 function startHover(event) {
@@ -181,20 +179,20 @@ function openModal(item) {
     modalStore.modalItem = item;
     //window.scrollTo(0, 0);
 }
-const getSrc = computed(() => (img,width) => {
+const getSrc = computed(() => (img, width) => {
     return store.ready
         ? img.replace('/q_auto,f_auto', `/q_auto,f_auto,w_${width}`)
         : img.replace('upload/q_auto,f_auto', `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_${width}`);
 });
 
-const optimizedSrc = computed(() =>(img) => getSrc.value(img, 475));
-
-const srcSet = computed(() =>(img) =>
-    [480, 768, 896, 1280].map(w => `${getSrc.value(img,w)} ${w}w`).join(', ')
+const srcSet = computed(() => (img) =>
+    [480, 768, 896, 1280].map(w => `${getSrc.value(img, w)} ${w}w`).join(', ')
 );
 
 onMounted(async () => {
     await nextTick()
+    if(!mainStore.loaded) return
+    AnimationFrame(() => { mainStore.ready = true }, 450)
     ScrollTrigger.create({
         trigger: workPage.value,
         start: 'top top',
@@ -274,10 +272,10 @@ onMounted(async () => {
             ref="utilityBar">
             <InnerSecondaryNav />
         </div>
-        <InnerNav title="Featured Work" brandLabel="hi, i'm emm." brandURL="/" />
+        <InnerNav title="Featured Work" brandLabel="hi, i'm emm." brandURL="/" v-if="mainStore.loaded"/>
         <Preloader />
         <div
-            class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start lg:pb-60">
+            class="flex flex-col gap-6 lg:flex-row mt-28 lg:mt-60 max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto items-start lg:pb-60"  v-if="mainStore.loaded">
             <Work v-show="mainStore.loaded" />
             <div class="flex flex-wrap w-full gap-6 work-grid lg:w-3/4" ref="workGrid" v-show="mainStore.loaded">
                 <div v-if="!store.gridResults"
@@ -288,10 +286,13 @@ onMounted(async () => {
                     class="work-grid--item cursor-pointer group w-full relative md:w-[48%] lg:w-full xl:w-[48%]"
                     :class="item.textColor" @click="openModal(item)" @mouseenter="startHover($event)">
                     <div class="relative flex mb-2 media rounded-xl overflow-clip">
-                            <img crossorigin="anonymous" :src="optimizedSrc(item.image)" :srcset="srcSet(item.image)"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 475px"
-                        class=" w-full h-auto group-hover:-translate-x-[34%] transition-all duration-700 relative z-10"
-                        width="475" height="267" />
+                        <img crossorigin="anonymous" :src="store.ready
+                            ? item.image.replace('/q_auto,f_auto', `/q_auto,f_auto,w_475`)
+                            : item.image.replace('upload/q_auto,f_auto', `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_475`)"
+                            :srcset="srcSet(item.image)"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 475px"
+                            class=" w-full h-auto group-hover:-translate-x-[34%] transition-all duration-700 relative z-10"
+                            width="475" height="267" />
                         <div class="z-0 w-[35%] transition-all duriation-900 absolute right-0 top-0">
                             <video class="aspect-mobile" :data-src="item.video.replace('q_auto', 'q_auto,w_360')" muted
                                 playsinline loop background allow="picture-in-picture"
@@ -305,7 +306,7 @@ onMounted(async () => {
                 </div>
             </div>
         </div>
-        <Contact v-show="mainStore.loaded" />
+        <Contact v-if="mainStore.loaded" />
         <Footer v-show="mainStore.loaded" />
 
 
@@ -314,6 +315,3 @@ onMounted(async () => {
         </Modal>
     </div>
 </template>
-
-
-<style scoped></style>

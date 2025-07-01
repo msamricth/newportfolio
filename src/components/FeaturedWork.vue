@@ -21,7 +21,8 @@
 <script setup>
 import { navigateTo } from '#imports'
 import { ref, onMounted, computed, nextTick, watch } from 'vue';
-import gsap from 'gsap';
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@splidejs/vue-splide/css';
 
@@ -67,7 +68,8 @@ watch(() => shuffledWork.value, async (newVal) => {
     if(!newVal) return
     await nextTick();
     await newPromise();
-    if(store.reduceMotion) return
+    if(store.reduceMotion || !store.loaded) return
+    if(!button.value) return
     gsap.timeline({
         scrollTrigger: {
             trigger: button.value,
@@ -89,6 +91,7 @@ watch(() => shuffledWork.value, async (newVal) => {
     if(!reduceMotion) return
     await nextTick();
     await newPromise();
+    if(!button.value) return
     gsap.timeline({
         scrollTrigger: {
             trigger: button.value,

@@ -59,8 +59,6 @@ export const useMainStore = defineStore('main', {
                     localStorage.setItem('reduceMotion', String(this.reduceMotion));
                 });
             }
-
-
             if (localStorage.getItem('visited') === null) {
                 localStorage.setItem('visited', 'true');
             } else {
@@ -105,8 +103,6 @@ export const useMainStore = defineStore('main', {
             this.reduceMotion = !this.reduceMotion;
             localStorage.setItem('reduceMotion', String(this.reduceMotion));
             document.body.classList.toggle('motionless', this.reduceMotion);
-            console.log('this.reduceMotion: ' + this.reduceMotion)
-
         },
         openNav() { this.navOpen = true },
         closeNav() { this.navOpen = false },

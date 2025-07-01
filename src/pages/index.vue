@@ -29,9 +29,9 @@ const store = useMainStore()
     class="relative transition duration-700 font-main bg-background text-primary dark:text-background dark:bg-deep-purple inverted:text-background inverted:bg-deep-purple inverted:dark:bg-background inverted:dark:text-primary overflow-x-clip">
     <div class="">
       <HomeHero />
-      <Nav v-show="store.loaded"></Nav>
+      <Nav v-if="store.loaded" v-show="store.ready"></Nav>
     </div>
-    <Intro />
+    <Intro v-if="store.loaded" />
     <LogoGarden v-if="store.loaded" />
     <FeaturedWork v-if="store.loaded" :featuredItems="work" />
     <Contact v-if="store.loaded" />
