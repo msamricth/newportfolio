@@ -115,7 +115,7 @@ watch(() => shuffledWork.value, async (newVal) => {
         })
     },
  { immediate: true })
-}
+
 onMounted(async () => {
     await nextTick()
     modalStore.modalItem = '';
