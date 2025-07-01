@@ -3,13 +3,15 @@
         <div class="relative pb-8 group lg:pb-24 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto px-8 lg:px-12">
             <div class="relative">
                 <WorkItem v-for="(w, index) in shuffledWork" :key="index" :item="w"
+
                     :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" class="mb-20 md:mb-12 lg:mb-20 xl:mb-28 nth-of-type-4:mb-8" />
                 <div class="flex flex-col flex-wrap items-center gap-2 mx-auto opacity-0 group/ctas max-w-75 md:items-end md:max-w-4xl -translate-x-100 motionless:translate-x-0 motionless:opacity-100"
+
                     ref="button">
-        
-                    <PrimaryBTN href="/work/" 
+
+                    <PrimaryBTN href="/work/"
                         class="btn text-primary dark:text-background inverted:text-background hover:text-accent"
-                        label="View all work" :onClick="()=>navigateTo('/work')"  />
+                        label="View all work" :onClick="() => navigateTo('/work')" />
                 </div>
             </div>
 
@@ -31,6 +33,7 @@ import { useModalStore } from '@/stores/modal.js'
 import { work } from '@/data/work.js';
 import PrimaryBTN from '@/components/buttons/PrimaryBTN.vue'
 import WorkItem from '@/components/contexts/WorkItem.vue';
+import { newPromise } from '@/utils/nextPromise';
 const store = useMainStore()
 const modalStore = useModalStore()
 const workSection = ref(null);
@@ -68,8 +71,10 @@ watch(() => shuffledWork.value, async (newVal) => {
     if(!newVal) return
     await nextTick();
     await newPromise();
+
     if(store.reduceMotion || !store.loaded) return
     if(!button.value) return
+
     gsap.timeline({
         scrollTrigger: {
             trigger: button.value,
@@ -85,6 +90,7 @@ watch(() => shuffledWork.value, async (newVal) => {
             ease: 'elastic.out(0.4)'
 
         })
+
     },
  { immediate: true })
  watch(() => store.reduceMotion, async (reduceMotion) => {
@@ -109,6 +115,7 @@ watch(() => shuffledWork.value, async (newVal) => {
         })
     },
  { immediate: true })
+}
 onMounted(async () => {
     await nextTick()
     modalStore.modalItem = '';
@@ -124,8 +131,8 @@ onMounted(async () => {
             store.toggleFold(true)
             loaded.value = true;
         },
-        onLeaveBack:()=>
-        store.toggleFold(false, true)
+        onLeaveBack: () =>
+            store.toggleFold(false, true)
     });
 
 
