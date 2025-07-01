@@ -466,7 +466,7 @@ const _sfc_main = {
       modalStore.pendingModalSlug = "";
     }
     const getSrc = computed(() => (img, width) => {
-      return store.ready ? img.replace("/q_auto,f_auto", `/q_auto,f_auto,w_${width}`) : img.replace("upload/q_auto,f_auto", `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_${width}`);
+      return mainStore.ready ? img.replace("/q_auto,f_auto", `/q_auto,f_auto,w_${width}`) : img.replace("upload/q_auto,f_auto", `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_${width}`);
     });
     const srcSet = computed(
       () => (img) => [480, 768, 896, 1280].map((w) => `${getSrc.value(img, w)} ${w}w`).join(", ")
@@ -502,7 +502,7 @@ const _sfc_main = {
         }
         _push(`<!--[-->`);
         ssrRenderList(unref(store).filteredWork, (item, index) => {
-          _push(`<div class="${ssrRenderClass([item.textColor, "work-grid--item cursor-pointer group w-full relative md:w-[48%] lg:w-full xl:w-[48%]"])}"><div class="relative flex mb-2 media rounded-xl overflow-clip"><img crossorigin="anonymous"${ssrRenderAttr("src", unref(store).ready ? item.image.replace("/q_auto,f_auto", `/q_auto,f_auto,w_475`) : item.image.replace("upload/q_auto,f_auto", `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_475`))}${ssrRenderAttr("srcset", srcSet.value(item.image))} sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 475px" class="w-full h-auto group-hover:-translate-x-[34%] transition-all duration-700 relative z-10" width="475" height="267"><div class="z-0 w-[35%] transition-all duriation-900 absolute right-0 top-0"><video class="aspect-mobile"${ssrRenderAttr("data-src", item.video.replace("q_auto", "q_auto,w_360"))} muted playsinline loop background allow="picture-in-picture"${ssrRenderAttr("poster", item.video.replace(".m3u8", ".webp").replace("q_auto", "q_auto,so_0.2"))}></video></div></div><h3 class="w-5/6 mb-4 text-lg font-semibold transition duration-700 text-primary dark:text-background inverted:text-background group-hover:text-current">${ssrInterpolate(item.title)}</h3></div>`);
+          _push(`<div class="${ssrRenderClass([item.textColor, "work-grid--item cursor-pointer group w-full relative md:w-[48%] lg:w-full xl:w-[48%]"])}"><div class="relative flex mb-2 media rounded-xl overflow-clip"><img crossorigin="anonymous"${ssrRenderAttr("src", unref(mainStore).ready ? item.image.replace("/q_auto,f_auto", `/q_auto,f_auto,w_475`) : item.image.replace("upload/q_auto,f_auto", `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_475`))}${ssrRenderAttr("srcset", srcSet.value(item.image))} sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 475px" class="w-full h-auto group-hover:-translate-x-[34%] transition-all duration-700 relative z-10" width="475" height="267"><div class="z-0 w-[35%] transition-all duriation-900 absolute right-0 top-0"><video class="aspect-mobile"${ssrRenderAttr("data-src", item.video.replace("q_auto", "q_auto,w_360"))} muted playsinline loop background allow="picture-in-picture"${ssrRenderAttr("poster", item.video.replace(".m3u8", ".webp").replace("q_auto", "q_auto,so_0.2"))}></video></div></div><h3 class="w-5/6 mb-4 text-lg font-semibold transition duration-700 text-primary dark:text-background inverted:text-background group-hover:text-current">${ssrInterpolate(item.title)}</h3></div>`);
         });
         _push(`<!--]--></div></div>`);
       } else {
@@ -548,4 +548,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index-DNDPtc-n.mjs.map
+//# sourceMappingURL=index-oMPLQH41.mjs.map

@@ -180,7 +180,7 @@ function openModal(item) {
     //window.scrollTo(0, 0);
 }
 const getSrc = computed(() => (img, width) => {
-    return store.ready
+    return mainStore.ready
         ? img.replace('/q_auto,f_auto', `/q_auto,f_auto,w_${width}`)
         : img.replace('upload/q_auto,f_auto', `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_${width}`);
 });
@@ -286,7 +286,7 @@ onMounted(async () => {
                     class="work-grid--item cursor-pointer group w-full relative md:w-[48%] lg:w-full xl:w-[48%]"
                     :class="item.textColor" @click="openModal(item)" @mouseenter="startHover($event)">
                     <div class="relative flex mb-2 media rounded-xl overflow-clip">
-                        <img crossorigin="anonymous" :src="store.ready
+                        <img crossorigin="anonymous" :src="mainStore.ready
                             ? item.image.replace('/q_auto,f_auto', `/q_auto,f_auto,w_475`)
                             : item.image.replace('upload/q_auto,f_auto', `upload/e_pixelate,q_auto:low,f_auto,e_grayscale,w_475`)"
                             :srcset="srcSet(item.image)"

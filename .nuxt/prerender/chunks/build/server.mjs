@@ -423,7 +423,7 @@ const _routes = [
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-DNDPtc-n.mjs')
+    component: () => import('./index-oMPLQH41.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
