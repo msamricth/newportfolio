@@ -3,8 +3,10 @@
         <div class="relative pb-8 group lg:pb-24 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto px-8 lg:px-12">
             <div class="relative">
                 <WorkItem v-for="(w, index) in shuffledWork" :key="index" :item="w"
-                    :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" class="mb-20 md:mb-12 lg:mb-20 xl:mb-28 nth-of-type-4:mb-12" />
-                <div class="flex flex-col flex-wrap items-center gap-2 mx-auto opacity-0 group/ctas max-w-75 md:items-end md:max-w-4xl -translate-x-100"
+
+                    :onClick="() => { w.caseStudy ? openCaseStudy(w) : openWork(w.slug) }" :Link="itemHref(w)" class="mb-20 md:mb-12 lg:mb-20 xl:mb-28 nth-of-type-4:mb-8" />
+                <div class="flex flex-col flex-wrap items-center gap-2 mx-auto opacity-0 group/ctas max-w-75 md:items-end md:max-w-4xl -translate-x-100 motionless:translate-x-0 motionless:opacity-100"
+
                     ref="button">
 
                     <PrimaryBTN href="/work/"
@@ -21,7 +23,8 @@
 <script setup>
 import { navigateTo } from '#imports'
 import { ref, onMounted, computed, nextTick, watch } from 'vue';
-import gsap from 'gsap';
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@splidejs/vue-splide/css';
 
@@ -68,6 +71,10 @@ watch(() => shuffledWork.value, async (newVal) => {
     if(!newVal) return
     await nextTick();
     await newPromise();
+
+    if(store.reduceMotion || !store.loaded) return
+    if(!button.value) return
+
     gsap.timeline({
         scrollTrigger: {
             trigger: button.value,
@@ -83,8 +90,32 @@ watch(() => shuffledWork.value, async (newVal) => {
             ease: 'elastic.out(0.4)'
 
         })
-},
-    { immediate: true })
+
+    },
+ { immediate: true })
+ watch(() => store.reduceMotion, async (reduceMotion) => {
+    if(!reduceMotion) return
+    await nextTick();
+    await newPromise();
+    if(!button.value) return
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: button.value,
+            start: 'top top',
+            toggleActions: 'play none none none',
+            once: false,
+        },
+    })
+        .to(button.value, {
+            x: 0,
+            autoAlpha: 1,
+            duration: 0.6,
+            ease: 'elastic.out(0.4)'
+
+        })
+    },
+ { immediate: true })
+}
 onMounted(async () => {
     await nextTick()
     modalStore.modalItem = '';

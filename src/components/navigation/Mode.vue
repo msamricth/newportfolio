@@ -1,15 +1,26 @@
 <template>
-
+    <button
+        class="motion inline-flex items-start cursor-pointer relative group/reduceMotion max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
+ transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in hover:text-accent icon-btn h-8 w-8"
+        :class="!store.reduceMotion && store.loaded ? 'text-sunburn-orange' : ''"
+        @click.prevent="store.toggleReduceMotion()">
+        <Motion
+            class="group-hover/secondaryNav:opacity-80 absolute top-0 left-0 w-full h-full z-0 transition-all group-hover/reduceMotion:scale-[1.25] duration-700 text-current" />
+        <Motion
+            class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none opacity-0 group-hover/reduceMotion:bg-deep-purple group-hover/reduceMotion:scale-[1.25] rounded-[6rem] transition-all duration-700"
+            :class="!store.reduceMotion ? 'text-sunburn-orange group-hover/reduceMotion:text-accent' : 'text-accent'" />
+        <Tooltips message="Turn off animations" v-if="!store.useMode" class="mt-10 group-hover/reduceMotion:opacity-100 group-hover/reduceMotion:translate-y-0" />
+    </button>
     <label class="inline-flex items-start cursor-pointer group max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
  transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in"
         :for="footer ? 'mode-footer' : 'mode'">
         <button
-            class="text-xl font-medium animate subtle-slide-in block relative cursor-pointer group-icon transition-all group"
+            class="relative block text-xl font-medium transition-all cursor-pointer animate subtle-slide-in group-icon group"
             style="--theme-main-animation-delay:0.1s" @click="store.toggleUseMode()"
             :class="{ 'scale-140': !store.useMode }">
             <svg width="1.6rem" :class="moonVisible
                 ? 'opacity-100'
-                : 'opacity-0 duration-0'" class="group-hover:text-accent transition-all" viewBox="0 0 24 24"
+                : 'opacity-0 duration-0'" class="transition-all group-hover:text-accent" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <title />
                 <path
@@ -19,7 +30,7 @@
             <svg width="1.6rem" :class="sunVisible
                 ? 'opacity-100'
                 : 'opacity-0 duration-0'"
-                class="group-hover:text-accent group-hover:rotate-450 transition absolute top-0" viewBox="0 0 24 24"
+                class="absolute top-0 transition group-hover:text-accent group-hover:rotate-450" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <title />
                 <circle cx="12" cy="12" fill="currentColor" r="5" />
@@ -58,23 +69,27 @@
 
 <script setup>
 import { useMainStore } from '../../stores/main.js'
+
 import { onMounted, ref, computed, watchEffect } from 'vue'
+import Motion from '../icons/Motion.vue'
 import Tooltips from '../buttons/Tooltips.vue'
+
 const store = useMainStore()
 defineProps({
     footer: { type: Boolean },
 })
+
 const sunVisible = computed(() =>
-  (store.useMode && !store.isDark) || (!store.useMode && !store.fold)
+    (store.useMode && !store.isDark) || (!store.useMode && !store.fold)
 )
 
 const moonVisible = computed(() =>
-  (store.useMode && store.isDark) || (!store.useMode && store.fold)
+    (store.useMode && store.isDark) || (!store.useMode && store.fold)
 )
 
 //const key = computed(() => `${store.useMode}-${store.isDark}-${store.fold}`)
 onMounted(async () => {
     await nextTick()
-    
+
 })
 </script>

@@ -1,19 +1,19 @@
 <template>
-    <div class="gist-embed lg:max-w-2xl rounded-[1.5rem] overflow-clip">
+    <div class="gist-embed lg:max-w-2xl rounded-[1.5rem] overflow-clip bg-primary">
         <div class=" min-h-[calc(45dvh+85px)]" v-if="loading">Loading snippet…</div>
         <div v-else-if="error" class="text-red-500">Error: {{ error }}</div>
         <div v-else>
-            <div class="bg-gray-100/10 px-6 py-2 flex justify-between items-center text-background">
+            <div class="flex items-center justify-between px-6 py-2 bg-gray-100/10 text-background">
                 <span class="text-xs" v-if="Caption">{{ Caption }}</span>
             </div>
             <pre
                 class="overflow-y-auto overflow-x-clip px-6 bg-gray-700/10 text-hot-coral h-[45dvh] lg:h-[60dvh] relative transition-all duration-700 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:cursor-pointer">
-                 <code class="text-xs/6 block opacity-70">{{ code }}</code>
+                 <code class="block text-xs/6 opacity-70">{{ code }}</code>
             </pre>
-            <div class="bg-gray-100/10 px-6 py-2 flex justify-between items-center text-background text-md">
+            <div class="flex items-center justify-between px-6 py-2 bg-gray-100/10 text-background text-md">
                 <Links :href="repoUrl || defaultGistPage" :text="typeof linkText === 'function' ? linkText() : linkText"
                     v-if="!loading" />
-                <Github :url="repoUrl || defaultGistPage" :aria="Caption" class="w-10 relative" />
+                <Github :url="repoUrl || defaultGistPage" :aria="Caption" class="relative hidden w-10 lg:inline-flex" />
             </div>
         </div>
     </div>
@@ -37,9 +37,9 @@ const error = ref('')
 //const code = ref('')
 const gistLinkText = computed(() => {
     const intro = props.FileName
-        ? `<strong class="block md:inline">${props.FileName} / </strong>`
+        ? `<strong class="block md:inline">${props.FileName}&nbsp;/&nbsp;</strong>`
         : ''
-    return intro + 'View the full repo ↗'
+    return intro + '&nbsp;View the full repo ↗'
 })
 
 const defaultGistPage = computed(() => {

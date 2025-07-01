@@ -23,6 +23,8 @@
     "@splidejs/splide": "^4.1.4",
     "@splidejs/vue-splide": "^0.6.12",
     "@tailwindcss/vite": "^4.1.7",
+    "@vueuse/core": "^13.4.0",
+    "@vueuse/nuxt": "^13.4.0",
     "canvas-confetti": "^1.9.3",
     "gsap": "^3.13.0",
     "hls": "^0.0.1",

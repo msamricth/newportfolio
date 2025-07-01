@@ -1,6 +1,6 @@
 <template>
     <section ref="container" aria-labelledby="formHeader" id="sayHello" tabindex="0"
-        class="relative items-center w-full min-h-screen mx-auto mb-2 form-wrapper text-primary dark:text-accent inverted:text-electric-purple mt-25 md:mt-28">
+        class="relative items-center w-full min-h-screen mx-auto mb-2 form-wrapper text-electric-purple dark:text-accent inverted:text-electric-purple mt-25 md:mt-28">
         <div
             class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16">
             <h3 class="mb-6 text-4xl font-black text-center uppercase transition-all lg:mb-12 form-header placeholder-line"
@@ -12,7 +12,8 @@
                 <p class="text-white">We'll be in touch, thanks!
                 </p>
             </div>
-            <form ref="formRef" class="flex flex-col w-full gap-6 px-2 transition-all text-electric-purple dark:text-accent inverted:text-electric-purple"
+            <form ref="formRef"
+                class="flex flex-col w-full gap-6 px-2 transition-all lg:gap-8 text-electric-purple dark:text-accent inverted:text-electric-purple"
                 novalidate :class="submitted ? 'blur-md opacity-25' : ''">
                 <div v-if="error" class="mb-2 text-sm text-electric-purple">
                     {{ error }}
@@ -24,7 +25,7 @@
                         </label>
                         <input type="text" placeholder="Name" id="name" name="name" v-model="formDataValues.name"
                             :class="{ 'border-b border-yellow': nameError }"
-                            class="w-full outline-0 h-12 pb-2 p border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green bg-transparent text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
+                            class="w-full outline-0 h-16 pb-2 p bg-transparent border-current border-3 rounded-[6rem] pl-6 py-[9px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
                     </div>
 
                     <div class="w-1/2">
@@ -33,16 +34,16 @@
                         </label>
                         <input type="email" id="email" placeholder="Email" name="email" v-model="formDataValues.email"
                             required :class="{ 'border-b border-yellow': emailError }"
-                            class="w-full outline-0 h-12 pb-2 p bg-transparent border-current border rounded-[6rem] pl-6 py-[10px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
+                            class="w-full outline-0 h-16 pb-2 p bg-transparent border-current border-3 rounded-[6rem] pl-6 py-[9px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple">
                     </div>
 
                 </div>
 
                 <label for="message" class="sr-only focus:not-sr-only" tabindex="0">
-                            Type your message
-                        </label>
+                    Type your message
+                </label>
                 <textarea
-                    class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border rounded-[1rem] pl-6 py-6 text-electric-purple dark:text-accent inverted:text-electric-purple"
+                    class="placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border-3 rounded-[1rem] pl-6 py-6 text-electric-purple dark:text-accent inverted:text-electric-purple"
                     :class="{ 'border-b border-yellow': messageError }" id="message" name="message"
                     placeholder="Your message" required v-model="formDataValues.message"></textarea>
 
@@ -56,7 +57,7 @@
                 <!-- Submit Button -->
                 <div>
                     <PrimaryBTN type="submit"
-                        class="btn text-electric-purple dark:text-accent subtle-slide-in submit ms-auto"
+                        class="text-1xl btn text-electric-purple dark:text-accent subtle-slide-in submit ms-auto"
                         label="Submit" :onClick="() => submitForm()" :delay="'0.7s'" ref="formButton" />
 
 
@@ -68,9 +69,11 @@
 
 <script setup>
 import { ref, reactive, computed, onMounted, nextTick } from "vue";
-import { gsap } from "gsap";
+import { useNuxtApp } from '#app'
+
+const { $gsap: gsap } = useNuxtApp()
 import PlaceholderJS from './../utils/placeholder.js';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useMainStore } from '../stores/main.js'
 import PrimaryBTN from "./buttons/PrimaryBTN.vue";
 const store = useMainStore()
@@ -81,7 +84,21 @@ const formBlob = ref(null)
 const formBlobInner = ref(null)
 const formHeader = ref(null)
 
-let formTL
+const nameError = ref(null);
+const emailError = ref(null);
+const messageError = ref(null);
+const formRef = ref(null);
+const formDataValues = reactive({
+    name: '',
+    email: '',
+    message: '',
+    hpField: ''
+});
+const submitted = ref(false);
+const error = ref('');
+
+
+let tl
 
 
 
@@ -102,24 +119,24 @@ function expandTextAreaPattern() {
         });
     }
 }
-onMounted(async() => {
+onMounted(async () => {
     await nextTick()
+    expandTextAreaPattern();
+});
+
+async function contactFormAnims() {
+    await nextTick()
+    if (!formHeader.value) return
     const formHeaderEle = formHeader.value;
     const headlineAnim = new PlaceholderJS(formHeaderEle, { manual: true });
     ScrollTrigger.create({
         trigger: formHeaderEle,
         start: 'top top',
         end: 'bottom 70%',
-        onEnter: () => {
-            
-            store.toggleFold(true)
-        },
-        onEnterBack: () => {
-            
-        },
+        onEnter: () => store.toggleFold(true),
     });
-    expandTextAreaPattern();
-    const tl = gsap.timeline({
+
+    tl = gsap.timeline({
         scrollTrigger: {
             trigger: ".form-wrapper",
             start: "top 80%",
@@ -127,10 +144,7 @@ onMounted(async() => {
             toggleActions: "play none none none",
         }
     });
-    tl.call(() => {
-        if (tl.reversed()) {} else {
-        }
-    })
+
     tl.call(() => {
         if (tl.reversed()) {
             headlineAnim.getTimeline().progress(1).reverse();
@@ -148,21 +162,32 @@ onMounted(async() => {
             { opacity: 0, scale: 1.1, rotate: -2 },
             { opacity: 1, scale: 1, rotate: 0, duration: 0.3, ease: "power3.out" }
         );
-});
-const nameError = ref(null);
-const emailError = ref(null);
-const messageError = ref(null);
-const formRef = ref(null);
-const formDataValues = reactive({
-    name: '',
-    email: '',
-    message: '',
-    hpField: ''
-});
-const submitted = ref(false);
-const error = ref('');
+}
 
-
+watch(
+    () => store.loaded,
+    async (loaded) => {
+        if (!loaded) return
+        if (!store.reduceMotion) { await contactFormAnims() }
+    },
+    { immediate: true }
+)
+watch(
+    () => store.reduceMotion,
+    async (reduceMotion) => {
+        await nextTick()
+        if (reduceMotion) {
+            if (tl) tl.kill()
+            gsap.set(
+                ["#name", "#email", "#message", ".submit"],
+                { clearProps: "all" }
+            )
+        } else {
+            await contactFormAnims()
+        }
+    },
+    { immediate: true }
+)
 async function submitForm() {
     // Check required fields and update a general error message if needed
     if (!formDataValues.name || !formDataValues.email || !formDataValues.message) {

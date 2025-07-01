@@ -10,7 +10,7 @@ export function buildTetrisTL(container) {
         '#bridges span, #design span'
     );
     //Tetris bro
-    tetrisTL.timeScale(2)
+    tetrisTL.timeScale(3)
     if (tetris) {
 
         tetrisTL.to(tetris, {
@@ -19,7 +19,7 @@ export function buildTetrisTL(container) {
             duration: 0.6,
             ease: 'power1.out'
 
-        })
+        },"-=0.6")
         tetrisTL.fromTo(
             "#tetris-line path",
             {
@@ -149,8 +149,6 @@ export function buildTetrisTL(container) {
         );
         //end tetris
     }
-
-
     tl.set("#tetris-stack", {
         y: "-200px",
     })
@@ -189,7 +187,7 @@ export function buildTetrisTL(container) {
                 duration: 0.8,
                 ease: 'elastic.out(0.9)'
             },
-            `Enter+=${i * 0.25}`
+            `Enter+=${(i * 0.25) + 0.6}`
         );
     });
     tl.to(['#bridges', '#design'], {
@@ -212,7 +210,7 @@ export function buildTetrisTL(container) {
         'Enter+2.5'
     );
 
-    tl.addLabel("introFinishing", "+=4")
+    tl.addLabel("introFinishing", "+=0.4")
 
     tl.to(
         ['#bridges', '#works'], { x: 40, repeat: 2, yoyo: true, duration: 0.8, },

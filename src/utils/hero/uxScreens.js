@@ -3,11 +3,13 @@ import { gsap } from 'gsap'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 export function buildUXTL(container) {
     const scope = container
-    
+
     if (!container) return;
     gsap.registerPlugin(DrawSVGPlugin);
     const tl = gsap.timeline()
-    const secondarytl = gsap.timeline({paused:true})
+    const secondarytl = gsap.timeline({ paused: true })
+
+
     const el = document.querySelector('.hero-wrapper')
     const uxScreens = scope.querySelector(".ux-screens");
     const allLines = scope.querySelectorAll(".line");
@@ -15,25 +17,31 @@ export function buildUXTL(container) {
     const allShapesPaths = scope.querySelectorAll("path.shape");
     const allShapesG = scope.querySelectorAll("g.shape path");
     const bgScreens = scope.querySelectorAll(".background-screens");
-    const phoneSquare = scope.querySelectorAll("#phone-square")
-    const phoneCircle = scope.querySelectorAll("#phone-circle")
-    const phoneBike = scope.querySelectorAll("#phone-bike")
     const phoneLineart = scope.querySelectorAll("#phone-lineart")
+    const phoneMenuBg = scope.querySelectorAll('#phone-menu-bg')
+
+
+
+
     const phoneScreen = scope.querySelectorAll("#phone")
-    const phoneGear = scope.querySelectorAll("#phone-gear")
-    const phoneGearPath = scope.querySelectorAll("#phone-gear path")
-    const phoneMenuBg             = scope.querySelectorAll('#phone-menu-bg')
-    const phoneMenuOutline        = scope.querySelectorAll('#phone-menu-outline')
-    const phoneOff                = scope.querySelector('#phone-off')
-    const phoneOffPaths           = scope.querySelectorAll('#phone-off path')
-    const phoneOffPathsNotOutline = scope.querySelectorAll('#phone-off path:not(#stroke-outline)')
-    const strokeOutline           = scope.querySelector('#stroke-outline')
-    const phoneSquigglesPaths     = scope.querySelectorAll('#phone-sqiggles path')
-    const phoneSeparator          = scope.querySelectorAll('#phone-seperator')
 
+    const logo = scope.querySelectorAll('#phone-logo')
+    const phoneGear = scope.querySelectorAll('#phone-gear')
+    const phoneGearPaths = scope.querySelectorAll('#phone-gear path')
+    const phoneMenuBtn = scope.querySelectorAll('#phone-menu-btn')
+    const phoneOutline = scope.querySelectorAll('#phone-outline')
+    const phoneMenuPaths = scope.querySelectorAll('#phone-menu path')
+    const phoneContentPaths = scope.querySelectorAll('#phone-content path')
+    const phoneMenuOutline = scope.querySelectorAll('#phone-menu-outline')
+    const phoneMenuItems = scope.querySelectorAll('#phone-menu-items')
+    const phoneSeperator = scope.querySelectorAll('#phone-seperator')
+    const phoneSquare = scope.querySelectorAll('#phone-square')
+    const phoneCircle = scope.querySelectorAll('#phone-circle')
+    const phoneSqiggles = scope.querySelectorAll('#phone-sqiggles')
+    tl.timeScale(1.3)
 
-       // BG Screens on UX Screens
-       if (bgScreens.length) {
+    // BG Screens on UX Screens
+    if (bgScreens.length) {
         bgScreens.forEach((icon, i) => {
             const lines = icon.querySelectorAll(".line")
             const shapes = icon.querySelectorAll(".shape")
@@ -78,9 +86,7 @@ export function buildUXTL(container) {
     tl.set(phoneScreen, {
         clearProps: "width"
     });
-    tl.set([phoneMenuBg, phoneLineart], {
-        autoAlpha: 0
-    });
+
     tl.set(bgScreens, {
         autoAlpha: 0.4
     });
@@ -92,238 +98,141 @@ export function buildUXTL(container) {
         rotation: 0,
         transformOrigin: "center center"
     })
+
+    gsap.set(
+        [
+            logo,
+            phoneGear,
+            phoneMenuBtn,
+            phoneOutline,
+            phoneMenuPaths,
+            phoneContentPaths
+        ],
+        { autoAlpha: 0 }
+    )
+    gsap.set(
+        [
+            phoneGearPaths,
+            phoneMenuBtn,
+            phoneOutline,
+            phoneMenuPaths,
+            phoneContentPaths
+        ],
+        { drawSVG: '0%' }
+    )
+
+
     tl.addLabel("PhoneStart", "introFinishing+=1.2")
     tl.to(uxScreens, {
         autoAlpha: 1,
         duration: 0.3,
         ease: "power3.out"
     }, "PhoneStart")
-    tl.addLabel("bikeStart", "PhoneStart")
-        .fromTo(
-            phoneBike,
-            { y: -20, autoAlpha: 0, scale: 0.8 },
-            {
-                y: 0,
-                scale: 2,
-                autoAlpha: 1,
-                duration: 0.4,
-                ease: "elastic.out(0.9)"
-            }, "bikeStart"
-        )
-    tl.to(
-        phoneBike,
-        {
-            transformOrigin: "center center",
-            y: -20,
-            rotation: -360,
-            scale: 1,
-            xPercent: 0,
-            yPercent: 0,
-            duration: 0.6,
-            ease: "power2.inOut"
-        },
-        "bikeStart+=0.4"
-    )
-    tl.addLabel("gearStart", "bikeStart+=0.2")
-        .to(
-            [phoneGear, phoneGearPath],
-            { autoAlpha: 1, duration: 0 }, "gearStart")
-        .fromTo(
-            phoneGearPath,
-            {
-                drawSVG: "0%"
-            },
-            {
-                drawSVG: "100%",
-                duration: 0.4,
-                stagger: 0.15
-            }, "gearStart+=0.2"
-        )
+
+
+
+    tl.addLabel("phoneLogo", "PhoneStart")
+
+    tl.to(logo, {
+        autoAlpha: 1,
+        scale: 3,
+        transformOrigin: '50% 50%',
+        ease: 'bounce.out',
+        duration: 1.2
+    }, 'phoneLogo')
+        .to(logo, { scale: 1, duration: 0.6 }, 'phoneLogo+=0.6')
+
+
+    tl.addLabel('gearIn')
+        .set(phoneGear, { x: -150, y: 0, autoAlpha: 1 })
+        .to(phoneGearPaths, { drawSVG: '100%', duration: 0.8 }, 'gearIn')
         .to(
             phoneGear,
             {
-                x: "0",
-                rotation: 720,
-                duration: 0.6,
-                ease: "power2.out"
+                x: 0,
+                rotation: 360,
+                transformOrigin: '50% 50%',
+                duration: 1
             },
-            "gearStart+=0.6"
+            'gearIn+=0.2'
         )
+        .to(phoneOutline, { autoAlpha: 1 }, 'gearIn+=0.4')
+        .to(phoneOutline, { drawSVG: '100%', duration: 1 }, 'gearIn+=0.4')
+        .to(phoneMenuBtn, { autoAlpha: 1 }, 'gearIn+=0.6')
+        .to(phoneMenuBtn, { drawSVG: '100%', duration: 0.6 }, 'gearIn+=0.6')
 
+    tl.addLabel('content')
+        .to(phoneContentPaths, {
+            autoAlpha: 1,
+            drawSVG: '100%',
+            stagger: 0.2,
+            duration: 0.5
+        }, 'content')
 
-        .addLabel("outlineStart", "gearStart+=0.4");
-    tl.set(scope.querySelectorAll("#phone-outline"), { autoAlpha: 1 }, "outlineStart").fromTo(
-        scope.querySelectorAll( "#phone-outline"),
-        { drawSVG: "0%" },
-        { drawSVG: "100%", duration: 1, ease: "power1.out" },
-        "outlineStart+=0.2"
-    );
-
-
-
-    tl.addLabel("menuToggle", "outlineStart+=1.2")
+    tl.addLabel('press')
+        .to(phoneMenuBtn, {
+            y: 4,
+            scaleY: 0.9,
+            transformOrigin: '50% 50%',
+            attr: { fill: '#A66EFF' },
+            duration: 0.1,
+            yoyo: true,
+            repeat: 1
+        }, 'press')
         .to(
-            phoneOffPaths,
-            {
-                y: "6px",
-                duration: 0
-            },
-            "menuToggle-=0.6"
-        )
-        .to(
-            phoneOff,
-            {
-                autoAlpha: 1,
-                transformOrigin: "top",
-                duration: 0.3
-            },
-            "menuToggle-=0.6"
+            phoneContentPaths,
+            { y: 100, autoAlpha: 0, duration: 0.4, ease: 'back.inOut(0.7)' },
+            'press+=0.2'
         )
         .fromTo(
-            phoneOffPaths,
-            { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" },
-            "menuToggle-=0.5"
+            phoneMenuOutline,
+            { autoAlpha: 0, drawSVG: '0%' },
+            { autoAlpha: 1, drawSVG: '100%', duration: 1 },
+            'press+=0.6'
         )
-        .to(
-            phoneOff,
-            {
-                scale: 1.2,
-                color: "#33D6BB",
-                ease: "bounce.out",
-                duration: 0.2
-            },
-            "menuToggle+=0.5"
-        )
-        .to(
-            phoneOffPaths,
-            {
-                attr: { stroke: "#33D6BB" }
-            },
-            "menuToggle+=0.5"
-        )
-
-        .fromTo(
-            phoneOff,
-            {
-                scale: 1.2
-            },
-            {
-                scale: 1,
-                ease: "bounce.out",
-                duration: 0.2,
-                repeat: 1,
-                yoyo: true
-            },
-            "menuToggle+=0.8"
-        )
-        .to(
-            phoneOffPathsNotOutline,
-            {
-                attr: { stroke: "#B5D100" }
-            },
-            "menuToggle+=1.2"
-        )
-
-        .to(
-            strokeOutline,
-            {
-                attr: { stroke: "#B5D100", fill: "#B5D100" }
-            },
-            "menuToggle+=1"
-        )
-
-        .addLabel("menuStart", "menuToggle+=1");
-    tl.set(phoneMenuOutline, { autoAlpha: 1 }, "menuStart")
-
         .call(
             () => {
                 secondarytl.play(0);
             },
             null,
-            "menuStart"
-        )
-        .fromTo(
-            phoneMenuOutline,
-            { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" },
-            "menuStart"
-        )
-        .to(phoneMenuBg, { autoAlpha: 0.2, duration: 0.6 }, "menuStart+=0.4")
-        .addLabel("squigglesStart", "menuStart+=0.4");
-    tl.fromTo(
-        phoneSquigglesPaths,
-        {
-            scale: 0.6,
-            autoAlpha: 0,
-            y: 40
-        },
-        {
-            y: 0,
-            autoAlpha: 1,
-            scale: 1,
-            stagger: 0.15,
-            duration: 0.4,
-            ease: "elastic.out(1)"
-        },
-        "squigglesStart"
-    );
-
-    tl.addLabel("separatorStart", "squigglesStart+=0.4")
-        .set(scope.querySelectorAll("#phone-seperator"), { autoAlpha: 1, duration: 0 }, "separatorStart")
-        .fromTo(
-            scope.querySelectorAll("#phone-seperator"),
-            { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" },
-            "separatorStart+=0.2"
-        )
-
-        .fromTo(
-            phoneSquare,
-            { drawSVG: "0%", autoAlpha: 0 },
-            { drawSVG: "100%", autoAlpha: 1, duration: 0.4, stagger: 0.15, ease: "power1.out" },
-            "separatorStart+=0.24"
+            "press+=0.6"
         )
         .to(
-            phoneSquare,
-            {
-                rotation: 45,
-                transformOrigin: "50% 50%",
-                duration: 0.4
-            },
-            "separatorStart+=0.28"
+            phoneMenuItems,
+            { autoAlpha: 1, drawSVG: '100%', duration: 0.6, stagger: 0.1 },
+            'press+=0.8'
         )
-        .set(phoneCircle, { autoAlpha: 1 })
-        .fromTo(
-            phoneCircle,
-            { drawSVG: "0%" },
-            { drawSVG: "100%", duration: 0.4, stagger: 0.15, ease: "power1.out" }, 
-            "separatorStart-=0.08"
-        )
-        .to(
-            phoneCircle,
-            {
-                rotation: 360,
-                transformOrigin: "50% 50%",
-                duration: 0.4
-            },
-            "separatorStart+=0.6"
-        )
-
+        .to(phoneSeperator, { autoAlpha: 1, drawSVG: '100%', duration: 0.3 }, 'press+=1')
         .to(bgScreens, {
             autoAlpha: 1, duration: 0.4, ease: "power1.out"
         },
-            "separatorStart=0.25"
+            'press+=1.2'
         )
-        .fromTo(
-            phoneLineart,
-            { drawSVG: "0%", autoAlpha: 0 },
-            { drawSVG: "100%",autoAlpha: 1, duration: 0.4, stagger: 0.15, ease: "power1.out" }, "separatorStart+=0.6"
+        .to(phoneSquare, { autoAlpha: 1, drawSVG: '100%', duration: 0.3 }, 'press+=1.4')
+        .to(
+            phoneSquare,
+            { rotation: 45, transformOrigin: '50% 50%', duration: 0.4 },
+            'press+=1.8'
+        )
+        .to(phoneCircle, { autoAlpha: 1, drawSVG: '100%', duration: 0.3 }, 'press+=1.8')
+        .to(
+            phoneCircle,
+            { rotation: 360, transformOrigin: '50% 50%', duration: 0.4 },
+            'press+=2.2'
+        )
+        .to(
+            phoneSqiggles,
+            { autoAlpha: 1, drawSVG: '100%', duration: 0.3 },
+            'press+=2.2'
+        )
+        .to(
+            phoneSqiggles,
+            { drawSVG: '50%', yoyo: true, repeat: 1, duration: 0.3 },
+            'press+=2.5'
         )
 
 
-
-    tl. addLabel("lineartStart", "separatorStart")
+    tl.addLabel("lineartStart", "press+=0.6")
         .to(phoneScreen, { y: 40, repeat: 2, yoyo: true, duration: 0.8 },
             "lineartStart+=2.25")
         .to(

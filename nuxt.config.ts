@@ -7,12 +7,14 @@ export default defineNuxtConfig({
   css: ['~/style.css'],
   publicDir: resolve(__dirname, 'public'),
   modules: [
+    '@vueuse/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/sitemap'
   ],
   runtimeConfig: {
     githubToken: '',
   },
+  site: { url: 'codeartisan.dev' },
   sitemap: {
     hostname: 'https://codeartisan.dev',
     gzip: true,
@@ -24,7 +26,7 @@ export default defineNuxtConfig({
     resourceHints: false
   },
   routeRules: {
-    '/work/glt/': { prerender: true },
+  //  '/work/glt/': { prerender: true },
     '/':          { headers: { 'cache-control': 'public, max-age=0, must-revalidate' } },
   },
   nitro: {

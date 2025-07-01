@@ -1,11 +1,11 @@
 <template>
     <a :href="href" ref="buttonEl" @mouseenter="handleHoverIn" @mouseleave="handleHoverOut" @click.prevent="handleClick"
         role="button"
-        class="relative flex flex-col items-center justify-center overflow-visible font-black transition-colors cursor-pointer w-65 h-21 group/cta active:text-electric-purple"
-        :aria-label="label" >
+        class="relative flex flex-col items-center justify-center overflow-visible font-black transition-colors cursor-pointer w-65 h-21 group/cta active:text-electric-purple motionless:text-current motionless:hover:text-accent motionless:duration-600"
+        :aria-label="label">
         <span class="flex gap-0.5 w-55 justify-center relative z-20" id="label" ref="labelEl">{{ label
             }}</span>
-        <svg viewBox="0 0 326 82" class="absolute w-full overflow-visible">
+        <svg viewBox="0 0 326 82" class="absolute w-full overflow-visible scale-90">
             <path id="mainPath" ref="mainPath" fill="none" stroke="currentColor" stroke-width="4"
                 d="M0 41C0 18.3563 18.3563 0 41 0H285C307.644 0 326 18.3563 326 41C326 63.6437 307.644 82 285 82H41C18.3563 82 0 63.6437 0 41Z" />
             <g class="absolute right-0 z-10 overflow-hidden w-18">
@@ -18,7 +18,9 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-import gsap from 'gsap'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
+import { useMainStore } from '@/stores/main'
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin'
 import Splitting from '@/utils/splitting'
 const props = defineProps({
@@ -35,6 +37,7 @@ const buttonEl = ref(null)
 const labelEl = ref(null)
 const mainPath = ref(null)
 const tailPath = ref(null)
+const store = useMainStore()
 
 const mainShapes = [
     "M0 41C0 18.3563 18.3563 0 41 0H285C307.644 0 326 18.3563 326 41C326 63.6437 307.644 82 285 82H41C18.3563 82 0 63.6437 0 41Z",
@@ -68,8 +71,13 @@ let words = []
 onMounted(async () => {
     await nextTick()
     gsap.registerPlugin(MorphSVGPlugin)
+})
+async function setupButton() {
+    await nextTick()
+    if (store.reduceMotion) return
     timeline = gsap.timeline({ paused: true })
     activeTL = gsap.timeline({ paused: true })
+    if(!labelEl.value) return
     const results = Splitting({ target: labelEl.value, by: 'words' });
     const res = results.find(r => r.el === labelEl.value);
     words = res.words;
@@ -125,10 +133,8 @@ onMounted(async () => {
     activeTL.call(() => {
         activeTL.reverse()
     }, null, 0.12)
-})
-
-const handleHoverIn = () => {
-    if (!timeline) return;
+}
+function mainAnim() {
     timeline.timeScale(1)
     timeline.play()
     if (words.length) {
@@ -164,8 +170,42 @@ const handleHoverIn = () => {
     }
 }
 
+// watchers
+
+watch(
+  () => store.ready,
+  async (ready) => {
+    if (!ready || store.reduceMotion) return
+    await setupButton()
+  },
+  { immediate: true }
+)
+
+
+watch(
+  () => store.reduceMotion,
+  async (rm) => {
+    await nextTick()
+    if (!rm) {
+      await setupButton()
+    } else {
+      if(timeline) timeline.kill()
+      if(activeTL) activeTL.kill()
+     
+    }
+  },
+  { immediate: true }
+)
+
+
+//Event stuff
+const handleHoverIn = () => {
+    if (window.innerWidth < 992 || !timeline) return
+    mainAnim()
+}
+
 const handleHoverOut = () => {
-    if (!timeline) return;
+    if (window.innerWidth < 992 || !timeline) return
     timeline.pause()
     timeline.seek(timeline.duration())
     timeline.reverse()
@@ -184,44 +224,51 @@ const handleClick = () => {
         }
         return
     };
-
-    activeTL.play()
-    if (words.length) {
-        gsap.killTweensOf(words)
-        gsap.timeline().fromTo(
-            words,
-            {
-                x: 0,
-                rotate: 0,
-                y: 0,
-            },
-            {
-                x: () => gsap.utils.random(-4, 4),
-                rotate: () => gsap.utils.random(-4, 4),
-                y: () => gsap.utils.random(-4, 4),
-                ease: 'elastic.out(0.9)',
-                duration: 0.05,
-                stagger: {
-                    amount: 0.015,
-                    from: 'random',
-                },
-            }, 0)
-            .to(
+    if (window.innerWidth < 992 || !timeline) {
+        mainAnim()
+        gsap.delayedCall(1.5, () => {
+            timeline.reverse()
+        })
+    } else {
+        activeTL.play()
+        if (words.length) {
+            gsap.killTweensOf(words)
+            gsap.timeline().fromTo(
                 words,
                 {
                     x: 0,
                     rotate: 0,
                     y: 0,
-                    ease: 'power3.out',
-                    duration: 0.1,
+                },
+                {
+                    x: () => gsap.utils.random(-4, 4),
+                    rotate: () => gsap.utils.random(-4, 4),
+                    y: () => gsap.utils.random(-4, 4),
+                    ease: 'elastic.out(0.9)',
+                    duration: 0.05,
                     stagger: {
-                        amount: 0.05,
+                        amount: 0.015,
                         from: 'random',
                     },
-                }, 0.05)
-            .to(words, {
-                clearProps: "all"
-            }, 0.06)
+                }, 0)
+                .to(
+                    words,
+                    {
+                        x: 0,
+                        rotate: 0,
+                        y: 0,
+                        ease: 'power3.out',
+                        duration: 0.1,
+                        stagger: {
+                            amount: 0.05,
+                            from: 'random',
+                        },
+                    }, 0.05)
+                .to(words, {
+                    clearProps: "all"
+                }, 0.06)
+        }
+
     }
     let startTime;
     const delayDuration = 500;

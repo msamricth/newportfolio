@@ -1,54 +1,24 @@
 <template>
-    <section ref="container" class="absolute w-full h-dvh flex items-center md:justify-center z-40">
-        <!-- single unified icon container -->
-
-        <div class="hero-icon-wrap absolute flex flex-wrap justify-center max-md:w-full">
-            <div class="flex justify-between mx-auto relative gap-5 md:gap-12" ref="icons">
-                <div class="decor main-icon origin-center">
+    <section ref="container" class="absolute z-40 flex items-center w-full bg-transparent h-dvh md:justify-center animate subtle-slide-in">
+        <div class="absolute flex flex-wrap justify-center bg-transparent hero-icon-wrap max-md:w-full">
+            <div class="relative flex justify-between gap-5 mx-auto bg-transparent md:gap-12" ref="icons">
+                <div class="origin-center decor main-icon">
                     <Mixer class="h-auto transition-all" width="120" height="120"
                         style="--theme-main-animation-delay: 100ms"
                         :class="loading ? 'jello-horizontal' : 'animate subtle-slide-in-attention'" />
                 </div>
-                <div class="decor main-icon origin-center">
+                <div class="origin-center decor main-icon">
                     <Flower2 width="120" height="120" class="h-auto transition-all"
                         :class="loading ? 'rotate-ccw90-forever' : 'animate subtle-slide-in-attention'"
                         style="--theme-main-animation-delay: 200ms" />
                 </div>
-                <div class="decor main-icon origin-center">
-                    <Heart class="transition-all h-auto"
+                <div class="origin-center decor main-icon">
+                    <Heart class="h-auto transition-all"
                         :class="loading ? ' jello-horizontal' : 'animate subtle-slide-in-attention'" width="120"
                         height="120" />
                 </div>
 
 
-                <div class="decor secondary absolute origin-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20"
-                    v-if="ready">
-                    <Code class="h-auto transition-all w-full" width="50" height="50" v-if="ready" />
-                </div>
-
-
-                <div class="decor secondary absolute origin-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-16"
-                    v-if="ready">
-                    <Flower5 class="rotate-ccw90-forever h-auto w-full" width="50" height="50" v-if="ready" />
-                </div>
-                <div class="decor secondary absolute origin-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-16"
-                    v-if="ready">
-                    <Syntax class="heartbeat  h-auto w-full" width="50" height="50" v-if="ready" />
-                </div>
-                <div class="decor secondary absolute origin-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-22"
-                    v-if="ready">
-                    <BMX class="rotate-forever  h-auto w-full" width="50" height="50" v-if="ready" />
-                </div>
-
-                <div class="decor secondary absolute origin-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-16"
-                    v-if="ready">
-                    <Headphones class="shake-top h-auto w-full" width="50" height="50" v-if="ready" />
-                </div>
-
-                <div class="decor secondary absolute origin-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-16"
-                    v-if="ready">
-                    <Flower4 class="heartbeat h-auto w-full" width="50" height="50" v-if="ready" />
-                </div>
             </div>
         </div>
 
@@ -56,13 +26,12 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, nextTick, defineAsyncComponent } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import { useNuxtApp } from '#app'
 import Mixer from '@/components/icons/Mixer.vue'
 import Flower2 from '@/components/icons/Flower2.vue'
 import Heart from '@/components/icons/Heart.vue'
 
-import { useMatchMedia } from '@/composables/useMatchMedia'
 const store = useMainStore()
 
 const { $gsap: gsap } = useNuxtApp()
@@ -72,17 +41,11 @@ const container = ref(null)
 const ready = ref(false)
 const loading = ref(false)
 const props = defineProps({
-    sceneLoaded: Boolean 
+    sceneLoaded: Boolean
 })
-const Flower4 = defineAsyncComponent(() => import('@/components/icons/Flower4.vue'))
-const Headphones = defineAsyncComponent(() => import('@/components/icons/Headphones.vue'))
-const Flower5 = defineAsyncComponent(() => import('@/components/icons/Flower5.vue'))
-const Code = defineAsyncComponent(() => import('@/components/icons/Code.vue'))
-const BMX = defineAsyncComponent(() => import('@/components/icons/BMX.vue'))
-const Syntax = defineAsyncComponent(() => import('@/components/icons/Syntax.vue'))
 
-onMounted(async ()=>{
-    
+onMounted(async () => {
+
     await nextTick()
     await new Promise(r => requestAnimationFrame(r))
     const iconsContainer = icons.value
@@ -102,7 +65,7 @@ onMounted(async ()=>{
                     iconsRP.to(iconEl, {
                         y: 50,
                         x: 10,
-                        duration: 0.6,
+                        duration: 0.5,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
 
@@ -111,7 +74,7 @@ onMounted(async ()=>{
                     iconsRP.to(iconEl, {
                         x: 0,
                         y: -90,
-                        duration: 0.6,
+                        duration: 0.5,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
                     break;
@@ -119,7 +82,7 @@ onMounted(async ()=>{
                     iconsRP.to(iconEl, {
                         y: 50,
                         x: -10,
-                        duration: 0.6,
+                        duration: 0.5,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
                     break;
@@ -129,70 +92,61 @@ onMounted(async ()=>{
             iconsRP.play()
         }, null, 0)
 
-        heroAnim.addLabel('iconsRotate', '+=1')
+        heroAnim.addLabel('iconsRotate', '+=0.5')
         heroAnim.to(iconsContainer, {
             rotation: 360,
-            duration: 2.5,
+            duration: 2,
             repeatDelay: 0,
             ease: 'power1.inOut',
         }, 'iconsRotate')
 
         heroAnim.to(iconsEl, {
             rotation: '-360deg',
-            duration: 2.5,
+            duration: 2,
             ease: 'power1.inOut'
         }, 'iconsRotate')
-
-
+            .call(() => {
+              if(!store.reduceMotion)  store.toggleFold(true)
+            }, null, "-=0.2")
         heroAnim.play()
     }
 })
 watch(
     () => props.sceneLoaded,
     async (loaded) => {
-        if (!loaded) return
+        if (!loaded) {
+            await nextTick()
+            await new Promise(r => requestAnimationFrame(r))
+            gsap.timeline().to(container.value, {
+                autoAlpha: 1,
+                duration: 0.8,
+                ease: 'power1.out'
+            }, 0)
+            return
+        }
         await nextTick()
         gsap.timeline().call(async () => {
             await nextTick()
             await new Promise(r => requestAnimationFrame(r))
             const sec = container.value.querySelectorAll('.secondary')
-            gsap.timeline().to(sec, {
-                autoAlpha: 1,
-                duration: 0.6,
-                ease: 'power1.inOut'
-            }, "+=0.6").to(
-                container.value.querySelectorAll('.decor'),
-                {
-                    x: i => {
-                        const t = i / 9
-                        const turns = 3
-                        const θ = 2 * Math.PI * turns * t
-                        const b = 40
-                        const r = b * θ
-                        return Math.cos(θ) * r
-                    },
-                    y: i => {
-                        const t = i / 9
-                        const turns = 2
-                        const θ = 2 * Math.PI * turns * t
-                        const b = 20
-                        const r = b * θ
-                        return Math.sin(θ) * r
-                    },
-                    duration: 2,
-                    ease: 'power1.out',
-                }, "-=0.9")
+            gsap.timeline().to(
+                    container.value.querySelectorAll('.decor'),
+                    {
+                        x:0,
+                        y:0,
+                        autoAlpha:0,
+                        duration: 0.6,
+                        ease: 'power1.out',
+                    }, "+=0")
         }, null).to(container.value, {
             autoAlpha: 0,
             duration: 0.8,
             ease: 'power1.out'
-        },"+=1.8")
-        store.toggleFold(true)
+        }, "+=1.5")
     }
 )
 </script>
 <style scoped>
-
 .hero-icon-wrap .flex .decor:not(.absolute) svg {
     width: calc(clamp(6.76rem, 8vw, 5.6rem));
 }

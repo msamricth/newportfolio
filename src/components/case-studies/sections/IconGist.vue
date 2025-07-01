@@ -1,50 +1,53 @@
 <template>
     <section ref="sectionEl"
-        class="relative flex flex-col md:flex-row justify-between pt-24 pb-14 md:py-0 gap-12 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto overflow-clip md:min-h-[280dvh] lg:min-h-[200dvh] lg:justify-center lg:items-start max-md:bg-primary">
+        class="relative flex flex-col md:flex-row justify-between pt-24 pb-14 md:py-0 gap-12 max-w-full lg:max-w-[1024px] xl:max-w-[1290px] mx-auto overflow-clip md:min-h-[280dvh] lg:min-h-[200dvh] lg:justify-center lg:items-start icon-gist w-full motionless:lg:max-w-full motionless:xl:max-w-[1290px] motionless:2xl:max-w-[1440px] motionless:md:min-h-screen  motionless:lg:min-h-screen motionless:items-start motionless:gap-8 motionless:2xl-gap-12 motionless:max-md:pt-0 motionless:hidden">
         <div ref="textEl"
-            class="order-2 md:order-1 w-full md:max-w-4xl lg:max-w-2xl xl:max-w-xl md:ml-auto text-container pt-0 lg:pt-6 px-8 lg:pl-12 lg:pr-0 tl lg:min-h-[70vh] lg:flex lg:flex-col lg:justify-center">
+            class="order-2 md:order-1 w-full md:max-w-4xl lg:max-w-2xl xl:max-w-xl md:ml-auto text-container pt-0 lg:pt-6 px-8 lg:pl-12 lg:pr-0 tl lg:min-h-[70vh] lg:flex lg:flex-col lg:justify-center motionless:lg:pl-0 motionless:order-2 motionless:w-full motionless:md:pt-0 motionless:min-h-auto motionless:md:pr-0">
 
-            <h4 class="text-2xl font-black placeholder-line mb-3" data-splitting="words">
+            <h4 class="mb-3 text-2xl font-black h3 placeholder-line" data-splitting="words">
                 {{ heading }}
             </h4>
 
-            <p class="text-xl md:text-md lg:text-xl mb-6 md:mb-4 lg:mb-6 placeholder-line" data-splitting="words" v-if="paragraph">{{
-                paragraph }}</p>
-            <ul class="list-disc pl-6 space-y-3">
-                <li v-for="(item, i) in items" :key="i" class="text-lg md:text-sm lg:text-lg max-lg:mb-2 font-medium opacity-0 **:inline-flex **:flex-wrap" data-item>
+            <p class="mb-6 text-xl opacity-0 md:text-sm lg:text-lg smd:text-xl md:mb-4 lg:mb-6 placeholder-line"
+                data-splitting="words" v-if="paragraph">{{
+                    paragraph }}</p>
+            <ul class="pl-6 space-y-3 list-disc">
+                <li v-for="(item, i) in items" :key="i"
+                    class="text-lg md:text-sm smd:text-lg max-lg:mb-2 font-medium opacity-0 motionless:opacity-100 **:inline-flex **:flex-wrap"
+                    data-item>
                     {{ item }}</li>
             </ul>
 
-            <h5 v-if="tags && tags.length" class="text-xl my-6 placeholder-line" data-splitting="words">
+            <h5 v-if="tags && tags.length" class="my-6 text-xl placeholder-line" data-splitting="words">
                 {{ tagIntro }}
             </h5>
 
-            <ul v-if="tags && tags.length" class="flex gap-1 items-start flex-wrap">
+            <ul v-if="tags && tags.length" class="flex flex-wrap items-start gap-1">
                 <li v-for="(tag, i) in tags" :key="i"
-                    class="bg-primary rounded-[6rem] dark:bg-background inverted:bg-background py-2 px-3 inline w-content text-background dark:text-primary inverted:text-primary text-xs tags opacity-0">
+                    class="bg-primary rounded-[6rem] dark:bg-background inverted:bg-background py-2 px-3 inline w-content text-background dark:text-primary inverted:text-primary text-xs tags opacity-0 motionless:opacity-100">
                     {{ tag }}
                 </li>
             </ul>
         </div>
         <Gist v-if="gistId" :gistId="gistId" :repoUrl="repoUrl" :FileName="FileName" :Caption="Caption" :code="code"
-            class="order-3 md:order-2 md:absolute md:max-w-xl lg:max-w-2xl md:opacity-0 gist mx-2 md:mx-6 md:mt-6 lg:mt-0 tl left-0 max-md:mt-6 max-md:w-[calc(100%-16px)]" />
+            class="order-3 md:order-2 md:absolute md:max-w-xl lg:max-w-2xl md:opacity-0 motionless:opacity-100 gist mx-2 md:mx-6 md:mt-6 lg:mt-0 tl left-0 max-md:mt-6 max-md:w-[calc(100%-16px)] motionless:md:relative motionless:md:max-w-md motionless:lg:max-w-lg motionless:mx-0 motionless:max-md:mx-auto" />
 
         <div
-            class="order-1 md:order-3 items-center relative space-y-12 md:w-2/5 lg:w-lg px-8 lg:pr-12 lg:pl-0 tl lg:h-[70vh]  lg:flex lg:flex-col lg:justify-center">
+            class="order-1 md:order-3 items-center relative space-y-12 md:w-2/5 lg:w-lg px-8 lg:pr-12 lg:pl-0 tl lg:h-[70vh] lg:flex lg:flex-col lg:justify-center motionless:lg:pr-0 motionless:order-1 motionless:md:hidden motionless:xl:flex">
             <div ref="iconTrack"
-                class="relative iconTrack md:space-y-12 md:size-90 lg:size-95 origin-center max-md:flex justify-between gap-6 md:gap-3 tl mb-4 md:mn-0">
-                <div class="icon-btn md:absolute w-24 h-24 group md:min-w-[120px] top-0 left-30 tl" v-if="icons[0]">
+                class="relative justify-between gap-6 mb-4 origin-center iconTrack md:space-y-12 md:size-90 lg:size-95 max-md:flex md:gap-3 tl md:mn-0 motionless:md:w-24 motionless:lg:w-24 motionless:md:**:left-0 motionless:max-md:items-end">
+                <div class="top-0 w-24 h-24 icon-btn md:absolute group md:min-w-30 left-30 tl" v-if="icons[0]">
                     <component :is="icons[0]"
-                        class="icon-wipe-overlay inset-0 w-full h-full  md:transition-all duration-700 z-10 text-hot-coral tl" />
+                        class="inset-0 z-10 w-full h-full duration-700 icon-wipe-overlay md:transition-all text-hot-coral tl" />
                 </div>
-                <div class="icon-btn md:absolute w-24 h-24 group md:min-w-[120px] overflow-visible top-34 lg:top-36 left-30 tl"
+                <div class="w-24 h-24 overflow-visible icon-btn md:absolute group md:min-w-30 top-34 lg:top-36 left-30 tl"
                     v-if="icons[1]">
                     <component :is="icons[1]"
-                        class="icon-wipe-overlay inset-0 w-full h-full md:transition-all duration-700 z-10 text-electric-purple tl" />
+                        class="inset-0 z-10 w-full h-full duration-700 icon-wipe-overlay md:transition-all text-electric-purple tl" />
                 </div>
-                <div class="icon-btn md:absolute w-24 h-24 group min-w-[120px] bottom-0 left-32 tl" v-if="icons[2]">
+                <div class="bottom-0 w-24 h-24 icon-btn md:absolute group min-w-30 left-32 tl" v-if="icons[2]">
                     <component :is="icons[2]"
-                        class="icon-wipe-overlay inset-0 w-full h-full  md:transition-all duration-700 z-10 text-sunburn-orange tl" />
+                        class="inset-0 z-10 w-full h-full duration-700 icon-wipe-overlay md:transition-all text-sunburn-orange tl" />
                 </div>
             </div>
         </div>
@@ -52,12 +55,37 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue'
-import { useMatchMedia } from '@/composables/useMatchMedia'
+import { ref, nextTick, watch, onMounted } from 'vue'
+import { useWindowSize } from '@vueuse/core'
+import { useMainStore } from '@/stores/main.js'
 import textAnim from '@/utils/textAnims'
 import { imgAnim } from '@/composables/imgAnims'
 import Gist from '../../contexts/Gist.vue'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+import { useCSStore } from '@/stores/caseStudy'
+
+const csStore = useCSStore()
+
+const sectionEl = ref(null)
+const textEl = ref(null)
+const iconTrack = ref(null)
+let tl
+let anim
+
+const props = defineProps({
+    heading: String,
+    paragraph: String,
+    items: Array,
+    tagIntro: String,
+    tags: Array,
+    icons: Array,
+    gistId: String,
+    repoUrl: String,
+    FileName: String,
+    Caption: String
+})
 const code = `<?php
 namespace airtableWP\Inc;
 
@@ -216,162 +244,170 @@ class AirtableService
         );
     }
 }`
-const props = defineProps({
-    heading: String,
-    paragraph: String,
-    items: Array,
-    tagIntro: String,
-    tags: Array,
-    icons: Array,
-    gistId: String,
-    repoUrl: String,
-    FileName: String,
-    Caption: String
+const store = useMainStore()
+const { width } = useWindowSize()
+watch(() => store.loaded, async (ready) => {
+    if (!ready) return
+    await nextTick()
+    if (store.reduceMotion) await cleanup()
+    else await run()
+}, { immediate: true })
+watch(
+    () => store.reduceMotion,
+    async (reduceMotion) => {
+        if (reduceMotion) await cleanup()
+        else await run()
+    },
+    { immediate: true }
+)
+onMounted(async () => {
+    await nextTick()
+
+    csStore.sectionReady = 6
 })
+async function cleanup() {
+    const el = sectionEl.value
+    const gistEl = el?.querySelector('.gist')
+    const icons = iconTrack.value?.querySelectorAll('.icon-btn') || []
 
-const sectionEl = ref(null)
-const textEl = ref(null)
-const iconTrack = ref(null)
-
-
-function setupSection4({ isMobile ,isDesktop, isTablet }) {
-    nextTick(() => {
-        const el = sectionEl.value
-        const elm = textEl.value
-        const gistEl = el.querySelector('.gist')
-        let int = 0
-        const icons = iconTrack.value.querySelectorAll('.icon-btn')
-
-        if(isMobile){
-            const animM = new textAnim(sectionEl.value, { toggleActions: 'play none none reverse' })
-            imgAnim(sectionEl.value, false, 'play none none reverse');
-            animM?.init()
-            return;
-        }
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: el,
-                start: 'top 15%',
-                end: '+=200%',
-                scrub: true,
-                pinSpacing: false,
-                pin: true,
+    tl?.kill()
+    tl = null
+    anim?.kill()
+    anim = null
+    icons.forEach(icon => {
+        icon?.removeAttribute('style')
+        gsap.set(icon, { clearProps: 'all' })
+        const svg = icon.querySelector('.icon-wipe-overlay')
+        if (svg) {
+            svg.removeAttribute('style')
+            gsap.set(svg, { clearProps: 'all' })
+            const paths = svg.querySelectorAll('path')
+            if (paths.length) {
+                paths.forEach((path) => {
+                    path.removeAttribute('style')
+                    gsap.set(path, { clearProps: 'all' })
+                })
             }
-        })
-        
-        
-        const anim = new textAnim(sectionEl.value, { toggleActions: 'play none none reverse', linkedTL: tl })
-        tl.addLabel('enter')
-        tl.fromTo(elm, {
-            y: '100%', autoAlpha: 0, filter: 'blur(40px)'
-        }, {
-            y: '0%', autoAlpha: 1, filter: 'none', duration: 0.5
-        }, 'enter+=0')
-        tl.addLabel('icons', 'enter+=0.1')
-        anim?.init()
-        icons.forEach((icon, index) => {
-            const overlayIcon = icon.querySelector('.icon-wipe-overlay');
-            const overlayPaths = overlayIcon.querySelectorAll('path');
-            const baseIcon = icon.querySelector('.text-current');
-            const cardBorder = icon.querySelector('.card-border');
-            const iconBTN = icon.querySelector('.icon-btn');
-            let len = 0;
-            int = index * 0.25;
-            // tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, index * 0.5)
-            overlayPaths.forEach((path) => {
-                len = path.getTotalLength();
-                path.style.strokeDasharray = len;
-                path.style.strokeDashoffset = len;
-            });
-            tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, `icons+=${int}`)
-
-            int = int * index
-            tl.fromTo(overlayPaths, {
-                autoAlpha: 0,
-                strokeDashoffset: len
-            }, {
-                autoAlpha: 1,
-                strokeDashoffset: 0,
-                duration: 1,
-                ease: 'power3.out',
-            }, `icons+=${int}`)
-            switch (index) {
-                case 0:
-                    tl.addLabel('iconsRP', 'icons+=3.5')
-                    tl.to(icon, {
-                        y: 70,
-                        duration: 1.2,
-                        ease: 'power3.inOut'
-                    }, 'iconsRP+=0')
-                    break;
-                case 1:
-                    tl.to(icon, {
-                        x: -80,
-                        y: 30,
-                        duration: 1.2,
-                        ease: 'power3.inOut'
-                    }, 'iconsRP+=0')
-                    break;
-                case 2:
-                    tl.to(icon, {
-                        y: -104,
-                        x: 80,
-                        duration: 1.2,
-                        ease: 'power3.inOut'
-                    }, 'iconsRP+=0')
-                    break;
-            }
-        });
-
-
-        tl.addLabel('iconRoll', 'iconsRP+=1')
-        tl.to(iconTrack.value, {
-            rotation: '360deg',
-            duration: 4,
-            ease: 'power1.inOut'
-        }, 'iconRoll+=0.6')
-
-        tl.to(icons, {
-            rotation: '-360deg',
-            duration: 4,
-            ease: 'power1.inOut'
-        }, 'iconRoll+=0.6')
-        if (gistEl) {
-
-            tl.addLabel('gist', 'iconRoll+=1.5')
-            tl.to(elm, {
-                x: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1.5
-            }, 'gist+=1')
-            tl.fromTo(gistEl, {
-                y: 1000,
-                autoAlpha: 0,
-                filter: 'blur(40px)',
-            }, {
-                y: 0,
-                autoAlpha: 1,
-                filter: 'blur(0px)',
-                duration: 1.5
-            }, 'gist+=1')
         }
-        tl.to(icons, {
-            x: 0,
-            y: 0,
-            duration: 1.2,
-            ease: 'power1.inOut'
-        }, 'iconRoll+=6')
-        tl.addLabel('leave', 'iconRoll+=8')
-        tl.to(icons, {
-            y: -60,
-            autoAlpha: 0,
-            duration: .6,
-            stagger: 0.2,
-            ease: 'power1.inOut'
-        }, 'leave+=1')
-        tl.to(el, {
-            x: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1
-        }, 'leave+=1')
     })
 }
 
-useMatchMedia(setupSection4)
+async function run() {
+    await nextTick()
+    if (!sectionEl.value || store.reduceMotion) return
+    const el = sectionEl.value
+    const elm = textEl.value
+    const gistEl = el.querySelector('.gist')
+    const icons = iconTrack.value.querySelectorAll('.icon-btn')
+
+    const isMobile = width.value < 768
+
+    if (isMobile) {
+        anim = new textAnim(el, { toggleActions: 'play none none reverse' })
+        imgAnim(el, false, 'play none none reverse')
+        anim?.init()
+        return
+    }
+
+    tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: el,
+            start: 'top 15%',
+            end: '+=200%',
+            scrub: true,
+            pinSpacing: false,
+            pin: true,
+        }
+    })
+
+    anim = new textAnim(el, { toggleActions: 'play none none reverse', linkedTL: tl })
+
+    tl.addLabel('enter')
+    tl.fromTo(elm, {
+        y: '100%', autoAlpha: 0, filter: 'blur(40px)'
+    }, {
+        y: '0%', autoAlpha: 1, filter: 'none', duration: 0.5
+    }, 'enter+=0')
+
+    tl.addLabel('icons', 'enter+=0.1')
+    anim?.init()
+
+    icons.forEach((icon, index) => {
+        const overlayPaths = icon.querySelectorAll('.icon-wipe-overlay path')
+        const len = [...overlayPaths].map(path => {
+            const l = path.getTotalLength()
+            path.style.strokeDasharray = l
+            path.style.strokeDashoffset = l
+            return l
+        })
+
+        tl.fromTo(icon, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 0.5 }, `icons+=${index * 0.25}`)
+        tl.fromTo(overlayPaths, {
+            autoAlpha: 0,
+            strokeDashoffset: (i) => len[i]
+        }, {
+            autoAlpha: 1,
+            strokeDashoffset: 0,
+            duration: 1,
+            ease: 'power3.out'
+        }, `icons+=${index * 0.25}`)
+
+        switch (index) {
+            case 0:
+                tl.addLabel('iconsRP', 'icons+=3.5')
+                tl.to(icon, { y: 70, duration: 1.2, ease: 'power3.inOut' }, 'iconsRP')
+                break
+            case 1:
+                tl.to(icon, { x: -80, y: 30, duration: 1.2, ease: 'power3.inOut' }, 'iconsRP')
+                break
+            case 2:
+                tl.to(icon, { x: 80, y: -104, duration: 1.2, ease: 'power3.inOut' }, 'iconsRP')
+                break
+        }
+    })
+
+    tl.addLabel('iconRoll', 'iconsRP+=1')
+    tl.to(iconTrack.value, {
+        rotation: '360deg',
+        duration: 4,
+        ease: 'power1.inOut'
+    }, 'iconRoll+=0.6')
+
+    tl.to(icons, {
+        rotation: '-360deg',
+        duration: 4,
+        ease: 'power1.inOut'
+    }, 'iconRoll+=0.6')
+
+    if (gistEl) {
+        tl.addLabel('gist', 'iconRoll+=1.5')
+        tl.to(elm, {
+            x: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1.5
+        }, 'gist+=1')
+        tl.fromTo(gistEl, {
+            y: 1000, autoAlpha: 0, filter: 'blur(40px)'
+        }, {
+            y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 1.5
+        }, 'gist+=1')
+    }
+
+    tl.to(icons, {
+        x: 0, y: 0, duration: 1.2, ease: 'power1.inOut'
+    }, 'iconRoll+=6')
+
+    tl.addLabel('leave', 'iconRoll+=8')
+    tl.to(icons, {
+        y: -60, autoAlpha: 0, duration: .6, stagger: 0.2, ease: 'power1.inOut'
+    }, 'leave+=1')
+
+    tl.to(el, {
+        x: '-100%', autoAlpha: 0, filter: 'blur(40px)', duration: 1
+    }, 'leave+=1')
+}
 </script>
+<style>
+.motionless .icon-gist .icon-wipe-overlay path {
+    stroke-dasharray: 0;
+    stroke-dashoffset: 0;
+}
+</style>

@@ -1,38 +1,39 @@
 <template>
     <div class="nav-wrapper">
         <div ref="sentinal"></div>
-        <header id="nav" ref="navContainer" class="py-4 mx-auto z-20 w-full will-change-transform transform-gpu"
-            :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700 z-90' : ' absolute '">
+        <header id="nav" ref="navContainer" class="z-20 w-full py-4 mx-auto will-change-transform transform-gpu"
+            :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700 z-90 motionless:durarion-50' : ' absolute '">
             <div
                 class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
                 <div ref="navBrand"
-                    class="text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand transition-all relative max-sm:z-10"
-                    :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100' : 'opacity-0 duration-0'">
+                    class="relative transition-all text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand max-sm:z-10"
+                    :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100 max-md:motionless:mt-4 max-md:motionless:-mb-4 motionless:duration-100' : 'opacity-0 duration-0'">
                     <NuxtLink ref="navBrandLink" aria-label="Return Home" :to="brandURL"
-                        class="navbrand-link animate subtle-slide-in pb-10 md:pb-0 max-sm:z-0 text-nowrap"
+                        class="pb-10 navbrand-link animate subtle-slide-in md:pb-0 max-sm:z-0 text-nowrap"
                         @mouseenter="onBrandHoverIn">{{ brandLabel }}</NuxtLink>
                 </div>
-                <h1 class="placeholder-line absolute left-8 lg:left-12 transition-all headingClass top-0 text-3xl md:text-5xl text-nowrap"
-                    data-splitting="words" ref="heading">
+                <h1 class="absolute top-0 mb-6 text-3xl transition-all left-8 lg:left-12 headingClass lg:mb-18 md:text-5xl text-nowrap motionless:duration-50"
+                    ref="heading"
+                    :class="isSticky ? 'motionless:text-lg md:motionless:static max-md:motionless:-mt-1 motionless:mt-0.25 md:motionless:ml-2 motionless:mb-0' : ''">
                     <span
-                        class="transition-all duration-700 placeholder-line text-primary dark:text-background inverted:text-background opacity-0"
+                        class="transition-all duration-700 opacity-0 placeholder-line text-primary dark:text-background inverted:text-background motionless:duration-50 motionless:**:duration-50"
                         data-splitting="words">{{ title }}</span>
                 </h1>
                 <nav ref="nav"
-                    class="flex space-x-8 text-sm font-heading font-semibold group/nav ml-auto text-primary dark:text-background inverted:text-background inverted:dark:text-primary "
-                    :class="isSticky ? [''] : ['opacity-0']">
+                    class="flex ml-auto space-x-8 text-sm font-semibold font-heading group/nav text-primary dark:text-background inverted:text-background inverted:dark:text-primary"
+                    :class="isSticky ? ['opacity-0', 'motionless:opacity-100'] : ['opacity-0']">
                     <NuxtLink
-                        class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        class="relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip "
                         to="/about" aria-label="Find out more about me!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
                     </NuxtLink>
                     <NuxtLink
-                        class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 transition relative overflow-clip duration-700 "
+                        class="relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip "
                         to="/work/" aria-label="View my featured work!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
                     </NuxtLink>
                     <a href="#sayHello"
-                        class="group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100  transition relative overflow-clip duration-700"
+                        class="relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip"
                         @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
                     </a>
@@ -44,14 +45,15 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Splitting from '../../utils/splitting.js'
-import placeholderJS from '../../utils/placeholder.js'
+import { useNuxtApp } from '#app'
+const { $gsap: gsap } = useNuxtApp()
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import Splitting from '@/utils/splitting.js'
+import placeholderJS from '@/utils/placeholder.js'
 
-import { useMainStore } from '../../stores/main.js'
+import { useMainStore } from '@/stores/main.js'
 
-const mainStore = useMainStore()
+const store = useMainStore()
 const nav = ref(null)
 const navContainer = ref(null)
 const navBrand = ref(null)
@@ -61,8 +63,16 @@ const sentinal = ref(null)
 const isSticky = ref(false)
 const isDesktop = ref(false)
 const stickyObserver = ref(null)
+let navPlaceholder
 const SectionsAboveNav = ref(false);
 let tl;
+
+const props = defineProps({
+    title: { type: String, default: () => 'Something' },
+    brandLabel: { type: String, default: () => "hi, i'm Emm." },
+    brandURL: { type: String, default: () => '/' },
+    topStacked: { type: Boolean, default: () => false }
+})
 
 function handleResize() {
     const headingEl = heading.value
@@ -81,6 +91,8 @@ function handleResize() {
 }
 
 function onBrandHoverIn(event) {
+
+    if (store.reduceMotion) return;
     const chars = event.target.querySelectorAll('.char')
     if (!chars.length) return
     return gsap.fromTo(chars, {
@@ -98,6 +110,7 @@ function onBrandHoverIn(event) {
 }
 
 function onNavHoverIn(event) {
+    if (store.reduceMotion) return;
     const chars = event.target.querySelectorAll('.char')
     if (!chars.length) return
     const tl = gsap.timeline()
@@ -169,9 +182,10 @@ function effectTimeline(el, interval = 0) {
 }
 
 
-function updateStickyTimeline() {
-    tl.clear();
-
+async function updateStickyTimeline() {
+    await nextTick()
+    if (store.reduceMotion) return;
+    if (!tl) tl = gsap.timeline({ paused: true })
     const scaleAmtCom = computed(() => isDesktop.value ? 0.2 : 0.4)
     const yCom = computed(() => isDesktop.value ? -28 : 0)
     const xCom = computed(() => isDesktop.value ? 130 : 0)
@@ -179,6 +193,7 @@ function updateStickyTimeline() {
     const isReversed = tl.reversed()
 
     if (!nav.value || !heading.value || !navBrand.value) return
+    //gsap.to(nav.value, { alpha: 0 })
     const scaleAmt = scaleAmtCom.value
     const y = yCom.value
     const x = xCom.value
@@ -256,27 +271,96 @@ function setupStickyObserver() {
     stickyObserver.value.observe(sentinal.value)
 }
 
+async function checkAnimation(forceRM = false) {
+    await nextTick()
+    const rm = forceRM || store.reduceMotion
+
+    if (heading.value) {
+        if (!navPlaceholder) {
+            navPlaceholder = new placeholderJS(heading.value.querySelector('span'), { manual: true })
+            navPlaceholder.update()
+        }
+    }
+    if (rm) {
+        tl?.kill()
+        if (navBrand.value && heading.value && nav.value) {
+            gsap.set([navBrand.value, heading.value, nav.value], { clearProps: "all" })
+        }
+        if (nav.value) {
+            const navItems = nav.value.querySelectorAll('.nav-item')
+            if (!navItems.length) return
+            /* navItems.forEach((item) => {
+                 gsap.set([item.querySelectorAll('.words'), item], { clearProps: "all" })
+             })*/
+        }
+        return
+    }
+
+    await updateStickyTimeline()
+    if (heading.value) { navPlaceholder.play() }
+}
 onMounted(async () => {
     await nextTick()
+    if(!store.loaded) return
     tl = gsap.timeline({ paused: true })
     isDesktop.value = window.innerWidth >= 620
-    const anim = new placeholderJS(heading.value.querySelector('span'), { manual: true })
-    anim.play()
-    SectionsAboveNav.value = props.topStacked;
-    updateStickyTimeline()
+    SectionsAboveNav.value = props.topStacked
+
+    if (!store.reduceMotion && heading.value) {
+        navPlaceholder = new placeholderJS(heading.value.querySelector('span'), { manual: true })
+        navPlaceholder.play()
+    }
+
     setupStickyObserver()
     window.addEventListener('resize', handleResize)
 })
 
-onUnmounted(() => {
-    window.removeEventListener('resize', handleResize)
-    ScrollTrigger.getAll().forEach(t => t.kill())
-    stickyObserver.value?.disconnect()
-    isSticky.value = false
-})
 
-watch([isSticky, isDesktop], () => {
-    updateStickyTimeline()
+watch(() => store.loaded, async (loaded) => {
+    if (!loaded) return
+    await checkAnimation()
+}, { immediate: true })
+watch(
+    () => store.reduceMotion,
+    async (reduceMotion, prev) => {
+        await nextTick()
+        if(!store.loaded) return
+        if (reduceMotion) {
+            tl?.kill()
+            if (!navBrand.value || !heading.value) return
+
+            gsap.set([navBrand.value, heading.value], { clearProps: "all" })
+
+            if (nav.value) {
+                const navItems = nav.value.querySelectorAll('.nav-item')
+                navItems.forEach((item) => {
+                    gsap.set(item, { clearProps: 'all', autoAlpha: 1 })
+                })
+            }
+            return
+        }
+        if (!reduceMotion && prev) {
+            if (nav.value) {
+                const navItems = nav.value.querySelectorAll('.nav-item')
+                navItems.forEach((item) => {
+
+                    item.classList.add('opacity-0', 'motionless:opacity-100')
+                    gsap.set(item, { autoAlpha: 0 })
+                })
+            }
+        }
+
+        await checkAnimation(false)
+
+    },
+    { immediate: true }
+)
+
+watch([isSticky, isDesktop], async () => {
+        await nextTick()
+        if(!store.loaded) return
+    await checkAnimation(store.reduceMotion)
+    if (store.reduceMotion) return;
     if (isSticky.value) {
         tl.timeScale(1).restart()
     } else {
@@ -284,15 +368,11 @@ watch([isSticky, isDesktop], () => {
     }
 })
 
-const props = defineProps({
-    title: { type: String, default: () => 'Something' },
-    brandLabel: { type: String, default: () => "hi, i'm Emm." },
-    brandURL: { type: String, default: () => '/' },
-    topStacked: { type: Boolean, default: () => false }
-})
 watch(
-    () => mainStore.navOpen,
+    () => store.navOpen,
     async (open) => {
+        await nextTick()
+        if(!store.loaded) return
         if (open && navContainer.value) {
             // wait for any open-animation / DOM changes
             await nextTick()
@@ -302,10 +382,18 @@ watch(
             const targetY =
                 el.getBoundingClientRect().top + startY + buffer
             window.scrollTo({ top: targetY, behavior: 'smooth' })
-            mainStore.closeNav()
+            store.closeNav()
         }
     }
 )
+/*
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+    ScrollTrigger.getAll().forEach(t => t.kill())
+    stickyObserver.value?.disconnect()
+    isSticky.value = false
+})
+    */
 </script>
 
 <style scoped>
