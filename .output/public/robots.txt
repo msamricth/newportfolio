@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gorgeous-marigold-a5b68c.netlify.app/sitemap.xml
