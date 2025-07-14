@@ -1,7 +1,7 @@
 <template>
     <button
-        class="motion inline-flex items-start cursor-pointer relative group/reduceMotion max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
- transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in hover:text-accent icon-btn h-8 w-8"
+        class="motion items-start cursor-pointer relative group/reduceMotion max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80
+ transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in hover:text-accent icon-btn h-8 w-8 hidden xs:inline-flex"
         :class="!store.reduceMotion && store.loaded ? 'text-sunburn-orange' : ''"
         @click.prevent="store.toggleReduceMotion()">
         <Motion

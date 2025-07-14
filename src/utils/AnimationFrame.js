@@ -6,7 +6,7 @@ export function AnimationFrame(elFunct, duration = 300) {
         }
         const elapsedTime = currentTime - startTime;
         if (elapsedTime >= duration) {
-            elFunct()
+            if(elFunct) elFunct()
         } else {
             requestAnimationFrame(callFunct);
         }

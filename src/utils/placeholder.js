@@ -132,9 +132,10 @@ export default class PlaceholderJS {
                     { autoAlpha: 0 },
                     { autoAlpha: 1, duration: fadeDur, stagger }
                 );
-                this.timeline.addLabel('swap')
-                    .to(validPH, { autoAlpha: 0, duration: fadeDur, stagger }, 'swap')
+                if (validPH.length > 30) this.timeline.addLabel('swap', '-=0.6')
+                else this.timeline.addLabel('swap');
 
+                    this.timeline.to(validPH, { autoAlpha: 0, duration: fadeDur, stagger }, 'swap')
                     .fromTo(this.words,
                         { color: 'transparent' },
                         { color: 'currentColor', duration: textDur, stagger },

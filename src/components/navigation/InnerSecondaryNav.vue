@@ -1,6 +1,6 @@
 <template>
     <div
-        class="relative flex items-center justify-end gap-8 px-0 secondary-nav group/secondaryNav max-w-1440 md:px-12 md:gap-6 dark:text-background inverted:text-background text-primary">
+        class="relative flex items-center justify-end gap-6 px-0 secondary-nav group/secondaryNav max-w-1440 md:px-12 md:gap-6 dark:text-background inverted:text-background text-primary">
         <NuxtLink aria-label="Return Home" to="/"
             class="relative block w-10 h-10 mr-auto transition-all duration-700 group md:w-8 md:h-8">
             <svg class="absolute inset-0 stroke-current group-hover:scale-[1.25] transition-all  group-hover:stroke-accent duration-700" viewBox="0 0 512 512" fill="none"

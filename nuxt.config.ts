@@ -19,21 +19,22 @@ export default defineNuxtConfig({
     hostname: 'https://codeartisan.dev',
     gzip: true,
     routes: async () => {
-       return ['/','/about','/work','/work/glt']
+      return ['/', '/about', '/services', '/work', '/work/glt']
     }
   },
   render: {
     resourceHints: false
   },
   routeRules: {
-  //  '/work/glt/': { prerender: true },
-    '/':          { headers: { 'cache-control': 'public, max-age=0, must-revalidate' } },
+    //  '/work/glt/': { prerender: true },
+    '/': { headers: { 'cache-control': 'public, max-age=0, must-revalidate' } },
   },
   nitro: {
     prerender: {
       routes: [
         '/',
         '/about',
+        '/services',
         '/work/',
         '/work/glt'],
     }
@@ -43,6 +44,7 @@ export default defineNuxtConfig({
     routes: [
       '/',
       '/about',
+      '/services',
       '/work/',
       '/work/glt'
     ]
@@ -53,13 +55,19 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 2000
+      }
+    }
   },
   app: {
     baseURL: '/',
     head: {
       titleTemplate: '%s | Code Artisan',
       htmlAttrs: {
-          lang: 'en'
+        lang: 'en'
       },
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -72,8 +80,10 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'preconnect', href: 'https://res.cloudinary.com' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap', media: 'print',
-          onload: "this.media='all'" },
+        {
+          rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap', media: 'print',
+          onload: "this.media='all'"
+        },
       ],
       script: [
         { src: 'https://www.googletagmanager.com/gtag/js?id=G-JPS46M3VH5', async: true },

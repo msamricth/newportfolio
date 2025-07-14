@@ -64,6 +64,9 @@ onMounted(async () => {
     });
     if (store.loaded && !store.reduceMotion) {
         await buildMasterTimeline()
+
+        gsap.delayedCall(1.8, () => screens.value = true)
+        
         gsap.delayedCall(2.8, () => master.play())
     }
 })
@@ -111,7 +114,6 @@ watch(
                 paused: true,
             });
             showSubNav.value = true
-
             sceneTetrisLoaded.value = false;
             sceneUXLoaded.value = false;
             sceneVideoLoaded.value = false;
@@ -146,7 +148,6 @@ async function buildMasterTimeline() {
     }, null, "uxIcons")
     master.call(async () => {
         activeScene.value = 0;
-        screens.value = true;
         const { buildUXTL } = await import('@/utils/hero/uxIcons');
         const tl3 = buildUXTL(grid.value, store.reduceMotion);
 

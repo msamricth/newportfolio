@@ -1,5 +1,6 @@
 <template>
-    <section ref="container" class="absolute z-40 flex items-center w-full bg-transparent h-dvh md:justify-center animate subtle-slide-in">
+    <section ref="container"
+        class="absolute z-40 flex items-center w-full bg-transparent h-dvh md:justify-center animate subtle-slide-in">
         <div class="absolute flex flex-wrap justify-center bg-transparent hero-icon-wrap max-md:w-full">
             <div class="relative flex justify-between gap-5 mx-auto bg-transparent md:gap-12" ref="icons">
                 <div class="origin-center decor main-icon">
@@ -65,7 +66,7 @@ onMounted(async () => {
                     iconsRP.to(iconEl, {
                         y: 50,
                         x: 10,
-                        duration: 0.5,
+                        duration: 0.35,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
 
@@ -74,7 +75,7 @@ onMounted(async () => {
                     iconsRP.to(iconEl, {
                         x: 0,
                         y: -90,
-                        duration: 0.5,
+                        duration: 0.35,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
                     break;
@@ -82,7 +83,7 @@ onMounted(async () => {
                     iconsRP.to(iconEl, {
                         y: 50,
                         x: -10,
-                        duration: 0.5,
+                        duration: 0.35,
                         ease: 'power3.inOut'
                     }, 'iconsRP+=0')
                     break;
@@ -92,22 +93,25 @@ onMounted(async () => {
             iconsRP.play()
         }, null, 0)
 
-        heroAnim.addLabel('iconsRotate', '+=0.5')
+        heroAnim.addLabel('iconsRotate', '+=0.3')
         heroAnim.to(iconsContainer, {
             rotation: 360,
-            duration: 2,
-            repeatDelay: 0,
+            duration: 1.2,
+            repeat:-1,
+            repeatDelay: 0.08,
             ease: 'power1.inOut',
         }, 'iconsRotate')
 
         heroAnim.to(iconsEl, {
             rotation: '-360deg',
-            duration: 2,
+            duration: 1.2,
+            repeat:-1,
+            repeatDelay: 0.08,
             ease: 'power1.inOut'
         }, 'iconsRotate')
             .call(() => {
-              if(!store.reduceMotion)  store.toggleFold(true)
-            }, null, "-=0.2")
+                if (!store.reduceMotion) store.toggleFold(true)
+            }, null, "+=0.2")
         heroAnim.play()
     }
 })
@@ -130,19 +134,17 @@ watch(
             await new Promise(r => requestAnimationFrame(r))
             const sec = container.value.querySelectorAll('.secondary')
             gsap.timeline().to(
-                    container.value.querySelectorAll('.decor'),
-                    {
-                        x:0,
-                        y:0,
-                        autoAlpha:0,
-                        duration: 0.6,
-                        ease: 'power1.out',
-                    }, "+=0")
+                container.value.querySelectorAll('.decor'),
+                {
+                    autoAlpha: 0,
+                    duration: 0.6,
+                    ease: 'power1.out',
+                }, "+=0")
         }, null).to(container.value, {
             autoAlpha: 0,
             duration: 0.8,
             ease: 'power1.out'
-        }, "+=1.5")
+        }, "-=0.3")
     }
 )
 </script>

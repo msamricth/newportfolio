@@ -18,6 +18,7 @@
   --color-sunburn-orange: #E5742C;
   --color-toxic-mint: #33D6BB;
 
+  --breakpoint-xs: 26rem;
   --breakpoint-smd: 90rem;
 
   --font-heading: "Baloo 2", cursive;
