@@ -45,6 +45,7 @@ const SceneVideo = defineAsyncComponent(() => import('@/components/contexts/hero
 const SceneUXIcons = defineAsyncComponent(() => import('@/components/contexts/hero/SceneUXIcons.vue'))
 const playPressed = ref(false)
 const activeScene = ref(0)
+const scrollFoldReady = ref(false)
 
 const loading = ref(false)
 const grid = ref(null)
@@ -64,6 +65,9 @@ onMounted(async () => {
     });
     if (store.loaded && !store.reduceMotion) {
         await buildMasterTimeline()
+
+        gsap.delayedCall(1.8, () => screens.value = true)
+        
         gsap.delayedCall(2.8, () => master.play())
     }
 })
@@ -111,7 +115,6 @@ watch(
                 paused: true,
             });
             showSubNav.value = true
-
             sceneTetrisLoaded.value = false;
             sceneUXLoaded.value = false;
             sceneVideoLoaded.value = false;
@@ -146,7 +149,6 @@ async function buildMasterTimeline() {
     }, null, "uxIcons")
     master.call(async () => {
         activeScene.value = 0;
-        screens.value = true;
         const { buildUXTL } = await import('@/utils/hero/uxIcons');
         const tl3 = buildUXTL(grid.value, store.reduceMotion);
 
@@ -185,6 +187,7 @@ async function buildMasterTimeline() {
         const { buildUXTL } = await import('@/utils/hero/uxScreens');
         const tl1 = buildUXTL(grid.value);
         master.add(tl1, 'UX');
+        scrollFoldReady.value = true;
     }, null, 'UX+=0.2');
 
 
@@ -221,5 +224,26 @@ async function buildMasterTimeline() {
     }, null, 'UX+=9');
 
 }
+watch(
+    () => scrollFoldReady.value,
+    async (ready) => {
+        if (!ready) return
+       // if (store.reduceMotion) return
+        await nextTick()
+        if (grid.value) {
+            const foldTrigger = ScrollTrigger.create({
+                trigger: grid.value,
+                start: 'top 80%',
+                onEnter: () => {
+                    store.toggleFold();
+                },
+                onEnterBack: () => {
+                    store.toggleFold(false, true);
+                }
+            });
+        }
+    },
+    { immediate: true }
+)
 
 </script>

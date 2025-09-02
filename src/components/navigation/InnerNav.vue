@@ -2,9 +2,9 @@
     <div class="nav-wrapper">
         <div ref="sentinal"></div>
         <header id="nav" ref="navContainer" class="z-20 w-full py-4 mx-auto will-change-transform transform-gpu"
-            :class="isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700 z-90 motionless:durarion-50' : ' absolute '">
+            :class="[isSticky ? 'fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition-all duration-700 z-90 motionless:durarion-50' : ' absolute '], [store.mobileNav ? 'max-md:h-dvh' : 'max-md:h-15']">
             <div
-                class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative">
+                class="nav-wrapper max-w-full w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative overflow-visible">
                 <div ref="navBrand"
                     class="relative transition-all text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand max-sm:z-10"
                     :class="isSticky ? 'opacity-75 duration-700 hover:opacity-100 max-md:motionless:mt-4 max-md:motionless:-mb-4 motionless:duration-100' : 'opacity-0 duration-0'">
@@ -20,24 +20,31 @@
                         data-splitting="words">{{ title }}</span>
                 </h1>
                 <nav ref="nav"
-                    class="flex ml-auto space-x-8 text-sm font-semibold font-heading group/nav text-primary dark:text-background inverted:text-background inverted:dark:text-primary"
-                    :class="isSticky ? ['opacity-0', 'motionless:opacity-100'] : ['opacity-0']">
+                    class="flex ml-auto md:space-x-8 text-sm font-semibold font-heading group/nav text-primary dark:text-background inverted:text-background inverted:dark:text-primary max-md:absolute max-md:flex-col max-md:h-full max-md:w-full max-md:items-center max-md:gap-10 max-md:pt-24 max-md:left-0 overflow-visible"
+                    :class="[isSticky ? ['max-md:opacity-0', 'motionless:opacity-100'] : ['opacity-0']], [store.mobileNav ? 'max-md:top-15 max-md:opacity-100' : '']">
                     <NuxtLink
-                        class="relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip "
+                        class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center **:**:inline-flex"
                         to="/about" aria-label="Find out more about me!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">about</span>
                     </NuxtLink>
                     <NuxtLink
-                        class="relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip "
+                        class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center **:**:inline-flex"
+                        to="/services" aria-label="Find out more about me!">
+                        <span class="nav-item" @mouseenter="onNavHoverIn">Services</span>
+                    </NuxtLink>
+                    <NuxtLink
+                        class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center **:**:inline-flex"
                         to="/work/" aria-label="View my featured work!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">work</span>
                     </NuxtLink>
                     <a href="#sayHello"
-                        class="relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip"
+                        class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center"
                         @click.prevent="smoothScrollTo('#sayHello')" aria-label="Send me a message!">
                         <span class="nav-item" @mouseenter="onNavHoverIn">say hello</span>
                     </a>
                 </nav>
+                <mobileHamburger class="ms-auto md:hidden"
+                    :class="showMobileToggle ? 'wobble-ver-right' : 'opacity-0'" />
             </div>
         </header>
     </div>
@@ -50,6 +57,7 @@ const { $gsap: gsap } = useNuxtApp()
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Splitting from '@/utils/splitting.js'
 import placeholderJS from '@/utils/placeholder.js'
+import mobileHamburger from '@/components/navigation/mobileHamburger.vue'
 
 import { useMainStore } from '@/stores/main.js'
 
@@ -65,7 +73,8 @@ const isDesktop = ref(false)
 const stickyObserver = ref(null)
 let navPlaceholder
 const SectionsAboveNav = ref(false);
-let tl;
+const showMobileToggle = ref(false);
+let tl, navItemTimeline;
 
 const props = defineProps({
     title: { type: String, default: () => 'Something' },
@@ -76,8 +85,11 @@ const props = defineProps({
 
 function handleResize() {
     const headingEl = heading.value
-    isDesktop.value = window.innerWidth >= 620
-    // tl.clear();
+    isDesktop.value = window.innerWidth >= 778
+    tl.clear();
+    if (nav.value) nav.value.removeAttribute("style")
+    navItemTimeline?.clear()
+    store.mobileNav = false
     if (isSticky.value) {
         tl.restart();
     } else {
@@ -115,11 +127,10 @@ function onNavHoverIn(event) {
     if (!chars.length) return
     const tl = gsap.timeline()
     tl.fromTo(chars, {
-        x: () => gsap.utils.random(-50, 50),
-        y: () => gsap.utils.random(-40, 0)
+        autoAlpha: 0,
+        className: 'char text-current',
     }, {
-        x: 0,
-        y: 0,
+        autoAlpha: 1,
         className: 'char text-electric-purple dark:text-accent',
         duration: 0.5,
         ease: 'power3.out',
@@ -182,6 +193,35 @@ function effectTimeline(el, interval = 0) {
 }
 
 
+function navTL(delay = 0) {
+    if (navItemTimeline)navItemTimeline.clear();
+    if (!nav.value) return
+    if (!isDesktop.value && !store.mobileNav) return
+    if (!navItemTimeline) navItemTimeline = gsap.timeline({ paused: true })
+    const navItems = nav.value.querySelectorAll('.nav-item')
+
+    //navItemTimeline.set(nav.value, { alpha: 0 })
+    if (isDesktop.value) {
+        navItemTimeline.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0)
+    }
+    navItems.forEach((item, i) => {
+        navItemTimeline.fromTo(item, { autoAlpha: 0 }, {
+            autoAlpha: 1,
+            duration: 0.15,
+            ease: 'cubic-bezier(.215, .61, .355, 1.000)',
+            onStart: () => {
+                const itemTL = effectTimeline(item, (i * 0.2) + delay)
+                itemTL?.play()
+            }
+        }, (i * 0.1) + delay)
+    })
+    //  return navItemTimeline
+}
+function reverseNavTimeline() {
+    if (isDesktop.value) return
+    if (!navItemTimeline) navTL()
+    navItemTimeline?.timeScale(3).reverse()
+}
 async function updateStickyTimeline() {
     await nextTick()
     if (store.reduceMotion) return;
@@ -193,13 +233,11 @@ async function updateStickyTimeline() {
     const isReversed = tl.reversed()
 
     if (!nav.value || !heading.value || !navBrand.value) return
-    //gsap.to(nav.value, { alpha: 0 })
     const scaleAmt = scaleAmtCom.value
     const y = yCom.value
     const x = xCom.value
     const int = intCom.value
 
-    tl.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0)
     tl.fromTo(heading.value, { scale: 1, y: 0 }, { scale: scaleAmt, y, duration: 0.1 }, int)
     if (isDesktop.value) {
         const xAmt = navBrand.value.getBoundingClientRect().width + 12;
@@ -213,23 +251,13 @@ async function updateStickyTimeline() {
     }, int)
     tl.call(() => {
         const brandTL = effectTimeline(navBrand.value, 0.45)
+        const tlNav = navTL(0.45)
         brandTL?.play()
+      //  tlNav?.play(0)
     }, null, int)
-
     //   tl.fromTo(heading.value, { fontWeight: 700 }, { fontWeight: 400, duration: 0.2 }, int + 0.1)
 
-    const navItems = nav.value.querySelectorAll('.nav-item')
-    navItems.forEach((item, i) => {
-        tl.fromTo(item, { autoAlpha: 0 }, {
-            autoAlpha: 1,
-            duration: 0.15,
-            ease: 'cubic-bezier(.215, .61, .355, 1.000)',
-            onStart: () => {
-                const itemTL = effectTimeline(item, (i * 0.2) + (int + 0.2))
-                itemTL?.play()
-            }
-        }, (i * 0.1) + (int + 0.1))
-    })
+
 }
 
 function setupStickyObserver() {
@@ -257,7 +285,6 @@ function setupStickyObserver() {
                 lastStickyState = shouldBeSticky
                 isSticky.value = shouldBeSticky
                 window.scrollTo(window.scrollX, window.scrollY + 1);
-                window.scrollTo(window.scrollX, window.scrollY - 1);
             }
 
             ticking = false
@@ -301,9 +328,9 @@ async function checkAnimation(forceRM = false) {
 }
 onMounted(async () => {
     await nextTick()
-    if(!store.loaded) return
+    if (!store.loaded) return
     tl = gsap.timeline({ paused: true })
-    isDesktop.value = window.innerWidth >= 620
+    isDesktop.value = window.innerWidth >= 778
     SectionsAboveNav.value = props.topStacked
 
     if (!store.reduceMotion && heading.value) {
@@ -315,7 +342,28 @@ onMounted(async () => {
     window.addEventListener('resize', handleResize)
 })
 
-
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+    document.body.style.overflow = ''
+    ScrollTrigger.getAll().forEach(t => t.kill())
+    stickyObserver.value?.disconnect()
+    isSticky.value = false
+    store.mobileNav = false
+})
+watch(
+    () => store.mobileNav,
+    async (open) => {
+        await nextTick()
+        navTL(0)
+        reverseNavTimeline()
+        document.body.style.overflow = ''
+        if (isDesktop.value) return
+        //updateStickyTimeline()
+        if (store.mobileNav || open) {
+            document.body.style.overflow = 'hidden'
+            navItemTimeline?.timeScale(1).play(0)
+        }
+    })
 watch(() => store.loaded, async (loaded) => {
     if (!loaded) return
     await checkAnimation()
@@ -324,7 +372,7 @@ watch(
     () => store.reduceMotion,
     async (reduceMotion, prev) => {
         await nextTick()
-        if(!store.loaded) return
+        if (!store.loaded) return
         if (reduceMotion) {
             tl?.kill()
             if (!navBrand.value || !heading.value) return
@@ -357,14 +405,20 @@ watch(
 )
 
 watch([isSticky, isDesktop], async () => {
-        await nextTick()
-        if(!store.loaded) return
+    await nextTick()
+    if (!store.loaded) return
+    navTL(0.42) //need to append this back into checkAnimation so im not overwritting reduce motion checks
+    reverseNavTimeline()
     await checkAnimation(store.reduceMotion)
     if (store.reduceMotion) return;
     if (isSticky.value) {
+        showMobileToggle.value = true
         tl.timeScale(1).restart()
+        navItemTimeline?.timeScale(1).restart()
     } else {
+        showMobileToggle.value = false
         tl.timeScale(3).reverse()
+        navItemTimeline?.timeScale(3).reverse()
     }
 })
 
@@ -372,7 +426,7 @@ watch(
     () => store.navOpen,
     async (open) => {
         await nextTick()
-        if(!store.loaded) return
+        if (!store.loaded) return
         if (open && navContainer.value) {
             // wait for any open-animation / DOM changes
             await nextTick()
@@ -382,6 +436,8 @@ watch(
             const targetY =
                 el.getBoundingClientRect().top + startY + buffer
             window.scrollTo({ top: targetY, behavior: 'smooth' })
+
+            if (!isDesktop.value) store.mobileNav = true
             store.closeNav()
         }
     }

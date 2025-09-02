@@ -1,13 +1,13 @@
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { getResponseStatusText, getResponseStatus, getQuery, createError, appendResponseHeader } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
-import { joinURL, withoutTrailingSlash } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
-import { b as buildAssetsURL, a as useRuntimeConfig, c as useStorage, d as defineRenderHandler, p as publicAssetsURL, g as getRouteRules, u as useNitroApp } from './nitro.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/server.mjs';
-import { stringify, uneval } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/devalue/index.js';
-import { FlatMetaPlugin, DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
-import { walkResolver } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/nuxt/node_modules/unhead/dist/utils.mjs';
-import { toValue, isRef, hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { getResponseStatusText, getResponseStatus, getQuery, createError, appendResponseHeader } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/h3/dist/index.mjs';
+import { joinURL, withoutTrailingSlash } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/vue/server-renderer/index.mjs';
+import { b as buildAssetsURL, u as useRuntimeConfig, a as useStorage, d as defineRenderHandler, p as publicAssetsURL, g as getRouteRules, c as useNitroApp } from '../nitro/nitro.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/nuxt/node_modules/unhead/dist/server.mjs';
+import { stringify, uneval } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/devalue/index.js';
+import { FlatMetaPlugin, DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/nuxt/node_modules/unhead/dist/plugins.mjs';
+import { walkResolver } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/nuxt/node_modules/unhead/dist/utils.mjs';
+import { toValue, isRef, hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/vue/index.mjs';
 
 const VueResolver = (_, value) => {
   return isRef(value) ? toValue(value) : value;

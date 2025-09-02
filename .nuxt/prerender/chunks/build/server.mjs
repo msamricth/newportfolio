@@ -1,16 +1,16 @@
-import { watch, mergeProps, defineComponent, shallowRef, h, resolveComponent, ref, nextTick, withCtx, createBlock, createVNode, openBlock, hasInjectionContext, inject, createTextVNode, toDisplayString, computed, getCurrentInstance, unref, createElementBlock, provide, cloneVNode, Suspense, Fragment, useSSRContext, createApp, shallowReactive, reactive, toRef, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, effectScope, isReadonly, isRef, isShallow, isReactive, toRaw, getCurrentScope } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
-import { $fetch } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ofetch/dist/node.mjs';
-import { e as baseURL } from '../_/nitro.mjs';
-import { createHooks } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/hookable/dist/index.mjs';
-import { getContext, executeAsync } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/unctx/dist/index.mjs';
-import { sanitizeStatusCode, createError as createError$1 } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/h3/dist/index.mjs';
-import { defineStore, storeToRefs, createPinia, setActivePinia, shouldHydrate } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
-import { defu } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/defu/dist/defu.mjs';
-import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue-router/dist/vue-router.node.mjs';
-import { toRouteMatcher, createRouter as createRouter$1 } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/radix3/dist/index.mjs';
-import { parseQuery, hasProtocol, isScriptProtocol, joinURL, withQuery, withTrailingSlash, withoutTrailingSlash } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/ufo/dist/index.mjs';
-import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderClass, ssrRenderAttr, ssrRenderStyle, ssrIncludeBooleanAttr, ssrRenderSuspense, ssrRenderVNode } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/server-renderer/index.mjs';
-import gsap$2 from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/gsap/dist/gsap.js';
+import { watch, mergeProps, defineComponent, shallowRef, h, resolveComponent, ref, nextTick, withCtx, createBlock, createVNode, openBlock, hasInjectionContext, inject, unref, createTextVNode, toDisplayString, computed, getCurrentInstance, createElementBlock, provide, cloneVNode, Suspense, Fragment, useSSRContext, createApp, shallowReactive, reactive, toRef, onErrorCaptured, onServerPrefetch, resolveDynamicComponent, effectScope, isReadonly, isRef, isShallow, isReactive, toRaw, getCurrentScope } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/vue/index.mjs';
+import { $fetch } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/ofetch/dist/node.mjs';
+import { e as baseURL } from '../nitro/nitro.mjs';
+import { createHooks } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/hookable/dist/index.mjs';
+import { getContext, executeAsync } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/unctx/dist/index.mjs';
+import { sanitizeStatusCode, createError as createError$1 } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/h3/dist/index.mjs';
+import { defineStore, storeToRefs, createPinia, setActivePinia, shouldHydrate } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
+import { defu } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/defu/dist/defu.mjs';
+import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/vue-router/dist/vue-router.node.mjs';
+import { toRouteMatcher, createRouter as createRouter$1 } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/radix3/dist/index.mjs';
+import { parseQuery, hasProtocol, isScriptProtocol, joinURL, withQuery, withTrailingSlash, withoutTrailingSlash } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/ufo/dist/index.mjs';
+import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderClass, ssrRenderAttr, ssrRenderStyle, ssrIncludeBooleanAttr, ssrRenderSuspense, ssrRenderVNode } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/vue/server-renderer/index.mjs';
+import gsap$2 from 'file:///Users/emmatalarico/www/newportfolio/node_modules/gsap/dist/gsap.js';
 import { u as useHead$1, a as useSeoMeta$1, h as headSymbol } from '../_/renderer.mjs';
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3811,23 +3811,28 @@ const _routes = [
   {
     name: "About",
     path: "/About",
-    component: () => import('./About-DQYRriDx.mjs')
+    component: () => import('./About-CPuefBBr.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-QMdrZArh.mjs')
+    component: () => import('./index-CjyxG4rL.mjs')
+  },
+  {
+    name: "services",
+    path: "/services",
+    component: () => import('./services-CHtftW31.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-BXixuh04.mjs')
+    component: () => import('./glt-Bs7HUo9R.mjs')
   },
   {
     name: "work",
     path: "/work",
-    component: () => import('./index-3znwyabW.mjs')
+    component: () => import('./index-BwKW26J-.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -4644,10 +4649,12 @@ const useMainStore = defineStore("main", {
     sticky: true,
     darkMode: "clear",
     useMode: false,
-    sliderArrowSticky: false,
+    introPlaying: false,
     sliderTimeline: "before",
     fold: false,
     navOpen: false,
+    mobileNav: false,
+    //will consolidate with navOpen at some point
     reduceMotion: false,
     loaded: false,
     ready: false,
@@ -4731,6 +4738,7 @@ const useMainStore = defineStore("main", {
     },
     toggleReduceMotion() {
       this.reduceMotion = !this.reduceMotion;
+      this.introPlaying = false;
       localStorage.setItem("reduceMotion", String(this.reduceMotion));
       (void 0).body.classList.toggle("motionless", this.reduceMotion);
     },
@@ -4761,7 +4769,7 @@ const useMainStore = defineStore("main", {
     }
   }
 });
-const _sfc_main$f = {
+const _sfc_main$g = {
   __name: "App",
   __ssrInlineRender: true,
   setup(__props) {
@@ -4773,13 +4781,13 @@ const _sfc_main$f = {
     };
   }
 };
-const _sfc_setup$f = _sfc_main$f.setup;
-_sfc_main$f.setup = (props, ctx) => {
+const _sfc_setup$g = _sfc_main$g.setup;
+_sfc_main$g.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("App.vue");
-  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
+  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
 };
-const _sfc_main$e = {
+const _sfc_main$f = {
   __name: "Tooltips",
   __ssrInlineRender: true,
   props: {
@@ -4791,13 +4799,13 @@ const _sfc_main$e = {
     };
   }
 };
-const _sfc_setup$e = _sfc_main$e.setup;
-_sfc_main$e.setup = (props, ctx) => {
+const _sfc_setup$f = _sfc_main$f.setup;
+_sfc_main$f.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/buttons/Tooltips.vue");
-  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
+  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
 };
-const _sfc_main$d = {
+const _sfc_main$e = {
   __name: "Github",
   __ssrInlineRender: true,
   props: {
@@ -4815,7 +4823,7 @@ const _sfc_main$d = {
         target: "_blank",
         href: __props.url
       }, _attrs))}><svg fill="none" height="56" stroke-width="1.5" viewBox="0 0 24 24" width="56" xmlns="http://www.w3.org/2000/svg" class="group-hover/secondaryNav:opacity-80 absolute top-0 left-0 w-full h-full z-0 transition-all duration-700 group-hover:scale-[1.25]"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.3333 19V17.137C14.3583 16.8275 14.3154 16.5163 14.2073 16.2242C14.0993 15.9321 13.9286 15.6657 13.7067 15.4428C15.8 15.2156 18 14.4431 18 10.8989C17.9998 9.99256 17.6418 9.12101 17 8.46461C17.3039 7.67171 17.2824 6.79528 16.94 6.01739C16.94 6.01739 16.1533 5.7902 14.3333 6.97811C12.8053 6.57488 11.1947 6.57488 9.66666 6.97811C7.84666 5.7902 7.05999 6.01739 7.05999 6.01739C6.71757 6.79528 6.69609 7.67171 6.99999 8.46461C6.35341 9.12588 5.99501 10.0053 5.99999 10.9183C5.99999 14.4366 8.19999 15.2091 10.2933 15.4622C10.074 15.6829 9.90483 15.9461 9.79686 16.2347C9.68889 16.5232 9.64453 16.8306 9.66666 17.137V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.66667 17.7018C7.66667 18.3335 6 17.7018 5 15.7544" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg><svg stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple rounded-[6rem] transition-all duration-700 group-hover:scale-[1.25]"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.3333 19V17.137C14.3583 16.8275 14.3154 16.5163 14.2073 16.2242C14.0993 15.9321 13.9286 15.6657 13.7067 15.4428C15.8 15.2156 18 14.4431 18 10.8989C17.9998 9.99256 17.6418 9.12101 17 8.46461C17.3039 7.67171 17.2824 6.79528 16.94 6.01739C16.94 6.01739 16.1533 5.7902 14.3333 6.97811C12.8053 6.57488 11.1947 6.57488 9.66666 6.97811C7.84666 5.7902 7.05999 6.01739 7.05999 6.01739C6.71757 6.79528 6.69609 7.67171 6.99999 8.46461C6.35341 9.12588 5.99501 10.0053 5.99999 10.9183C5.99999 14.4366 8.19999 15.2091 10.2933 15.4622C10.074 15.6829 9.90483 15.9461 9.79686 16.2347C9.68889 16.5232 9.64453 16.8306 9.66666 17.137V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.66667 17.7018C7.66667 18.3335 6 17.7018 5 15.7544" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path></svg>`);
-      _push(ssrRenderComponent(_sfc_main$e, {
+      _push(ssrRenderComponent(_sfc_main$f, {
         class: "mt-11",
         message: "View my GitHub account"
       }, null, _parent));
@@ -4823,13 +4831,13 @@ const _sfc_main$d = {
     };
   }
 };
-const _sfc_setup$d = _sfc_main$d.setup;
-_sfc_main$d.setup = (props, ctx) => {
+const _sfc_setup$e = _sfc_main$e.setup;
+_sfc_main$e.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/buttons/Github.vue");
-  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
-const _sfc_main$c = {
+const _sfc_main$d = {
   __name: "LinkedIn",
   __ssrInlineRender: true,
   props: {
@@ -4851,7 +4859,7 @@ const _sfc_main$c = {
      a10.4564,10.4564 0 1,1 20.9128,0" stroke="currentColor" fill="none"></path></svg><svg class="icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none text-accent group-hover:bg-deep-purple group-hover:scale-[1.25] rounded-[6rem] transition-all duration-700" stroke-width="1.5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.2792 8.73516C16.3984 8.73516 17.4717 9.17973 18.263 9.97108C19.0544 10.7624 19.4989 11.8357 19.4989 12.9549V17.8778H16.6858V12.9549C16.6858 12.5818 16.5376 12.224 16.2738 11.9603C16.0101 11.6965 15.6523 11.5483 15.2792 11.5483C14.9062 11.5483 14.5484 11.6965 14.2847 11.9603C14.0209 12.224 13.8727 12.5818 13.8727 12.9549V17.8778H11.0595V12.9549C11.0595 11.8357 11.5041 10.7624 12.2955 9.97108C13.0868 9.17973 14.1601 8.73516 15.2792 8.73516Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.43329 9.43844H8.24642V17.8778H5.43329V9.43844Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6.83985 7.32859C7.21289 7.32859 7.57066 7.1804 7.83444 6.91662C8.09822 6.65284 8.24642 6.29507 8.24642 5.92203C8.24642 5.54898 8.09822 5.19122 7.83444 4.92744C7.57066 4.66365 7.21289 4.51546 6.83985 4.51546C6.46681 4.51546 6.10904 4.66365 5.84526 4.92744C5.58148 5.19122 5.43329 5.54898 5.43329 5.92203C5.43329 6.29507 5.58148 6.65284 5.84526 6.91662C6.10904 7.1804 6.46681 7.32859 6.83985 7.32859Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22.4447,11.9883
      a10.4564,10.4564 0 1,1 -20.9128,0
      a10.4564,10.4564 0 1,1 20.9128,0" stroke="currentColor" fill="none"></path></svg>`);
-      _push(ssrRenderComponent(_sfc_main$e, {
+      _push(ssrRenderComponent(_sfc_main$f, {
         class: "mt-11",
         message: "View my LinkIn account"
       }, null, _parent));
@@ -4859,25 +4867,25 @@ const _sfc_main$c = {
     };
   }
 };
-const _sfc_setup$c = _sfc_main$c.setup;
-_sfc_main$c.setup = (props, ctx) => {
+const _sfc_setup$d = _sfc_main$d.setup;
+_sfc_main$d.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/buttons/LinkedIn.vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
-const _sfc_main$b = {
+const _sfc_main$c = {
   __name: "Icons",
   __ssrInlineRender: true,
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[-->`);
-      _push(ssrRenderComponent(_sfc_main$d, {
+      _push(ssrRenderComponent(_sfc_main$e, {
         class: "animate subtle-slide-in",
         aria: "Emm's Github account",
         style: { "--theme-main-animation-delay": "0.5s" },
         url: "https://github.com/msamricth"
       }, null, _parent));
-      _push(ssrRenderComponent(_sfc_main$c, {
+      _push(ssrRenderComponent(_sfc_main$d, {
         class: "animate subtle-slide-in",
         aria: "Emm's Linkedin account",
         style: { "--theme-main-animation-delay": "0.6s" },
@@ -4887,11 +4895,11 @@ const _sfc_main$b = {
     };
   }
 };
-const _sfc_setup$b = _sfc_main$b.setup;
-_sfc_main$b.setup = (props, ctx) => {
+const _sfc_setup$c = _sfc_main$c.setup;
+_sfc_main$c.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/Icons.vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
@@ -4900,7 +4908,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$a = {};
+const _sfc_main$b = {};
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
   _push(`<svg${ssrRenderAttrs(mergeProps({
     fill: "none",
@@ -4910,14 +4918,14 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
     xmlns: "http://www.w3.org/2000/svg"
   }, _attrs))}><path d="M12 5C11.4477 5 11 5.44772 11 6C11 6.55228 11.4477 7 12 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H12Z" fill="currentColor" class="delay-20"></path><path d="M7 12C7 11.4477 7.44772 11 8 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H8C7.44772 13 7 12.5523 7 12Z" fill="currentColor" class="delay-50"></path><path d="M3 18C3 17.4477 3.44772 17 4 17H12C12.5523 17 13 17.4477 13 18C13 18.5523 12.5523 19 12 19H4C3.44772 19 3 18.5523 3 18Z" fill="currentColor" class="delay-80"></path></svg>`);
 }
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/icons/Motion.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const Motion = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["ssrRender", _sfc_ssrRender]]);
-const _sfc_main$9 = {
+const Motion = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender]]);
+const _sfc_main$a = {
   __name: "Mode",
   __ssrInlineRender: true,
   props: {
@@ -4932,13 +4940,13 @@ const _sfc_main$9 = {
       () => store.useMode && store.isDark || !store.useMode && store.fold
     );
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<!--[--><button class="${ssrRenderClass([!unref(store).reduceMotion && unref(store).loaded ? "text-sunburn-orange" : "", "motion inline-flex items-start cursor-pointer relative group/reduceMotion max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80 transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in hover:text-accent icon-btn h-8 w-8"])}">`);
+      _push(`<!--[--><button class="${ssrRenderClass([!unref(store).reduceMotion && unref(store).loaded ? "text-sunburn-orange" : "", "motion items-start cursor-pointer relative group/reduceMotion max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80 transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in hover:text-accent icon-btn h-8 w-8 hidden xs:inline-flex"])}">`);
       _push(ssrRenderComponent(Motion, { class: "group-hover/secondaryNav:opacity-80 absolute top-0 left-0 w-full h-full z-0 transition-all group-hover/reduceMotion:scale-[1.25] duration-700 text-current" }, null, _parent));
       _push(ssrRenderComponent(Motion, {
         class: ["icon-wipe-overlay absolute top-0 left-0 w-full h-full z-10 pointer-events-none opacity-0 group-hover/reduceMotion:bg-deep-purple group-hover/reduceMotion:scale-[1.25] rounded-[6rem] transition-all duration-700", !unref(store).reduceMotion ? "text-sunburn-orange group-hover/reduceMotion:text-accent" : "text-accent"]
       }, null, _parent));
       if (!unref(store).useMode) {
-        _push(ssrRenderComponent(_sfc_main$e, {
+        _push(ssrRenderComponent(_sfc_main$f, {
           message: "Turn off animations",
           class: "mt-10 group-hover/reduceMotion:opacity-100 group-hover/reduceMotion:translate-y-0"
         }, null, _parent));
@@ -4947,7 +4955,7 @@ const _sfc_main$9 = {
       }
       _push(`</button><label class="inline-flex items-start cursor-pointer group max-md:scale-[1.2] mt-0.5 mx-1 md:mx-0 group-hover/secondaryNav:opacity-80 transition-opacity duration-700 group-hover/secondaryNav:hover:opacity-100 animate subtle-slide-in"${ssrRenderAttr("for", __props.footer ? "mode-footer" : "mode")}><button style="${ssrRenderStyle({ "--theme-main-animation-delay": "0.1s" })}" class="${ssrRenderClass([{ "scale-140": !unref(store).useMode }, "relative block text-xl font-medium transition-all cursor-pointer animate subtle-slide-in group-icon group"])}"><svg width="1.6rem" class="${ssrRenderClass([moonVisible.value ? "opacity-100" : "opacity-0 duration-0", "transition-all group-hover:text-accent"])}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title></title><path d="M20.21,15.32A8.56,8.56,0,1,1,11.29,3.5a.5.5,0,0,1,.51.28.49.49,0,0,1-.09.57A6.46,6.46,0,0,0,9.8,9a6.57,6.57,0,0,0,9.71,5.72.52.52,0,0,1,.58.07A.52.52,0,0,1,20.21,15.32Z" fill="currentColor"></path></svg><svg width="1.6rem" class="${ssrRenderClass([sunVisible.value ? "opacity-100" : "opacity-0 duration-0", "absolute top-0 transition group-hover:text-accent group-hover:rotate-450"])}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title></title><circle cx="12" cy="12" fill="currentColor" r="5"></circle><path d="M21,13H20a1,1,0,0,1,0-2h1a1,1,0,0,1,0,2Z" fill="currentColor"></path><path d="M4,13H3a1,1,0,0,1,0-2H4a1,1,0,0,1,0,2Z" fill="currentColor"></path><path d="M17.66,7.34A1,1,0,0,1,17,7.05a1,1,0,0,1,0-1.41l.71-.71a1,1,0,1,1,1.41,1.41l-.71.71A1,1,0,0,1,17.66,7.34Z" fill="currentColor"></path><path d="M5.64,19.36a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.41L5.64,17a1,1,0,0,1,1.41,1.41l-.71.71A1,1,0,0,1,5.64,19.36Z" fill="currentColor"></path><path d="M12,5a1,1,0,0,1-1-1V3a1,1,0,0,1,2,0V4A1,1,0,0,1,12,5Z" fill="currentColor"></path><path d="M12,22a1,1,0,0,1-1-1V20a1,1,0,0,1,2,0v1A1,1,0,0,1,12,22Z" fill="currentColor"></path><path d="M6.34,7.34a1,1,0,0,1-.7-.29l-.71-.71A1,1,0,0,1,6.34,4.93l.71.71a1,1,0,0,1,0,1.41A1,1,0,0,1,6.34,7.34Z" fill="currentColor"></path><path d="M18.36,19.36a1,1,0,0,1-.7-.29L17,18.36A1,1,0,0,1,18.36,17l.71.71a1,1,0,0,1,0,1.41A1,1,0,0,1,18.36,19.36Z" fill="currentColor"></path></svg>`);
       if (!unref(store).useMode) {
-        _push(ssrRenderComponent(_sfc_main$e, {
+        _push(ssrRenderComponent(_sfc_main$f, {
           message: "Change light/dark mode",
           class: "scale-70"
         }, null, _parent));
@@ -4961,7 +4969,7 @@ const _sfc_main$9 = {
         _push(`<!---->`);
       }
       if (unref(store).useMode) {
-        _push(ssrRenderComponent(_sfc_main$e, {
+        _push(ssrRenderComponent(_sfc_main$f, {
           message: `Change ${unref(store).darkMode} mode`,
           class: "mt-10"
         }, null, _parent));
@@ -4972,13 +4980,13 @@ const _sfc_main$9 = {
     };
   }
 };
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/Mode.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
-const _sfc_main$8 = {
+const _sfc_main$9 = {
   __name: "Hamburger",
   __ssrInlineRender: true,
   props: {
@@ -4996,8 +5004,8 @@ const _sfc_main$8 = {
           class: ["animate group-hover/secondaryNav:opacity-80 text-current/80 relative cursor-pointer transition group/menu rounded-full subtle-slide-in hamburger hamburger--arrowturn-r flex flex-col justify-center duration-700 group", menuBTNActive.value ? "is-active **:text-accent" : ""],
           "aria-label": "Go to menu",
           style: { "--theme-main-animation-delay": "0.7s" }
-        }, _attrs))} data-v-ad68b8a7><div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700 md:group-hover:text-accent" data-v-ad68b8a7><div class="hamburger-inner text-current **:transition-all **:duration-700" data-v-ad68b8a7></div></div>`);
-        _push(ssrRenderComponent(_sfc_main$e, {
+        }, _attrs))} data-v-c346185f><div class="hamburger-box text-current transition-all duration-700 **:transition-all **:duration-700 md:group-hover:text-accent" data-v-c346185f><div class="hamburger-inner text-current **:transition-all **:duration-700" data-v-c346185f></div></div>`);
+        _push(ssrRenderComponent(_sfc_main$f, {
           class: "mt-20 text-white",
           message: "Scroll to navigation"
         }, null, _parent));
@@ -5008,14 +5016,14 @@ const _sfc_main$8 = {
     };
   }
 };
-const _sfc_setup$8 = _sfc_main$8.setup;
-_sfc_main$8.setup = (props, ctx) => {
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/Hamburger.vue");
-  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
-const Hamburger = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-ad68b8a7"]]);
-const _sfc_main$7 = {
+const Hamburger = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-c346185f"]]);
+const _sfc_main$8 = {
   __name: "InnerSecondaryNav",
   __ssrInlineRender: true,
   props: {
@@ -5024,7 +5032,7 @@ const _sfc_main$7 = {
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
       const _component_NuxtLink = __nuxt_component_0$1;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "relative flex items-center justify-end gap-8 px-0 secondary-nav group/secondaryNav max-w-1440 md:px-12 md:gap-6 dark:text-background inverted:text-background text-primary" }, _attrs))} data-v-6b22ee99>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "relative flex items-center justify-end gap-6 px-0 secondary-nav group/secondaryNav max-w-1440 md:px-12 md:gap-6 dark:text-background inverted:text-background text-primary" }, _attrs))} data-v-1402abd6>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         "aria-label": "Return Home",
         to: "/",
@@ -5032,8 +5040,8 @@ const _sfc_main$7 = {
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<svg class="absolute inset-0 stroke-current group-hover:scale-[1.25] transition-all group-hover:stroke-accent duration-700" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-6b22ee99${_scopeId}><polyline points="112 352 48 288 112 224" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-6b22ee99${_scopeId}></polyline><path d="M64,288H358c58.76,0,106-49.33,106-108V160" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-6b22ee99${_scopeId}></path></svg><svg class="absolute inset-0 stroke-current text-accent transition-all duration-700 ease-in-out stroke-animate group-hover:scale-[1.28] group-hover:stroke-accent" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-6b22ee99${_scopeId}><polyline points="112 352 48 288 112 224" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-6b22ee99${_scopeId}></polyline><path d="M64,288H358c58.76,0,106-49.33,106-108V160" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-6b22ee99${_scopeId}></path></svg>`);
-            _push2(ssrRenderComponent(_sfc_main$e, {
+            _push2(`<svg class="absolute inset-0 stroke-current group-hover:scale-[1.25] transition-all group-hover:stroke-accent duration-700" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-1402abd6${_scopeId}><polyline points="112 352 48 288 112 224" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-1402abd6${_scopeId}></polyline><path d="M64,288H358c58.76,0,106-49.33,106-108V160" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-1402abd6${_scopeId}></path></svg><svg class="absolute inset-0 stroke-current text-accent transition-all duration-700 ease-in-out stroke-animate group-hover:scale-[1.28] group-hover:stroke-accent" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-1402abd6${_scopeId}><polyline points="112 352 48 288 112 224" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-1402abd6${_scopeId}></polyline><path d="M64,288H358c58.76,0,106-49.33,106-108V160" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" data-v-1402abd6${_scopeId}></path></svg>`);
+            _push2(ssrRenderComponent(_sfc_main$f, {
               class: "mt-10",
               message: "Return Home"
             }, null, _parent2, _scopeId));
@@ -5077,7 +5085,7 @@ const _sfc_main$7 = {
                   "stroke-width": "32"
                 })
               ])),
-              createVNode(_sfc_main$e, {
+              createVNode(_sfc_main$f, {
                 class: "mt-10",
                 message: "Return Home"
               })
@@ -5086,20 +5094,20 @@ const _sfc_main$7 = {
         }),
         _: 1
       }, _parent));
-      _push(ssrRenderComponent(_sfc_main$9, null, null, _parent));
-      _push(ssrRenderComponent(_sfc_main$b, null, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$a, null, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$c, null, null, _parent));
       _push(ssrRenderComponent(Hamburger, null, null, _parent));
       _push(`</div>`);
     };
   }
 };
-const _sfc_setup$7 = _sfc_main$7.setup;
-_sfc_main$7.setup = (props, ctx) => {
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/InnerSecondaryNav.vue");
-  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
-const InnerSecondaryNav = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-6b22ee99"]]);
+const InnerSecondaryNav = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["__scopeId", "data-v-1402abd6"]]);
 let Splitting = () => [];
 class PlaceholderJS {
   constructor(el, {
@@ -5219,7 +5227,9 @@ class PlaceholderJS {
           { autoAlpha: 0 },
           { autoAlpha: 1, duration: fadeDur, stagger }
         );
-        this.timeline.addLabel("swap").to(validPH, { autoAlpha: 0, duration: fadeDur, stagger }, "swap").fromTo(
+        if (validPH.length > 30) this.timeline.addLabel("swap", "-=0.6");
+        else this.timeline.addLabel("swap");
+        this.timeline.to(validPH, { autoAlpha: 0, duration: fadeDur, stagger }, "swap").fromTo(
           this.words,
           { color: "transparent" },
           { color: "currentColor", duration: textDur, stagger },
@@ -5270,6 +5280,37 @@ class PlaceholderJS {
     (_a = this.timeline) == null ? void 0 : _a.reverse();
   }
 }
+const _sfc_main$7 = {
+  __name: "mobileHamburger",
+  __ssrInlineRender: true,
+  props: {
+    footer: { type: Boolean }
+  },
+  setup(__props) {
+    const store = useMainStore();
+    const menuBTN = ref(null);
+    return (_ctx, _push, _parent, _attrs) => {
+      if (!__props.footer) {
+        _push(`<button${ssrRenderAttrs(mergeProps({
+          ref_key: "menuBTN",
+          ref: menuBTN,
+          class: ["animate text-current/80 relative cursor-pointer transition group/menu hamburger hamburger--emphatic flex flex-col justify-center duration-700 group", unref(store).mobileNav ? "is-active **:text-accent" : ""],
+          "aria-label": "Go to menu",
+          style: { "--theme-main-animation-delay": "0.7s" }
+        }, _attrs))} data-v-e59385c3><div class="hamburger-box" data-v-e59385c3><div class="hamburger-inner" data-v-e59385c3></div></div></button>`);
+      } else {
+        _push(`<!---->`);
+      }
+    };
+  }
+};
+const _sfc_setup$7 = _sfc_main$7.setup;
+_sfc_main$7.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/mobileHamburger.vue");
+  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
+};
+const mobileHamburger = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-e59385c3"]]);
 const _sfc_main$6 = {
   __name: "InnerNav",
   __ssrInlineRender: true,
@@ -5293,7 +5334,8 @@ const _sfc_main$6 = {
     ref(null);
     let navPlaceholder;
     ref(false);
-    let tl;
+    const showMobileToggle = ref(false);
+    let tl, navItemTimeline;
     function onBrandHoverIn(event) {
       if (store.reduceMotion) return;
       const chars = event.target.querySelectorAll(".char");
@@ -5317,11 +5359,10 @@ const _sfc_main$6 = {
       if (!chars.length) return;
       const tl2 = gsap2.timeline();
       tl2.fromTo(chars, {
-        x: () => gsap2.utils.random(-50, 50),
-        y: () => gsap2.utils.random(-40, 0)
+        autoAlpha: 0,
+        className: "char text-current"
       }, {
-        x: 0,
-        y: 0,
+        autoAlpha: 1,
         className: "char text-electric-purple dark:text-accent",
         duration: 0.5,
         ease: "power3.out",
@@ -5350,6 +5391,32 @@ const _sfc_main$6 = {
         stagger: { amount: 0.2, from: "random" }
       }, interval);
     }
+    function navTL(delay = 0) {
+      if (navItemTimeline) navItemTimeline.clear();
+      if (!nav.value) return;
+      if (!isDesktop.value && !store.mobileNav) return;
+      if (!navItemTimeline) navItemTimeline = gsap2.timeline({ paused: true });
+      const navItems = nav.value.querySelectorAll(".nav-item");
+      if (isDesktop.value) {
+        navItemTimeline.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0);
+      }
+      navItems.forEach((item, i) => {
+        navItemTimeline.fromTo(item, { autoAlpha: 0 }, {
+          autoAlpha: 1,
+          duration: 0.15,
+          ease: "cubic-bezier(.215, .61, .355, 1.000)",
+          onStart: () => {
+            const itemTL = effectTimeline(item, i * 0.2 + delay);
+            itemTL == null ? void 0 : itemTL.play();
+          }
+        }, i * 0.1 + delay);
+      });
+    }
+    function reverseNavTimeline() {
+      if (isDesktop.value) return;
+      if (!navItemTimeline) navTL();
+      navItemTimeline == null ? void 0 : navItemTimeline.timeScale(3).reverse();
+    }
     async function updateStickyTimeline() {
       await nextTick();
       if (store.reduceMotion) return;
@@ -5364,7 +5431,6 @@ const _sfc_main$6 = {
       const y = yCom.value;
       xCom.value;
       const int = intCom.value;
-      tl.fromTo(nav.value, { alpha: 0 }, { alpha: 1 }, 0);
       tl.fromTo(heading.value, { scale: 1, y: 0 }, { scale: scaleAmt, y, duration: 0.1 }, int);
       if (isDesktop.value) {
         const xAmt = navBrand.value.getBoundingClientRect().width + 12;
@@ -5377,20 +5443,9 @@ const _sfc_main$6 = {
       }, int);
       tl.call(() => {
         const brandTL = effectTimeline(navBrand.value, 0.45);
+        navTL(0.45);
         brandTL == null ? void 0 : brandTL.play();
       }, null, int);
-      const navItems = nav.value.querySelectorAll(".nav-item");
-      navItems.forEach((item, i) => {
-        tl.fromTo(item, { autoAlpha: 0 }, {
-          autoAlpha: 1,
-          duration: 0.15,
-          ease: "cubic-bezier(.215, .61, .355, 1.000)",
-          onStart: () => {
-            const itemTL = effectTimeline(item, i * 0.2 + (int + 0.2));
-            itemTL == null ? void 0 : itemTL.play();
-          }
-        }, i * 0.1 + (int + 0.1));
-      });
     }
     async function checkAnimation(forceRM = false) {
       await nextTick();
@@ -5417,6 +5472,20 @@ const _sfc_main$6 = {
         navPlaceholder.play();
       }
     }
+    watch(
+      () => store.mobileNav,
+      async (open) => {
+        await nextTick();
+        navTL(0);
+        reverseNavTimeline();
+        (void 0).body.style.overflow = "";
+        if (isDesktop.value) return;
+        if (store.mobileNav || open) {
+          (void 0).body.style.overflow = "hidden";
+          navItemTimeline == null ? void 0 : navItemTimeline.timeScale(1).play(0);
+        }
+      }
+    );
     watch(() => store.loaded, async (loaded) => {
       if (!loaded) return;
       await checkAnimation();
@@ -5454,12 +5523,18 @@ const _sfc_main$6 = {
     watch([isSticky, isDesktop], async () => {
       await nextTick();
       if (!store.loaded) return;
+      navTL(0.42);
+      reverseNavTimeline();
       await checkAnimation(store.reduceMotion);
       if (store.reduceMotion) return;
       if (isSticky.value) {
+        showMobileToggle.value = true;
         tl.timeScale(1).restart();
+        navItemTimeline == null ? void 0 : navItemTimeline.timeScale(1).restart();
       } else {
+        showMobileToggle.value = false;
         tl.timeScale(3).reverse();
+        navItemTimeline == null ? void 0 : navItemTimeline.timeScale(3).reverse();
       }
     });
     watch(
@@ -5474,13 +5549,14 @@ const _sfc_main$6 = {
           const startY = (void 0).scrollY;
           const targetY = el.getBoundingClientRect().top + startY + buffer;
           (void 0).scrollTo({ top: targetY, behavior: "smooth" });
+          if (!isDesktop.value) store.mobileNav = true;
           store.closeNav();
         }
       }
     );
     return (_ctx, _push, _parent, _attrs) => {
       const _component_NuxtLink = __nuxt_component_0$1;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "nav-wrapper" }, _attrs))} data-v-55061bc4><div data-v-55061bc4></div><header id="nav" class="${ssrRenderClass([isSticky.value ? "fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition duration-700 z-90 motionless:durarion-50" : " absolute ", "z-20 w-full py-4 mx-auto will-change-transform transform-gpu"])}" data-v-55061bc4><div class="nav-wrapper max-w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative" data-v-55061bc4><div class="${ssrRenderClass([isSticky.value ? "opacity-75 duration-700 hover:opacity-100 max-md:motionless:mt-4 max-md:motionless:-mb-4 motionless:duration-100" : "opacity-0 duration-0", "relative transition-all text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand max-sm:z-10"])}" data-v-55061bc4>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "nav-wrapper" }, _attrs))} data-v-cc083a33><div data-v-cc083a33></div><header id="nav" class="${ssrRenderClass([[isSticky.value ? "fixed left-0 w-full bg-background/70 dark:bg-primary/70 inverted:bg-primary/70 inverted:dark:bg-background/70 backdrop-blur transition-all duration-700 z-90 motionless:durarion-50" : " absolute "], [unref(store).mobileNav ? "max-md:h-dvh" : "max-md:h-15"], "z-20 w-full py-4 mx-auto will-change-transform transform-gpu"])}" data-v-cc083a33><div class="nav-wrapper max-w-full w-full px-8 lg:px-12 lg:max-w-[1024px] xl:max-w-[1440px] mx-auto flex items-center relative overflow-visible" data-v-cc083a33><div class="${ssrRenderClass([isSticky.value ? "opacity-75 duration-700 hover:opacity-100 max-md:motionless:mt-4 max-md:motionless:-mb-4 motionless:duration-100" : "opacity-0 duration-0", "relative transition-all text-primary dark:text-background inverted:text-background inverted:dark:text-primary nav-brand max-sm:z-10"])}" data-v-cc083a33>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         ref_key: "navBrandLink",
         ref: navBrandLink,
@@ -5500,15 +5576,15 @@ const _sfc_main$6 = {
         }),
         _: 1
       }, _parent));
-      _push(`</div><h1 class="${ssrRenderClass([isSticky.value ? "motionless:text-lg md:motionless:static max-md:motionless:-mt-1 motionless:mt-0.25 md:motionless:ml-2 motionless:mb-0" : "", "absolute top-0 mb-6 text-3xl transition-all left-8 lg:left-12 headingClass lg:mb-18 md:text-5xl text-nowrap motionless:duration-50"])}" data-v-55061bc4><span class="transition-all duration-700 opacity-0 placeholder-line text-primary dark:text-background inverted:text-background motionless:duration-50 motionless:**:duration-50" data-splitting="words" data-v-55061bc4>${ssrInterpolate(__props.title)}</span></h1><nav class="${ssrRenderClass([isSticky.value ? ["opacity-0", "motionless:opacity-100"] : ["opacity-0"], "flex ml-auto space-x-8 text-sm font-semibold font-heading group/nav text-primary dark:text-background inverted:text-background inverted:dark:text-primary"])}" data-v-55061bc4>`);
+      _push(`</div><h1 class="${ssrRenderClass([isSticky.value ? "motionless:text-lg md:motionless:static max-md:motionless:-mt-1 motionless:mt-0.25 md:motionless:ml-2 motionless:mb-0" : "", "absolute top-0 mb-6 text-3xl transition-all left-8 lg:left-12 headingClass lg:mb-18 md:text-5xl text-nowrap motionless:duration-50"])}" data-v-cc083a33><span class="transition-all duration-700 opacity-0 placeholder-line text-primary dark:text-background inverted:text-background motionless:duration-50 motionless:**:duration-50" data-splitting="words" data-v-cc083a33>${ssrInterpolate(__props.title)}</span></h1><nav class="${ssrRenderClass([[isSticky.value ? ["max-md:opacity-0", "motionless:opacity-100"] : ["opacity-0"]], [unref(store).mobileNav ? "max-md:top-15 max-md:opacity-100" : ""], "flex ml-auto md:space-x-8 text-sm font-semibold font-heading group/nav text-primary dark:text-background inverted:text-background inverted:dark:text-primary max-md:absolute max-md:flex-col max-md:h-full max-md:w-full max-md:items-center max-md:gap-10 max-md:pt-24 max-md:left-0 overflow-visible"])}" data-v-cc083a33>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
-        class: "relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip",
+        class: "relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center **:**:inline-flex",
         to: "/about",
         "aria-label": "Find out more about me!"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<span class="nav-item" data-v-55061bc4${_scopeId}>about</span>`);
+            _push2(`<span class="nav-item" data-v-cc083a33${_scopeId}>about</span>`);
           } else {
             return [
               createVNode("span", {
@@ -5521,13 +5597,32 @@ const _sfc_main$6 = {
         _: 1
       }, _parent));
       _push(ssrRenderComponent(_component_NuxtLink, {
-        class: "relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip",
+        class: "relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center **:**:inline-flex",
+        to: "/services",
+        "aria-label": "Find out more about me!"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<span class="nav-item" data-v-cc083a33${_scopeId}>Services</span>`);
+          } else {
+            return [
+              createVNode("span", {
+                class: "nav-item",
+                onMouseenter: onNavHoverIn
+              }, "Services", 32)
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        class: "relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center **:**:inline-flex",
         to: "/work/",
         "aria-label": "View my featured work!"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<span class="nav-item" data-v-55061bc4${_scopeId}>work</span>`);
+            _push2(`<span class="nav-item" data-v-cc083a33${_scopeId}>work</span>`);
           } else {
             return [
               createVNode("span", {
@@ -5539,7 +5634,11 @@ const _sfc_main$6 = {
         }),
         _: 1
       }, _parent));
-      _push(`<a href="#sayHello" class="relative transition duration-700 group-hover/nav:opacity-70 group-hover/nav:hover:opacity-100 overflow-clip" aria-label="Send me a message!" data-v-55061bc4><span class="nav-item" data-v-55061bc4>say hello</span></a></nav></div></header></div>`);
+      _push(`<a href="#sayHello" class="relative transition duration-700 group-hover/nav:opacity-60 group-hover/nav:hover:opacity-100 overflow-clip max-md:text-2xl max-md:flex max-md:justify-center" aria-label="Send me a message!" data-v-cc083a33><span class="nav-item" data-v-cc083a33>say hello</span></a></nav>`);
+      _push(ssrRenderComponent(mobileHamburger, {
+        class: ["ms-auto md:hidden", showMobileToggle.value ? "wobble-ver-right" : "opacity-0"]
+      }, null, _parent));
+      _push(`</div></header></div>`);
     };
   }
 };
@@ -5549,7 +5648,7 @@ _sfc_main$6.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/InnerNav.vue");
   return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
-const InnerNav = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-55061bc4"]]);
+const InnerNav = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-cc083a33"]]);
 const _sfc_main$5 = {
   __name: "PrimaryBTN",
   __ssrInlineRender: true,
@@ -5820,19 +5919,19 @@ const _sfc_main$4 = {
         id: "sayHello",
         tabindex: "0",
         class: "relative items-center w-full min-h-screen mx-auto mb-2 form-wrapper text-electric-purple dark:text-accent inverted:text-electric-purple mt-25 md:mt-28"
-      }, _attrs))} data-v-03238e41><div class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16" data-v-03238e41><h3 data-splitting="words" id="formHeader" class="${ssrRenderClass([submitted.value ? "blur-sm" : "", "mb-6 text-4xl font-black text-center uppercase transition-all lg:mb-12 form-header placeholder-line"])}" data-v-03238e41>Lets get in touch!</h3>`);
+      }, _attrs))} data-v-999b0c10><div class="h-full flex items-center sticky top-45 justify-center mx-auto pb-12 mb-4 lg:mb-8 px-6 flex-col max-w-[778px] relative xl:pb-24 xl:pb-16" data-v-999b0c10><h3 data-splitting="words" id="formHeader" class="${ssrRenderClass([submitted.value ? "blur-sm" : "", "mb-6 text-4xl font-black text-center uppercase transition-all lg:mb-12 form-header placeholder-line"])}" data-v-999b0c10>Lets get in touch!</h3>`);
       if (submitted.value) {
-        _push(`<div class="absolute z-30 pt-16 text-center fade-up" id="thanks" data-v-03238e41><h4 class="mb-2 text-3xl font-bold text-yellow" data-v-03238e41>Message sent!</h4><p class="text-white" data-v-03238e41>We&#39;ll be in touch, thanks! </p></div>`);
+        _push(`<div class="absolute z-30 pt-16 text-center fade-up" id="thanks" data-v-999b0c10><h4 class="mb-2 text-3xl font-bold text-yellow" data-v-999b0c10>Message sent!</h4><p class="text-white" data-v-999b0c10>We&#39;ll be in touch, thanks! </p></div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<form novalidate class="${ssrRenderClass([submitted.value ? "blur-md opacity-25" : "", "flex flex-col w-full gap-6 px-2 transition-all lg:gap-8 text-electric-purple dark:text-accent inverted:text-electric-purple"])}" data-v-03238e41>`);
+      _push(`<form novalidate class="${ssrRenderClass([submitted.value ? "blur-md opacity-25" : "", "flex flex-col w-full gap-6 px-2 transition-all lg:gap-8 text-electric-purple dark:text-accent inverted:text-electric-purple"])}" data-v-999b0c10>`);
       if (error.value) {
-        _push(`<div class="mb-2 text-sm text-electric-purple" data-v-03238e41>${ssrInterpolate(error.value)}</div>`);
+        _push(`<div class="mb-2 text-sm text-electric-purple" data-v-999b0c10>${ssrInterpolate(error.value)}</div>`);
       } else {
         _push(`<!---->`);
       }
-      _push(`<div class="flex flex-wrap w-full" data-v-03238e41><div class="relative w-1/2 pr-4" data-v-03238e41><label class="sr-only focus:not-sr-only" tabindex="0" for="name" data-v-03238e41> Name </label><input type="text" placeholder="Name" id="name" name="name"${ssrRenderAttr("value", formDataValues.name)} class="${ssrRenderClass([{ "border-b border-yellow": nameError.value }, "w-full outline-0 h-16 pb-2 p bg-transparent border-current border-3 rounded-[6rem] pl-6 py-[9px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-03238e41></div><div class="w-1/2" data-v-03238e41><label for="email" class="sr-only focus:not-sr-only" tabindex="0" data-v-03238e41> Email </label><input type="email" id="email" placeholder="Email" name="email"${ssrRenderAttr("value", formDataValues.email)} required class="${ssrRenderClass([{ "border-b border-yellow": emailError.value }, "w-full outline-0 h-16 pb-2 p bg-transparent border-current border-3 rounded-[6rem] pl-6 py-[9px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-03238e41></div></div><label for="message" class="sr-only focus:not-sr-only" tabindex="0" data-v-03238e41> Type your message </label><textarea class="${ssrRenderClass([{ "border-b border-yellow": messageError.value }, "placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border-3 rounded-[1rem] pl-6 py-6 text-electric-purple dark:text-accent inverted:text-electric-purple"])}" id="message" name="message" placeholder="Your message" required data-v-03238e41>${ssrInterpolate(formDataValues.message)}</textarea><div class="hidden" data-v-03238e41><input type="text" id="hpField" name="hpField"${ssrRenderAttr("value", formDataValues.hpField)} tabindex="-1" autocomplete="off" data-v-03238e41></div><div data-v-03238e41>`);
+      _push(`<div class="flex flex-wrap w-full" data-v-999b0c10><div class="relative w-1/2 pr-4" data-v-999b0c10><label class="sr-only focus:not-sr-only" tabindex="0" for="name" data-v-999b0c10> Name </label><input type="text" placeholder="Name" id="name" name="name"${ssrRenderAttr("value", formDataValues.name)} class="${ssrRenderClass([{ "border-b border-yellow": nameError.value }, "w-full outline-0 h-16 pb-2 p bg-transparent border-current border-3 rounded-[6rem] pl-6 py-[9px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-999b0c10></div><div class="w-1/2" data-v-999b0c10><label for="email" class="sr-only focus:not-sr-only" tabindex="0" data-v-999b0c10> Email </label><input type="email" id="email" placeholder="Email" name="email"${ssrRenderAttr("value", formDataValues.email)} required class="${ssrRenderClass([{ "border-b border-yellow": emailError.value }, "w-full outline-0 h-16 pb-2 p bg-transparent border-current border-3 rounded-[6rem] pl-6 py-[9px] pr-3 outline-none transition-all active:border-green disabled:cursor-default disabled:bg-gray-2 text-xl focus:border-green text-electric-purple dark:text-accent inverted:text-electric-purple placeholder:text-electric-purple/60 focus:placeholder:text-electric-purple dark:placeholder:text-accent/60 dark:focus:placeholder:text-accent inverted:placeholder:text-electric-purple/60 inverted:focus:placeholder:text-electric-purple"])}" data-v-999b0c10></div></div><label for="message" class="sr-only focus:not-sr-only" tabindex="0" data-v-999b0c10> Type your message </label><textarea class="${ssrRenderClass([{ "border-b border-yellow": messageError.value }, "placeholder:text-current/60 focus:placeholder:text-current outline-0 h-22 pb-2 p bg-transparent border-current border-3 rounded-[1rem] pl-6 py-6 text-electric-purple dark:text-accent inverted:text-electric-purple"])}" id="message" name="message" placeholder="Your message" required data-v-999b0c10>${ssrInterpolate(formDataValues.message)}</textarea><div class="hidden" data-v-999b0c10><input type="text" id="hpField" name="hpField"${ssrRenderAttr("value", formDataValues.hpField)} tabindex="-1" autocomplete="off" data-v-999b0c10></div><div data-v-999b0c10>`);
       _push(ssrRenderComponent(_sfc_main$5, {
         type: "submit",
         class: "text-1xl btn text-electric-purple dark:text-accent subtle-slide-in submit ms-auto",
@@ -5852,7 +5951,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/Contact.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const Contact = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-03238e41"]]);
+const Contact = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-999b0c10"]]);
 const _sfc_main$3 = {
   __name: "SecondaryNav",
   __ssrInlineRender: true,
@@ -5861,9 +5960,9 @@ const _sfc_main$3 = {
   },
   setup(__props) {
     return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "secondary-nav group/secondaryNav max-w-1440 px-0 md:px-12 flex justify-end items-center relative gap-8 md:gap-6 z-200" }, _attrs))} data-v-b86ce407>`);
-      _push(ssrRenderComponent(_sfc_main$9, { footer: __props.footer }, null, _parent));
-      _push(ssrRenderComponent(_sfc_main$b, null, null, _parent));
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "secondary-nav group/secondaryNav max-w-1440 px-0 md:px-12 flex justify-end items-center relative gap-8 md:gap-6 z-200" }, _attrs))} data-v-f1dc288a>`);
+      _push(ssrRenderComponent(_sfc_main$a, { footer: __props.footer }, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$c, null, null, _parent));
       _push(ssrRenderComponent(Hamburger, { footer: __props.footer }, null, _parent));
       _push(`</div>`);
     };
@@ -5875,7 +5974,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/navigation/SecondaryNav.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const SecondaryNav = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-b86ce407"]]);
+const SecondaryNav = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-f1dc288a"]]);
 const _sfc_main$2 = {
   __name: "Footer",
   __ssrInlineRender: true,
@@ -5981,7 +6080,7 @@ const _sfc_main = {
           } else if (unref(SingleRenderer)) {
             ssrRenderVNode(_push, createVNode(resolveDynamicComponent(unref(SingleRenderer)), null, null), _parent);
           } else {
-            _push(ssrRenderComponent(unref(_sfc_main$f), null, null, _parent));
+            _push(ssrRenderComponent(unref(_sfc_main$g), null, null, _parent));
           }
         },
         _: 1
@@ -6031,11 +6130,12 @@ const server = /*#__PURE__*/Object.freeze({
   e: __nuxt_component_0$1,
   f: SecondaryNav,
   g: _sfc_main$5,
-  h: _sfc_main$d,
+  h: _sfc_main$e,
   i: useSeoMeta,
+  m: mobileHamburger,
   n: navigateTo,
   u: useNuxtApp
 });
 
-export { Contact as C, InnerSecondaryNav as I, PlaceholderJS as P, ScrollTrigger as S, _export_sfc as _, useMainStore as a, InnerNav as b, _sfc_main$2 as c, useNuxtApp as d, SecondaryNav as e, _sfc_main$5 as f, __nuxt_component_0$1 as g, Splitting as h, useSeoMeta as i, _sfc_main$d as j, navigateTo as n, server as s, useHead as u };
+export { Contact as C, InnerSecondaryNav as I, PlaceholderJS as P, ScrollTrigger as S, _export_sfc as _, useMainStore as a, InnerNav as b, _sfc_main$2 as c, useNuxtApp as d, SecondaryNav as e, _sfc_main$5 as f, __nuxt_component_0$1 as g, Splitting as h, useSeoMeta as i, _sfc_main$e as j, mobileHamburger as m, navigateTo as n, server as s, useHead as u };
 //# sourceMappingURL=server.mjs.map

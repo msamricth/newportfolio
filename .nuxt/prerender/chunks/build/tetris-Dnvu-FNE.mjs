@@ -1,4 +1,4 @@
-import { gsap } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/gsap/dist/gsap.js';
+import { gsap } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/gsap/dist/gsap.js';
 
 function buildTetrisTL(container) {
   const scope = container;

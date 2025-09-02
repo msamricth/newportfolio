@@ -16,6 +16,7 @@
 import { ref, nextTick } from 'vue'
 import { useMainStore} from '../../stores/main.js'
 import Tooltips from '../buttons/Tooltips.vue'
+import { AnimationFrame } from '@/utils/AnimationFrame.js'
 const store = useMainStore()
 const menuBTN = ref(null)
 const menuBTNActive = ref(false)
@@ -32,10 +33,9 @@ defineProps({
 })
 const menuAnim = () => {
     menuBTNActive.value = true;
-    setTimeout(() => {
-        menuBTNActive.value = false;
-    }, 400)
+    AnimationFrame(()=>menuBTNActive.value = false, 400)
 }
+
 </script>
 <style scoped>
 .stroke-animate {

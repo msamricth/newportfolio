@@ -6,10 +6,11 @@ export const useMainStore = defineStore('main', {
         sticky: true,
         darkMode: 'clear',
         useMode: false,
-        sliderArrowSticky: false,
+        introPlaying: false,
         sliderTimeline: 'before',
         fold: false,
         navOpen: false,
+        mobileNav: false, //will consolidate with navOpen at some point
         reduceMotion: false,
         loaded: false,
         ready: false,
@@ -101,6 +102,7 @@ export const useMainStore = defineStore('main', {
         },
         toggleReduceMotion() {
             this.reduceMotion = !this.reduceMotion;
+            this.introPlaying = false;
             localStorage.setItem('reduceMotion', String(this.reduceMotion));
             document.body.classList.toggle('motionless', this.reduceMotion);
         },

@@ -1,4 +1,4 @@
-import { escapeHtml } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/@vue/shared/dist/shared.cjs.prod.js';
+import { escapeHtml } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/@vue/shared/dist/shared.cjs.prod.js';
 
 const _messages = { "appName": "Nuxt", "version": "", "statusCode": 500, "statusMessage": "Server error", "description": "This page is temporarily unavailable." };
 const template = (messages) => {

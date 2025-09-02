@@ -23,6 +23,9 @@ const sources = [
                 "loc": "/"
             },
             {
+                "loc": "/services"
+            },
+            {
                 "loc": "/work/glt"
             },
             {
@@ -55,16 +58,20 @@ const sources = [
         "urls": [
             "/",
             "/about",
+            "/services",
             "/work/",
             "/work/glt",
+            {
+                "loc": "/services"
+            },
             {
                 "loc": "/work/"
             },
             {
-                "loc": "/about"
+                "loc": "/work/glt"
             },
             {
-                "loc": "/work/glt"
+                "loc": "/about"
             },
             {
                 "loc": "/"

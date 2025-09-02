@@ -1,5 +1,5 @@
-import { ref } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/vue/index.mjs';
-import { defineStore } from 'file://C:/Users/emmta/Local%20Sites/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
+import { ref } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/vue/index.mjs';
+import { defineStore } from 'file:///Users/emmatalarico/www/newportfolio/node_modules/pinia/dist/pinia.prod.cjs';
 
 const useModalStore = defineStore("modal", () => {
   const modalItem = ref(null);

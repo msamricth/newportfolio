@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, nextTick  } from 'vue'
+import { onMounted, nextTick, onUnmounted  } from 'vue'
 import { useMainStore } from '@/stores/main'
 
 import { useNuxtApp } from '#app'
@@ -18,6 +18,13 @@ onMounted(async () => {
 
 })
 
+onUnmounted(async () => {
+  store.ready=false
+  await nextTick()
+  store.ready=false
+  store.loaded = false
+
+})
 </script>
 
 
