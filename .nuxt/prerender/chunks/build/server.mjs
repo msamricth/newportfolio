@@ -3816,18 +3816,18 @@ const _routes = [
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CjGVqBda.mjs')
+    component: () => import('./index-CjyxG4rL.mjs')
   },
   {
     name: "services",
     path: "/services",
-    component: () => import('./services-CjAJ5PqH.mjs')
+    component: () => import('./services-CHtftW31.mjs')
   },
   {
     name: "work-glt",
     path: "/work/glt",
     meta: __nuxt_page_meta || {},
-    component: () => import('./glt-UjCcr6CJ.mjs')
+    component: () => import('./glt-Bs7HUo9R.mjs')
   },
   {
     name: "work",

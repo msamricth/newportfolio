@@ -93,6 +93,7 @@ onMounted(async () => {
 const anim = () => {
     const tl = gsap.timeline({ paused: true });
 
+    let mm = gsap.matchMedia()
     const slideEl = slide.value
     const paths = slide.value.querySelectorAll('path');
 
@@ -122,22 +123,27 @@ const anim = () => {
         ease: "elastic.out(1, 0.5)",
         stagger: 0.1
     }, 0.5);
-    tl.play()
-    ScrollTrigger.create({
+
+    let appearanceConfig = {
         trigger: slideEl,
-        start: "top 80%",
-        end: "bottom 20%",
+        start: "top 85%",
+        end: "bottom top",
         onEnter: () => tl.play(),
-        onLeave: () => tl.tweenTo(0, {
-            duration: 0.2,
-            onComplete: () => tl.pause()
-        }),
-        onEnterBack: () => tl.play(),
         onLeaveBack: () => tl.tweenTo(0, {
             duration: 0.2,
             onComplete: () => tl.pause()
         })
-    });
+    }
+
+    mm.add('(min-width: 992px)', () => {
+        tl.play()
+        appearanceConfig.onLeave = () => tl.tweenTo(0, {
+            duration: 0.2,
+            onComplete: () => tl.pause()
+        });
+        appearanceConfig.onEnterBack = () => tl.play();
+    })
+    ScrollTrigger.create(appearanceConfig);
 }
 
 </script>

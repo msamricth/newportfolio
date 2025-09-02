@@ -38,7 +38,7 @@
         </div>
         <div class="pt-5 md:w-2/3 lg:w-3/4 entry md:pl-8 lg:pl-12 xl:pl-16">
             <div class="sticky top-24 md:pb-10 lg:pb-0">
-                <p class="placeholder-line text-lg lg:text-2xl leading-[1.4] mb-4" data-splitting="words">
+                <p class="placeholer-line text-lg lg:text-2xl leading-[1.4] mb-4" data-splitting="words">
                     Since 2022, I have partnered with Green Leadership Trust (GLT)—an organization that elevates people
                     of
                     the
@@ -170,7 +170,7 @@ async function initAnim() {
         },
         onEnterBack: ()=>{
             sideBarVisible.value = false
-            tl.reverse() 
+           // tl.reverse() 
         }
     })
     csStore.sectionReady = 1

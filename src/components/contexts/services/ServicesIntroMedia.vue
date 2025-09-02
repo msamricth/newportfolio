@@ -304,11 +304,12 @@ onMounted(async () => {
 })
 const anim = () => {
     const tl = gsap.timeline({ paused: true });
-
+    let mm = gsap.matchMedia()
     const slideEl = slide.value
     gsap.set("#servicesEditingFilm", {
         autoAlpha: 0,
         rotation: 4,
+        scale: 1.5,
         transformOrigin: "50% 50%"
     });
     gsap.set("#servicesEditingSoundTracker", {
@@ -340,28 +341,45 @@ const anim = () => {
             duration: 8
         }, "-=2")
 
-        .to("#servicesEditingFilm", {
+
+        .fromTo("#servicesEditingFilm", {
+            autoAlpha: 0,
+            x: '-20%'
+        }, {
             autoAlpha: 1,
-            x: "90%",
+            x: "105%",
             ease: "power1.out",
             duration: 4
-        }, "-=5");
-    tl.play()
-    ScrollTrigger.create({
+        }, "-=8")
+
+        .fromTo("#servicesEditingFilm path", {
+            autoAlpha: 0,
+        }, {
+            autoAlpha: 1,
+            ease: "power1.out",
+            duration: 4
+        }, "-=6");
+
+    let appearanceConfig = {
         trigger: slideEl,
-        start: "top 80%",
-        end: "bottom 20%",
+        start: "top 85%",
+        end: "bottom top",
         onEnter: () => tl.play(),
-        onLeave: () => tl.tweenTo(0, {
-            duration: 0.2,
-            onComplete: () => tl.pause()
-        }),
-        onEnterBack: () => tl.play(),
         onLeaveBack: () => tl.tweenTo(0, {
             duration: 0.2,
             onComplete: () => tl.pause()
         })
-    });
+    }
+
+    mm.add('(min-width: 992px)', () => {
+        tl.play()
+        appearanceConfig.onLeave = () => tl.tweenTo(0, {
+            duration: 0.2,
+            onComplete: () => tl.pause()
+        });
+        appearanceConfig.onEnterBack = () => tl.play();
+    })
+    ScrollTrigger.create(appearanceConfig);
 }
 
 </script>

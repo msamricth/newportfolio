@@ -18,19 +18,19 @@
         </div>
     </div>
 </template>
-<script setup lang="ts">
-import { ref, onMounted, watch, nextTick, PropType } from 'vue'
+
+<script setup>
+import { ref, onMounted, watch, nextTick } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMainStore } from '@/stores/main.js'
 import PlaceholderJS from '@/utils/placeholder.js'
 import videoHandler from '@/utils/videoHandler.js'
-import type { Component } from 'vue'
 
 const store = useMainStore()
 const props = defineProps({
     icon: {
-        type: [Object, Function] as PropType<Component>,
+        type: [Object, Function],
         required: true,
     },
     heading: String,
@@ -79,12 +79,8 @@ function initIntro() {
     player.play()
 
     tl = gsap.timeline({ paused: true })
-    tl.fromTo(videoEl, { x: '100%' }, {
-        x: 0, ease: 'power1.inOut', duration: 0.5
-    })
-        .fromTo(videoEl, { autoAlpha: 0 }, {
-            autoAlpha: 1, ease: 'power1.inOut', duration: 0.3
-        }, 0.3)
+    tl.fromTo(videoEl, { x: '100%' }, { x: 0, ease: 'power1.inOut', duration: 0.5 })
+      .fromTo(videoEl, { autoAlpha: 0 }, { autoAlpha: 1, ease: 'power1.inOut', duration: 0.3 }, 0.3)
 
     trigger1 = ScrollTrigger.create({
         trigger: videoEl,
@@ -95,7 +91,7 @@ function initIntro() {
             document.body.classList.remove('dark')
         },
         onEnterBack: () => tl.play(),
-        onLeave: () => tl.reverse()
+        // onLeave: () => tl.reverse()
     })
 
     trigger2 = ScrollTrigger.create({
@@ -103,7 +99,7 @@ function initIntro() {
         start: 'top 65%',
         end: 'bottom 45%',
         onEnter: () => animations.forEach(anim => anim.play()),
-        //  onEnterBack: () => animations.forEach(anim => anim.play())
+        // onEnterBack: () => animations.forEach(anim => anim.play())
     })
 }
 
@@ -116,6 +112,5 @@ watch(() => store.reduceMotion, async (rm) => {
     await nextTick()
     cleanup()
     if (!rm) initIntro()
-},
-  { immediate: true })
+}, { immediate: true })
 </script>

@@ -2,16 +2,16 @@
     <section ref="section" class="pt-22 lg:pt-28" id="about" :class="{ 'opacity-0': !store.ready }">
         <div class="introduction-wrapper">
             <div
-                class="sticky mt-4 md:max-w-2/3 md:mt-6 motionless:mt-5 max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto">
-                <h2 class="mb-4 text-2xl italic opacity-0 subtitle placeholder-line max-w-160" data-splitting="words">Code that
+                class="sticky mt-4 md:mt-6 motionless:mt-5 max-w-full lg:max-w-[1024px] xl:max-w-[1440px] px-8 lg:px-12 mx-auto">
+                <h2 class="mb-4 text-2xl italic opacity-0 subtitle placeholder-line max-w-160 mr-auto" data-splitting="words">Code that
                     clicks, pixels that pop, and strategy that actually makes sense.
                 </h2>
             </div>
             <div
-                class="introduction grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 px-8 lg:px-12 2xl:max-w-[1680px] mx-auto auto-rows-auto">
+                class="introduction grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 px-8 lg:px-12 2xl:max-w-[1680px] mx-auto auto-rows-auto pb-60">
                 <div class="row-start-2 md:row-start-1 md:col-span-2 lg:row-start-1 lg:col-span-4">
                     <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] mx-auto lg:px-12 pb-8 lg:pb-18">
-                        <p class="placeholder-line text-secondary text-2xl leading-[1.8] mb-2" data-splitting="words">
+                        <p class="placeholder-line text-secondary text-2xl leading-[1.8] mb-2 max-w-[992px]" data-splitting="words">
                             I build fast, accessible digital experiences that go beyond typical marketing sites. With a
                             background in front-end development, design systems, and brand strategy, I help teams
                             deliver
@@ -43,16 +43,15 @@
                             From modular WordPress platforms to custom Vue and Nuxt.js applications, I’ve led projects
                             that
                             support high-traffic publishing workflows, dynamic product filtering, API integrations, and
-                            interactive tools. My app work includes location-based store finders, animated interfaces,
-                            editorial hubs, and microsites that connect smoothly to Airtable, headless CMS platforms,
+                            interactive tools. My app work includes location-based store finders, Analytics-based sales application for brands to grow on, animated interfaces,
+                            editorial hubs, and microsites, headless CMS platforms,
                             and
-                            external APIs. I work confidently across JavaScript frameworks like Vue, Nuxt, and React,
-                            and
-                            have extensive experience with GSAP for motion design and user engagement.</p>
+                            external APIs. I work confidently across JavaScript frameworks like Vue, React, Angular and more.
+                            In addition, I have extensive experience with GSAP for motion design and user engagement.</p>
                     </div>
                 </div>
 
-                <div class="col-start-1 row-start-6 md:row-start-5 md:col-span-2 lg:row-start-4 lg:col-span-4">
+                <div class="col-start-1 row-start-6 md:row-start-5 md:col-span-2 lg:row-start-4 lg:col-span-4" ref="toggleFold">
 
                     <div class="max-w-full lg:max-w-[1024px] xl:max-w-[1440px] mx-auto lg:px-12">
                         <p class="placeholder-line text-secondary text-base leading-[1.8]" data-splitting="words">
@@ -92,6 +91,8 @@ const ServicesIntroBrand = defineAsyncComponent(() => import('@/components/conte
 const ServicesIntroMedia = defineAsyncComponent(() => import('@/components/contexts/services/ServicesIntroMedia.vue'))
 const ServicesIntroCode = defineAsyncComponent(() => import('@/components/contexts/services/ServicesIntroCode.vue'))
 const ServicesIntroDesign = defineAsyncComponent(() => import('@/components/contexts/services/ServicesIntroDesign.vue'))
+
+const toggleFold = ref(null)
 watch(
     () => store.ready,
     async (ready) => {
@@ -143,6 +144,17 @@ async function servicesIntroAnims() {
             })
         }
 
+        const foldTrigger = ScrollTrigger.create({
+            trigger: toggleFold.value,
+            start: 'top 80%',
+            onEnter: () => {
+                 store.toggleFold();
+            },
+            onEnterBack: () => {
+                 store.toggleFold(false, true);
+            }
+        });
+        sectionTriggers.push(foldTrigger);
 
         const tlScrollTrigger = ScrollTrigger.create({
             trigger: sectionEl,

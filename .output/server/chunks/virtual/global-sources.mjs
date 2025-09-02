@@ -62,19 +62,19 @@ const sources = [
             "/work/",
             "/work/glt",
             {
+                "loc": "/services"
+            },
+            {
                 "loc": "/work/"
+            },
+            {
+                "loc": "/work/glt"
             },
             {
                 "loc": "/about"
             },
             {
                 "loc": "/"
-            },
-            {
-                "loc": "/work/glt"
-            },
-            {
-                "loc": "/services"
             }
         ],
         "sourceType": "app"

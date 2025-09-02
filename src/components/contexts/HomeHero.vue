@@ -45,6 +45,7 @@ const SceneVideo = defineAsyncComponent(() => import('@/components/contexts/hero
 const SceneUXIcons = defineAsyncComponent(() => import('@/components/contexts/hero/SceneUXIcons.vue'))
 const playPressed = ref(false)
 const activeScene = ref(0)
+const scrollFoldReady = ref(false)
 
 const loading = ref(false)
 const grid = ref(null)
@@ -186,6 +187,7 @@ async function buildMasterTimeline() {
         const { buildUXTL } = await import('@/utils/hero/uxScreens');
         const tl1 = buildUXTL(grid.value);
         master.add(tl1, 'UX');
+        scrollFoldReady.value = true;
     }, null, 'UX+=0.2');
 
 
@@ -222,5 +224,26 @@ async function buildMasterTimeline() {
     }, null, 'UX+=9');
 
 }
+watch(
+    () => scrollFoldReady.value,
+    async (ready) => {
+        if (!ready) return
+       // if (store.reduceMotion) return
+        await nextTick()
+        if (grid.value) {
+            const foldTrigger = ScrollTrigger.create({
+                trigger: grid.value,
+                start: 'top 80%',
+                onEnter: () => {
+                    store.toggleFold();
+                },
+                onEnterBack: () => {
+                    store.toggleFold(false, true);
+                }
+            });
+        }
+    },
+    { immediate: true }
+)
 
 </script>

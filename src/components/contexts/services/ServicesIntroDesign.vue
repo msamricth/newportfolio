@@ -80,7 +80,7 @@ onMounted(async () => {
 })
 const anim = () => {
     const tl = gsap.timeline({ paused: true });
-
+    let mm = gsap.matchMedia()
     const slideEl = slide.value
     tl.from("#servicesIntroTOutline", {
         drawSVG: "0%",
@@ -145,24 +145,29 @@ const anim = () => {
         .to(hp, { scale: 1, transformOrigin: "0% 0%", duration: 0.2 })
         .to(hp, { scale: 1, transformOrigin: "100% 0%", duration: 0.2 })
         .to(hp, { scale: 1, transformOrigin: "100% 100%", duration: 0.2 })
-        .to(hp, { scale: 1, transformOrigin: "0% 100%", duration: 0.2 })
         .to(hp, { y: -60, scale: 1, transformOrigin: "100% 100%", duration: 0.2 })
-    tl.play()
-    ScrollTrigger.create({
+
+
+    let appearanceConfig = {
         trigger: slideEl,
-        start: "top 80%",
-        end: "bottom 20%",
+        start: "top 85%",
+        end: "bottom top",
         onEnter: () => tl.play(),
-        onLeave: () => tl.tweenTo(0, {
-            duration: 0.2,
-            onComplete: () => tl.pause()
-        }),
-        onEnterBack: () => tl.play(),
         onLeaveBack: () => tl.tweenTo(0, {
             duration: 0.2,
             onComplete: () => tl.pause()
         })
-    });
+    }
+
+    mm.add('(min-width: 992px)', () => {
+        tl.play()
+        appearanceConfig.onLeave = () => tl.tweenTo(0, {
+            duration: 0.2,
+            onComplete: () => tl.pause()
+        });
+        appearanceConfig.onEnterBack = () => tl.play();
+    })
+    ScrollTrigger.create(appearanceConfig);
 }
 
 </script>
